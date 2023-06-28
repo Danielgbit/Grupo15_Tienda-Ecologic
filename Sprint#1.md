@@ -36,6 +36,12 @@ Nuestro sitio está dirigido a personas interesadas en el cuidado del medio ambi
 
 
 
+# Link Prototipo
+
+[Prototipo Figma](https://www.figma.com/proto/Or3DP5UXYQx67D8GAPDmMR/Wireframe-Baja?page-id=71%3A84&type=design&node-id=113-12&viewport=499%2C-3141%2C0.46&scaling=scale-down-width&starting-point-node-id=113%3A12&mode=design&t=35EC0xtYlf7TIGDT-1)
+
+
+
 
 
 

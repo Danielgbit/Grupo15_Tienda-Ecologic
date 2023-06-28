@@ -1,0 +1,5 @@
+Primario: EDF4DA
+Secundario: D4D9C5
+Buttons: 14342B
+Cards: 363020
+Text: 2E3814
