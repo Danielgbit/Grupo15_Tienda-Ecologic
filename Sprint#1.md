@@ -40,6 +40,29 @@ Nuestro sitio está dirigido a personas interesadas en el cuidado del medio ambi
 
 [Prototipo Figma](https://www.figma.com/proto/Or3DP5UXYQx67D8GAPDmMR/Wireframe-Baja?page-id=71%3A84&type=design&node-id=113-12&viewport=499%2C-3141%2C0.46&scaling=scale-down-width&starting-point-node-id=113%3A12&mode=design&t=35EC0xtYlf7TIGDT-1)
 
+# INTEGRANTES DEL EQUIPO
+Somos un equipo de 5 personas con diferentes perfiles y habilidades:
+
+Luca:
+Descripción: Hola, mi nombre es Luca y tengo 20 años. Me dedico a jugar al Futsal y trabajo como cajero en una aplicación de póker.
+Intereses: Me interese por estudiar programación debido a mis amigos y conocidos que están en el ambiente.
+
+Micaela:
+Descripción: ¡Hola! Soy Micaela, cosmetóloga especializada en productos bio sustentables y también tengo un título de desarrolladora web full stack.
+Intereses: Me apasiona la creación de productos sustentables y me interesé por la programación para combinar mis conocimientos y crear soluciones digitales.
+Matias:
+
+Descripción: Hola, soy Matias y actualmente soy alumno piloto de aviones. Además, trabajo en una empresa que requiere conocimientos de programación, por eso estoy haciendo el curso full stack en Digital House.
+Intereses: Me fascina el mundo de la aviación y quiero complementar mis habilidades con la programación para aprovechar las oportunidades en el campo aeroespacial.
+
+Daniel:
+Descripción: ¡Hola a todos! Soy Daniel, productor musical con conocimientos en marketing. Me llamó la atención el mundo de la programación gracias a mi primo, quien me mostró el potencial de estas nuevas tecnologías y cómo pueden cambiar nuestra perspectiva del mundo.
+Intereses: Me interesa explorar las sinergias entre la música, el marketing y la programación para crear experiencias innovadoras y aprovechar al máximo las nuevas herramientas digitales.
+
+Federico:
+Descripción: Hola, mi nombre es Federico, tengo 21 años y trabajo como administrativo y colorista. Decidí estudiar programación para poder progresar en mi carrera y aplicar mis ideas en la web, compartiéndolas con el resto.
+Intereses: Me apasiona la creatividad y la posibilidad de materializar mis ideas a través de la programación. Quiero explorar nuevas formas de comunicación y expresión en la web.
+
 
 
 
