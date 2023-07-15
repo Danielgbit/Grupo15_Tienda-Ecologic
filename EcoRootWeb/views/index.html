@@ -12,17 +12,25 @@
 
 <body>
     <header class="bar-nav-container">
-        <a href="/views/index.html"><img class="logo" src="/img/logo-bar-nav.jpg" alt=""></a>
-        <div class="nav-center-wrapper">
-            <span class="material-symbols-outlined">search</span>
-            <span class="material-symbols-outlined">account_circle</span>
+        <a href="http://localhost:3000"><img class="logo" src="/img/logo-bar-nav.jpg" alt=""></a>
+        <div class="nav-text-wrapper">
+            <a href="http://localhost:3000"><span class="text-navegation">Home</span></a>
+            <a href="http://localhost:3000/products"><span class="text-navegation">Productos</span></a>
+            <a href="http://localhost:3000/login"><span class="text-navegation">Login</span></a>
         </div>
+
         <div class="nav-right-wrapper">
-            <div class="shop-icon">
-                <span class="material-symbols-outlined">local_mall</span>
-                <span class="number-shop">0</span>
-            </div>
-            <span class="material-symbols-outlined">menu</span>
+            <span class="icon-account"><span class="material-symbols-outlined">account_circle</span></span>
+            <span class="material-symbols-outlined">search</span>
+            <section class="icon-shop-hamburguer">
+                <div class="shop-icon">
+                    <span class="material-symbols-outlined">local_mall</span>
+                    <span class="number-shop">0</span>
+                </div>
+                <div class="contain-hamburguer">
+                    <span class="material-symbols-outlined">menu</span>
+                </div>
+            </section>
         </div>
     </header>
 
@@ -30,11 +38,17 @@
     <main>
         <section class="seccion-top-carrousel">
             <div class="img-top-body-container">
-                <img src="/img/img-header.jpg" alt="">
+                <img src="/img/img-cepillo-bambu.jpg" alt="">
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur. Auctor maecenas ut et aliquam congue senectus vehicula iaculis
-                mattis. Felis habitant aliquam malesuada molestie commodo est. In consectetur placerat scelerisque
-                cursus.
+            <p>"¡Bienvenido a Ecoroot, el lugar donde florece la belleza ecológica para tu cuerpo y más allá! Sumérgete
+                en un oasis de productos cuidadosamente seleccionados, inspirados en la naturaleza y creados con un
+                profundo respeto por nuestro planeta. En Ecoroot, nos enorgullece ofrecerte una amplia variedad de
+                opciones ecológicas para el cuidado personal, desde cosméticos orgánicos hasta productos de higiene
+                sostenibles. Nuestro compromiso con la calidad y la sostenibilidad se refleja en cada artículo que
+                descubrirás en nuestro catálogo. Aquí, te invitamos a explorar un universo de bienestar consciente,
+                donde cada elección que hagas para tu cuidado personal contribuirá a preservar y nutrir nuestro entorno.
+                Únete a nosotros en este viaje hacia una belleza auténtica y en armonía con la naturaleza en Ecoroot.
+                ¡Tu cuerpo y el planeta te lo agradecerán!"
             </p>
         </section>
 
@@ -49,9 +63,9 @@
                     ¡No te pierdas lo más popular en nuestra tienda virtual ecoamigable!"</p>
             </div>
 
-            <button class="button-shop-home" type="submit">Ingresa a la tienda
+            <a class="button-shop-home" href="http://localhost:3000/products"><button class="button-shop-home-primary" type="submit">Ingresa a la tienda
                 <span class="material-symbols-outlined">local_mall</span>
-            </button>
+            </button></a>
         </section>
 
         <article id="cards-products-container">
@@ -175,79 +189,90 @@
                 <span class="material-symbols-outlined">eco</span>
             </div>
 
+            <div class="articles-cards-contain">
+                <section class="card-article-contain">
+                    <img src="/img/img-tonic.jpg" alt="">
+                    <div class="text-article-wrapper">
+                        <span class="title">Tonico</span>
+                        <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
+                            dui lobortis
+                            vulputate
+                            sed in.</p>
+                    </div>
+                </section>
 
-            <section class="card-article-contain">
-                <img src="/img/img-bolsas-tela.jpg" alt="">
-                <div class="text-article-wrapper">
-                    <span class="title">Bolsas de tela</span>
-                    <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
-                        dui lobortis
-                        vulputate
-                        sed in.</p>
-                </div>
-            </section>
+                <section class="card-article-contain">
+                    <img src="/img/img-crem-ecologic.jpg" alt="">
+                    <div class="text-article-wrapper">
+                        <span class="title">Crema ecologica</span>
+                        <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
+                            dui lobortis
+                            vulputate
+                            sed in.</p>
+                    </div>
+                </section>
 
-            <section class="card-article-contain">
-                <img src="/img/img-bolsas-tela.jpg" alt="">
-                <div class="text-article-wrapper">
-                    <span class="title">Bolsas de tela</span>
-                    <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
-                        dui lobortis
-                        vulputate
-                        sed in.</p>
-                </div>
-            </section>
+                <section class="card-article-contain">
+                    <img src="/img/img-brush.jpg" alt="">
+                    <div class="text-article-wrapper">
+                        <span class="title">Cepillo bambu</span>
+                        <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
+                            dui lobortis
+                            vulputate
+                            sed in.</p>
+                    </div>
+                </section>
 
-            <section class="card-article-contain">
-                <img src="/img/img-bolsas-tela.jpg" alt="">
-                <div class="text-article-wrapper">
-                    <span class="title">Bolsas de tela</span>
-                    <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
-                        dui lobortis
-                        vulputate
-                        sed in.</p>
-                </div>
-            </section>
-
-            <section class="card-article-contain">
-                <img src="/img/img-bolsas-tela.jpg" alt="">
-                <div class="text-article-wrapper">
-                    <span class="title">Bolsas de tela</span>
-                    <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
-                        dui lobortis
-                        vulputate
-                        sed in.</p>
-                </div>
-            </section>
-
+                <section class="card-article-contain">
+                    <img src="/img/img-jabon-ecologic.jpg" alt="">
+                    <div class="text-article-wrapper">
+                        <span class="title">Jabon biodegradable</span>
+                        <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
+                            dui lobortis
+                            vulputate
+                            sed in.</p>
+                    </div>
+                </section>
+            </div>
         </article>
 
         <section class="seccion-promotion-contain">
             <img src="img/img-cepillo-bambu.jpg" alt="">
-            <div class="text-promotion">
-                <h3>Cepillo de bambú</h3>
-                <p>"¡Sonríe al futuro con nuestros cepillos de bambú! Cuidar de tu higiene bucal nunca fue tan ecológico
-                    y elegante. Hechos con materiales renovables y biodegradables, nuestros cepillos de bambú te brindan
-                    una experiencia única, combinando la suavidad de las cerdas de nylon de alta calidad con el impacto
-                    positivo en el medio ambiente. ¡Únete a la revolución del cepillado sostenible y dale a tu sonrisa
-                    un toque natural!"</p>
+            <div class="content-promotion">
+                <div class="text-promotion">
+                    <h3>Cepillo de bambú</h3>
+                    <p>"¡Sonríe al futuro con nuestros cepillos de bambú! Cuidar de tu higiene bucal nunca fue tan
+                        ecológico
+                        y elegante. Hechos con materiales renovables y biodegradables, nuestros cepillos de bambú te
+                        brindan
+                        una experiencia única, combinando la suavidad de las cerdas de nylon de alta calidad con el
+                        impacto
+                        positivo en el medio ambiente. ¡Únete a la revolución del cepillado sostenible y dale a tu
+                        sonrisa
+                        un toque natural!"</p>
+                </div>
+                <a href="http://localhost:3000/products"><button class="button-promotion">Ingresa a la tienda<span class="material-symbols-outlined">
+                            local_mall
+                        </span></a></button>
             </div>
-            <a href="#"><button class="button-promotion">Ingresa a la tienda<span class="material-symbols-outlined">
-                        local_mall
-                    </span></a></button>
         </section>
 
         <section class="seccion-login-message">
             <img src="img/img-shop.jpg" alt="">
-            <div class="text-promotion">
-                <p>"¡Descubre una experiencia de compra ecoamigable en nuestra tienda virtual! Convierte tus compras en
-                    acciones positivas para el planeta, explorando nuestra amplia selección de productos ecológicos que
-                    te ayudarán a cuidar el medio ambiente mientras disfrutas de la calidad y estilo que deseas. ¡Únete
-                    a nosotros y hagamos juntos un cambio sostenible!"</p>
+            <div class="content-login-message">
+                <div class="text-promotion">
+                    <p>"¡Descubre una experiencia de compra ecoamigable en nuestra tienda virtual! Convierte tus compras
+                        en
+                        acciones positivas para el planeta, explorando nuestra amplia selección de productos ecológicos
+                        que
+                        te ayudarán a cuidar el medio ambiente mientras disfrutas de la calidad y estilo que deseas.
+                        ¡Únete
+                        a nosotros y hagamos juntos un cambio sostenible!"</p>
+                </div>
+                <a href="http://localhost:3000/login"><button class="button-promotion">Inicia sesión<span class="material-symbols-outlined">
+                            arrow_right_alt
+                        </span></a></button>
             </div>
-            <a href="#"><button class="button-promotion">Inicia sesión<span class="material-symbols-outlined">
-                        arrow_right_alt
-                    </span></a></button>
         </section>
     </main>
 
@@ -274,7 +299,7 @@
                     <li>Blog</li>
                 </ul>
             </section>
-    
+
             <section class="sitio">
                 <span class="title">
                     SITIO
@@ -285,30 +310,27 @@
                     <li>Contact Us</li>
                 </ul>
             </section>
-            
+
             <div class="content-contact-logo">
                 <section class="contact">
                     <span class="title">
                         CONTACT US
                     </span>
                     <ul>
-                        <li>Calle#20-101-ARG</li>
-                        <li>(+54) 22 3444-2333</li>
+                        <li>Calle#20-101</li>
+                        <li>(+57) 22 3444-2333</li>
                         <li>TiendaEcologic@hotmail.com</li>
                     </ul>
                 </section>
-        
+
                 <div class="redes-sociales">
                     <img src="/img/logo-git.jpg" alt="">
                     <img src="img/logo-inst.jpg" alt="">
                 </div>
             </div>
         </article>
-
     </footer>
-
-
-
+    <p class="derechos">&copy; Todos los derechos reservados 2023 © Tienda Ecológica </p>
 </body>
 
 </html>
