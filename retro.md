@@ -1,0 +1,5 @@
+El proyecto "EcoRoot" tiene como objetivo desarrollar una línea de productos de higiene personal sostenibles y biodegradables, incluyendo peines de bambú, jabones naturales y cepillos de dientes de bambú. El objetivo es proporcionar alternativas sostenibles a los productos convencionales de plástico y promover hábitos de consumo más respetuosos con el medio ambiente.
+
+Formamos un equipo multidisciplinario de expertos en sostenibilidad, diseño de productos y marketing. Trabajamos con proveedores de bambú y ingredientes naturales para los jabones, y empleamos un enfoque de diseño centrado en el usuario para desarrollar productos atractivos y funcionales.
+
+Logramos desarrollar una línea completa de productos sostenibles de higiene personal, y hemos construido una marca que es reconocida por su compromiso con la sostenibilidad. Además, nuestra colaboración con organizaciones ecologistas nos ha permitido ampliar nuestro alcance y reconocimiento.
