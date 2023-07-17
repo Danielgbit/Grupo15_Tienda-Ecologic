@@ -1546,7 +1546,7 @@ footer {
   width: 685px;
   flex-direction: column;
   align-items: center;
-  gap: 85px;
+  gap: 35px;
 }
 
 .article-container{
@@ -1563,13 +1563,21 @@ footer {
   align-items: center;
   gap: 16px;
   flex: 1 0 0;
+  width: 80vw;
   border-radius: 8px;
   background-color: #363020;
   box-shadow: 0px 4px 51px 0px rgba(0, 0, 0, 0.25);
 }
 
 .content-article img{
+  width: 60%;
+  height: 100%;
+  /*overflow: hidden;*/
+}
+
+.titulo-producto{
   display: flex;
+  flex-direction: column;
 }
 
 .button-tarjetas{
@@ -1589,28 +1597,41 @@ footer {
 
 .top-card-detail-content{
   display: flex;
+  height: 40px;
+  padding-left: 0px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 30%;
+  /*display: flex;
   align-items: center;
   gap: 69px;
   padding: 27px 20px;
-  /*align-self: stretch;*/
+  align-self: stretch;*/
 }
 
 .data-container{
   display: flex;
-  height: 685px;
+  /*height: 685px;*/
+  width: 100vw;
   padding: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 32px;
-  align-self: stretch;
+  /*align-self: stretch;*/
   background-color: #D4D9C5;
-  border-radius: 33px;
+  /*border-radius: 33px;*/
 }
 
 .data-container img{
   width: 85.252px;
   height: 55px;
+}
+
+.card-buttons{
+  display: flex;
+  flex-direction: row;
 }
 
 .data-entry-box{
