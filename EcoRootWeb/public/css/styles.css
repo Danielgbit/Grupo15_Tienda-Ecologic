@@ -82,6 +82,17 @@ body {
   gap: 0.3125rem;
 }
 
+.shop-icon a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 500ms ease-in-out;
+}
+
+.shop-icon a:hover{
+  transform: translateY(-2px);
+}
+
 .icon-shop-hamburguer {
   display: flex;
   gap: 30px;
