@@ -4,7 +4,7 @@
 
 ## Descripción
 
-En este proyecto, hemos creado una aplicación web para la gestión de tareas utilizando el framework Trello. Trello es una herramienta de colaboración en línea que te permite organizar y administrar proyectos de manera eficiente.
+Trello es una herramienta de colaboración en línea que te permite organizar y administrar proyectos de manera eficiente.
 
 ## Enlace al tablero de Trello
 
