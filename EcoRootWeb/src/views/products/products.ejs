@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/header.ejs') %>
+
+    <main>
+
+        <section class="paragraph-head-main">
+            <img src="/img/backgrounds/img-plants-flyer.jpg" alt="">
+            <p>Descubre una amplia gama de productos conscientes con el medio ambiente que te permitirán vivir de forma
+                más sostenible.</p>
+        </section>
+
+        <article class="main-products-category-container">
+
+            <div class="container-name-category-cards">
+
+                <section class="seccion-category-name">
+                    <div class="title-categoty-product-contain">
+                        <span>Cuidado personal y belleza</span>
+                    </div>
+                </section>
+
+                <article id="cards-products-container">
+
+                    <% for( let index = 0; index < 4; index++ ) { %>
+                        <%- include('../products/productsList') %>
+                    <% } %>
+
+                </article>
+
+                
+            </div>
+
+
+            <div class="container-name-category-cards">
+
+                <section class="seccion-category-name">
+                    <div class="title-categoty-product-contain">
+                        <span>Cuidado personal y belleza</span>
+                    </div>
+                </section>
+
+                <article id="cards-products-container">
+
+                    <% for( let index = 0; index < 4; index++ ) { %>
+                        <%- include('../products/productsList') %>
+                    <% } %>
+
+                </article>
+
+                
+            </div>
+
+            <div class="container-name-category-cards">
+
+                <section class="seccion-category-name">
+                    <div class="title-categoty-product-contain">
+                        <span>Cuidado personal y belleza</span>
+                    </div>
+                </section>
+
+                <article id="cards-products-container">
+
+                    <% for( let index = 0; index < 4; index++ ) { %>
+                        <%- include('../products/productsList') %>
+                    <% } %>
+
+                </article>
+
+                
+            </div>
+        </article>
+
+
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+
+</html>

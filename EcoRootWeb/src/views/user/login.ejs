@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/header.ejs') %>
+
+    <main class="main-register">
+        
+        <h1>LOGIN</h1>
+
+        <article class="content-register-wrapper">
+            <div class="img-register">
+                <img src="/img/articles/img-login.jpg" alt="">
+            </div>
+    
+            <form class="form-register" action="/" method="POST">
+    
+    
+                <div class="input-register">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+    
+                <div class="input-register">
+                    <label for="password">Contraseña:</label>                                       
+                    <input class="input-passw-register" type="password" id="password" name="password" required>
+                </div>
+    
+                <input class="button-register" type="submit" value="Ingresar">
+
+                <div class="text-account-register-wrapper">
+                    <a class="text-account-register" href="/user/register">Crear una cuenta</a>                       
+                </div>
+            </form>
+
+        </article>
+
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+
+</html>
