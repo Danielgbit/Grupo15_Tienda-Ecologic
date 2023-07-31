@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
 
 <body>
 
@@ -11,117 +11,73 @@
 
         <article class="article-container">
             <div class="container-cards-checkout">
+
+                <% for( let index = 0; index < 4; index++ ) { %>
                 <section class="content-article">
-                    <img src="/img/img-header.jpg" alt="Imagen producto"/>
+                    <img src="/img/products/img-header.jpg" alt="Imagen producto" />
                     <div class="quantity-prod">
                         <div class="content-title">
                             <b class="titulo-producto">Cepillo de Bambú</b>
-                            <i class="fa-solid fa-xmark"></i>
+                            <i class="fa-solid fa-recycle"></i>
                         </div>
                         <div class="content-price-arrows">
-                            <i class="fa-thin fa-circle-arrow-up"></i>
+                            <button><i class="fa-solid fa-plus"></i></button>
                             <b class="cantidad-seleccionada">1</b>
-                            <i class="fa-thin fa-circle-arrow-up"></i>
+                            <button><i class="fa-solid fa-minus"></i></button>
                             <b class="price"> X </b>
                             <b class="price"> $0.00 </b>
                         </div>
                     </div>
                 </section>
-    
-                <section class="content-article">
-                    <img src="/img/img-header.jpg" alt="Imagen producto"/>
-                    <div class="quantity-prod">
-                        <div class="content-title">
-                            <b class="titulo-producto">Cepillo de Bambú</b>
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                        <div class="content-price-arrows">
-                            <i class="fa-thin fa-circle-arrow-up"></i>
-                            <b class="cantidad-seleccionada">1</b>
-                            <i class="fa-thin fa-circle-arrow-up"></i>
-                            <b class="price"> X </b>
-                            <b class="price"> $0.00 </b>
-                        </div>
-                    </div>
-                </section>
-    
-                <section class="content-article">
-                    <img src="/img/img-header.jpg" alt="Imagen producto"/>
-                    <div class="quantity-prod">
-                        <div class="content-title">
-                            <b class="titulo-producto">Cepillo de Bambú</b>
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                        <div class="content-price-arrows">
-                            <i class="fa-thin fa-circle-arrow-up"></i>
-                            <b class="cantidad-seleccionada">1</b>
-                            <i class="fa-thin fa-circle-arrow-up"></i>
-                            <b class="price"> X </b>
-                            <b class="price"> $0.00 </b>
-                        </div>
-                    </div>
-                </section>
-    
-                <section class="content-article">
-                    <img src="/img/img-header.jpg" alt="Imagen producto"/>
-                    <div class="quantity-prod">
-                        <div class="content-title">
-                            <b class="titulo-producto">Cepillo de Bambú</b>
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                        <div class="content-price-arrows">
-                            <i class="fa-thin fa-circle-arrow-up"></i>
-                            <b class="cantidad-seleccionada">1</b>
-                            <i class="fa-thin fa-circle-arrow-up"></i>
-                            <b class="price"> X </b>
-                            <b class="price"> $0.00 </b>
-                        </div>
-                    </div>
-                </section>
+                <% } %>
 
                 <div class="monto-total-compra">
-                    TOTAL $0    
+                    TOTAL $0
                 </div>
             </div>
 
 
-    
+
 
             <section class="data-container">
                 <div class="top-card-detail-content">
-                <p class="detail-card">Detalles de tarjeta</p>
-                <img src="/img/istockphoto-1327592449-612x612.jpg" alt="Foto de Perfil" class="profile-pic">
+                    <p class="detail-card">Detalles de tarjeta</p>
+                    <img src="/img/logos/user.jpg" alt="Foto de Perfil" class="profile-pic">
                 </div>
                 <p class="detail-card">Mis Tarjetas</p>
                 <div class="card-buttons">
-                <Button class="button-tarjetas"><img src="/img/VISA-Logo.png" alt="VISA"></Button>
-                <button class="button-tarjetas"><img src="/img/Mastercard_Pentagram_Press-3-1024x768.jpg" alt="MASTERCARD"></button>
-                <button class="add-button">Agregar mas...</button>
+                    <Button class="button-tarjetas"><img src="/img/logos/visa.png" alt="VISA"></Button>
+                    <button class="button-tarjetas"><img src="/img/logos/mastercard.jpg"
+                            alt="MASTERCARD"></button>
+                    <button class="add-button">Agregar mas...</button>
                 </div>
 
                 <div class="data-entry-box">
-                
-                <p class="title-card-checkout">Nombre del Titular</p>
-                <input type="text" placeholder="Nombre Completo" class="entry-box">
 
-                <p class="title-card-checkout">Numero de Tarjeta</p>
-                <input type="text" placeholder="1111 2222 3333 4444" class="entry-box">
+                    <p class="title-card-checkout">Nombre del Titular</p>
+                    <input type="text" placeholder="Nombre Completo" class="entry-box">
 
-                <p class="title-card-checkout">Fecha de Expidicion</p>
-                <input type="text" placeholder="MM/AA" class="entry-box">
+                    <p class="title-card-checkout">Numero de Tarjeta</p>
+                    <input type="text" placeholder="1111 2222 3333 4444" class="entry-box">
 
-                <p class="title-card-checkout">Codigo de Seguridad</p>
-                <input type="text" placeholder="CVV" class="entry-box">
-                
-                <div class="button-contain-checkout">
-                    <button class="pay-button"><P>$800</P><p>CHECKOUT</p> <i class="fa-light fa-arrow-right"></i></button>
+                    <p class="title-card-checkout">Fecha de Expidicion</p>
+                    <input type="text" placeholder="MM/AA" class="entry-box">
+
+                    <p class="title-card-checkout">Codigo de Seguridad</p>
+                    <input type="text" placeholder="CVV" class="entry-box">
+
+                    <div class="button-contain-checkout">
+                        <button class="pay-button">
+                            <P>$800</P>
+                            <p>CHECKOUT</p>
+                        </button>
+                    </div>
+
                 </div>
-            
-                 </div>   
 
             </section>
 
-        </article >
+        </article>
 
     </main>
 

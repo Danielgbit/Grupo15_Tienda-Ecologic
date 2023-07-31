@@ -10,7 +10,7 @@
     <main>
 
         <section class="paragraph-head-main">
-            <img src="/img/img-plants-flyer.jpg" alt="">
+            <img src="/img/backgrounds/img-plants-flyer.jpg" alt="">
             <p>Descubre una amplia gama de productos conscientes con el medio ambiente que te permitirán vivir de forma
                 más sostenible.</p>
         </section>
@@ -27,138 +27,14 @@
 
                 <article id="cards-products-container">
 
-                    <a href="products/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ------------------------------------- -->
-
-                    
-                    
-                    <a href="products/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ------------------------------------- -->
-                    
-                    
-                    <a href="products/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ------------------------------------- -->
-
-                    
-                    <a href="products/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ------------------------------------- -->
+                    <% for( let index = 0; index < 4; index++ ) { %>
+                        <%- include('../products/productsList') %>
+                    <% } %>
 
                 </article>
 
                 
-            </div>>
+            </div>
 
 
             <div class="container-name-category-cards">
@@ -171,132 +47,14 @@
 
                 <article id="cards-products-container">
 
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ------------------------------------- -->
-
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ----------------------------------------------- -->
-
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- --------------- -->
-
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
+                    <% for( let index = 0; index < 4; index++ ) { %>
+                        <%- include('../products/productsList') %>
+                    <% } %>
 
                 </article>
 
                 
-            </div>>
+            </div>
 
             <div class="container-name-category-cards">
 
@@ -308,132 +66,14 @@
 
                 <article id="cards-products-container">
 
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ------------------------------------- -->
-
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- ----------------------------------------------- -->
-
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
-
-                    <!-- --------------- -->
-
-                    <a href="http://localhost:3000/productDetail">
-                        <section class="card">
-                            <img src="/img/img-product-jabon.jpg" alt="">
-                            <div class="content-card-container">
-                                <section class="contain-content-card-1">
-                                    <div class="description">
-                                        <span>Jabon biodegradable</span>
-                                        <span>Ref: 8990</span>
-                                    </div>
-                                    <div class="stars">
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                    </div>
-                                </section>
-
-                                <section class="contain-content-card-2">
-                                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                                    <div class="price">
-                                        <span class="descuento">10% OFF</span>
-                                        <span class="total">$ 000</span>
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </a>
+                    <% for( let index = 0; index < 4; index++ ) { %>
+                        <%- include('../products/productsList') %>
+                    <% } %>
 
                 </article>
 
                 
-            </div>>
+            </div>
         </article>
 
 

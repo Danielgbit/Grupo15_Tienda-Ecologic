@@ -17,23 +17,37 @@
         <section class="form-create-1">
             <span class="title-create-form-1">¡Hola! Antes que nada cuéntanos, ¿qué vas a publicar?</span>
             <span class="span-step-1">Paso 1 de 6</span>
+
             <article class="container-cards-category">
-                <a href="information" class="categoryCards">
-                    <img src="/img/categories/planet.png" alt="">
-                    <span>Hogar</span>
-                </a>
-                <a href="information" class="categoryCards">
-                    <img src="/img/categories/personal.png" alt="">
-                    <span>Cuidado personal</span>
-                </a>
-                <a href="information" class="categoryCards">
-                    <img src="/img/categories/moda.png" alt="">
-                    <span>Moda sostenible</span>
-                </a>
-                <a href="information" class="categoryCards">
-                    <img src="/img/categories/joyeria.png" alt="">
-                    <span>Joyeria sostenible</span>
-                </a>
+            
+                <form action="information" method="GET">
+                    <input type="hidden" name="categoria" value="Hogar">
+                    <button type="submit" value="Hogar" class="categoryCards">
+                        <img src="/img/categories/planet.png" alt="">
+                        <span>Hogar</span>
+                    </button>
+                </form>
+                <form action="information" method="GET">
+                    <input type="hidden" name="categoria" value="Cuidado personal">
+                    <button type="submit" value="Personal" class="categoryCards">
+                        <img src="/img/categories/personal.png" alt="">
+                        <span>Cuidado personal</span>
+                    </button>
+                </form>
+                <form action="information" method="GET">
+                    <input type="hidden" name="categoria" value="Moda sostenible">
+                    <button type="submit" value="Moda" class="categoryCards">
+                        <img src="/img/categories/moda.png" alt="">
+                        <span>Moda sostenible</span>
+                    </button>
+                </form>
+                <form action="information" method="GET">
+                    <input type="hidden" name="categoria" value="Joyeria sostenible">
+                    <button type="submit" value="Joyeria" class="categoryCards">
+                        <img src="/img/categories/joyeria.png" alt="">
+                        <span>Joyeria sostenible</span>
+                    </button>
+                </form>
             </article>
         </section>
         

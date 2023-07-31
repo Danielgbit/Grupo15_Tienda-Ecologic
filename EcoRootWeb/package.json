@@ -2,7 +2,7 @@
   "name": "ecorootweb",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
     "dev": "npx nodemon app",
     "start": "node app"

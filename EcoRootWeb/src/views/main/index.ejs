@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
 
 <body>
 
@@ -10,17 +10,11 @@
     <main>
         <section class="seccion-top-carrousel">
             <div class="img-top-body-container">
-                <img src="/img/img-cepillo-bambu.jpg" alt="">
+                <img src="/img/articles/img-cepillo-bambu.jpg" alt="">
             </div>
             <p>"¡Bienvenido a Ecoroot, el lugar donde florece la belleza ecológica para tu cuerpo y más allá! Sumérgete
                 en un oasis de productos cuidadosamente seleccionados, inspirados en la naturaleza y creados con un
-                profundo respeto por nuestro planeta. En Ecoroot, nos enorgullece ofrecerte una amplia variedad de
-                opciones ecológicas para el cuidado personal, desde cosméticos orgánicos hasta productos de higiene
-                sostenibles. Nuestro compromiso con la calidad y la sostenibilidad se refleja en cada artículo que
-                descubrirás en nuestro catálogo. Aquí, te invitamos a explorar un universo de bienestar consciente,
-                donde cada elección que hagas para tu cuidado personal contribuirá a preservar y nutrir nuestro entorno.
-                Únete a nosotros en este viaje hacia una belleza auténtica y en armonía con la naturaleza en Ecoroot.
-                ¡Tu cuerpo y el planeta te lo agradecerán!"
+                profundo respeto por nuestro planeta.
             </p>
         </section>
 
@@ -35,123 +29,20 @@
                     ¡No te pierdas lo más popular en nuestra tienda virtual ecoamigable!"</p>
             </div>
 
-            <a class="button-shop-home" href="http://localhost:3000/products"><button class="button-shop-home-primary" type="submit">Ingresa a la tienda
-                <span class="material-symbols-outlined">local_mall</span>
-            </button></a>
+            <a class="button-shop-home" href="/products">
+                <button class="button-shop-home-primary"type="submit">Ingresa a la tienda<span class="material-symbols-outlined">local_mall</span></button>
+            </a>
         </section>
 
         <article id="cards-products-container">
-            <section class="card">
-                <img src="/img/img-product-jabon.jpg" alt="">
-                <div class="content-card-container">
-                    <section class="contain-content-card-1">
-                        <div class="description">
-                            <span>Jabon biodegradable</span>
-                            <span>Ref: 8990</span>
-                        </div>
-                        <div class="stars">
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                        </div>
-                    </section>
 
-                    <section class="contain-content-card-2">
-                        <a href="#"><button class="button"><span
-                                    class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                        <div class="price">
-                            <span class="descuento">10% OFF</span>
-                            <span class="total">$ 000</span>
-                        </div>
-                </div>
-            </section>
-            </section>
+            <% for( let index = 0; index < 4; index++ ) { %>
+                
+                <%- include('../products/productsList') %>
+            
+            <% } %>
 
-            <section class="card">
-                <img src="/img/img-product-jabon.jpg" alt="">
-                <div class="content-card-container">
-                    <section class="contain-content-card-1">
-                        <div class="description">
-                            <span>Jabon biodegradable</span>
-                            <span>Ref: 8990</span>
-                        </div>
-                        <div class="stars">
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                        </div>
-                    </section>
 
-                    <section class="contain-content-card-2">
-                        <a href="#"><button class="button"><span
-                                    class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                        <div class="price">
-                            <span class="descuento">10% OFF</span>
-                            <span class="total">$ 000</span>
-                        </div>
-                </div>
-            </section>
-            </section>
-
-            <section class="card">
-                <img src="/img/img-product-jabon.jpg" alt="">
-                <div class="content-card-container">
-                    <section class="contain-content-card-1">
-                        <div class="description">
-                            <span>Jabon biodegradable</span>
-                            <span>Ref: 8990</span>
-                        </div>
-                        <div class="stars">
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                        </div>
-                    </section>
-
-                    <section class="contain-content-card-2">
-                        <a href="#"><button class="button"><span
-                                    class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                        <div class="price">
-                            <span class="descuento">10% OFF</span>
-                            <span class="total">$ 000</span>
-                        </div>
-                </div>
-            </section>
-            </section>
-
-            <section class="card">
-                <img src="/img/img-product-jabon.jpg" alt="">
-                <div class="content-card-container">
-                    <section class="contain-content-card-1">
-                        <div class="description">
-                            <span>Jabon biodegradable</span>
-                            <span>Ref: 8990</span>
-                        </div>
-                        <div class="stars">
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                        </div>
-                    </section>
-
-                    <section class="contain-content-card-2">
-                        <a href="#"><button class="button"><span
-                                    class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                        <div class="price">
-                            <span class="descuento">10% OFF</span>
-                            <span class="total">$ 000</span>
-                        </div>
-                </div>
-            </section>
-            </section>
         </article>
 
 
@@ -163,7 +54,7 @@
 
             <div class="articles-cards-contain">
                 <section class="card-article-contain">
-                    <img src="/img/img-tonic.jpg" alt="">
+                    <img src="/img/products/img-tonic.jpg" alt="">
                     <div class="text-article-wrapper">
                         <span class="title">Tonico</span>
                         <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
@@ -174,7 +65,7 @@
                 </section>
 
                 <section class="card-article-contain">
-                    <img src="/img/img-crem-ecologic.jpg" alt="">
+                    <img src="/img/products/img-crem-ecologic.jpg" alt="">
                     <div class="text-article-wrapper">
                         <span class="title">Crema ecologica</span>
                         <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
@@ -185,7 +76,7 @@
                 </section>
 
                 <section class="card-article-contain">
-                    <img src="/img/img-brush.jpg" alt="">
+                    <img src="/img/products/img-brush.jpg" alt="">
                     <div class="text-article-wrapper">
                         <span class="title">Cepillo bambu</span>
                         <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
@@ -196,7 +87,7 @@
                 </section>
 
                 <section class="card-article-contain">
-                    <img src="/img/img-jabon-ecologic.jpg" alt="">
+                    <img src="/img/products/img-jabon-ecologic.jpg" alt="">
                     <div class="text-article-wrapper">
                         <span class="title">Jabon biodegradable</span>
                         <p class="parrafo">Lorem ipsum dolor sit amet consectetur. Tortor urna egestas mauris enim. Id
@@ -209,7 +100,7 @@
         </article>
 
         <section class="seccion-promotion-contain">
-            <img src="img/img-cepillo-bambu.jpg" alt="">
+            <img src="img/articles/img-cepillo-bambu.jpg" alt="">
             <div class="content-promotion">
                 <div class="text-promotion">
                     <h3>Cepillo de bambú</h3>
@@ -223,14 +114,15 @@
                         sonrisa
                         un toque natural!"</p>
                 </div>
-                <a href="products"><button class="button-promotion">Ingresa a la tienda<span class="material-symbols-outlined">
+                <a href="products"><button class="button-promotion">Ingresa a la tienda<span
+                            class="material-symbols-outlined">
                             local_mall
                         </span></a></button>
             </div>
         </section>
 
         <section class="seccion-login-message">
-            <img src="img/img-shop.jpg" alt="">
+            <img src="/img/articles/img-shop.jpg" alt="">
             <div class="content-login-message">
                 <div class="text-promotion">
                     <p>"¡Descubre una experiencia de compra ecoamigable en nuestra tienda virtual! Convierte tus compras
@@ -241,7 +133,8 @@
                         ¡Únete
                         a nosotros y hagamos juntos un cambio sostenible!"</p>
                 </div>
-                <a href="/user/login"><button class="button-promotion">Inicia sesión<span class="material-symbols-outlined">
+                <a href="/user/login"><button class="button-promotion">Inicia sesión<span
+                            class="material-symbols-outlined">
                             arrow_right_alt
                         </span></a></button>
             </div>
@@ -250,4 +143,5 @@
 
     <%- include('../partials/footer.ejs') %>
 </body>
+
 </html>
