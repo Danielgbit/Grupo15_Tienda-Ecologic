@@ -42,19 +42,14 @@ Nuestro sitio está dirigido a personas interesadas en el cuidado del medio ambi
 
 
 # INTEGRANTES DEL EQUIPO
-Somos un equipo de 5 personas con diferentes perfiles y habilidades:
+Somos un equipo de 3 personas con diferentes perfiles y habilidades:
 
-Luca:
-Descripción: Hola, mi nombre es Luca y tengo 20 años. Me dedico a jugar al Futsal y trabajo como cajero en una aplicación de póker.
-Intereses: Me interese por estudiar programación debido a mis amigos y conocidos que están en el ambiente.
+
 
 Micaela:
 Descripción: ¡Hola! Soy Micaela, cosmetóloga especializada en productos bio sustentables y también tengo un título de desarrolladora web full stack.
 Intereses: Me apasiona la creación de productos sustentables y me interesé por la programación para combinar mis conocimientos y crear soluciones digitales.
-Matias:
 
-Descripción: Hola, soy Matias y actualmente soy alumno piloto de aviones. Además, trabajo en una empresa que requiere conocimientos de programación, por eso estoy haciendo el curso full stack en Digital House.
-Intereses: Me fascina el mundo de la aviación y quiero complementar mis habilidades con la programación para aprovechar las oportunidades en el campo aeroespacial.
 
 Daniel:
 Descripción: ¡Hola a todos! Soy Daniel, productor musical con conocimientos en marketing. Me llamó la atención el mundo de la programación gracias a mi primo, quien me mostró el potencial de estas nuevas tecnologías y cómo pueden cambiar nuestra perspectiva del mundo.
