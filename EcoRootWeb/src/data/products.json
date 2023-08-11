@@ -1,0 +1,53 @@
+[{
+    "id": 1,
+    "name": "Jabon Biodegradable",
+    "brand": "EcoRoot",
+    "united": 3,
+    "category": "Cuidado personal",
+    "material": "Avena",
+    "state": "New",
+    "image": "asasd.png",
+    "description": "Experimenta la frescura y el cuidado puro de la naturaleza con nuestro Jabón de Avena Biodegradable. Diseñado pensando en la salud de tu piel y en la sostenibilidad del planeta, este jabón ofrece una experiencia de limpieza que va más allá de lo ordinario.",
+    "color": "Blanco",
+    "discount": 10,
+    "price": 20
+}, {
+    "id": 2,
+    "name": "Jabon Biodegradable",
+    "brand": "EcoRoot",
+    "united": 3,
+    "category": "Moda",
+    "material": "Avena",
+    "state": "Used",
+    "image": "asasd.png",
+    "description": "Experimenta la frescura y el cuidado puro de la naturaleza con nuestro Jabón de Avena Biodegradable. Diseñado pensando en la salud de tu piel y en la sostenibilidad del planeta, este jabón ofrece una experiencia de limpieza que va más allá de lo ordinario.",
+    "color": "Blanco",
+    "discount": 10,
+    "price": 20
+},{
+    "id": 3,
+    "name": "Jabon Biodegradable",
+    "brand": "EcoRoot",
+    "united": 3,
+    "category": "Moda",
+    "material": "Avena",
+    "state": "Used",
+    "image": "asasd.png",
+    "description": "Experimenta la frescura y el cuidado puro de la naturaleza con nuestro Jabón de Avena Biodegradable. Diseñado pensando en la salud de tu piel y en la sostenibilidad del planeta, este jabón ofrece una experiencia de limpieza que va más allá de lo ordinario.",
+    "color": "Blanco",
+    "discount": 10,
+    "price": 20
+},{
+    "id": 4,
+    "name": "Jabon Biodegradable",
+    "brand": "EcoRoot",
+    "united": 3,
+    "category": "Moda",
+    "material": "Avena",
+    "state": "Used",
+    "image": "asasd.png",
+    "description": "Experimenta la frescura y el cuidado puro de la naturaleza con nuestro Jabón de Avena Biodegradable. Diseñado pensando en la salud de tu piel y en la sostenibilidad del planeta, este jabón ofrece una experiencia de limpieza que va más allá de lo ordinario.",
+    "color": "Blanco",
+    "discount": 10,
+    "price": 20
+}]

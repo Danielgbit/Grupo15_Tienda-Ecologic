@@ -30,18 +30,14 @@
             </div>
 
             <a class="button-shop-home" href="/products">
-                <button class="button-shop-home-primary"type="submit">Ingresa a la tienda<span class="material-symbols-outlined">local_mall</span></button>
+                <button class="button-shop-home-primary" type="submit">Ingresa a la tienda<span
+                        class="material-symbols-outlined">local_mall</span></button>
             </a>
         </section>
 
         <article id="cards-products-container">
 
-            <% for( let index = 0; index < 4; index++ ) { %>
-                
-                <%- include('../products/productsList') %>
-            
-            <% } %>
-
+            <%- include('../products/productsList') %>
 
         </article>
 

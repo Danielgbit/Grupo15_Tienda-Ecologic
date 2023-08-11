@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
 
 <body>
 
@@ -21,42 +21,47 @@
 
                 <section class="contain-right-detail-content">
                     <div class="title-1-detail-container">
-                        <h1 class="title-1-product-detail">Jabon biodegradable </h1>
-                        <div class="container-stars-val">
-                            <div class="stars-detail">
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                            </div>
-                            <p>0 Opiniones</p>
-                        </div>
+                        <h1 class="title-1-product-detail"><%= product.name %> </h1>
                     </div>
                     <article class="content-text-detail">
-                        <h2>Sensación especial</h2>
-                        <p>El jabón biodegradable es un producto de limpieza que ha sido diseñado pensando en el cuidado
-                            del
-                            medio ambiente. Está compuesto por ingredientes naturales y sustancias biodegradables, lo
-                            que
-                            significa que puede descomponerse de forma segura y rápida en el medio ambiente sin dejar
-                            residuos
-                            tóxicos.
-                        </p>
+                        <h2><%= product.category %></h2>
+                        <p><%= product.description %></p>
                     </article>
+                    <div class="button-actions-detail">
+                        <a href="/products/<%= product.id %>/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <form action="/products/<%= product.id %>/delete?_method=DELETE" method="post">
+                            <button><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
+                    <!--                     <div class="container-stars-val">
+                        <div class="stars-detail">
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p>0 Opiniones</p>
+                    </div> -->
                     <div class="price-detail-wrapper">
-                        <span class="descuento">10% OFF</span>
-                        <span class="price"> $ 000</span>
+                        <span class="descuento"><%= product.discount %>% OFF</span>
+                        <span class="price"> $ <%= product.price.toFixed(2) %></span>
                     </div>
                     <div class="buttons-detail-container">
+                        <span>Color: </span>
                         <div class="button-selector-detail">
-                            <button>Color verde</button>
+                            <button><%= product.color %></button>
                             <span class="material-symbols-outlined">expand_more</span>
+                        </div>
+                        <div class="button-selector-detail">
+                            <button><%= product.material %></button>
+                            <span>Material</span>
                         </div>
                         <div class="button-cart-add-detail">
                             <button>AGREGAR AL CART</button>
-                            <span>1</span>
+                            <span><%= product.units %></span>
                         </div>
+
                     </div>
                 </section>
             </article>
@@ -81,25 +86,6 @@
             </section>
             <article class="cards-val-bottom-container">
 
-                <div class="card-val">
-                    <section class="name-card-val">
-                        <img src="/img/logos/user.jpg" alt="">
-                        <div class="reviews-contain">
-                            <span>Andrea</span>
-                            <div class="stars">
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                            </div>
-                        </div>
-                    </section>
-                    <p class="paragraph-card-val">
-                        Lorem ipsum dolor sit amet consectetur. Non tempus ullamcorper vestibulum tellus. Ac mattis
-                        blandit rutrum ipsum nulla proin. Malesuada malesuada malesuada nam auctor.
-                    </p>
-                </div>
 
                 <div class="card-val">
                     <section class="name-card-val">
@@ -121,25 +107,6 @@
                     </p>
                 </div>
 
-                <div class="card-val">
-                    <section class="name-card-val">
-                        <img src="/img/logos/user.jpg" alt="">
-                        <div class="reviews-contain">
-                            <span>Andrea</span>
-                            <div class="stars">
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                                <span class="material-symbols-outlined">star</span>
-                            </div>
-                        </div>
-                    </section>
-                    <p class="paragraph-card-val">
-                        Lorem ipsum dolor sit amet consectetur. Non tempus ullamcorper vestibulum tellus. Ac mattis
-                        blandit rutrum ipsum nulla proin. Malesuada malesuada malesuada nam auctor.
-                    </p>
-                </div>
             </article>
         </section>
     </main>
