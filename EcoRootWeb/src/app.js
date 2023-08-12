@@ -37,9 +37,9 @@ app.use('/products', productsRoute);
 
 app.use('/user', userRoute );
 
-app.use((req, res) => {
+/* app.use((req, res) => {
     res.send('Error 404');
-});
+}); */
 
 
 
