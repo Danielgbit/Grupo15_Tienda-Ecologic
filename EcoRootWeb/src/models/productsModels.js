@@ -45,11 +45,16 @@ const models = {
 
     editProduct: (productEdit) => {
         
-        const products = models.findAll();
+        let products = models.findAll();
 
-        const productIndex = products.indexOf((product) => product.id === productEdit.id);
+        const productIndex = products.findIndex((product) => product.id === productEdit.id);
 
-        console.log(productIndex);
+        products[productIndex] = productEdit;
+
+        const productJSON = JSON.stringify(products);
+
+        fs.writeFileSync(models.routeJson, productJSON, 'utf-8');
+
     }
 
 }

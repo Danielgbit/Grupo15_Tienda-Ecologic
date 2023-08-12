@@ -42,7 +42,7 @@ const productsController = {
             category: req.body.category,
             material: req.body.material,
             state: req.body.state,
-            image: req.body.image,
+            image: req.file.filename,
             description: req.body.description,
             color: req.body.color,
             discount: Number(req.body.discount),
@@ -79,9 +79,26 @@ const productsController = {
 
     putProductEdit: (req, res) => {
 
-    
+        
+        const productEdit = {
+            id: Number(req.params.id),
+            name: req.body.name,
+            brand: req.body.brand,
+            united: Number(req.body.united),
+            category: req.body.category,
+            material: req.body.material,
+            state: req.body.state,
+            image: req.body.image,
+            description: req.body.description,
+            color: req.body.color,
+            discount: Number(req.body.discount),
+            price: Number(req.body.price),
+        }
+        
+      
+        models.editProduct(productEdit);
 
-        res.redirect('/productDetail');
+        res.redirect('/products/'+ productEdit.id +'/detail');
     }
 }
 

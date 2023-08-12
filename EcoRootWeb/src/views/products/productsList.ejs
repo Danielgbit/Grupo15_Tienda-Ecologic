@@ -1,7 +1,7 @@
 <% products.forEach(product => { %>
     <a class="product-card" href="products/<%= product.id %>/detail">
         <section class="card">
-            <img src="/img/products/img-product-jabon.jpg" alt="">
+            <img src="/img/products/<%= product.image %>" alt="imagen del producto">
             <div class="content-card-container">
                 <section class="contain-content-card-1">
                     <div class="description">
@@ -20,7 +20,11 @@
                 <section class="contain-content-card-2">
                     <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
                     <div class="price">
-                        <span class="descuento"><%= product.discount %>% OFF</span>
+                        <% if(product.discount === 0) { %>
+                            <span></span>
+                        <% }else { %> 
+                            <span class="descuento"><%= product.discount %>% OFF</span>
+                        <% } %>
                         <span class="total">$ <%= product.price.toFixed(2) %></span>
                     </div>
                 </section>
