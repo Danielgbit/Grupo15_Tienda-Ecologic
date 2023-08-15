@@ -22,17 +22,17 @@
                 <section class="contain-right-detail-content">
                     <div class="title-1-detail-container">
                         <h1 class="title-1-product-detail"><%= product.name %> </h1>
+                        <div class="button-actions-detail">
+                            <a href="/products/<%= product.id %>/edit"><i class="fa-solid fa-pencil"></i></a>
+                            <form action="/products/<%= product.id %>/delete?_method=DELETE" method="post">
+                                <button><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </div>
                     </div>
                     <article class="content-text-detail">
                         <h2><%= product.category %></h2>
                         <p><%= product.description %></p>
                     </article>
-                    <div class="button-actions-detail">
-                        <a href="/products/<%= product.id %>/edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <form action="/products/<%= product.id %>/delete?_method=DELETE" method="post">
-                            <button><i class="fa-solid fa-trash"></i></button>
-                        </form>
-                    </div>
                     <!--                     <div class="container-stars-val">
                         <div class="stars-detail">
                             <span class="material-symbols-outlined">star</span>
