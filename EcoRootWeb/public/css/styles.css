@@ -1158,6 +1158,31 @@ footer {
 
 /* REGISTER */
 
+.selector-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  width: 80%;
+  margin: auto;
+}
+
+.selector-box {
+  display: flex;
+  height: 2.375rem;
+  padding: 0rem 0.625rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+  border-radius: 0.375rem;
+  border: 0.8px solid #B6B6B6;
+  background: #FFF;
+  outline: #000;
+}
+
 .content-register-wrapper {
   background: var(--color-primario-2, #D4D9C5);
   margin: 50px 0;
@@ -2328,6 +2353,21 @@ footer {
   cursor: pointer;
 }
 
+.form-dropArea-imgs-singUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #B6B6B6;
+  background-color: #FFF;
+  margin: 0rem 0px;
+  height: 100px;
+  width: 100%;
+  gap: 0.625rem;
+  cursor: pointer;
+}
+
 .custom-file-input {
   padding: 5px 10px;
   cursor: pointer;
@@ -2584,14 +2624,14 @@ footer {
 
   .img-card-val-wrapper {
     width: 50%;
-    padding: 0 0 0 30px ;
+    padding: 0 0 0 30px;
     margin: 0 0 10px 0;
     justify-content: space-between;
   }
 
   .img-card-val-wrapper .img-primary {
     margin: 0;
-}
+  }
 
   .contain-right-detail-content {
     width: 50%;
@@ -2678,7 +2718,7 @@ footer {
     width: 20%;
   }
 
-  .contain-right-detail-content { 
+  .contain-right-detail-content {
     width: 60%;
   }
 

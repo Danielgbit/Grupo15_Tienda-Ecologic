@@ -39,65 +39,87 @@
                             <!--                     <span class="view-none"><span class="material-symbols-outlined">visibility_off</span></span> -->
                         </div>
 
-                        <label for="foto" class="form-dropArea-imgs">
-                            <p>Avatar:</p>
-                            <i class="fa-solid fa-camera"></i>
-                            <label for="foto" class="custom-file-input">
-                                <input type="file" id="foto" name="image" accept="image/*" required>
-                            </label>
-                        </label>
-
                         <div class="input-register">
-                            <label for="first_name">País:</label>
-                            <input type="text" id="country" name="country" required>
+                            <label for="foto">Avatar:</label>
+                            <label for="foto" class="form-dropArea-imgs-singUp">
+                                <i class="fa-solid fa-camera"></i>
+                                <label for="foto" class="custom-file-input">
+                                    <input type="file" id="foto" name="image" accept="image/*" required>
+                                </label>
+                            </label>
                         </div>
 
                         <div class="input-register">
-                            <label for="first_name">Ciudad:</label>
+                            <label for="country">País:</label>
+                            <input type="text" id="country" name="country" required>
+                        </div>
+
+                        <!-- <div class="input-register">
+                            <label for="country">País:</label>
+                            <form>
+                                <div>
+                                    <select class="selector-box" name="country">
+                                        <option value="">Seleccione uno…</option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Brasil">Brasil</option>
+                                        <option value="Colombia">Colombia</option>
+                                        <option value="Uruguay">Uruguay</option>
+                                        <option value="Venezuela">Venezuela</option>
+                                        <option value="Chile">Chile</option>
+                                        <option value="Ecuador">Ecuador</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div> -->
+
+                        <div class="input-register">
+                            <label for="city">Ciudad:</label>
                             <input type="text" id="city" name="city" required>
                         </div>
 
                         <div class="input-register">
-                            <label for="first_name">Dirección:</label>
+                            <label for="address">Dirección:</label>
                             <input type="text" id="address" name="address" required>
                         </div>
 
-<!--                         <div class="input-register">
+                        <!-- <div class="input-register">
                             <label for="first_name">Codigo Postal:</label>
                             <input type="text" id="postalCode" name="postalCode" required>
                         </div> -->
 
                         <div class="input-register">
-                            <label for="first_name">Fecha de nacimiento:</label>
+                            <label for="birthDate">Fecha de nacimiento:</label>
                             <input type="date" id="birthDate" name="birthDate" required>
                         </div>
 
                         <div class="input-register">
-                            <label for="first_name">Nombre de usuario:</label>
+                            <label for="username">Nombre de usuario:</label>
                             <input type="text" id="username" name="username" required>
                         </div>
 
                         <div class="input-register">
-                            <label for="first_name">Genero:</label>
+                            <label for="gender">Genero:</label>
                             <input type="text" id="username" name="gender" required>
                         </div>
 
-   <!--                      <div class="input-register">
-                            <label for="first_name">Genero:</label>
+                        <!-- <div class="input-register">
+                            <label for="gender">Genero:</label>
                             <form>
-                                <select name="gender">
-                                    <option value="">Seleccione una opcion…</option>
-                                    <option value="female">Mujer</option>
-                                    <option value="male">Hombre</option>
-                                    <option value="non-binary">No Binario</option>
-                                    <option value="bigender">Bigenero</option>
-                                    <option value="Prefer not to answer">Perfer not to Answer</option>
-                                </select>
+                                <div>
+                                    <select class="selector-box" name="gender">
+                                        <option value="">Seleccione uno…</option>
+                                        <option value="female">Mujer</option>
+                                        <option value="male">Hombre</option>
+                                        <option value="non-binary">No Binario</option>
+                                        <option value="bigender">Bigenero</option>
+                                        <option value="Prefer not to answer">Perfer not to Answer</option>
+                                    </select>
+                                </div>
                             </form>
                         </div> -->
 
                         <div class="input-register">
-                            <label for="first_name">Teléfono:</label>
+                            <label for="phoneNumber">Teléfono:</label>
                             <input type="tel" id="phoneNumber" name="phoneNumber" required>
                         </div>
 
