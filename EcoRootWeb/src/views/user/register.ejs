@@ -13,7 +13,7 @@
 
                 <article class="content-register-wrapper">
                     <div class="img-register">
-                        <img src="/img/articles/img-login.jpg" alt="">
+                        <img src="/img/articles/img-ilustration.png" alt="">
                     </div>
 
                     <form class="form-register" action="/user/register" method="POST" enctype="multipart/form-data">
@@ -36,18 +36,27 @@
                         <div class="input-register">
                             <label for="password">Contraseña:</label>
                             <input class="input-passw-register" type="password" id="password" name="password" required>
-                            <!--                     <span class="view-none"><span class="material-symbols-outlined">visibility_off</span></span> -->
                         </div>
 
-                        <div class="input-register">
-                            <label for="foto">Avatar:</label>
-                            <label for="foto" class="form-dropArea-imgs-singUp">
-                                <i class="fa-solid fa-camera"></i>
-                                <label for="foto" class="custom-file-input">
-                                    <input type="file" id="foto" name="image" accept="image/*" required>
+
+                        <section class="form-create-5  form-register-img">
+                            <div class="text-header-register-container">
+                                <p class="paragraph-step-5">Para no perder exposición, asegúrate de que la primera foto tenga
+                                    fondo
+                                    blanco puro creado
+                                    con un editor de fotos.</p>
+                            </div>
+        
+                            <div class="input-img">
+                                <label for="foto" class="area-register-img">
+                                    <i class="fa-solid fa-user-astronaut"></i>
+                                    <label for="foto" class="custom-file-input custom-register form-dropArea-imgs-singUp">
+                                        <input type="file" id="foto" name="image" accept="image/*" required>
+                                    </label>
                                 </label>
-                            </label>
-                        </div>
+        
+                            </div>
+                        </section>
 
                         <div class="input-register">
                             <label for="country">País:</label>

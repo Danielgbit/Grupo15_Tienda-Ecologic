@@ -17,35 +17,35 @@
 
             <article class="container-cards-category">
 
-                <div class="condition-text-header">
-                    <span class="text-title">¡Hola! Antes que nada cuéntanos, ¿qué vas a publicar?</span>
-                    <span class="text-step">Paso 1 de 6</span>
-                </div>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Cuidado personal" class="radio-input">
-                    <span class="custom-radio"></span>
+                    <input type="radio" name="category" value="Cuidado personal" class="radio-input"
+                        <%= product.category === 'Cuidado personal' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/personal.png" alt="">
                     <span>Cuidado personal</span>
                 </label>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Moda" class="radio-input">
-                    <span class="custom-radio"></span>
+                    <input type="radio" name="category" value="Moda" class="radio-input"
+                        <%= product.category === 'Moda' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/moda.png" alt="">
                     <span>Moda sostenible</span>
                 </label>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Hogar" class="radio-input">
-                    <span class="custom-radio"></span>
+                    <input type="radio" name="category" value="Hogar" class="radio-input"
+                        <%= product.category === 'Hogar' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/planet.png" alt="">
                     <span>Hogar</span>
                 </label>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Joyeria" class="radio-input">
-                    <span class="custom-radio"></span>
+                    <input type="radio" name="category" value="Joyeria" class="radio-input"
+                        <%= product.category === 'Joyeria' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/joyeria.png" alt="">
                     <span>Joyeria sostenible</span>
                 </label>
@@ -56,58 +56,55 @@
 
             <section class="container-information-form">
 
-                <div class="condition-text-header">
-                    <span class="text-title">Completa la información de tu producto</span>
-                    <span class="text-step">Paso 2 de 6</span>
-                </div>
-
-            <article class="form-information-items-wrapper">
-
-                
-                <section class="section-1-information">
-
-                    <div class="input-information-container">
-                        <label for="nombre">Nombre del Producto:</label>
-                        <input type="text" id="nombre" name="name" value="<%= product.name %>"  required>
-                    </div>
+                <article class="form-information-items-wrapper">
 
 
-                    <div class="input-information-container">
-                        <label for="marca">Marca:</label>
-                        <input type="text" id="marca" name="brand" value="<%= product.brand %>" required>
-                    </div>
+                    <section class="section-1-information">
 
-                    <div class="input-information-container">
-                        <label for="color">Color:</label>
-                        <input type="text" id="color" name="color" value="<%= product.color %>" required>
-                    </div>
-
-                </section>
-
-
-                <section class="section-2-information">
-                    <div class="input-information-container">
-                        <label for="unidades">Unidades:</label>
-                        <input type="number" id="unidades" name="united" value="<%= product.united %>" required>
-                    </div>
-
-                    <div class="input-information-container">
-                        <label for="discuount">Descuento</label>
-                        <input type="number" id="discuount" name="discount" value="<%= product.discount %>" placeholder="%" required>
-                    </div>
-
-                    <div class="input-information-container">
-                        <label for="material">Material:</label>
-                        <div>
-                            <input type="text" id="material" name="material" value="<%= product.material %>" required>
-                            <span class="NaN">N/A</span>
+                        <div class="input-information-container">
+                            <label for="nombre">Nombre del Producto:</label>
+                            <input type="text" id="nombre" name="name" value="<%= product.name %>" required>
                         </div>
-                    </div>
-                </section>
 
-            </article>
 
-        </section>
+                        <div class="input-information-container">
+                            <label for="marca">Marca:</label>
+                            <input type="text" id="marca" name="brand" value="<%= product.brand %>" required>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="color">Color:</label>
+                            <input type="text" id="color" name="color" value="<%= product.color %>" required>
+                        </div>
+
+                    </section>
+
+
+                    <section class="section-2-information">
+                        <div class="input-information-container">
+                            <label for="unidades">Unidades:</label>
+                            <input type="number" id="unidades" name="united" value="<%= product.united %>" required>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="discuount">Descuento</label>
+                            <input type="number" id="discuount" name="discount" value="<%= product.discount %>"
+                                placeholder="%" required>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="material">Material:</label>
+                            <div>
+                                <input type="text" id="material" name="material" value="<%= product.material %>"
+                                    required>
+                                <span class="NaN">N/A</span>
+                            </div>
+                        </div>
+                    </section>
+
+                </article>
+
+            </section>
 
 
             <!-- --------------------------------------------- -->
@@ -118,19 +115,21 @@
 
 
                     <div class="condition-text-header">
-                        <span class="text-title">¿Cuál es la condición de tu producto?</span>
-                        <span class="text-step">Paso 3 de 6</span>
                     </div>
 
                     <div class="condition-form">
                         <label class="estado-label">
-                            <input type="radio" name="state" value="New">
+                            <input type="radio" name="state" value="New" class="radio-input-condition"
+                                <%= product.state === 'New' ? 'checked="checked' : '' %>>
                             Nuevo
+                            <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
                         </label>
 
                         <label class="estado-label">
-                            <input type="radio" name="state" value="Used">
+                            <input type="radio" name="state" value="Used" class="radio-input-condition"
+                                <%= product.state === 'Used' ? 'checked="checked' : '' %>>
                             Usado
+                            <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
                         </label>
                     </div>
 
@@ -141,20 +140,23 @@
 
                 <section class="form-create-5">
                     <div class="text-header-create-container">
-                        <span class="title-step-5">Completa la información de tu producto</span>
-                        <span class="step-5">Paso 4 de 6</span>
                         <p class="paragraph-step-5">Para no perder exposición, asegúrate de que la primera foto tenga
                             fondo
                             blanco puro creado
                             con un editor de fotos.</p>
                     </div>
 
-                    <label for="foto" class="form-dropArea-imgs">
-                        <i class="fa-solid fa-camera"></i>
-                        <label for="foto" class="custom-file-input">
-                            <input type="file" id="foto" name="image" accept="image/*" required>
+                    <div class="container-img-file">
+
+                        <label for="foto" class="form-dropArea-imgs">
+                            <i class="fa-solid fa-camera-rotate"></i>
+                            <label for="foto" class="custom-file-input custom-view-edit">
+                                <input type="file" id="foto" name="image" accept="image/*" required>
+                            </label>
                         </label>
-                    </label>
+
+                        <div><img src="/img/products/<%= product.image %>" alt=""></div>
+                    </div>
                 </section>
 
 
@@ -167,8 +169,6 @@
 
                 <section class="form-create-4">
                     <div class="text-header-create-container">
-                        <span class="title-step-4">¿Cuál es la condición de tu producto?</span>
-                        <span class="step-4">Paso 5 de 6</span>
                         <p class="description-pharagraph">No incluyas datos de contacto, como e-mails, teléfonos,
                             direcciones, links ni referencias a
                             sitios
@@ -188,15 +188,14 @@
 
                 <section class="form-create-6">
                     <div class="text-header-create-container">
-                        <span class="title-step-6">Para terminar, definamos las condiciones de venta</span>
-                        <span class="step-6">Paso 6 de 6</span>
                     </div>
 
                     <div class="form-image-price">
 
                         <div class="input-information-container">
                             <label for="precio" class="priceText">¿Cuál es el precio?</label>
-                            <input type="number" id="precio" name="price" min="0" step="0.01" value="<%= product.price.toFixed(2) %>" required placeholder="$">
+                            <input type="number" id="precio" name="price" min="0" step="0.01"
+                                value="<%= product.price.toFixed(2) %>" required placeholder="$">
                         </div>
                     </div>
                 </section>
@@ -204,9 +203,9 @@
 
 
             <div class="buttons-submit-step-5-6">
-                    <button type="submit" id="submit" class="submit-create-form-container">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
+                <button type="submit" id="submit" class="submit-create-form-container">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
             </div>
         </form>
 
