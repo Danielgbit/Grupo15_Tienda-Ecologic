@@ -1167,7 +1167,7 @@ footer {
 /* REGISTER */
 
 .content-register-wrapper {
-  background: var(--color-primario-2, #D4D9C5);
+  background: var(--color-primario, #EDF4DA);
   margin: 50px 0;
 }
 
@@ -1194,6 +1194,8 @@ footer {
   align-items: center;
   gap: 1.3125rem;
   width: 100vw;
+  background-image: linear-gradient(to right, rgba(106, 122, 55, 0.6) 40%, rgb(210, 233, 105, 0.8) 80%);
+
 }
 
 .form-register .input-register {
@@ -1208,8 +1210,8 @@ footer {
 }
 
 .input-img {
-width: 100%;
-} 
+  width: 100%;
+}
 
 .form-register-img {
   width: 80%;
@@ -1258,13 +1260,15 @@ width: 100%;
 }
 
 
-.form-register .input-register label {
+.form-register .input-register label,
+.form-register-img label {
   color: #000;
   font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: normal;
 }
+
+
 
 .button-register {
   display: grid;
@@ -1294,7 +1298,38 @@ width: 100%;
   box-shadow: 2px 2px 10px 0 black;
 }
 
+.input-register input[type="date"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  height: 30px;
+  background-color: #ddedb5;
+  box-shadow: 2px 1px 10px 0px #ddedb5;
+}
 
+
+.select-gender {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  background-color: #ddedb5;
+  box-shadow: 2px 1px 10px 0px #ddedb5;
+  outline: none;
+}
+
+
+.countries-select {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  background-color: #ddedb5;
+  box-shadow: 2px 1px 10px 0px #ddedb5;
+  outline: none;
+}
 
 
 
@@ -1454,7 +1489,8 @@ width: 100%;
     align-items: center;
     gap: 1.3125rem;
     width: 70vw;
-    margin: auto;
+    margin: 0 auto;
+    border-radius: 10px;
   }
 
   /* REGISTER */
@@ -1629,6 +1665,10 @@ width: 100%;
     display: flex;
   }
 
+  .content-login-wrapper {
+    height: 500px;
+  }
+
   .img-register {
     display: flex;
     align-items: center;
@@ -1637,14 +1677,14 @@ width: 100%;
   }
 
   .img-register img {
-    width: auto;
-    border-radius: 0rem 0rem 6.25rem 0rem;
-    box-shadow: 0px 4px 57px 0px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 100px 10px 200px;
+    filter: opacity(0.9);
   }
 
   .form-register {
     width: 50%;
-    background-image: linear-gradient(to right, rgba(81, 101, 17, 0.6) 0%, #e5dc7a 50%);
   }
 
   /* REGISTER */
@@ -2365,9 +2405,10 @@ width: 100%;
 
 
 
-.condition-form .estado-label{
+.condition-form .estado-label {
   position: relative;
-  padding-left: 30px; /* Espacio para el botón personalizado */
+  padding-left: 30px;
+  /* Espacio para el botón personalizado */
   cursor: pointer;
 }
 
@@ -2393,7 +2434,7 @@ width: 100%;
 
 
 
-.radio-input-condition:checked + .artificial-radio i {
+.radio-input-condition:checked+.artificial-radio i {
   display: block;
 }
 
@@ -2470,14 +2511,14 @@ width: 100%;
   display: flex;
 }
 
-.container-img-file .form-dropArea-imgs{
-    width: 70%;
+.container-img-file .form-dropArea-imgs {
+  width: 70%;
 }
 
 .container-img-file img {
   width: 100px;
   border-radius: 10px;
-  border: 1px black solid;
+  border: 3px rgb(76, 99, 6) solid;
 }
 
 .custom-file-input::before {
@@ -2659,12 +2700,14 @@ width: 100%;
 
 
 .radio-input {
-  display: none; /* Oculta los botones de radio nativos */
+  display: none;
+  /* Oculta los botones de radio nativos */
 }
 
 .container-cards-category .categoryCards {
   position: relative;
-  padding-left: 30px; /* Espacio para el botón personalizado */
+  padding-left: 30px;
+  /* Espacio para el botón personalizado */
   cursor: pointer;
 }
 
@@ -2685,14 +2728,14 @@ width: 100%;
   text-align: center;
 }
 
-.radio-input:checked + .custom-radio {
+.radio-input:checked+.custom-radio {
   background-color: #000000;
   border-color: rgb(65, 56, 56);
   border: 2px solid #f7ffc6;
 }
 
 
-.radio-input:checked + .custom-radio i {
+.radio-input:checked+.custom-radio i {
   display: block;
 }
 
@@ -2751,7 +2794,7 @@ width: 100%;
 }
 
 
-.error-container  a {
+.error-container a {
   padding: 10px 15px;
   background-color: #14342B;
   color: rgb(229, 255, 187);
@@ -2764,7 +2807,7 @@ width: 100%;
   transition: all 300ms ease-in-out;
 }
 
-.error-container  a:hover {
+.error-container a:hover {
   border-radius: 15px;
   box-shadow: 2px 2px 15px 0px black;
   border: 4px solid #b5d179;
@@ -2931,23 +2974,3 @@ width: 100%;
     padding-left: 0;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

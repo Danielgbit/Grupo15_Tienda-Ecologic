@@ -1,13 +1,25 @@
-{
-    "email": "avilapelagattifederico@gmail.com",
-    "password": "444444",
-    "nombre": "Federico",
-    "apellido": "Avila",
-    "pais": "Argentina",
-    "ciudad": "Lanus",
-    "direccion": "llavallol 9",
-    "fechaDeNacimiento": "2001-09-24",
-    "username": "federicoavila_",
-    "genero": "Male",
-    "telefono": "1122334455"
-}
+[{
+    "id": "4478e4bc-6395-4b9b-b842-73be720dfe1d",
+    "email": "Jairito@gmail.com",
+    "password": "123243545645",
+    "first_name": "Jairo",
+    "last_name": "Velazquez",
+    "country": "Colombia",
+    "city": "Bogota",
+    "address": "calle-28Csur",
+    "birthDate": "1990-03-05",
+    "username": "Trini",
+    "gender": "male"
+}, {
+    "id": "69bd3096-fc2e-4711-a15d-2ec304a2ac68",
+    "email": "Al@hotmail.com",
+    "password": "3r3ef3w",
+    "first_name": "Alejandra ",
+    "last_name": "Echavarria",
+    "country": "Colombia",
+    "city": "Medellin",
+    "address": "Calle89-C",
+    "birthDate": "2000-03-04",
+    "username": "Chacha",
+    "gender": "female"
+}]
