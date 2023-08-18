@@ -1,28 +1,37 @@
-<a class="product-card" href="products/2/detail">
-    <section class="card">
-        <img src="/img/products/img-product-jabon.jpg" alt="">
-        <div class="content-card-container">
-            <section class="contain-content-card-1">
-                <div class="description">
-                    <span>Jabon biodegradable</span>
-                    <span>Ref: 8990</span>
-                </div>
-                <div class="stars">
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                    <span class="material-symbols-outlined">star</span>
-                </div>
-            </section>
+<% products.forEach(product => { %>
+    <a class="product-card" href="products/<%= product.id %>/detail">
+        <section class="card">
+            <img src="/img/products/<%= product.image %>" alt="imagen del producto">
+            <div class="content-card-container">
+                <section class="contain-content-card-1">
+                    <div class="description">
+                        <span><%= product.name %></span>
+                        <span>Ref: <%= product.id %> </span>
+                    </div>
+                    <div class="stars">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                    </div>
+                </section>
+    
+                <section class="contain-content-card-2">
+                    <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
+                    <div class="price">
+                        <% if(product.discount === 0) { %>
+                            <span></span>
+                        <% }else { %> 
+                            <span class="descuento"><%= product.discount %>% OFF</span>
+                        <% } %>
+                        <span class="total">$ <%= product.price.toFixed(2) %></span>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </a>
+<% }) %>
 
-            <section class="contain-content-card-2">
-                <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
-                <div class="price">
-                    <span class="descuento">10% OFF</span>
-                    <span class="total">$ 000</span>
-                </div>
-            </section>
-        </div>
-    </section>
-</a>
+
+

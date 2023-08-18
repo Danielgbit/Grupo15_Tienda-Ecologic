@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
 
 <body>
 
@@ -21,59 +21,19 @@
 
                 <section class="seccion-category-name">
                     <div class="title-categoty-product-contain">
-                        <span>Cuidado personal y belleza</span>
+                        <span>Todos los productos</span>
                     </div>
                 </section>
 
                 <article id="cards-products-container">
 
-                    <% for( let index = 0; index < 4; index++ ) { %>
-                        <%- include('../products/productsList') %>
-                    <% } %>
+                    <%- include('../products/productsList') %>
 
                 </article>
 
-                
+
             </div>
 
-
-            <div class="container-name-category-cards">
-
-                <section class="seccion-category-name">
-                    <div class="title-categoty-product-contain">
-                        <span>Cuidado personal y belleza</span>
-                    </div>
-                </section>
-
-                <article id="cards-products-container">
-
-                    <% for( let index = 0; index < 4; index++ ) { %>
-                        <%- include('../products/productsList') %>
-                    <% } %>
-
-                </article>
-
-                
-            </div>
-
-            <div class="container-name-category-cards">
-
-                <section class="seccion-category-name">
-                    <div class="title-categoty-product-contain">
-                        <span>Cuidado personal y belleza</span>
-                    </div>
-                </section>
-
-                <article id="cards-products-container">
-
-                    <% for( let index = 0; index < 4; index++ ) { %>
-                        <%- include('../products/productsList') %>
-                    <% } %>
-
-                </article>
-
-                
-            </div>
         </article>
 
 

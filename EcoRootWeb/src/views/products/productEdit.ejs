@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+<body id="body-create-category">
+
+    <%- include('../partials/header.ejs') %>
+
+
+    <main class="main-create-category">
+        <seccion class="header-create">
+            <h1>Edición de producto</h1>
+        </seccion>
+
+        <form class="form-create-1" action="/products/<%= product.id %>/detail?_method=PUT" method="post">
+
+            <article class="container-cards-category">
+
+
+                <label class="categoryCards">
+                    <input type="radio" name="category" value="Cuidado personal" class="radio-input"
+                        <%= product.category === 'Cuidado personal' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
+                    <img src="/img/categories/personal.png" alt="">
+                    <span>Cuidado personal</span>
+                </label>
+
+                <label class="categoryCards">
+                    <input type="radio" name="category" value="Moda" class="radio-input"
+                        <%= product.category === 'Moda' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
+                    <img src="/img/categories/moda.png" alt="">
+                    <span>Moda sostenible</span>
+                </label>
+
+                <label class="categoryCards">
+                    <input type="radio" name="category" value="Hogar" class="radio-input"
+                        <%= product.category === 'Hogar' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
+                    <img src="/img/categories/planet.png" alt="">
+                    <span>Hogar</span>
+                </label>
+
+                <label class="categoryCards">
+                    <input type="radio" name="category" value="Joyeria" class="radio-input"
+                        <%= product.category === 'Joyeria' ? 'checked="checked' : '' %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
+                    <img src="/img/categories/joyeria.png" alt="">
+                    <span>Joyeria sostenible</span>
+                </label>
+
+            </article>
+
+            <!-- --------------------------------------------- -->
+
+            <section class="container-information-form">
+
+                <article class="form-information-items-wrapper">
+
+
+                    <section class="section-1-information">
+
+                        <div class="input-information-container">
+                            <label for="nombre">Nombre del Producto:</label>
+                            <input type="text" id="nombre" name="name" value="<%= product.name %>" required>
+                        </div>
+
+
+                        <div class="input-information-container">
+                            <label for="marca">Marca:</label>
+                            <input type="text" id="marca" name="brand" value="<%= product.brand %>" required>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="color">Color:</label>
+                            <input type="text" id="color" name="color" value="<%= product.color %>" required>
+                        </div>
+
+                    </section>
+
+
+                    <section class="section-2-information">
+                        <div class="input-information-container">
+                            <label for="unidades">Unidades:</label>
+                            <input type="number" id="unidades" name="united" value="<%= product.united %>" required>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="discuount">Descuento</label>
+                            <input type="number" id="discuount" name="discount" value="<%= product.discount %>"
+                                placeholder="%" required>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="material">Material:</label>
+                            <div>
+                                <input type="text" id="material" name="material" value="<%= product.material %>"
+                                    required>
+                                <span class="NaN">N/A</span>
+                            </div>
+                        </div>
+                    </section>
+
+                </article>
+
+            </section>
+
+
+            <!-- --------------------------------------------- -->
+
+
+            <article class="form-condition-items-wrapper">
+                <section class="condition-container">
+
+
+                    <div class="condition-text-header">
+                    </div>
+
+                    <div class="condition-form">
+                        <label class="estado-label">
+                            <input type="radio" name="state" value="New" class="radio-input-condition"
+                                <%= product.state === 'New' ? 'checked="checked' : '' %>>
+                            Nuevo
+                            <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
+                        </label>
+
+                        <label class="estado-label">
+                            <input type="radio" name="state" value="Used" class="radio-input-condition"
+                                <%= product.state === 'Used' ? 'checked="checked' : '' %>>
+                            Usado
+                            <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
+                        </label>
+                    </div>
+
+                </section>
+
+                <hr>
+
+
+                <section class="form-create-5">
+                    <div class="text-header-create-container">
+                        <p class="paragraph-step-5">Para no perder exposición, asegúrate de que la primera foto tenga
+                            fondo
+                            blanco puro creado
+                            con un editor de fotos.</p>
+                    </div>
+
+                    <div class="container-img-file">
+
+                        <label for="foto" class="form-dropArea-imgs">
+                            <i class="fa-solid fa-camera-rotate"></i>
+                            <label for="foto" class="custom-file-input custom-view-edit">
+                                <input type="file" id="foto" name="image" accept="image/*" >
+                            </label>
+                        </label>
+
+                        <div><img src="/img/products/<%= product.image %>" alt="imagen del producto existente"></div>
+                    </div>
+                </section>
+
+
+            </article>
+
+
+            <!-- ------------------------------------ -->
+
+            <article class="form-descriptionPrice-items-wrapper">
+
+                <section class="form-create-4">
+                    <div class="text-header-create-container">
+                        <p class="description-pharagraph">No incluyas datos de contacto, como e-mails, teléfonos,
+                            direcciones, links ni referencias a
+                            sitios
+                            externos. Tampoco uses este espacio para indicar la condición de tu producto.</p>
+                    </div>
+                    <section>
+
+                        <div class="description-container">
+                            <textarea id="descripcion" name="description" rows="4" cols="50" required
+                                class="description-box"><%= product.description %></textarea>
+                        </div>
+
+                    </section>
+                </section>
+
+                <hr>
+
+                <section class="form-create-6">
+                    <div class="text-header-create-container">
+                    </div>
+
+                    <div class="form-image-price">
+
+                        <div class="input-information-container">
+                            <label for="precio" class="priceText">¿Cuál es el precio?</label>
+                            <input type="number" id="precio" name="price" min="0" step="0.01"
+                                value="<%= product.price.toFixed(2) %>" required placeholder="$">
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+
+            <div class="buttons-submit-step-5-6">
+                <button type="submit" id="submit" class="submit-create-form-container">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+        </form>
+
+
+
+    </main>
+
+</body>
+
+</html>
