@@ -1,5 +1,5 @@
+# Retrospectiva del Cuarto Sprint - Dinámica de la Estrella de Mar #4
 
-**Retrospectiva del Cuarto Sprint - Dinámica de la Estrella de Mar #4**
 
 En esta retrospectiva, aplicaremos la dinámica de la Estrella de Mar para analizar el cuarto sprint, identificar oportunidades de mejora y planificar acciones para los siguientes sprints. Vamos a considerar lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer.
 
@@ -39,9 +39,7 @@ Mediante esta retrospectiva, buscamos fortalecer nuestra colaboración y mejorar
 
 
 
-
-
-**Retrospectiva del Tercer Sprint - Dinámica de la Estrella de Mar #3**
+# Retrospectiva del Tercer Sprint #3 
 
 
 En esta retrospectiva, utilizaremos la dinámica de la Estrella de Mar para reflexionar sobre nuestro tercer sprint y planificar mejoras para futuros sprints. Evaluaremos lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer. 
