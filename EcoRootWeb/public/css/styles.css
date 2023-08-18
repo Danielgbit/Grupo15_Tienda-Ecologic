@@ -256,11 +256,20 @@ body {
   width: 100%;
 }
 
+.contain-content-card-1 .description p {
+  font-size: 11px;
+}
+
+.contain-content-card-1 .description p span {
+  font-size: 10px;
+  font-style: italic;
+}
+
 .contain-content-card-1 .description {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
+  gap: 9px;
   flex: 1 0 0;
   color: var(--color-primario, #EDF4DA);
   font-family: 'Rubik', sans-serif;
@@ -309,6 +318,7 @@ body {
   background: var(--color-primario-2, #D4D9C5);
   border: none;
   transition: transform 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .contain-content-card-2 .button:hover {
@@ -351,7 +361,7 @@ body {
   align-self: stretch;
   gap: 10px;
   padding: 20px 15px;
-  height: 170px;
+  height: 178px;
   justify-content: space-between;
 }
 
@@ -1416,6 +1426,9 @@ footer {
 
 @media (min-width: 570px) {
 
+  .content-card-container {
+    height: 200px;
+  }
 
   #cards-products-container {
     flex-direction: row;
@@ -1438,7 +1451,7 @@ footer {
   }
 
   .price .total {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   .price .descuento {
@@ -2972,7 +2985,7 @@ footer {
   }
 
   .content-card-container {
-    height: 170px;
+    height: 190px;
   }
 
   .price .total {
