@@ -896,6 +896,19 @@ footer {
 }
 
 
+.content-text-detail .brand-container span {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  gap: 5px;
+}
+
+.content-text-detail .brand-container span p {
+  font-size: 14px;
+  font-style: italic;
+}
+
+
 .content-text-detail h2 {
   color: var(--color-text, #2E3814);
   font-size: 1rem;
@@ -2868,7 +2881,10 @@ footer {
 
 @media (min-width: 768px) {
 
-
+  .buttons-detail-container {
+    flex-direction: row;
+    align-items: center;
+  }
 
   .img-card-val-wrapper {
     width: 50%;
