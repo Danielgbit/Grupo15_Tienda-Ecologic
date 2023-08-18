@@ -47,6 +47,8 @@ const models = {
         
         let products = models.findAll();
 
+        
+
         const productIndex = products.findIndex((product) => product.id === productEdit.id);
 
         products[productIndex] = productEdit;

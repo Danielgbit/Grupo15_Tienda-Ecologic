@@ -47,7 +47,7 @@ productsRouter.delete('/:id/delete', productsController.productDestroy);
 // @GET /products/:id/edit
 productsRouter.get('/:id/edit', productsController.getEdit);
 
-// @GET /products/:id/detail
+// @PUT /products/:id/detail
 productsRouter.put('/:id/detail', productsController.putProductEdit);
 
 

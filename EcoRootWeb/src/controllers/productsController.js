@@ -79,6 +79,7 @@ const productsController = {
 
     putProductEdit: (req, res) => {
 
+
         
         const productEdit = {
             id: Number(req.params.id),
@@ -94,6 +95,10 @@ const productsController = {
             discount: Number(req.body.discount),
             price: Number(req.body.price),
         }
+
+        if(productEdit.image == "") {
+            productEdit.image = "img-product-1691864692162.jpg"
+        };
         
       
         models.editProduct(productEdit);
