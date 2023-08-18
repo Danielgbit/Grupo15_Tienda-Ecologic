@@ -48,18 +48,22 @@
                         <span class="price"> $ <%= product.price.toFixed(2) %></span>
                     </div>
                     <div class="buttons-detail-container">
-                        <span>Color: </span>
+                        <span class="color-detail-text">Color</span>
                         <div class="button-selector-detail">
+                            <% if (product.color === 'NaN' || product.color === null) { %>
+                            <button>No disponible</button>
+                            <% } else {%>
                             <button><%= product.color %></button>
+                            <% } %>
                             <span class="material-symbols-outlined">expand_more</span>
                         </div>
-                        <div class="button-selector-detail">
+                        <div class="button-selector-detail button-detail-2">
                             <button><%= product.material %></button>
                             <span>Material</span>
                         </div>
                         <div class="button-cart-add-detail">
                             <button>AGREGAR AL CART</button>
-                            <span><%= product.units %></span>
+                            <span><%= product.united %></span>
                         </div>
 
                     </div>
