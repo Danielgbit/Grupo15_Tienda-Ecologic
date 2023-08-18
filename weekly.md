@@ -1,3 +1,77 @@
+## Reporte Semanal - Semana del [Cuarto Sprint - CRUD & JSON]
+
+
+#### DANIEL:
+
+#### Logros de Ayer:
+- Completé exitosamente la implementación de las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para los productos en el proyecto.
+- Establecí la estructura necesaria para los modelos y la carpeta `dataJson` que almacena los datos de los productos, asegurando su correcto funcionamiento.
+- Implementé la integración de la librería `multer` para gestionar el manejo de imágenes relacionadas con los productos.
+- Mejoré la presentación visual de las páginas de creación y edición de productos mediante la adición de estilos.
+- Resolví un problema relacionado con el ancho de las imágenes en las tarjetas de los productos.
+- Añadí una barra de navegación para las categorías y realicé ajustes de estilo para mejorar la presentación de estas categorías.
+- Creada página personalizada para el error 404 y configuré su renderización en la aplicación.
+- Implementé y configuré la librería `uuid` para generar identificadores únicos para los usuarios del sistema.
+
+#### Impedimentos:
+- No enfrenté ningún obstáculo significativo durante el día de trabajo.
+
+#### Metas para Hoy:
+- Mi objetivo para hoy es continuar avanzando en el desarrollo del proyecto, aprovechando el impulso de los logros obtenidos ayer. Pretendo seguir implementando nuevas funcionalidades y mejorando la calidad general del proyecto.
+
+#### Ampliación de Daniel:
+- Daniel tuvo un día productivo ayer, logrando implementar con éxito diversas funcionalidades clave en el proyecto. Desde la gestión de productos con operaciones CRUD hasta la mejora de la presentación visual y la integración de librerías, su contribución fue significativa. No enfrentó impedimentos notables y su objetivo para hoy es mantener el ritmo, continuando con la expansión del proyecto y la incorporación de nuevas características.
+- 
+- 
+
+#### FEDERICO:
+
+#### Logros de Ayer:
+- Realicé con éxito la corrección en la visualización del pie de página en la versión de escritorio del proyecto.
+- Añadí el archivo `users.json` para gestionar los datos de los usuarios en formato JSON.
+- Implementé el archivo `usersmodels.js` para definir los modelos relacionados con los usuarios.
+- Realicé modificaciones en la vista y el controlador del registro de usuarios para asegurar su correcto funcionamiento.
+- Realicé una revisión y organización del tablero de trabajo, añadiendo nuevas tareas y asegurando una planificación más precisa.
+- Actualicé el archivo `README.md` del proyecto con la información más reciente.
+
+#### Impedimentos:
+- No enfrenté ningún obstáculo importante durante mi jornada de trabajo.
+
+#### Metas para Hoy:
+- Mi propósito para el día de hoy es continuar avanzando en el desarrollo del proyecto. Tengo como objetivo principal seguir implementando nuevas funcionalidades y características mientras mantengo un alto nivel de calidad en el trabajo realizado.
+
+
+### Ampliación de Federico: 
+
+- Federico demostró habilidades técnicas sólidas al abordar desafíos como la corrección de la visualización y la implementación de modelos de usuario. Contribuyó en la organización del tablero de trabajo y mantuvo el archivo README actualizado. Sin enfrentar impedimentos importantes, su enfoque para hoy sigue siendo firme: continuar desarrollando el proyecto y expandiendo sus capacidades. Su capacidad para mantener el ritmo y la calidad en su trabajo es valiosa para el equipo.
+
+
+
+#### MICAELA:
+
+
+#### Logros de Ayer:
+- Contribuí exitosamente a la resolución del problema que afectaba al comando `npm start`, asegurando que la aplicación se inicie correctamente.
+- Identifiqué y solucioné un error relacionado con el archivo `.gitignore`, garantizando que los archivos y carpetas designados se excluyan adecuadamente del control de versiones.
+- Participé activamente en la organización del plan semanal de trabajo y en la creación del repositorio del proyecto.
+
+#### Impedimentos:
+- Experimentamos una demora en la solución del problema con el archivo `.gitignore`, lo que llevó más tiempo del esperado y afectó la subida de los cambios al repositorio.
+
+#### Metas para Hoy:
+- Mi objetivo para hoy es continuar trabajando en el proyecto y mantener un flujo constante de confirmaciones (`commits`) en el repositorio. Aspiramos a seguir avanzando en la implementación y desarrollo del proyecto.
+
+### Ampliación de Micaela:
+
+- Micaela desempeñó un papel esencial en la resolución de problemas técnicos y en la organización inicial del proyecto. Ayer logró superar obstáculos relacionados con el inicio de la aplicación y la configuración de control de versiones. Aunque hubo demoras en algunos aspectos, su contribución en la planificación y el establecimiento de un flujo de trabajo es evidente. Hoy, su enfoque se mantiene en avanzar constantemente, asegurando una colaboración fluida y un progreso continuo en el proyecto.
+- 
+- 
+- 
+
+
+------------------------------------------------------------
+
+
 ## Reporte Semanal - Semana del [Tercer Sprint]
 
 ### Daniel:

@@ -1,5 +1,88 @@
 
-# Retrospectiva - Segundo Sprint - Grupo 15
+**Retrospectiva del Cuarto Sprint - Dinámica de la Estrella de Mar #4**
+
+En esta retrospectiva, aplicaremos la dinámica de la Estrella de Mar para analizar el cuarto sprint, identificar oportunidades de mejora y planificar acciones para los siguientes sprints. Vamos a considerar lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer.
+
+**1. Comenzar a hacer:**
+- Establecer un proceso estructurado para documentar y compartir los resultados y conclusiones de nuestras retrospectivas en el archivo retro.md. Esto nos permitirá tener una base de conocimientos para futuros sprints.
+
+**2. Hacer más:**
+- Contribuir activamente al archivo daily.md con nuestras opiniones y reflexiones sobre las reuniones diarias y semanales. Esto fomentará la comunicación transparente y el entendimiento compartido.
+
+**3. Continuar haciendo:**
+- Mantener el tablero de trabajo actualizado con tareas y su progreso para una mejor organización y asignación de responsabilidades.
+
+- Asegurarnos de que los archivos products.json y users.json se mantengan actualizados con información precisa de productos y usuarios.
+
+- Continuar con la administración completa de productos, asegurando que todas las funcionalidades, incluyendo el listado, detalle, creación, edición y eliminación, se mantengan funcionando sin problemas.
+
+**4. Hacer menos:**
+- No hemos identificado acciones específicas que debamos hacer menos en este sprint. Sin embargo, seguiremos evaluando nuestras prácticas y procesos para optimizarlos en caso necesario.
+
+**5. Dejar de hacer:**
+- No hemos identificado prácticas que debamos dejar de hacer en este sprint. Nos centraremos en actividades que agreguen valor al proyecto.
+
+**Resultados del Cuarto Sprint:**
+- Archivo retro.md documentado con los resultados y conclusiones de la retrospectiva del sprint.
+- Tablero de trabajo actualizado y bien gestionado para un seguimiento efectivo de las tareas.
+- Archivos products.json y users.json actualizados con datos de productos y usuarios.
+- Administración completa de productos implementada, incluyendo listado, detalle, creación, edición y eliminación.
+
+**Próximas Acciones:**
+- Mantener la práctica de documentar en retro.md para seguir aprendiendo de cada sprint.
+- Continuar mejorando y ajustando nuestras habilidades de comunicación al contribuir en daily.md.
+- Seguir evolucionando la administración de productos y considerar la retroalimentación del equipo y los usuarios para futuras mejoras.
+
+Mediante esta retrospectiva, buscamos fortalecer nuestra colaboración y mejorar la entrega continua de un producto de alta calidad en los siguientes sprints.
+
+
+
+
+
+
+
+**Retrospectiva del Tercer Sprint - Dinámica de la Estrella de Mar #3**
+
+
+En esta retrospectiva, utilizaremos la dinámica de la Estrella de Mar para reflexionar sobre nuestro tercer sprint y planificar mejoras para futuros sprints. Evaluaremos lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer. 
+
+**1. Comenzar a hacer:**
+- Implementar el archivo retro.md para registrar nuestros resultados de retrospectiva de manera estructurada y efectiva. Esto nos ayudará a seguir un proceso más formal y mantener un registro de nuestras conclusiones.
+
+**2. Hacer más:**
+- Contribuir al archivo daily.md donde podamos expresar nuestras opiniones y reflexiones sobre las reuniones diarias y semanales. Esto permitirá una comunicación más abierta y una comprensión compartida de los desafíos y logros de cada día.
+
+**3. Continuar haciendo:**
+- Mantener el tablero de trabajo actualizado con todas las tareas y su progreso correspondiente. Esta práctica ha demostrado ser efectiva para una gestión y asignación de tareas más eficiente.
+
+- Progresar en el desarrollo de la aplicación según lo planeado. Hasta ahora, hemos logrado implementar archivos parciales, las páginas principales (Home, Listado de productos, Detalle del producto, Carrito de productos) y los formularios de registro y login.
+
+**4. Hacer menos:**
+- No hemos identificado acciones específicas que debamos hacer menos en este sprint. No obstante, debemos mantenernos alerta ante cualquier proceso que podría no estar agregando valor y ajustar si es necesario.
+
+**5. Dejar de hacer:**
+- No hemos identificado prácticas que debamos dejar de hacer en este sprint. Sin embargo, debemos estar abiertos a cambiar cualquier actividad o enfoque que no esté contribuyendo al éxito del proyecto.
+
+**Resultados del Tercer Sprint:**
+- Archivo retro.md creado y documentado con los resultados y conclusiones de la retrospectiva del sprint.
+- Tablero de trabajo actualizado y bien gestionado, lo que facilita la visualización de tareas y su progreso.
+- La aplicación Node.js+Express+EJS ha avanzado significativamente. Hemos implementado archivos parciales, páginas principales y formularios de registro y login.
+- La comunicación ha mejorado mediante la inclusión de opiniones en daily.md.
+
+**Próximas Acciones:**
+- Asegurar que daily.md esté disponible para que cada miembro del equipo comparta sus opiniones sobre las reuniones.
+- Continuar avanzando en la implementación de las funcionalidades restantes de la aplicación.
+- Revisar y actualizar el archivo retro.md después de cada sprint para un seguimiento constante de nuestras mejoras y desafíos.
+
+Con esta retrospectiva, esperamos mantener el impulso positivo y seguir mejorando en nuestro proceso de desarrollo y colaboración en futuros sprints.
+
+
+
+
+
+
+
+# Retrospectiva - Segundo Sprint - Grupo 15 #2
 
 ## Estrella de Mar
 
