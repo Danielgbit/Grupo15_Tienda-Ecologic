@@ -2791,10 +2791,82 @@ footer {
 }
 
 
+.container-user-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 95%;
+  padding: 20px 15px;
+  gap: 20px;
+  margin: 30px auto;
+  background-color: rgba(158, 134, 90, 0.479);
+  border-radius: 15px;
+  box-shadow: 2px 2px 15px 0 rgb(0, 0, 0);
+}
+
+.container-user-div .img-user-page {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 
+.container-user-div .paragraph-user-description {
+  font-size: 0.9rem;
+  text-align: center;
 
+}
 
+.form-user-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.buttons-user {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button-edit-user {
+  background-color: #8e8a1d82;
+}
+
+.button-delete-user {
+  background-color: rgba(143, 116, 10, 0.585);
+}
+
+.content-user-page {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.content-user-page .content {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.user-detail {
+
+  width: 50%;
+}
+
+.user-post {
+  width: 50%;
+
+}
 
 .buttons-submit-step-5-6 {
   display: flex;

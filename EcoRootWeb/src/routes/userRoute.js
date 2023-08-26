@@ -20,15 +20,22 @@ const storage = multer.diskStorage ({
 
 const upload = multer({ storage });
 
+//@ /user/
+userRouter.get('/', userController.getUserPage);
 
-//@ /user/login
-
+//@GET /user/login
 
 userRouter.get('/login', userController.login);
 
+//@POST /user/register
+
 userRouter.post('/register', upload.single('image') , userController.postRegisterUser);
 
+//@GET /user/register
+
 userRouter.get('/register', userController.register);
+
+
 
 
 

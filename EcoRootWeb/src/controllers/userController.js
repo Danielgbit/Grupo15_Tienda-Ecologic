@@ -3,6 +3,10 @@ const path = require ('path');
 const userModels = require('../models/usersModels');
 const uuid = require('uuid');
 
+const modelProducts = require('../models/productsModels');
+
+
+
 
 
 const userController = {
@@ -39,8 +43,12 @@ const userController = {
         res.redirect('/user/login')
     },
 
+    getUserPage: (req, res) => {
 
+        const products = modelProducts.findAll();
 
+        res.render('user', {product: products});
+    }
 
 }
 
