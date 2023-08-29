@@ -13,7 +13,7 @@ const userModels = {
         return allUsers;
     },
 
-    userRegister: (userData) => {
+    createUser: (userData) => {
 
         const users = userModels.findAllUser();
 

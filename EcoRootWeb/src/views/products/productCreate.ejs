@@ -69,18 +69,21 @@
 
                     <div class="input-information-container">
                         <label for="nombre">Nombre del Producto:</label>
-                        <input type="text" id="nombre" name="name"  required>
+                        <input type="text" id="nombre" name="name" >
+                        <% if (locals.errors && errors.length > 0) { %>
+                            <span class="errorsCreateProduct"><%= errors.name %> </span>
+                        <% } %>
                     </div>
 
 
                     <div class="input-information-container">
                         <label for="marca">Marca:</label>
-                        <input type="text" id="marca" name="brand" required>
+                        <input type="text" id="marca" name="brand">
                     </div>
 
                     <div class="input-information-container">
                         <label for="color">Color:</label>
-                        <input type="text" id="color" name="color" required>
+                        <input type="text" id="color" name="color">
                     </div>
 
                 </section>
@@ -89,18 +92,18 @@
                 <section class="section-2-information">
                     <div class="input-information-container">
                         <label for="unidades">Unidades:</label>
-                        <input type="number" id="unidades" name="united" required>
+                        <input type="number" id="unidades" name="united">
                     </div>
 
                     <div class="input-information-container">
                         <label for="discuount">Descuento</label>
-                        <input type="number" id="discuount" name="discount" placeholder="%" required>
+                        <input type="number" id="discuount" name="discount" placeholder="%">
                     </div>
 
                     <div class="input-information-container">
                         <label for="material">Material:</label>
                         <div>
-                            <input type="text" id="material" name="material" required>
+                            <input type="text" id="material" name="material">
                             <span class="NaN">N/A</span>
                         </div>
                     </div>

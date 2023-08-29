@@ -38,7 +38,7 @@ const userController = {
             gender: req.body.gender,
         };
         
-        userModels.userRegister(newUser);
+        userModels.createUser(newUser);
 
         res.redirect('/user/login')
     },

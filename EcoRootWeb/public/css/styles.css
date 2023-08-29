@@ -55,6 +55,7 @@ body {
 .nav-right-wrapper .icon-account {
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .nav-right-wrapper span {
@@ -2935,6 +2936,16 @@ footer {
   box-shadow: 2px 2px 15px 0px black;
   border: 4px solid #b5d179;
   transform: translateY(-3px);
+}
+
+
+.errorsCreateProduct {
+  font-size: 0.8rem;
+  color: #263800;
+  font-style: italic;
+  font-weight: 800;
+  padding: 5px 0;
+  text-decoration: underline;
 }
 
 
