@@ -2,9 +2,11 @@ const models = require('../models/productsModels');
 const modelProducts = require('../models/productsModels');
 const { validationResult } = require('express-validator');
 
-const products = modelProducts.findAll()
+const products = modelProducts.findAll();
+let formDataOld = {};
 
 const productsController = {
+    
 
     products: (req, res) => {
 
@@ -24,13 +26,16 @@ const productsController = {
 
     getproductCreate: (req, res) => {
 
-        console.log(req.query);
+        console.log(formDataOld);
 
-        res.render('productCreate', { errors: req.query });
+        res.render('productCreate', { errors: req.query, formDataOld });
+
     },
 
 
     postProductCreate: (req, res) => {
+
+        formDataOld = req.body || {};
 
         const result = validationResult(req);
 
@@ -41,6 +46,7 @@ const productsController = {
             const queryErrors = queryArray.join('')
 
             res.redirect('/products/create?admin=true' + queryErrors);
+            
 
             return;
         }

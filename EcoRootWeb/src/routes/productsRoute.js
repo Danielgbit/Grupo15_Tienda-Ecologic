@@ -29,7 +29,7 @@ const upload = multer({ storage });
 // @GET /products
 productsRouter.get('/', productsController.products);
 
-productsRouter.post('/', [upload.single('image'), ...productCreateValidations]  , productsController.postProductCreate);
+productsRouter.post('/', [upload.single('image'), productCreateValidations]  , productsController.postProductCreate);
 
 
 // @GET /products/id/detail

@@ -69,8 +69,8 @@
 
                     <div class="input-information-container">
                         <label for="nombre">Nombre del Producto:</label>
-                        <input type="text" id="nombre" name="name" >
-                        <% if (locals.errors && errors.length > 0) { %>
+                        <input type="text" id="nombre" value="<%= locals.formDataOld && formDataOld.name ? formDataOld.name : null %>" name="name" class="<%= locals.errors && errors.name ? "is-invalid" : "is-valid" %>" >
+                        <% if (locals.errors && errors.name) { %>
                             <span class="errorsCreateProduct"><%= errors.name %> </span>
                         <% } %>
                     </div>
@@ -78,12 +78,18 @@
 
                     <div class="input-information-container">
                         <label for="marca">Marca:</label>
-                        <input type="text" id="marca" name="brand">
+                        <input type="text" id="marca" value="<%= locals.formDataOld && formDataOld.brand ? formDataOld.brand : null %>" name="brand" class="<%= locals.errors && errors.brand ? "is-invalid" : "is-valid" %>">
+                        <% if (locals.errors && errors.brand) { %>
+                            <span class="errorsCreateProduct"><%= errors.brand %> </span>
+                        <% } %>
                     </div>
 
                     <div class="input-information-container">
                         <label for="color">Color:</label>
-                        <input type="text" id="color" name="color">
+                        <input type="text" id="color" value="<%= locals.formDataOld && formDataOld.color ? formDataOld.color : null %>" name="color" class="<%= locals.errors && errors.color ? "is-invalid" : "is-valid" %>">
+                        <% if (locals.errors && errors.color) { %>
+                            <span class="errorsCreateProduct"><%= errors.color %> </span>
+                        <% } %>
                     </div>
 
                 </section>
@@ -92,20 +98,28 @@
                 <section class="section-2-information">
                     <div class="input-information-container">
                         <label for="unidades">Unidades:</label>
-                        <input type="number" id="unidades" name="united">
+                        <input type="number" id="unidades" value="<%= locals.formDataOld && formDataOld.united ? formDataOld.united : null %>" name="united" class="<%= locals.errors && errors.united ? "is-invalid" : "is-valid" %>">
+                        <% if (locals.errors && errors.united) { %>
+                            <span class="errorsCreateProduct"><%= errors.united %> </span>
+                        <% } %>
                     </div>
 
                     <div class="input-information-container">
                         <label for="discuount">Descuento</label>
-                        <input type="number" id="discuount" name="discount" placeholder="%">
+                        <input type="number" id="discuount" value="<%= locals.formDataOld && formDataOld.discount ? formDataOld.discount : null %>" name="discount" placeholder="%" class="<%= locals.errors && errors.discount ? "is-invalid" : "is-valid" %>">
+                        <% if (locals.errors && errors.discount) { %>
+                            <span class="errorsCreateProduct"><%= errors.discount %> </span>
+                        <% } %>
                     </div>
 
                     <div class="input-information-container">
                         <label for="material">Material:</label>
                         <div>
-                            <input type="text" id="material" name="material">
-                            <span class="NaN">N/A</span>
+                            <input type="text" id="material" value="<%= locals.formDataOld && formDataOld.material ? formDataOld.material : null %>" name="material" class="<%= locals.errors && errors.material ? "is-invalid" : "is-valid" %>">
                         </div>
+                        <% if (locals.errors && errors.material) { %>
+                            <span class="errorsCreateProduct"><%= errors.material %> </span>
+                        <% } %>
                     </div>
                 </section>
 

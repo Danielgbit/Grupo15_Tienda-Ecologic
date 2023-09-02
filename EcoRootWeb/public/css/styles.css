@@ -2339,6 +2339,21 @@ footer {
   border-bottom: 1px solid #292929;
   outline: none;
   background-color: transparent;
+  padding: 5px;
+}
+
+.input-information-container .is-invalid {
+  background-image: url('../img/validations/Icon-validation-Error.svg');
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.input-information-container .is-valid {
+  background-image: url('../img/validations/Icon-validation-Check.svg');
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 .input-information-container div {
@@ -2346,15 +2361,6 @@ footer {
   gap: 6%;
 }
 
-.input-information-container div .NaN {
-  color: #000;
-  text-align: center;
-  font-family: Roboto;
-  font-size: 0.6875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
 
 .form-create-2 form .input-continue-information,
 .input-continue-condition {
