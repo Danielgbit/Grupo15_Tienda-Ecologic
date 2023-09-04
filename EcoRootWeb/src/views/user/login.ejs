@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../partials/head.ejs') %>
+<%- include('../partials/head.ejs') %>
 
 <body>
 
     <%- include('../partials/header.ejs') %>
 
     <main class="main-register">
-        
+
         <h1>LOGIN</h1>
 
         <article class="content-register-wrapper content-login-wrapper ">
@@ -16,29 +16,42 @@
                 <img src="/img/articles/img-login.jpg" alt="">
             </div>
 
-                
+
             <form class="form-register" action="/user/login" method="post">
-    
-    
+
+
                 <div class="input-register">
                     <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="text" id="email" name="email"
+                        class="<%= locals.errors && errors.email ? 'login-input-invalid' : null %>"
+                        value="<%= locals.dataOld && dataOld.email ? dataOld.email : null %>">
+                    <% if (locals.errors && errors.email) { %>
+                    <span class="errorsLoginMsg"><%= errors.email %> </span>
+                    <% } %>
                 </div>
-    
+
                 <div class="input-register">
-                    <label for="password">Contraseña:</label>                                       
-                    <input class="input-passw-register" type="password" id="password" name="password" required>
+                    <label for="password">Contraseña:</label>
+                    <input
+                        class="input-passw-register <%= locals.errors && errors.password ? 'login-input-invalid' : null %>"
+                        type="password" id="password" name="password"
+                        value="<%= locals.dataOld && dataOld.password ? dataOld.password : null %>">
+                    <% if (locals.errors && errors.password) { %>
+                    <span class="errorsLoginMsg"><%= errors.password %> </span>
+                    <% } %>
                 </div>
+
+
+
+                <input class="button-register" type="submit" value="Ingresar">
 
                 <div class="input-register2">
                     <label for="">Recordame</label>
                     <input type="checkbox" name="recordame">
                 </div>
-    
-                <input class="button-register" type="submit" value="Ingresar">
 
                 <div class="text-account-register-wrapper">
-                    <a class="text-account-register" href="/user/register">Crear una cuenta</a>                       
+                    <a class="text-account-register" href="/user/register">Crear una cuenta</a>
                 </div>
             </form>
 

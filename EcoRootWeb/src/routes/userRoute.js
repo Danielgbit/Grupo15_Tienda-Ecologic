@@ -2,6 +2,7 @@ const express = require ('express');
 const userRouter = express.Router();
 const userController = require ('../controllers/userController');
 const path = require('path');
+const { validateLogin } = require('../middlewares/validateLogin');
 const multer = require('multer');
 
 const storage = multer.diskStorage ({
@@ -29,7 +30,7 @@ userRouter.get('/login', userController.login);
 
 //@POST /user/login
 
-userRouter.post('/login', userController.loginProcess);
+userRouter.post('/login', validateLogin , userController.loginProcess);
 
 //@POST /user/register
 

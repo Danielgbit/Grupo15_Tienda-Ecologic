@@ -19,38 +19,45 @@
             <article class="container-cards-category">
 
                 <div class="condition-text-header">
-                    <span class="text-title">¡Hola! Antes que nada cuéntanos, ¿qué vas a publicar?</span>
+                    <span class="text-title <%= locals.errors && errors.category ? "is-invalid" : null %>">¡Hola! Antes
+                        que nada cuéntanos, ¿qué vas a publicar?</span>
                     <span class="text-step">Paso 1 de 6</span>
+                    <% if (locals.errors && errors.category) { %>
+                    <span class="errorsCreateProduct"><%= errors.category %> </span>
+                    <% } %>
                 </div>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Cuidado personal" class="radio-input">
+                    <input type="radio" name="category" value="Cuidado personal" class="radio-input"
+                        <%= locals.formDataOld && formDataOld.category === 'Cuidado personal' ? 'checked=checked' : null %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/personal.png" alt="">
                     <span>Cuidado personal</span>
                 </label>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Moda" class="radio-input">
+                    <input type="radio" name="category" value="Moda" class="radio-input"
+                        <%= locals.formDataOld && formDataOld.category === 'Moda' ? 'checked=checked' : null %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/moda.png" alt="">
                     <span>Moda sostenible</span>
                 </label>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Hogar" class="radio-input">
+                    <input type="radio" name="category" value="Hogar" class="radio-input"
+                        <%= locals.formDataOld && formDataOld.category === 'Hogar' ? 'checked=checked' : null %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/planet.png" alt="">
                     <span>Hogar</span>
                 </label>
 
                 <label class="categoryCards">
-                    <input type="radio" name="category" value="Joyeria" class="radio-input">
+                    <input type="radio" name="category" value="Joyeria" class="radio-input"
+                        <%= locals.formDataOld && formDataOld.category === 'Joyeria' ? 'checked=checked' : null %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/joyeria.png" alt="">
                     <span>Joyeria sostenible</span>
                 </label>
-
             </article>
 
             <!-- --------------------------------------------- -->
@@ -62,70 +69,84 @@
                     <span class="text-step">Paso 2 de 6</span>
                 </div>
 
-            <article class="form-information-items-wrapper">
+                <article class="form-information-items-wrapper">
 
-                
-                <section class="section-1-information">
 
-                    <div class="input-information-container">
-                        <label for="nombre">Nombre del Producto:</label>
-                        <input type="text" id="nombre" value="<%= locals.formDataOld && formDataOld.name ? formDataOld.name : null %>" name="name" class="<%= locals.errors && errors.name ? "is-invalid" : "is-valid" %>" >
-                        <% if (locals.errors && errors.name) { %>
+                    <section class="section-1-information">
+
+                        <div class="input-information-container">
+                            <label for="nombre">Nombre del Producto:</label>
+                            <input type="text" id="nombre"
+                                value="<%= locals.formDataOld && formDataOld.name ? formDataOld.name : null %>"
+                                name="name" class="<%= locals.errors && errors.name ? "is-invalid" : null %>">
+                            <% if (locals.errors && errors.name) { %>
                             <span class="errorsCreateProduct"><%= errors.name %> </span>
-                        <% } %>
-                    </div>
-
-
-                    <div class="input-information-container">
-                        <label for="marca">Marca:</label>
-                        <input type="text" id="marca" value="<%= locals.formDataOld && formDataOld.brand ? formDataOld.brand : null %>" name="brand" class="<%= locals.errors && errors.brand ? "is-invalid" : "is-valid" %>">
-                        <% if (locals.errors && errors.brand) { %>
-                            <span class="errorsCreateProduct"><%= errors.brand %> </span>
-                        <% } %>
-                    </div>
-
-                    <div class="input-information-container">
-                        <label for="color">Color:</label>
-                        <input type="text" id="color" value="<%= locals.formDataOld && formDataOld.color ? formDataOld.color : null %>" name="color" class="<%= locals.errors && errors.color ? "is-invalid" : "is-valid" %>">
-                        <% if (locals.errors && errors.color) { %>
-                            <span class="errorsCreateProduct"><%= errors.color %> </span>
-                        <% } %>
-                    </div>
-
-                </section>
-
-
-                <section class="section-2-information">
-                    <div class="input-information-container">
-                        <label for="unidades">Unidades:</label>
-                        <input type="number" id="unidades" value="<%= locals.formDataOld && formDataOld.united ? formDataOld.united : null %>" name="united" class="<%= locals.errors && errors.united ? "is-invalid" : "is-valid" %>">
-                        <% if (locals.errors && errors.united) { %>
-                            <span class="errorsCreateProduct"><%= errors.united %> </span>
-                        <% } %>
-                    </div>
-
-                    <div class="input-information-container">
-                        <label for="discuount">Descuento</label>
-                        <input type="number" id="discuount" value="<%= locals.formDataOld && formDataOld.discount ? formDataOld.discount : null %>" name="discount" placeholder="%" class="<%= locals.errors && errors.discount ? "is-invalid" : "is-valid" %>">
-                        <% if (locals.errors && errors.discount) { %>
-                            <span class="errorsCreateProduct"><%= errors.discount %> </span>
-                        <% } %>
-                    </div>
-
-                    <div class="input-information-container">
-                        <label for="material">Material:</label>
-                        <div>
-                            <input type="text" id="material" value="<%= locals.formDataOld && formDataOld.material ? formDataOld.material : null %>" name="material" class="<%= locals.errors && errors.material ? "is-invalid" : "is-valid" %>">
+                            <% } %>
                         </div>
-                        <% if (locals.errors && errors.material) { %>
+
+
+                        <div class="input-information-container">
+                            <label for="marca">Marca:</label>
+                            <input type="text" id="marca"
+                                value="<%= locals.formDataOld && formDataOld.brand ? formDataOld.brand : null %>"
+                                name="brand" class="<%= locals.errors && errors.brand ? "is-invalid" : null %>">
+                            <% if (locals.errors && errors.brand) { %>
+                            <span class="errorsCreateProduct"><%= errors.brand %> </span>
+                            <% } %>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="color">Color:</label>
+                            <input type="text" id="color"
+                                value="<%= locals.formDataOld && formDataOld.color ? formDataOld.color : null %>"
+                                name="color" class="<%= locals.errors && errors.color ? "is-invalid" : null %>">
+                            <% if (locals.errors && errors.color) { %>
+                            <span class="errorsCreateProduct"><%= errors.color %> </span>
+                            <% } %>
+                        </div>
+
+                    </section>
+
+
+                    <section class="section-2-information">
+                        <div class="input-information-container">
+                            <label for="unidades">Unidades:</label>
+                            <input type="number" id="unidades"
+                                value="<%= locals.formDataOld && formDataOld.united ? formDataOld.united : null %>"
+                                name="united" class="<%= locals.errors && errors.united ? "is-invalid" : null %>">
+                            <% if (locals.errors && errors.united) { %>
+                            <span class="errorsCreateProduct"><%= errors.united %> </span>
+                            <% } %>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="discuount">Descuento</label>
+                            <input type="number" id="discuount"
+                                value="<%= locals.formDataOld && formDataOld.discount ? formDataOld.discount : null %>"
+                                name="discount" placeholder="%"
+                                class="<%= locals.errors && errors.discount ? "is-invalid" : null %>">
+                            <% if (locals.errors && errors.discount) { %>
+                            <span class="errorsCreateProduct"><%= errors.discount %> </span>
+                            <% } %>
+                        </div>
+
+                        <div class="input-information-container">
+                            <label for="material">Material:</label>
+                            <div>
+                                <input type="text" id="material"
+                                    value="<%= locals.formDataOld && formDataOld.material ? formDataOld.material : null %>"
+                                    name="material"
+                                    class="<%= locals.errors && errors.material ? "is-invalid" : null %>">
+                            </div>
+                            <% if (locals.errors && errors.material) { %>
                             <span class="errorsCreateProduct"><%= errors.material %> </span>
-                        <% } %>
-                    </div>
-                </section>
+                            <% } %>
+                        </div>
+                    </section>
 
-            </article>
+                </article>
 
-        </section>
+            </section>
 
 
             <!-- --------------------------------------------- -->
@@ -136,23 +157,30 @@
 
 
                     <div class="condition-text-header">
-                        <span class="text-title">¿Cuál es la condición de tu producto?</span>
+                        <span class="text-title <%= locals.errors && errors.material ? "is-invalid" : null %>">¿Cuál es
+                            la condición de tu producto?</span>
                         <span class="text-step">Paso 3 de 6</span>
                     </div>
 
                     <div class="condition-form">
                         <label class="estado-label">
-                            <input type="radio" name="state" value="New" class="radio-input-condition">
+                            <input type="radio" name="state" value="New" class="radio-input-condition"
+                                <%= locals.formDataOld && formDataOld.state === 'New' ? 'checked=checked' : null %>>
                             Nuevo
                             <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
                         </label>
 
                         <label class="estado-label">
-                            <input type="radio" name="state" value="Used" class="radio-input-condition">
+                            <input type="radio" name="state" value="Used" class="radio-input-condition" 
+                            <%= locals.formDataOld && formDataOld.state === "Used" ? 'checked=checked' : null %>>
                             Usado
                             <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
                         </label>
                     </div>
+
+                    <% if (locals.errors && errors.state) { %>
+                    <span class="errorsCreateProduct"><%= errors.state %> </span>
+                    <% } %>
 
                 </section>
 
@@ -161,7 +189,8 @@
 
                 <section class="form-create-5">
                     <div class="text-header-create-container">
-                        <span class="title-step-5">Completa la información de tu producto</span>
+                        <span class="title-step-5 <%= locals.errors && errors.image ? "is-invalid" : null %>">Completa
+                            la información de tu producto</span>
                         <span class="step-5">Paso 4 de 6</span>
                         <p class="paragraph-step-5">Para no perder exposición, asegúrate de que la primera foto tenga
                             fondo
@@ -169,11 +198,15 @@
                             con un editor de fotos.</p>
                     </div>
 
-                    <label for="foto" class="form-dropArea-imgs">
+                    <label for="foto"
+                        class="form-dropArea-imgs <%= locals.errors && errors.image ? "inputImage-Error" : null %>">
                         <i class="fa-solid fa-camera"></i>
                         <label for="foto" class="custom-file-input">
-                            <input type="file" id="foto" name="image" accept="image/*" required>
+                            <input type="file" id="foto" name="image" accept="image/*">
                         </label>
+                        <% if (locals.errors && errors.image) { %>
+                        <span class="errorsCreateProduct"><%= errors.image%> </span>
+                        <% } %>
                     </label>
                 </section>
 
@@ -187,7 +220,9 @@
 
                 <section class="form-create-4">
                     <div class="text-header-create-container">
-                        <span class="title-step-4">¿Cuál es la condición de tu producto?</span>
+                        <span
+                            class="title-step-4 <%= locals.errors && errors.description ? "is-invalid" : null %>">¿Cuál
+                            es la condición de tu producto?</span>
                         <span class="step-4">Paso 5 de 6</span>
                         <p class="description-pharagraph">No incluyas datos de contacto, como e-mails, teléfonos,
                             direcciones, links ni referencias a
@@ -197,10 +232,15 @@
                     <section>
 
                         <div class="description-container">
-                            <textarea id="descripcion" name="description" rows="4" cols="50" required
-                                class="description-box"></textarea>
+                            <textarea id="descripcion" name="description" rows="4" cols="50"
+                                class="description-box <%= locals.errors && errors.description ? "textArea-Description-Error" : null %>"><%= locals.formDataOld && formDataOld.description ? formDataOld.description : null %></textarea>
                         </div>
-
+                        <div class="div-msg-description-Error">
+                            <% if (locals.errors && errors.description) { %>
+                            <span class="errorsCreateProduct"><%= errors.description%>
+                            </span>
+                            <% } %>
+                        </div>
                     </section>
                 </section>
 
@@ -216,7 +256,13 @@
 
                         <div class="input-information-container">
                             <label for="precio" class="priceText">¿Cuál es el precio?</label>
-                            <input type="number" id="precio" name="price" min="0" step="0.01" required placeholder="$">
+                            <input type="number"
+                                value="<%= locals.formDataOld && formDataOld.price ? formDataOld.price : null %>"
+                                id="precio" name="price" min="0" step="0.01" placeholder="$"
+                                class="<%= locals.errors && errors.price ? "is-invalid" : null %>">
+                            <% if (locals.errors && errors.price) { %>
+                            <span class="errorsCreateProduct"><%= errors.price%> </span>
+                            <% } %>
                         </div>
                     </div>
                 </section>
@@ -224,9 +270,9 @@
 
 
             <div class="buttons-submit-step-5-6">
-                    <button type="submit" id="submit" class="submit-create-form-container">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                <button type="submit" id="submit" class="submit-create-form-container">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
         </form>
 

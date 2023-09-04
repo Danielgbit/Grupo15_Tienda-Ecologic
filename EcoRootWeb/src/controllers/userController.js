@@ -2,20 +2,40 @@ const { Console } = require('console');
 const path = require ('path');
 const userModels = require('../models/usersModels');
 const uuid = require('uuid');
-
 const modelProducts = require('../models/productsModels');
+const { validationResult } = require('express-validator');
 
-
+let dataOld= {};
 
 
 
 const userController = {
     login: (req, res) => {
-        res.render('login')
+
+        console.log(req.query);
+
+        res.render('login', {errors: req.query, dataOld})
     },
 
+
+        //POST LOGIN
     loginProcess: (req, res) => {
-        return res.send(req.body);
+
+        dataOld = req.body || {};
+
+        const result = validationResult(req);
+
+        if (result.errors.length > 0) {
+
+            const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg)
+
+            const queryErrors = queryArray.join('')
+
+            res.redirect('/user/login?admin=true' + queryErrors);
+            
+
+            return;
+        }
     },
 
     register: (req, res) => {

@@ -26,7 +26,6 @@ const productsController = {
 
     getproductCreate: (req, res) => {
 
-        console.log(formDataOld);
 
         res.render('productCreate', { errors: req.query, formDataOld });
 
