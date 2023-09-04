@@ -14,6 +14,10 @@ const userController = {
         res.render('login')
     },
 
+    loginProcess: (req, res) => {
+        return res.send(req.body);
+    },
+
     register: (req, res) => {
 
         const countriesArray = ["Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica"];

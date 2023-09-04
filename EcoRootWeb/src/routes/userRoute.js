@@ -27,6 +27,10 @@ userRouter.get('/', userController.getUserPage);
 
 userRouter.get('/login', userController.login);
 
+//@POST /user/login
+
+userRouter.post('/login', userController.loginProcess);
+
 //@POST /user/register
 
 userRouter.post('/register', upload.single('image') , userController.postRegisterUser);

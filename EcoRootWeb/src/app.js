@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const app = express();
 const dotenv = require('dotenv').config();
@@ -10,6 +11,7 @@ const mainRoute = require ('./routes/mainRoute');
 const productsRoute = require ('./routes/productsRoute');
 const cartRoute = require ('./routes/cartRoute');
 const userRoute = require ('./routes/userRoute');
+const cookieParser = require('cookie-parser');
 
 
 app.set('view engine', 'ejs');
@@ -28,6 +30,14 @@ app.use(express.json());
 app.use(express.static('./public'));
 
 app.use(methodOverride('_method'));
+
+app.use(session({
+    secret: "Secreto",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(cookieParser());
 
 app.use('/', mainRoute);
 

@@ -1253,6 +1253,13 @@ footer {
   margin: auto;
 }
 
+.input-register2 {
+  color: #000;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: normal;
+}
+
 .input-img {
   width: 100%;
 }
