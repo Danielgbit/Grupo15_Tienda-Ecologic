@@ -1253,16 +1253,19 @@ footer {
   margin: auto;
 }
 
+
+
 .input-register2 {
   color: #000;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
+  width: 80%;
 }
+
 
 
 
@@ -1288,6 +1291,12 @@ footer {
   gap: 0.625rem;
   background-color: #ddedb5;
   cursor: pointer;
+}
+
+.input-img .register-label-avatar {
+  border: 2px solid rgb(214, 89, 0);
+  box-shadow: 1px 3px 10px 0px rgb(214, 89, 0);
+  margin-bottom: 15px;
 }
 
 .text-header-register-container {
@@ -1332,6 +1341,7 @@ footer {
   font-size: 0.875rem;
   font-weight: 700;
   line-height: normal;
+  width: 100%;
 }
 
 
@@ -1375,6 +1385,9 @@ footer {
   box-shadow: 2px 1px 10px 0px #ddedb5;
 }
 
+.input-register .birthDate-input-Errors[type="date"] {
+  border: 1px solid #d00000;
+}
 
 .select-gender {
   width: 100%;
@@ -1386,6 +1399,12 @@ footer {
   outline: none;
 }
 
+.input-register .register-input-invalid-icon {
+  background-image: url(../img/validations/Icon-validation-Error.svg);
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: right;
+}
 
 .countries-select {
   width: 100%;
@@ -1397,25 +1416,40 @@ footer {
   outline: none;
 }
 
+.country-label-Errors {
+  border: 1px solid #d00000;
+}
+
 
 
 .text-account-register-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
+  width: 80%;
 }
 
 
 .text-account-register {
   display: flex;
-  justify-content: center;
   color: #000;
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.02188rem;
   text-decoration: none;
+  gap: 5px;
 }
+
+.text-account-register span {
+  font-size: 14px;
+  font-weight: 400;
+  align-self: center;
+  font-style: italic;
+}
+
+
+
 
 .text-account-register:hover {
 

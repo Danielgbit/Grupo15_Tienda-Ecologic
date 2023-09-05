@@ -26,7 +26,7 @@
                         class="<%= locals.errors && errors.email ? 'login-input-invalid' : null %>"
                         value="<%= locals.dataOld && dataOld.email ? dataOld.email : null %>">
                     <% if (locals.errors && errors.email) { %>
-                    <span class="errorsLoginMsg"><%= errors.email %> </span>
+                        <span class="errorsLoginMsg"><%= errors.email %> </span>
                     <% } %>
                 </div>
 
@@ -46,12 +46,12 @@
                 <input class="button-register" type="submit" value="Ingresar">
 
                 <div class="input-register2">
-                    <label for="">Recordame</label>
-                    <input type="checkbox" name="recordame">
+                    <input id="recordar" type="checkbox" name="recordame">
+                    <label for="recordar">RECORDAR CONTRASEÑA</label>
                 </div>
 
                 <div class="text-account-register-wrapper">
-                    <a class="text-account-register" href="/user/register">Crear una cuenta</a>
+                    <a class="text-account-register" href="/user/register"><span>¿No tienes un usuario EcoRoot?</span> Crear una cuenta</a>
                 </div>
             </form>
 

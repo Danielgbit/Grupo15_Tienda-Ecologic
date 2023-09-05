@@ -16,8 +16,7 @@ const productCreateMiddleware = {
         body('price').notEmpty().withMessage('Ingresa el precio de tu producto'),
         body('category').notEmpty().withMessage('Ingresa una categoria'),
         body('image').custom((value, { req }) => {
-            let file = req.file
-            if (!file) {
+            if (req.file) {
                 throw new Error('Debes subir una imagen de tu producto');
             };
         }),

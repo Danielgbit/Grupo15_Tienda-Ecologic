@@ -5,14 +5,16 @@ const uuid = require('uuid');
 const modelProducts = require('../models/productsModels');
 const { validationResult } = require('express-validator');
 
-let dataOld= {};
+let dataOld = {};
+
+
+let dataOldRegister = {};
 
 
 
 const userController = {
     login: (req, res) => {
 
-        console.log(req.query);
 
         res.render('login', {errors: req.query, dataOld})
     },
@@ -40,12 +42,35 @@ const userController = {
 
     register: (req, res) => {
 
+
+        console.log(dataOldRegister);
+
         const countriesArray = ["Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica"];
 
-        res.render('register', {countries: countriesArray});
+        res.render('register', {countries: countriesArray, errors: req.query, dataOld: dataOldRegister});
     },
 
     postRegisterUser: (req, res) =>{
+
+
+
+        dataOldRegister = req.body || {};
+
+        const result = validationResult(req);
+
+
+        if (result.errors.length > 0) {
+
+            const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg)
+
+            const queryErrors = queryArray.join('')
+
+            res.redirect('/user/register?admin=true' + queryErrors);
+            
+
+            return;
+        }
+        
 
         
         const newUser = {
