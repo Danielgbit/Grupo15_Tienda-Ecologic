@@ -1,13 +1,12 @@
-const { Console } = require('console');
 const path = require ('path');
 const userModels = require('../models/usersModels');
 const uuid = require('uuid');
 const modelProducts = require('../models/productsModels');
 const { validationResult } = require('express-validator');
 
+
+// Datos temporales
 let dataOld = {};
-
-
 let dataOldRegister = {};
 
 
@@ -52,7 +51,7 @@ const userController = {
 
     postRegisterUser: (req, res) =>{
 
-
+        console.log(req.file);
 
         dataOldRegister = req.body || {};
 
@@ -65,10 +64,8 @@ const userController = {
 
             const queryErrors = queryArray.join('')
 
-            res.redirect('/user/register?admin=true' + queryErrors);
+            return res.redirect('/user/register?admin=true' + queryErrors);
             
-
-            return;
         }
         
 
@@ -85,6 +82,7 @@ const userController = {
             birthDate: req.body.birthDate,
             username: req.body.username,
             gender: req.body.gender,
+            avatar: req.file.filename
         };
         
         userModels.createUser(newUser);

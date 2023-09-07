@@ -22,7 +22,13 @@ const registerMiddleware = {
         .bail()
         .notEmpty().withMessage('Debes proporcionar una contraseña')
         .bail()
-        .isLength({ min: 6 }).withMessage('La contraseña debe tener al menos 6 caracteres'),
+        .isLength({ min: 6 }).withMessage('La contraseña debe tener al menos 6 caracteres')
+        .bail()
+        .matches(/[A-Z]/).withMessage('La contraseña debe contener al menos una letra mayúscula')
+        .bail()
+        .matches(/\d/).withMessage('La contraseña debe contener al menos un número')
+        .bail()
+        .matches(/[!@#$%^&*]/).withMessage('La contraseña debe contener al menos un carácter especial: !@#$%^&*'),
         body('image')
         .custom((value, { req }) => {
           if (!req.file) {
@@ -36,7 +42,11 @@ const registerMiddleware = {
         body('city')
         .notEmpty().withMessage('Debes proporcionar una ciudad'),
         body('address')
-        .notEmpty().withMessage('Debes proporcionar una dirección'),
+        .notEmpty().withMessage('Debes proporcionar una dirección')
+        .bail()
+        .matches(/\d/).withMessage('La dirección debe contener al menos un número,')
+        .bail()
+        .isLength({max: 10}).withMessage('Solo puedes ingresar maximo 10 caracteres'),
         body('birthDate')
         .notEmpty().withMessage('Debes proporcionar una fecha de nacimiento'),
         body('gender')
