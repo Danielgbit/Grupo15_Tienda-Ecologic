@@ -3,6 +3,8 @@ const userModels = require('../models/usersModels');
 const uuid = require('uuid');
 const modelProducts = require('../models/productsModels');
 const { validationResult } = require('express-validator');
+const { log, error } = require('console');
+const { use } = require('../routes/userRoute');
 
 
 // Datos temporales
@@ -14,7 +16,6 @@ let dataOldRegister = {};
 const userController = {
     login: (req, res) => {
 
-
         res.render('login', {errors: req.query, dataOld})
     },
 
@@ -23,6 +24,19 @@ const userController = {
     loginProcess: (req, res) => {
 
         dataOld = req.body || {};
+
+        const userinUse = userModels.findByEmail(req.body.email);
+
+        const errors = {
+            email: 'el email es incorrecto'   
+        };
+
+        if (!userinUse) {
+
+            res.redirect('/user/login?email=' + errors.email);
+
+            return
+        }
 
         const result = validationResult(req);
 
@@ -37,12 +51,13 @@ const userController = {
 
             return;
         }
+
+        res.redirect('/');
     },
 
     register: (req, res) => {
 
-
-        console.log(dataOldRegister);
+        console.log(req.query);
 
         const countriesArray = ["Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica"];
 
@@ -51,23 +66,23 @@ const userController = {
 
     postRegisterUser: (req, res) =>{
 
-        console.log(req.file);
 
         dataOldRegister = req.body || {};
 
         const result = validationResult(req);
 
-
+        
+        
         if (result.errors.length > 0) {
-
+            
             const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg)
-
+            
             const queryErrors = queryArray.join('')
-
+            
             return res.redirect('/user/register?admin=true' + queryErrors);
             
         }
-        
+
 
         
         const newUser = {
@@ -85,18 +100,29 @@ const userController = {
             avatar: req.file.filename
         };
         
-        userModels.createUser(newUser);
+        
+        const user = userModels.createUser(newUser); // Asumo que aquí se genera 'user'
 
-        res.redirect('/user/login')
+
+        
+        if (user && user.email) {
+
+            res.redirect('/user/register?email=' + user.email);
+
+            return;
+        };
+
+        res.redirect('/user/login');
+        
     },
-
+    
     getUserPage: (req, res) => {
-
+        
         const products = modelProducts.findAll();
-
+        
         res.render('user', {product: products});
     }
-
+    
 }
 
 module.exports = userController;
