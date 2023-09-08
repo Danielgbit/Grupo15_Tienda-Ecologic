@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const modelProducts = require('../models/productsModels');
 const { validationResult } = require('express-validator');
 const { log, error } = require('console');
-const { use } = require('../routes/userRoute');
+const bcrypt = require('bcrypt');
 
 
 // Datos temporales
@@ -28,7 +28,14 @@ const userController = {
         if(userToLog) {
             let realPassword = bcrypt.compareSync(req.body.password, userToLog.password);
             if (realPassword) {
-                return res.redirect('/user/user');
+                delete userToLog.password;
+                req.session.userLogged = userToLog;
+
+                if(req.body.recordame) {
+                    res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 10  })
+                }
+
+                return res.redirect('/user');
             }
             return res.render('login', {
                 errors: {
@@ -37,7 +44,15 @@ const userController = {
                     }
                 }
             });
-        }*/
+        }
+        return res.render('login', {
+                errors: {
+                    email: {
+                        msg: 'Email no coincide'
+                    }
+                }
+            })
+        */
 
         dataOld = req.body || {};
 
@@ -136,7 +151,10 @@ const userController = {
         
         const products = modelProducts.findAll();
         
-        res.render('user', {product: products});
+        res.render('user', {product: products}/*, {
+            user: req.session.userLogged 
+        }*/);
+
     }
     
 }
