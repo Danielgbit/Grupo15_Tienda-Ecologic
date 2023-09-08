@@ -44,15 +44,16 @@ const userModels = {
 
     },
 
+    findByField: (field, text) => {
+
+        const userFound = allUsers.find(oneUser => oneUser[field] === text);
+
+        return userFound;
+    },
+
 
 
 };
 
 module.exports = userModels;
 
-/*     findByField: (field, text) => {
-
-        const userFound = allUsers.find(oneUser => oneUser[field] === text);
-
-        return userFound;
-    }, */

@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const dotenv = require('dotenv').config();
 const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
 
 //ROUTES
 
@@ -11,7 +12,7 @@ const mainRoute = require ('./routes/mainRoute');
 const productsRoute = require ('./routes/productsRoute');
 const cartRoute = require ('./routes/cartRoute');
 const userRoute = require ('./routes/userRoute');
-const cookieParser = require('cookie-parser');
+
 
 
 app.set('view engine', 'ejs');

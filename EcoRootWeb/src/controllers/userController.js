@@ -23,6 +23,22 @@ const userController = {
         //POST LOGIN
     loginProcess: (req, res) => {
 
+        /*let userToLog = userModels.findByField('email', req.body.email);
+
+        if(userToLog) {
+            let realPassword = bcrypt.compareSync(req.body.password, userToLog.password);
+            if (realPassword) {
+                return res.redirect('/user/user');
+            }
+            return res.render('login', {
+                errors: {
+                    email: {
+                        msg: 'Credenciales inválidas'
+                    }
+                }
+            });
+        }*/
+
         dataOld = req.body || {};
 
         const userinUse = userModels.findByEmail(req.body.email);
