@@ -25,6 +25,9 @@ const upload = multer({ storage });
 //@ /user/
 userRouter.get('/', userController.getUserPage);
 
+//@ /user/ (cerrar sesión)
+userRouter.get('/user', userController.logout);
+
 //@GET /user/login
 
 userRouter.get('/login', userController.login);

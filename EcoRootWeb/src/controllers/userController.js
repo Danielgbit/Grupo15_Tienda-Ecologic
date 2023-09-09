@@ -32,7 +32,7 @@ const userController = {
                 req.session.userLogged = userToLog;
 
                 if(req.body.recordame) {
-                    res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 10  })
+                    res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60  })
                 }
 
                 return res.redirect('/user');
@@ -155,8 +155,15 @@ const userController = {
             user: req.session.userLogged 
         }*/);
 
+    },
+
+    logout: (req, res) => {
+        res.clearCookie('userEmail');
+        req.session.destroy()
+        return res.redirect('/')
     }
+    
     
 }
 
-module.exports = userController;
+module.exports = userController; 

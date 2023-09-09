@@ -4,7 +4,8 @@ const path = require('path');
 const app = express();
 const dotenv = require('dotenv').config();
 const methodOverride = require('method-override');
-const cookieParser = require('cookie-parser');
+const cookie = require('cookie-parser');
+const userLoggedMiddleware = require('./middlewares/userLogged')
 
 //ROUTES
 
@@ -38,7 +39,9 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.use(cookieParser());
+app.use(userLoggedMiddleware);
+
+app.use(cookie());
 
 app.use('/', mainRoute);
 
