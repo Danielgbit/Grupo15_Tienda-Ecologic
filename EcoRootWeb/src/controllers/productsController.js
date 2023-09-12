@@ -51,12 +51,6 @@ const productsController = {
         }
 
 
-        if (result.errors.length > 0) {
-            req.file = null;
-        };
-
-
-        
         
         const lastProduct = products[products.length - 1].id;
 

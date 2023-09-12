@@ -1,30 +1,13 @@
 const express = require ('express');
 const userRouter = express.Router();
 const userController = require ('../controllers/userController');
-const path = require('path');
-const { validateLogin } = require('../middlewares/validateLogin');
-const { validateRegister } = require('../middlewares/validateRegister');
-const multer = require('multer');
+const { validateLogin } = require('../validations/validateLogin');
+const { validateRegister } = require('../validations/validateRegister');
+const { validateuserEdit } = require('../validations/validateEditUser');
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/multerUser'); // Importa el multer de usuario
 
-
-// MULTER
-const storage = multer.diskStorage ({
-    destination: (req, file, cb) => {
-        cb(null, './public/img/avatars');
-    },
-    filename: (req, file, cb) => {
-
-        console.log(req.file);
-
-        const newFileName = 'avatar' + '-' + Date.now() + path.extname(file.originalname);
-
-        cb(null, newFileName);
-    }
-});
-
-const upload = multer({ storage });
 
 //@ /user/
 userRouter.get('/', authMiddleware ,userController.getUserPage);
@@ -39,7 +22,7 @@ userRouter.post('/login', validateLogin , userController.loginProcess);
 
 //@POST /user/register
 
-userRouter.post('/register', [upload.single('image'), validateRegister] , userController.postRegisterUser);
+userRouter.post('/register', [ upload.single('image'), validateRegister ], userController.postRegisterUser);
 
 //@GET /user/register
 
@@ -55,7 +38,7 @@ userRouter.get('/:id/edit', userController.getEdit);
 
 // @PUT /products/:id/detail
 
-userRouter.put('/:id/user', userController.updateUser);
+userRouter.put('/:id/user', [upload.single('image'), validateuserEdit] , userController.updateUser);
 
 //@POST /user/:id/delete
 

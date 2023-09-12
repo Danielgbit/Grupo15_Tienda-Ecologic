@@ -1,4 +1,6 @@
 const { body } = require('express-validator'); // Express Validator
+const upload = require('../middlewares/multerProducts'); // Importa el multer de usuario
+
 
 
 const productCreateMiddleware = {
@@ -16,10 +18,12 @@ const productCreateMiddleware = {
         body('price').notEmpty().withMessage('Ingresa el precio de tu producto'),
         body('category').notEmpty().withMessage('Ingresa una categoria'),
         body('image').custom((value, { req }) => {
-            if (req.file) {
-                throw new Error('Debes subir una imagen de tu producto');
-            };
-        }),
+            if (!req.file || !req.file.filename) {
+                throw new Error('El archivo de imagen es obligatorio');
+            }
+            return true;
+        })
+        
     ]
 };
 

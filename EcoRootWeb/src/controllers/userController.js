@@ -93,7 +93,6 @@ const userController = {
 
     register: (req, res) => {
 
-        console.log(req.query);
 
         const countriesArray = ["Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica"];
 
@@ -139,6 +138,8 @@ const userController = {
             gender: req.body.gender,
             avatar: req.file.filename
         };
+
+
 
 
         const user = userModels.createUser(newUser); // Asumo que aquí se genera 'user'
@@ -187,14 +188,28 @@ const userController = {
 
         const errors = req.query;
 
-        res.render('userEdit', { countries: countriesArray, errors  });
+        res.render('userEdit', { countries: countriesArray, errors });
     },
 
     updateUser: (req, res) => {
 
-        
+        const result = validationResult(req);
 
-        const newUser = {
+        if (result.errors.length > 0) {
+
+            const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
+
+            const queryErrors = queryArray.join('');
+
+            return res.redirect('/user/:id/edit?admin=true' + queryErrors);
+
+        }
+
+        const user = userModels.findByPk(req.params.id);
+
+        console.log(req.file);
+        
+        let newUser = {
             id: req.params.id,
             email: req.body.email,
             password: req.body.password,
@@ -206,6 +221,7 @@ const userController = {
             birthDate: req.body.birthDate,
             username: req.body.username,
             gender: req.body.gender,
+            avatar: req.file ? req.file.filename : user.avatar // Si no se manda ninguna imagen nueva se mantiene la misma
         };
         
         userModels.update(newUser);

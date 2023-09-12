@@ -1,27 +1,30 @@
-[{
-  "id": "8065330f-23d8-488a-9304-d3e0f0f177d7",
-  "email": "Jairito@gmail.com",
-  "password": "$2b$10$.iSmN7M2bwvFDdgA//d37OkYZWHRkozqk34kOJUjWB3JDFpdfpnHe",
-  "first_name": "Jairito",
-  "last_name": "Hernandez",
-  "country": "Colombia",
-  "city": "Medellin",
-  "address": "ss22#A",
-  "birthDate": "2222-03-23",
-  "username": "Jairi",
-  "gender": "male",
-  "avatar": "avatar-1694280804366.jpg"
-}, {
-  "id": "3d3b5b7b-53cb-4686-9228-74f0b831a331",
-  "email": "gavi@gmail.com",
-  "password": "$2b$10$qLXR7aBLRQrBNM0HC8GWuO.e5EB0o2a4UMRQokHSQr8UE1nnWGIyS",
-  "first_name": "Ferney",
-  "last_name": "Gaviria",
-  "country": "Colombia",
-  "city": "Medellin",
-  "address": "ss22#B",
-  "birthDate": "3222-03-23",
-  "username": "Gavi",
-  "gender": "male",
-  "avatar": "avatar-1694461829946.png"
-}]
+[
+  {
+    "id": "8065330f-23d8-488a-9304-d3e0f0f177d7",
+    "email": "Jairito@gmail.com",
+    "password": "$2b$10$QmKOeBnGkXDZx.2OCia.5Ov/oijU82htuf7EHrrgF4sXXuiDFPdH6",
+    "first_name": "Jairito",
+    "last_name": "Hernandez",
+    "country": "Colombia",
+    "city": "Medellin",
+    "address": "ss22#A",
+    "birthDate": "2222-03-23",
+    "username": "Jairi",
+    "gender": "male",
+    "avatar": "avatar-1694280804366.jpg"
+  },
+  {
+    "id": "3d3b5b7b-53cb-4686-9228-74f0b831a331",
+    "email": "gavi@gmail.com",
+    "password": "$2b$10$qLXR7aBLRQrBNM0HC8GWuO.e5EB0o2a4UMRQokHSQr8UE1nnWGIyS",
+    "first_name": "Ferney",
+    "last_name": "Gaviria",
+    "country": "Colombia",
+    "city": "Medellin",
+    "address": "ss22#B",
+    "birthDate": "3222-03-23",
+    "username": "Gavi",
+    "gender": "male",
+    "avatar": "avatar-1694461829946.png"
+  }
+]

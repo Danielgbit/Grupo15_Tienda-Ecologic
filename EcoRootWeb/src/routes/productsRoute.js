@@ -1,28 +1,8 @@
 const express = require('express');
 const productsRouter = express.Router();
 const productsController = require('../controllers/productsController');
-const path = require('path');
-const multer = require('multer');
-const { productCreateValidations } = require('../middlewares/validateProductCreate');
-
-
-//MULTER --
-
-const storage = multer.diskStorage ({
-    destination: (req, file, cb) => {
-        cb(null, './public/img/products');
-    },
-    filename: (req, file, cb) => {
-
-        const newFileName = 'img-product' + '-' + Date.now() + path.extname(file.originalname);
-
-        cb(null, newFileName);
-    }
-});
-
-const upload = multer({ storage });
-
-// ----
+const { productCreateValidations } = require('../validations/validateProductCreate');
+const upload = require('../middlewares/multerProducts'); // Importa el multer de usuario
 
 
 
