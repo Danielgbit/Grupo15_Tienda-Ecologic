@@ -22,7 +22,7 @@
 
                 <div class="input-register">
                     <label for="email">Correo electrónico:</label>
-                    <input type="text" id="email" name="email"
+                    <input type="text" id="email" autocomplete="on" name="email"
                         class="<%= locals.errors && errors.email ? 'login-input-invalid' : null %>"
                         value="<%= locals.dataOld && dataOld.email ? dataOld.email : null %>">
                     <% if (locals.errors && errors.email) { %>
@@ -46,7 +46,7 @@
                 <input class="button-register" type="submit" value="Ingresar">
 
                 <div class="input-register2">
-                    <input id="recordar" type="checkbox" name="recordame">
+                    <input id="recordar" type="checkbox" name="remember">
                     <label for="recordar">RECORDAR CONTRASEÑA</label>
                 </div>
 

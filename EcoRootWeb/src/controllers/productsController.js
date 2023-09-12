@@ -11,6 +11,7 @@ const productsController = {
     products: (req, res) => {
 
         res.render('products', {products: products})
+
     },
 
 
@@ -25,7 +26,6 @@ const productsController = {
 
 
     getproductCreate: (req, res) => {
-
 
         res.render('productCreate', { errors: req.query, formDataOld });
 
@@ -49,6 +49,14 @@ const productsController = {
 
             return;
         }
+
+
+        if (result.errors.length > 0) {
+            req.file = null;
+        };
+
+
+        
         
         const lastProduct = products[products.length - 1].id;
 
@@ -87,6 +95,7 @@ const productsController = {
     
     getEdit: (req, res) => {
         
+
         const productId = models.findById(Number(req.params.id));
         
         res.render('productEdit', {product: productId});
@@ -98,8 +107,6 @@ const productsController = {
 
     putProductEdit: (req, res) => {
 
-
-        
         const productEdit = {
             id: Number(req.params.id),
             name: req.body.name,

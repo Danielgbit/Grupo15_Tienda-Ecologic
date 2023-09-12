@@ -5,7 +5,11 @@ const path = require('path');
 const { validateLogin } = require('../middlewares/validateLogin');
 const { validateRegister } = require('../middlewares/validateRegister');
 const multer = require('multer');
+const guestMiddleware = require('../middlewares/guestMiddleware');
+const authMiddleware = require('../middlewares/authMiddleware');
 
+
+// MULTER
 const storage = multer.diskStorage ({
     destination: (req, file, cb) => {
         cb(null, './public/img/avatars');
@@ -23,14 +27,11 @@ const storage = multer.diskStorage ({
 const upload = multer({ storage });
 
 //@ /user/
-userRouter.get('/', userController.getUserPage);
-
-//@ /user/ (cerrar sesión)
-userRouter.get('/user', userController.logout);
+userRouter.get('/', authMiddleware ,userController.getUserPage);
 
 //@GET /user/login
 
-userRouter.get('/login', userController.login);
+userRouter.get('/login', guestMiddleware ,userController.login);
 
 //@POST /user/login
 
@@ -42,7 +43,23 @@ userRouter.post('/register', [upload.single('image'), validateRegister] , userCo
 
 //@GET /user/register
 
-userRouter.get('/register', userController.register);
+userRouter.get('/register', guestMiddleware, userController.register);
+
+//@GET /user/logout
+
+userRouter.get('/logout', userController.logout);
+
+// @GET /user/:id/edit
+
+userRouter.get('/:id/edit', userController.getEdit);
+
+// @PUT /products/:id/detail
+
+userRouter.put('/:id/user', userController.updateUser);
+
+//@POST /user/:id/delete
+
+userRouter.delete('/:id/delete', userController.deleteUser);
 
 
 

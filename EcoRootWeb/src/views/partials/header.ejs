@@ -14,15 +14,26 @@
                 </ul>
             </div>
         </a>
-        <a href="/user/login"><span class="text-navegation">Login</span></a>
-        <a href="/user/register"><span class="text-navegation">Registro</span></a>
 
+        <% if (!locals.user || !locals.user.email) { %>
+        <a href="/user/register"><span class="text-navegation">Registro</span></a>
+        <% } %>
 
     </div>
 
     <div class="nav-right-wrapper">
-        <a href="/user" class="icon-account"><span class="material-symbols-outlined">account_circle</span></a>
+
+        <div class="div-user-header">
+            <a href="/user" class="icon-account"><span class="material-symbols-outlined">account_circle</span></a>
+            <% if (locals.user && locals.user.email) { %>
+                <span class="name">¡Hola! <%= user.first_name %></span>
+                <a href="/user/logout"><i class="fa-solid fa-square-arrow-up-right"></i></a>
+            <% } %>
+        </div>
+
+        <% if (locals.user && locals.user.email) { %>
         <a href="/products/create" class="add-product"><span class="material-symbols-outlined">add</span></a>
+        <% } %>
         <span class="search-header"><span class="material-symbols-outlined">search</span></span>
         <section class="icon-shop-hamburguer">
             <div class="shop-icon">

@@ -11,27 +11,30 @@
 
         <div class="container-user-div">
 
-            <h1>usuario </h1> 
-            <img class="img-user-page" src="/img/users/usuario-1.jpg" alt="foto de perfil" > 
-            <p class="paragraph-user-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed fuga, dicta voluptate porro nesciunt magni
-                accusantium. Numquam ullam, doloremque in quod earum pariatur omnis corporis dolore. Quaerat quo ab hic.
-            </p>
+
+
+            <h1>¡Bienvenido a configuracion de usuario!</h1>
+            <% if (locals.user && locals.user.email) { %>
+                <h2><%=user.first_name %> <%= user.last_name %></h2>
+            <% } %>
+
+            <% if (locals.user && locals.user.avatar) { %>
+                <img class="img-user-page" src="/img/avatars/<%= user.avatar %>" alt="foto de perfil" >
+            <% } %>
+            <p class="paragraph-user-description">"Viviendo la vida con pasión y escribiendo mi propia historia."</p>
             <div class="content-user-page">
-                <div class="user-detail content">
-                    <h2>Detalles</h2>    
-                    <ul>
-                        <li></li>
-                    </ul>
-                </div>
                 <div class="user-post content">
-                    <h3>Publicaciones</h3>    
+                    <a href="#" class="button-edit-user buttons-user" type="submit"><i class="fa-regular fa-paste"></i>Mis publicaciones</a>   
                 </div>
             </div>
-            <form class="form-user-page">
-                <button class="button-edit-user buttons-user" type="submit"><i class="fa-solid fa-pencil"></i>Editar perfil</button>
-                <button class="button-delete-user buttons-user" type="submit"><i class="fa-solid fa-user-xmark"></i>Eliminar cuenta</button>
-                <button class="button-delete-user buttons-user" type="submit"><i class="fa-solid fa-user-xmark"></i>Cerrar Sesión</button>
-            </form>
+            <div class="form-user-page">
+                <% if (locals.user && locals.user.id) { %>
+                    <a href="/user/<%= user.id %>/edit" class="button-edit-user buttons-user" type="submit"><i class="fa-solid fa-pencil"></i>Editar perfil</a>
+                    <form  action="/user/<%=user.id%>/delete?_method=DELETE" method="post">
+                        <button class="button-delete-user buttons-user" type="submit"><i class="fa-solid fa-user-xmark"></i>Eliminar cuenta</button>
+                    </form>
+                <% } %>
+            </div>
 
             </button>
 

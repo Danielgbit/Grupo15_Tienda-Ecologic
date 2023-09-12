@@ -6,11 +6,13 @@ const products = modelProducts.findAll()
 
 const mainController = {
     home: (req, res) => {
+        
 
         const filteredProducts = products.filter((product, index) => index < 2);
-
-        res.render('index', {product: filteredProducts });
+        
+        res.render('index', {product: filteredProducts});
     },
+
 };
 
 
