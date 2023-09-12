@@ -1,3 +1,54 @@
+## Reporte Semanal - Semana del [Quinto Sprint - Validations & session]
+
+#### DANIEL:
+
+**Logros de Ayer:**
+- Creé exitosamente la página de usuario en el proyecto.
+- Instalé e implementé Express Validator y agregué las validaciones necesarias para el registro, inicio de sesión, creación de producto y edición de usuario.
+- Desarrollé la lógica de controladores y rutas necesarias para las funcionalidades de editar usuario y eliminar usuario.
+- Organicé el manejo de archivos con Multer en carpetas y diseñé una nueva lógica para las imágenes de usuario.
+- Agregue estilos a pagina de usuario
+
+**Impedimentos:**
+- No enfrenté ningún obstáculo significativo durante el día de trabajo.
+
+**Metas para Hoy:**
+- Mi objetivo para hoy es continuar avanzando en el desarrollo del proyecto, aprovechando el impulso de los logros obtenidos ayer. Pretendo seguir implementando nuevas funcionalidades y mejorando la calidad general del proyecto.
+
+#### Ampliación de Daniel:
+- Daniel tuvo un día productivo ayer, centrado en la implementación de funcionalidades relacionadas con usuarios y validaciones. Desde la página de usuario hasta la lógica de controladores y rutas, su contribución fue esencial para la seguridad y la gestión de usuarios en el proyecto. No enfrentó impedimentos notables y su objetivo para hoy es mantener el ritmo, continuando con la expansión del proyecto y la incorporación de nuevas características.
+
+#### FEDERICO:
+
+**Logros de Ayer:**
+- Agregué el manejo de sesiones y `cookieParser`, implementando cookies y sesiones de usuario.
+- Desarrollé el middleware para el cierre de sesión y la funcionalidad de recordar usuario.
+- implemente los modelos de usuario.
+
+**Impedimentos:**
+- No enfrenté ningún obstáculo importante durante mi jornada de trabajo.
+
+**Metas para Hoy:**
+- Mi propósito para el día de hoy es continuar avanzando en el desarrollo del proyecto. Tengo como objetivo principal seguir implementando nuevas funcionalidades y características mientras mantengo un alto nivel de calidad en el trabajo realizado.
+
+#### Ampliación de Federico:
+- Federico demostró habilidades técnicas sólidas al abordar desafíos relacionados con la seguridad y la gestión de sesiones de usuario mediante cookies. Su trabajo en el middleware para el cierre de sesión y la funcionalidad de recordar usuario es esencial para la experiencia del usuario en el proyecto. Sin enfrentar impedimentos importantes, su enfoque para hoy sigue siendo firme: continuar desarrollando el proyecto y expandiendo sus capacidades.
+
+#### MICAELA:
+
+**Logros de Ayer:**
+- Por llenar campo.
+
+**Impedimentos:**
+- Por llenar campo.
+
+**Metas para Hoy:**
+- Por llenar campo.
+
+#### Ampliación de Micaela:
+- Micaela se encuentra actualmente por llenar el campo correspondiente en el reporte. Su contribución y objetivos específicos para esta semana se agregarán una vez se proporcionen más detalles.
+
+
 ## Reporte Semanal - Semana del [Cuarto Sprint - CRUD & JSON]
 
 

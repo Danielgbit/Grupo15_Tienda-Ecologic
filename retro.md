@@ -1,3 +1,43 @@
+# Retrospectiva del Quinto Sprint #5
+
+En esta retrospectiva, utilizaremos la dinámica de la Estrella de Mar para reflexionar sobre nuestro quinto sprint y planificar mejoras para futuros sprints. Evaluaremos lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer.
+
+## Planificación y trabajo en equipo
+
+### Comenzar a hacer:
+- Realizar una breve retrospectiva para evaluar lo que hicimos bien y mal en el sprint anterior. Esto nos ayudará a aprender de nuestras experiencias pasadas.
+- implementacion de sequelize.
+- Implementar la entidad de usuarios tomando como referencia la estructura de archivos y directorios. Esto permitirá avanzar en la implementación de las funcionalidades de usuarios.
+- Mostrar una estructura de archivos y directorios para usuarios.
+- Implementacion de MySQL
+
+### Hacer más:
+- Actualizar el tablero de trabajo discutiendo y asignando tareas en un orden lógico. Esto garantizará una mejor organización y seguimiento del progreso.
+- (Opcional) Implementar daily/weekly standups para una comunicación regular y efectiva.
+- Proporcionar un link al documento o plataforma utilizada para organizar el trabajo y, en caso de implementar standups, un archivo daily.md con opiniones sobre su utilidad.
+- Implementar el formulario de registro de usuarios, incluyendo campos mínimos, subida de imagen de perfil y encriptación de contraseña.
+- Formulario funcional de creación de usuarios.
+
+## Usuarios y middlewares
+
+### Continuar haciendo:
+- Mantener la estructura de archivos y directorios para implementar la entidad de usuarios.
+- Asegurar que la estructura de archivos y directorios para usuarios esté lista.
+- - Progresar en la implementación del formulario de login de usuarios, verificando la información y manejando redirecciones.
+- (Opcional) Implementar la función de recordar al usuario.
+- Formulario funcional de login de usuarios y, si se aplica, la función de recordar al usuario.
+
+
+### Hacer menos:
+- No se identificaron acciones específicas que deban hacerse menos en este sprint.
+
+### Dejar de hacer:
+- No se identificaron prácticas específicas que deban dejar de hacerse en este sprint.
+
+Con esta retrospectiva, buscamos mejorar nuestro proceso de desarrollo y colaboración en este quinto sprint y prepararnos para futuros desafíos.
+
+
+
 # Retrospectiva del Cuarto Sprint - Dinámica de la Estrella de Mar #4
 
 
