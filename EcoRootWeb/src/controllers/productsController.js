@@ -101,6 +101,9 @@ const productsController = {
 
     putProductEdit: (req, res) => {
 
+
+        const products = modelProducts.findById(Number(req.params.id));
+
         const productEdit = {
             id: Number(req.params.id),
             name: req.body.name,
@@ -109,16 +112,13 @@ const productsController = {
             category: req.body.category,
             material: req.body.material,
             state: req.body.state,
-            image: req.body.image,
+            image:  req.file ? req.file.filename : products.image, // Si no se manda ninguna imagen nueva se mantiene la misma
             description: req.body.description,
             color: req.body.color,
             discount: Number(req.body.discount),
             price: Number(req.body.price),
         }
 
-        if(productEdit.image == "") {
-            productEdit.image = "img-product-1691864692162.jpg"
-        };
         
       
         models.editProduct(productEdit);
