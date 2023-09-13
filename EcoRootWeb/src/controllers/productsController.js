@@ -87,6 +87,10 @@ const productsController = {
 
         let newArrayProducts = products.filter((products) => products.id !== Number(req.params.id));
 
+        const productId = models.findById(Number(req.params.id));
+
+        fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + productId.image));
+
         models.destroyProduct(newArrayProducts);
 
         res.redirect('/products');
