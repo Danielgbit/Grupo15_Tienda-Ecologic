@@ -61,8 +61,6 @@ const userModels = {
 
         const newJson = JSON.stringify(newUser, null, 2);
 
-        console.log(newUser);
-
         fs.writeFileSync(userModels.userRouteJson, newJson, 'utf-8');
 
     },

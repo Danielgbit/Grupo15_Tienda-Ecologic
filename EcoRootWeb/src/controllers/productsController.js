@@ -1,6 +1,8 @@
 const models = require('../models/productsModels');
 const modelProducts = require('../models/productsModels');
 const { validationResult } = require('express-validator');
+const fs = require('fs');
+const path = require('path');
 
 const products = modelProducts.findAll();
 let formDataOld = {};
@@ -38,7 +40,12 @@ const productsController = {
 
         const result = validationResult(req);
 
+
+
         if (result.errors.length > 0) {
+
+            fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + req.file.filename));
+
 
             const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg)
 

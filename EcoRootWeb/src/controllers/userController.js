@@ -1,11 +1,10 @@
 const userModels = require('../models/usersModels');
 const uuid = require('uuid');
 const modelProducts = require('../models/productsModels');
-const {
-    validationResult
-} = require('express-validator');
+const {validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
-const cookie = require('cookie-parser');
+const fs = require('fs');
+const path = require('path');
 
 // Datos temporales
 let dataOld = {};
@@ -114,6 +113,8 @@ const userController = {
 
         if (result.errors.length > 0) {
 
+            fs.unlinkSync(path.join(__dirname, '../../public/img/avatars/' + req.file.filename));
+
             const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
 
             const queryErrors = queryArray.join('');
@@ -179,7 +180,9 @@ const userController = {
 
         userModels.destroy(userId);
 
+
         res.redirect('/');
+    
     },
 
     getEdit: (req, res) => {
@@ -207,7 +210,6 @@ const userController = {
 
         const user = userModels.findByPk(req.params.id);
 
-        console.log(req.file);
         
         let newUser = {
             id: req.params.id,
@@ -226,7 +228,11 @@ const userController = {
         
         userModels.update(newUser);
 
-        res.redirect('/user');
+
+            res.redirect('/user');
+
+
+
     }
 
 }
