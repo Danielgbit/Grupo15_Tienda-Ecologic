@@ -1,6 +1,5 @@
 const userModels = require('../models/usersModels');
 const uuid = require('uuid');
-const modelProducts = require('../models/productsModels');
 const {validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
@@ -178,8 +177,11 @@ const userController = {
 
         const userId = req.params.id;
 
-        userModels.destroy(userId);
+        const user = userModels.findByPk(req.params.id);
 
+        fs.unlinkSync(path.join(__dirname, '../../public/img/avatars/' + user.avatar));
+
+        userModels.destroy(userId);
 
         res.redirect('/');
     
