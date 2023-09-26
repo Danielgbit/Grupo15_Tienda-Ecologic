@@ -1650,13 +1650,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 60%;
+    width: 50%;
   }
 
   .nav-text-wrapper a .text-navegation {
     color: black;
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 120%;
@@ -1687,7 +1687,7 @@ footer {
     justify-content: center;
     color: black;
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 120%;

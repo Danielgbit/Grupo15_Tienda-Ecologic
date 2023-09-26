@@ -3,16 +3,29 @@ const modelProducts = require('../models/productsModels');
 const { validationResult } = require('express-validator');
 const fs = require('fs');
 const path = require('path');
-
 const products = modelProducts.findAll();
+const db = require('../database/models');
 let formDataOld = {};
+
 
 const productsController = {
     
+    //PRIMER EDICION SEQUELIZE
 
-    products: (req, res) => {
+    products: async (req, res) => {
 
-        res.render('products', {products: products})
+        try {
+            const products = await  db.Product.findAll({
+                raw: true,
+            });
+
+            console.log(products);
+
+        } catch (error) {
+            console.error(error);
+        };
+
+        res.send('Estas viendo todos los productos');
 
     },
 

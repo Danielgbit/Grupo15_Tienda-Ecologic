@@ -55,11 +55,21 @@ module.exports = (sequelize, dataType) => {
         },
 
         user_id: {
-            type: dataType.INTEGER
+            type: dataType.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'users',
+                key: 'user_id'
+            }
         },
 
         category_id: {
-            type: dataType.INTEGER
+            type: dataType.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'categories',
+                key: 'category_id'
+            }
         }
     };
 
@@ -69,6 +79,33 @@ module.exports = (sequelize, dataType) => {
     };
 
     const Product = sequelize.define(alias, cols, config);
+
+    Product.associate = (models) => {
+        Product.belongsTo(models.User, {
+            as: 'userProduct',
+            timestamps: false,
+            foreignKey: 'user_id'
+        });
+
+        Product.belongsTo(models.Category, {
+            as: 'productCategory',
+            timestamps: false,
+            foreignKey: 'category_id'
+        });
+
+        Product.hasMany(models.Order, {
+            as: 'ProductOrder',
+            timestamps: false,
+            foreignKey: 'product_id'
+        });
+
+        Product.belongsToMany(models.Cart, {
+            as: 'cartProducts',
+            foreignKey: 'product_id',
+            through: 'ProductCart',
+            timestamps: false
+        });
+    };
 
     return Product;
 

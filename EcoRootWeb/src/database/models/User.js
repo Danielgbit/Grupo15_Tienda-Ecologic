@@ -18,7 +18,7 @@ module.exports = (sequelize, dataType) => {
             type: dataType.STRING,
             allowNull: false
         },
-
+ 
         username: {
             type: dataType.STRING,
             allowNull: false
@@ -72,7 +72,28 @@ module.exports = (sequelize, dataType) => {
 
     const User = sequelize.define(alias, cols, config);
 
+    User.associate = (models) => {
+
+        User.hasMany(models.Product, {
+            as: 'userProduct',
+            timestamps: false,
+            foreignKey: 'user_id'
+        });
+
+        
+        User.hasMany(models.Order, {
+            as: 'userOrder',
+            timestamps: false,
+            foreignKey: 'user_id'
+        });
+
+        User.belongsTo(models.Cart, {
+            as: 'cartUser',
+            timestamps: false,
+            foreignKey: 'user_id'
+        });
+    };
+
     return User;
 
 };
-
