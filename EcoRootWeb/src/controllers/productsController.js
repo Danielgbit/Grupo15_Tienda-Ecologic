@@ -1,6 +1,8 @@
 const models = require('../models/productsModels');
 const modelProducts = require('../models/productsModels');
-const { validationResult } = require('express-validator');
+const {
+    validationResult
+} = require('express-validator');
 const fs = require('fs');
 const path = require('path');
 const products = modelProducts.findAll();
@@ -9,13 +11,13 @@ let formDataOld = {};
 
 
 const productsController = {
-    
+
     //PRIMER EDICION SEQUELIZE
 
     products: async (req, res) => {
 
         try {
-            const products = await  db.Product.findAll({
+            const products = await db.Product.findAll({
                 raw: true,
             });
 
@@ -34,20 +36,34 @@ const productsController = {
 
         const productId = modelProducts.findById(Number(req.params.id));
 
-        res.render('productDetail', {product: productId});
+        res.render('productDetail', {
+            product: productId
+        });
     },
 
     //@CREATE
 
 
-    getproductCreate: (req, res) => {
+    getproductCreate: async (req, res) => {
 
-        res.render('productCreate', { errors: req.query, formDataOld });
+        try {
+
+            const category = await db.Category.findAll({raw: true});
+
+            const brands = await db.Brand.findAll({ raw: true });
+
+
+            res.render('productCreate', {errors: req.query, formDataOld, category, brands});
+            
+        } catch (error) {
+            console.error(error);
+        }
+
 
     },
 
 
-    postProductCreate: (req, res) => {
+    postProductCreate: async (req, res) => {
 
         formDataOld = req.body || {};
 
@@ -65,35 +81,36 @@ const productsController = {
             const queryErrors = queryArray.join('')
 
             res.redirect('/products/create?admin=true' + queryErrors);
-            
+
 
             return;
         }
 
-
-        
-        const lastProduct = products[products.length - 1].id;
-
-
         const newProduct = {
-            id: lastProduct + 1,
             name: req.body.name,
-            brand: req.body.brand,
+            description: req.body.description,
+            price: Number(req.body.price),
             united: Number(req.body.united),
-            category: req.body.category,
+            discount: Number(req.body.discount),
             material: req.body.material,
+            user_id: 2,
             state: req.body.state,
             image: req.file.filename,
-            description: req.body.description,
             color: req.body.color,
-            discount: Number(req.body.discount),
-            price: Number(req.body.price),
+            category_id: req.body.category,
+            brand_id: req.body.brand,
         };
 
-        models.createProduct(newProduct);
+        try {
+           const newP = await db.Product.create(newProduct);
+           console.log(newP);
+           
+        } catch (error) {
+            console.error(error);
+        }
 
-        res.redirect('/products');
-    
+        res.send('Creando producto');
+
     },
 
     productDestroy: (req, res) => {
@@ -110,18 +127,20 @@ const productsController = {
 
     },
 
-    
+
     getEdit: (req, res) => {
-        
+
 
         const productId = models.findById(Number(req.params.id));
-        
-        res.render('productEdit', {product: productId});
+
+        res.render('productEdit', {
+            product: productId
+        });
     },
-    
-    
+
+
     //PUT
-    
+
 
     putProductEdit: (req, res) => {
 
@@ -136,18 +155,18 @@ const productsController = {
             category: req.body.category,
             material: req.body.material,
             state: req.body.state,
-            image:  req.file ? req.file.filename : products.image, // Si no se manda ninguna imagen nueva se mantiene la misma
+            image: req.file ? req.file.filename : products.image, // Si no se manda ninguna imagen nueva se mantiene la misma
             description: req.body.description,
             color: req.body.color,
             discount: Number(req.body.discount),
             price: Number(req.body.price),
         }
 
-        
-      
+
+
         models.editProduct(productEdit);
 
-        res.redirect('/products/'+ productEdit.id +'/detail');
+        res.redirect('/products/' + productEdit.id + '/detail');
     }
 }
 

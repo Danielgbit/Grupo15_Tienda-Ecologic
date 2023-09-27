@@ -12,6 +12,10 @@ module.exports = (sequelize, dataType) => {
         category_name: {
             type: dataType.ENUM('Cuidado personal', 'Moda', 'Hogar', 'Joyería'),
             allowNull: false
+        },
+
+        image: {
+            type: dataType.STRING,
         }
     };
 
@@ -28,6 +32,13 @@ module.exports = (sequelize, dataType) => {
             as: 'productCategory',
             timestamps: false,
             foreignKey: 'category_id'
+        });
+
+        Category.belongsToMany(models.Brand, {
+            as: 'brand',
+            foreignKey: 'category_id',
+            through: 'BrandCategory',
+            timestamps: false
         });
     };
 

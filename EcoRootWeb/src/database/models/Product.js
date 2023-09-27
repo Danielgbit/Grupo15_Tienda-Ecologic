@@ -70,6 +70,15 @@ module.exports = (sequelize, dataType) => {
                 model: 'categories',
                 key: 'category_id'
             }
+        },
+
+        brand_id: {
+            type: dataType.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'brands',
+                key: 'brand_id'
+            }
         }
     };
 
@@ -94,7 +103,7 @@ module.exports = (sequelize, dataType) => {
         });
 
         Product.hasMany(models.Order, {
-            as: 'ProductOrder',
+            as: 'productOrder',
             timestamps: false,
             foreignKey: 'product_id'
         });
@@ -104,6 +113,19 @@ module.exports = (sequelize, dataType) => {
             foreignKey: 'product_id',
             through: 'ProductCart',
             timestamps: false
+        });
+
+        Product.belongsToMany(models.Color, {
+            as: 'colors',
+            foreignKey: 'product_id',
+            through: 'ProductColor',
+            timestamps: false
+        });
+
+        Product.belongsTo(models.Brand, { // Nueva relacion que faltaba
+            as: 'productBrand',
+            timestamps: false,
+            foreignKey: 'brand_id'
         });
     };
 

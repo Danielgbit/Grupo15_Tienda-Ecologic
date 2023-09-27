@@ -4,6 +4,7 @@ const {validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const path = require('path');
+const db = require('../database/models');
 
 // Datos temporales
 let dataOld = {};
@@ -101,7 +102,7 @@ const userController = {
         });
     },
 
-    postRegisterUser: (req, res) => {
+    postRegisterUser: async (req, res) => {
 
 
         dataOldRegister = req.body || {};
@@ -125,35 +126,40 @@ const userController = {
 
 
         const newUser = {
-            id: uuid.v4(),
-            email: req.body.email,
-            password: req.body.password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            avatar: req.file.filename,
             country: req.body.country,
             city: req.body.city,
             address: req.body.address,
             birthDate: req.body.birthDate,
-            username: req.body.username,
             gender: req.body.gender,
-            avatar: req.file.filename
         };
 
 
+        try {
+
+           const userNew = await db.User.create(newUser);
+
+           console.log(userNew);
+            
+        } catch (error) {
+            console.error(error);
+        }
 
 
-        const user = userModels.createUser(newUser); // Asumo que aquí se genera 'user'
-
-
-
+/* 
         if (user && user.email) {
 
             res.redirect('/user/register?email=' + user.email);
 
             return;
-        };
+        }; */
 
-        res.redirect('/user/login');
+        res.send('Usuario creado');
 
     },
 

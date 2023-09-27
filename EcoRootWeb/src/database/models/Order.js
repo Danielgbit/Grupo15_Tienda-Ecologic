@@ -49,7 +49,7 @@ module.exports = (sequelize, dataType) => {
     Order.associate = (models) => {
         
         Order.hasMany(models.Product, {
-            as: 'ProductOrder',
+            as: 'productOrder',
             timestamps: false,
             foreignKey: 'product_id'
         });
