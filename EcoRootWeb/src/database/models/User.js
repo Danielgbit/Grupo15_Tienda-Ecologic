@@ -4,9 +4,9 @@ module.exports = (sequelize, dataType) => {
 
     const cols = {
         user_id: {
-            type: dataType.INTEGER,
+            type: dataType.UUID,
             primaryKey: true,
-            autoIncrement: true         
+            autoIncrement: true,
         },
 
         first_name: {

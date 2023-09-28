@@ -70,7 +70,7 @@
                                 <option value="">Selecciona una marca</option>
                                 <% for (const brand of brands) { %>
                                     <option value="<%= brand.brand_id %>"
-                                        <% if (locals.formDataOld && formDataOld.brand === brand.name) { %>
+                                        <% if (locals.formDataOld && formDataOld.brand === brand.brand_name) { %>
                                             selected
                                         <% } %>
                                     ><%= brand.brand_name %></option>
@@ -84,11 +84,18 @@
 
                         <div class="input-information-container">
                             <label for="color">Color:</label>
-                            <input type="text" id="color"
-                                value="<%= locals.formDataOld && formDataOld.color ? formDataOld.color : null %>"
-                                name="color" class="<%= locals.errors && errors.color ? "is-invalid" : null %>">
+                            <select id="color" name="color" class="<%= locals.errors && errors.color ? "is-invalid" : null %>">
+                                <option value="">Selecciona un color</option>
+                                <% for (const color of colors) { %>
+                                    <option value="<%= color.color_id %>"
+                                        <% if (locals.formDataOld && formDataOld.color === color.color_name) { %>
+                                            selected
+                                        <% } %>
+                                    ><%= color.color_name %></option>
+                                <% } %>
+                            </select>
                             <% if (locals.errors && errors.color) { %>
-                            <span class="errorsCreateProduct"><%= errors.color %> </span>
+                                <span class="errorsCreateProduct"><%= errors.color %> </span>
                             <% } %>
                         </div>
 

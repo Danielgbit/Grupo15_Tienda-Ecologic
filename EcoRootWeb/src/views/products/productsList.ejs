@@ -21,12 +21,12 @@
                 <section class="contain-content-card-2">
                     <a href="#"><button class="button"><span class="material-symbols-outlined">add_shopping_cart</span></button></a>
                     <div class="price">
-                        <% if(product.discount === 0) { %>
+                        <% if(product.discount === '0.00') { %>
                             <span></span>
                         <% }else { %> 
                             <span class="descuento"><%= product.discount %>% OFF</span>
                         <% } %>
-                        <span class="total">$ <%= product.price.toFixed(2) %></span>
+                        <span class="total">$ <%= product.price %></span>
                     </div>
                 </section>
             </div>

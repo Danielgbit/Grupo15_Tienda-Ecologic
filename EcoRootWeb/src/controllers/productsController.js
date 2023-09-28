@@ -1,11 +1,8 @@
-const models = require('../models/productsModels');
-const modelProducts = require('../models/productsModels');
 const {
     validationResult
 } = require('express-validator');
 const fs = require('fs');
 const path = require('path');
-const products = modelProducts.findAll();
 const db = require('../database/models');
 let formDataOld = {};
 
@@ -17,28 +14,27 @@ const productsController = {
     products: async (req, res) => {
 
         try {
-            const products = await db.Product.findAll({
-                raw: true,
-            });
-
+            const products = await db.Product.findAll({raw: true,});
+            
             console.log(products);
-
+            
+            res.render('products', { products: products });
+            
         } catch (error) {
             console.error(error);
         };
-
-        res.send('Estas viendo todos los productos');
+        
 
     },
 
 
     productDetail: (req, res) => {
 
-        const productId = modelProducts.findById(Number(req.params.id));
+  /*       const productId = modelProducts.findById(Number(req.params.id));
 
         res.render('productDetail', {
             product: productId
-        });
+        }); */
     },
 
     //@CREATE
@@ -52,8 +48,11 @@ const productsController = {
 
             const brands = await db.Brand.findAll({ raw: true });
 
+            const colors = await db.Color.findAll({ raw: true });
 
-            res.render('productCreate', {errors: req.query, formDataOld, category, brands});
+
+
+            res.render('productCreate', {errors: req.query, formDataOld, category, brands, colors});
             
         } catch (error) {
             console.error(error);
@@ -93,10 +92,10 @@ const productsController = {
             united: Number(req.body.united),
             discount: Number(req.body.discount),
             material: req.body.material,
-            user_id: 2,
+            user_id: req.session.user.id,
             state: req.body.state,
             image: req.file.filename,
-            color: req.body.color,
+            color_id: req.body.color,
             category_id: req.body.category,
             brand_id: req.body.brand,
         };
@@ -109,7 +108,7 @@ const productsController = {
             console.error(error);
         }
 
-        res.send('Creando producto');
+        res.redirect('/products');
 
     },
 

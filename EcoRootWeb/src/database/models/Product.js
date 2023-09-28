@@ -49,9 +49,13 @@ module.exports = (sequelize, dataType) => {
             allowNull: false
         },
 
-        color: {
-            type: dataType.STRING,
-            allowNull: true
+        color_id: {
+            type: dataType.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'colors',
+                key: 'color_id'
+            }
         },
 
         user_id: {
@@ -114,6 +118,12 @@ module.exports = (sequelize, dataType) => {
             through: 'ProductCart',
             timestamps: false
         });
+
+        Product.hasMany(models.Color, {
+            as: 'colorProduct',
+            timestamps: false,
+            foreignKey: 'color_id'
+        })
 
         Product.belongsToMany(models.Color, {
             as: 'colors',
