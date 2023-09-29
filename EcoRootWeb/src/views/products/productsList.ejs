@@ -1,5 +1,5 @@
 <% products.forEach(product => { %>
-    <a class="product-card" href="products/<%= product.id %>/detail">
+    <a class="product-card" href="products/<%= product.product_id %>/detail">
         <section class="card">
             <img src="/img/products/<%= product.image %>" alt="imagen del producto">
             <div class="content-card-container">
@@ -7,7 +7,7 @@
                     <div class="description">
                         <span><%= product.name %></span>
                         <span>Ref: <%= product.id %> </span>
-                        <p> Categoria: <span><%= product.category %></span></p>
+                        <p> Categoria: <span><%= product.productCategory.category_name %></span></p>
                     </div>
                     <div class="stars">
                         <span class="material-symbols-outlined">star</span>

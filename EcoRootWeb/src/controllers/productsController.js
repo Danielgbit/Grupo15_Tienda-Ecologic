@@ -14,27 +14,32 @@ const productsController = {
     products: async (req, res) => {
 
         try {
-            const products = await db.Product.findAll({raw: true,});
-            
-            console.log(products);
-            
+
+            const products = await db.Product.findAll({ include: 'productCategory', raw: true, nest: true });
+
             res.render('products', { products: products });
-            
+
         } catch (error) {
             console.error(error);
         };
-        
+
 
     },
 
 
-    productDetail: (req, res) => {
+    productDetail: async (req, res) => {
 
-  /*       const productId = modelProducts.findById(Number(req.params.id));
 
-        res.render('productDetail', {
-            product: productId
-        }); */
+        try {
+            const product = await db.Product.findByPk(Number(req.params.id), { include: ['productCategory', 'colorProduct', 'productBrand' ], 
+            nest: true,  raw: true , });
+            
+            res.render('productDetail', { product });
+            
+        } catch (error) {
+            console.error(error);
+        }
+
     },
 
     //@CREATE
@@ -44,16 +49,22 @@ const productsController = {
 
         try {
 
-            const category = await db.Category.findAll({raw: true});
+            const category = await db.Category.findAll({
+                raw: true
+            });
 
-            const brands = await db.Brand.findAll({ raw: true });
+            const brands = await db.Brand.findAll({
+                raw: true
+            });
 
-            const colors = await db.Color.findAll({ raw: true });
+            const colors = await db.Color.findAll({
+                raw: true
+            });
 
 
 
-            res.render('productCreate', {errors: req.query, formDataOld, category, brands, colors});
-            
+            res.render('productCreate', { errors: req.query, formDataOld, category, brands, colors });
+
         } catch (error) {
             console.error(error);
         }
@@ -101,9 +112,8 @@ const productsController = {
         };
 
         try {
-           const newP = await db.Product.create(newProduct);
-           console.log(newP);
-           
+            await db.Product.create(newProduct);
+
         } catch (error) {
             console.error(error);
         }
@@ -127,47 +137,66 @@ const productsController = {
     },
 
 
-    getEdit: (req, res) => {
-
-
-        const productId = models.findById(Number(req.params.id));
-
-        res.render('productEdit', {
-            product: productId
+    getEdit: async (req, res) => {
+        
+        const category = await db.Category.findAll({
+            raw: true
         });
+
+        const brands = await db.Brand.findAll({
+            raw: true
+        });
+
+        const colors = await db.Color.findAll({
+            raw: true
+        });
+
+        const product = await db.Product.findByPk(Number(req.params.id), { include: ['productCategory', 'colorProduct', 'productBrand' ], 
+        nest: true,  raw: true , });
+
+        res.render('productEdit', { product, category , brands, colors  });
     },
 
 
     //PUT
 
 
-    putProductEdit: (req, res) => {
+    putProductEdit: async (req, res) => {
 
-
-        const products = modelProducts.findById(Number(req.params.id));
-
+        
         const productEdit = {
-            id: Number(req.params.id),
+            product_id: Number(req.params.id),
             name: req.body.name,
-            brand: req.body.brand,
+            description: req.body.description,
+            price: Number(req.body.price),
             united: Number(req.body.united),
-            category: req.body.category,
+            discount: Number(req.body.discount),
             material: req.body.material,
+            user_id: req.session.user.id,
             state: req.body.state,
             image: req.file ? req.file.filename : products.image, // Si no se manda ninguna imagen nueva se mantiene la misma
-            description: req.body.description,
-            color: req.body.color,
-            discount: Number(req.body.discount),
-            price: Number(req.body.price),
+            color_id: req.body.color,
+            category_id: req.body.category,
+            brand_id: req.body.brand,
+        };
+        
+        console.log(productEdit);
+        try {
+
+           /*  const update = await db.Product.update(productEdit); */
+          /*  res.redirect('/products/' + productEdit.product_id + '/detail'); */
+
+          res.send('actualizado')
+
+            
+        } catch (error) {
+            console.error(error);
         }
+        
+    
 
-
-
-        models.editProduct(productEdit);
-
-        res.redirect('/products/' + productEdit.id + '/detail');
     }
-}
+};
 
 
 module.exports = productsController;

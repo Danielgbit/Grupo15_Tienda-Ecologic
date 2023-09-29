@@ -21,8 +21,8 @@
                     <div class="title-1-detail-container">
                         <h1 class="title-1-product-detail"><%= product.name %> </h1>
                         <div class="button-actions-detail">
-                            <a href="/products/<%= product.id %>/edit"><i class="fa-solid fa-pencil"></i></a>
-                            <form action="/products/<%= product.id %>/delete?_method=DELETE" method="post">
+                            <a href="/products/<%= product.product_id %>/edit"><i class="fa-solid fa-pencil"></i></a>
+                            <form action="/products/<%= product.product_id %>/delete?_method=DELETE" method="post">
                                 <button><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </div>
@@ -31,7 +31,7 @@
                         <h2><%= product.category %></h2>
                         <p><%= product.description %></p>
                         <div class="brand-container">
-                            <span> Marca: <p><%= product.brand %></p></span>
+                            <span> Marca: <p><%= product.productBrand.brand_name %></p></span>
                         </div>
                     </article>
                     <!--                     <div class="container-stars-val">
@@ -45,19 +45,23 @@
                         <p>0 Opiniones</p>
                     </div> -->
                     <div class="price-detail-wrapper">
-                        <span class="descuento"><%= product.discount %>% OFF</span>
-                        <span class="price"> $ <%= product.price.toFixed(2) %></span>
+                        <% if (product.discount === '0.00') { %>
+                         <span></span>
+                        <% } else { %>
+                            <span class="descuento"><%= product.discount %>% OFF</span>
+                        <% } %>    
+                        <span class="price"> $ <%= product.price %></span>
                     </div>
                     <div class="buttons-detail-container">
-                        <span class="color-detail-text">Color</span>
+                        <% if (product.colorProduct.color_name === 'NaN' || product.colorProduct.color_name === null) { %>
+                        <span></span>
+                        <% } else { %>
+                        <span class="color-detail-text" >Color</span>
                         <div class="button-selector-detail">
-                            <% if (product.color === 'NaN' || product.color === null) { %>
-                            <button>No disponible</button>
-                            <% } else {%>
                             <button><%= product.color %></button>
-                            <% } %>
-                            <span class="material-symbols-outlined">expand_more</span>
                         </div>
+                        <span class="material-symbols-outlined">expand_more</span>
+                        <% } %>
                         <div class="button-selector-detail button-detail-2">
                             <button><%= product.material %></button>
                             <span>Material</span>

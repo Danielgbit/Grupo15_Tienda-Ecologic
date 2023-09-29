@@ -13,14 +13,14 @@
             <h1>Edición de producto</h1>
         </seccion>
 
-        <form class="form-create-1" action="/products/<%= product.id %>/detail?_method=PUT" method="post">
+        <form class="form-create-1" action="/products/<%= product.product_id %>/detail?_method=PUT" method="post">
 
             <article class="container-cards-category">
 
 
                 <label class="categoryCards">
                     <input type="radio" name="category" value="Cuidado personal" class="radio-input"
-                        <%= product.category === 'Cuidado personal' ? 'checked="checked' : '' %>>
+                        <%= product.productCategory.category_name === 'Cuidado personal' ? 'checked="checked' : '' %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/personal.png" alt="">
                     <span>Cuidado personal</span>
@@ -28,7 +28,7 @@
 
                 <label class="categoryCards">
                     <input type="radio" name="category" value="Moda" class="radio-input"
-                        <%= product.category === 'Moda' ? 'checked="checked' : '' %>>
+                        <%= product.productCategory.category_name === 'Moda' ? 'checked="checked' : '' %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/moda.png" alt="">
                     <span>Moda sostenible</span>
@@ -36,7 +36,7 @@
 
                 <label class="categoryCards">
                     <input type="radio" name="category" value="Hogar" class="radio-input"
-                        <%= product.category === 'Hogar' ? 'checked="checked' : '' %>>
+                        <%= product.productCategory.category_name === 'Hogar' ? 'checked="checked' : '' %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/planet.png" alt="">
                     <span>Hogar</span>
@@ -44,7 +44,7 @@
 
                 <label class="categoryCards">
                     <input type="radio" name="category" value="Joyeria" class="radio-input"
-                        <%= product.category === 'Joyeria' ? 'checked="checked' : '' %>>
+                        <%= product.productCategory.category_name === 'Joyeria' ? 'checked="checked' : '' %>>
                     <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
                     <img src="/img/categories/joyeria.png" alt="">
                     <span>Joyeria sostenible</span>
@@ -69,13 +69,30 @@
 
                         <div class="input-information-container">
                             <label for="marca">Marca:</label>
-                            <input type="text" id="marca" name="brand" value="<%= product.brand %>" required>
+                            <select name="brand_id">
+                                <option value="<%= product.brand_id %>"
+                                    <%= (product.brand_id === undefined || product.brand_id === null) ? 'selected' : '' %>>
+                                    sin marca</option>
+                                <% for (const brand of brands) { %>
+                                <option value="<%= brand.brand_id %>"
+                                    <%= (product.brand_id === brand.brand_id) ? 'selected' : '' %>>
+                                    <%= brand.brand_name %> </option>
+                                <% } %>
+                            </select>
                         </div>
+
 
                         <div class="input-information-container">
                             <label for="color">Color:</label>
-                            <input type="text" id="color" name="color" value="<%= product.color %>" required>
+                            <select name="color_id">
+                                <option value="<%= product.color_id %>"
+                                    <%= product.color_name === null ? 'selected' : '' %>>Sin color</option>
+                                <% for (const color of colors) { %>
+                                <option value="<%= color.color_id %>"><%= color.color_name %> </option>
+                                <% } %>
+                            </select>
                         </div>
+
 
                     </section>
 
@@ -151,7 +168,7 @@
                         <label for="foto" class="form-dropArea-imgs">
                             <i class="fa-solid fa-camera-rotate"></i>
                             <label for="foto" class="custom-file-input custom-view-edit">
-                                <input type="file" id="foto" name="image" accept="image/*" >
+                                <input type="file" id="foto" name="image" accept="image/*">
                             </label>
                         </label>
 
@@ -195,7 +212,7 @@
                         <div class="input-information-container">
                             <label for="precio" class="priceText">¿Cuál es el precio?</label>
                             <input type="number" id="precio" name="price" min="0" step="0.01"
-                                value="<%= product.price.toFixed(2) %>" required placeholder="$">
+                                value="<%= product.price %>" required placeholder="$">
                         </div>
                     </div>
                 </section>
