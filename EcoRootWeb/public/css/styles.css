@@ -205,8 +205,8 @@ body {
 
   color: var(--color-primario, #EDF4DA);
   text-align: center;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 00;
   line-height: 137.5%;
   display: flex;
   gap: 28px;
