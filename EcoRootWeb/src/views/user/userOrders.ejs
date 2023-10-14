@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/header.ejs') %>
+
+
+        <% if (orders.length > 0) { %>
+            <div class="contain-orders-div">
+                <% for (const order of orders) { %>
+                    <div class="content-info-orders">
+                        <div class="icon-order">                        
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <h1>Orden: <%= order.order_id %></h1>
+                        <p>Fecha: <%= new Date(order.order_date).toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+                        <p class="title-order-products">Productos:</p>
+                        <ul>
+                            <% let total = 0; %>
+                            <% for (const product of order.products) { %>
+                                <% total += parseFloat(product.price); %>
+                                <li class="product-contain-order">
+                                    <p class="paragraph-product-prder"> <%= product.name %></p>
+                                    <!-- Agrega más detalles del producto según sea necesario -->
+                                </li>
+                            <% } %>
+                        </ul>
+                        <p><strong>Total: $<%= total.toFixed(2) %></strong></p>
+                        <p class="process-state-order"> <i class="fa-solid fa-location-pin"></i> Estado: En proceso </p>
+                    </div>
+                <% } %>
+            </div>
+
+            <div class="container-data-cartUser container-userData-order">
+                <p class="cart-data-user-paragraph">Nombre: <span><%= locals.user && user.first_name ? user.first_name : null %> <%= locals.user && user.last_name ? user.last_name : null %></span></p>
+                <p class="cart-data-user-paragraph">Pais: <span><%= locals.user && user.country ? user.country : null %></span></p>
+                <p class="cart-data-user-paragraph">Ciudad: <span><%= locals.user && user.city ? user.city : null %></span></p>
+                <p class="cart-data-user-paragraph">Domicilio: <span><%= locals.user && user.address ? user.address : null %></span></p>
+            </div>
+        <% } else { %>
+            <p>No tienes órdenes disponibles.</p>
+        <% } %>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+
+</html>

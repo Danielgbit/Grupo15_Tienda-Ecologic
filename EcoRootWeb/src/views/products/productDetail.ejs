@@ -28,13 +28,15 @@
                         </div>
                     </div>
                     <article class="content-text-detail">
-                        <h2><%= product.category %></h2>
                         <p><%= product.description %></p>
+                        <div class="brand-container">
+                            <span> Categoria: <p><%= product.productCategory.category_name %></p></span>
+                        </div>
                         <div class="brand-container">
                             <span> Marca: <p><%= product.productBrand.brand_name %></p></span>
                         </div>
                     </article>
-                    <!--                     <div class="container-stars-val">
+                    <!-- <div class="container-stars-val">
                         <div class="stars-detail">
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
@@ -53,18 +55,19 @@
                         <span class="price"> $ <%= product.price %></span>
                     </div>
                     <div class="buttons-detail-container">
-                        <% if (product.colorProduct.color_name === 'NaN' || product.colorProduct.color_name === null) { %>
+                        <% if (product.colors.color_name === 'Sin color' || product.colors.color_name === null) { %>
                         <span></span>
                         <% } else { %>
                         <span class="color-detail-text" >Color</span>
-                        <div class="button-selector-detail">
-                            <button><%= product.color %></button>
+                        <div>
+                            <span class="color-product-detail">
+                                <p style="background-color: <%= product.colors.hex_code %>;"></p>
+                            </span>
                         </div>
-                        <span class="material-symbols-outlined">expand_more</span>
                         <% } %>
                         <div class="button-selector-detail button-detail-2">
                             <button><%= product.material %></button>
-                            <span>Material</span>
+                            <span>Material</span>   
                         </div>
                         <div class="button-cart-add-detail">
                             <button>AGREGAR AL CART</button>
@@ -75,7 +78,7 @@
                 </section>
             </article>
 
-            <section>
+<!--             <section>
                 <div class="text-seccion-val-bottom">
                     <div class="text-title-val-bottom">
                         <p>Jabon biodegradable</p>
@@ -116,7 +119,7 @@
                     </p>
                 </div>
 
-            </article>
+            </article> -->
         </section>
     </main>
 

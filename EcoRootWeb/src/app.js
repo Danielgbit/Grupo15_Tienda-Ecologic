@@ -38,6 +38,7 @@ app.use(express.static('./public'));
 
 app.use(cookies());
 
+
 app.use(session({
     secret: 'EcoRoot@#!nDsGRW',
     resave: false,

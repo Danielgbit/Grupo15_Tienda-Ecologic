@@ -26,12 +26,39 @@ productsRouter.delete('/:id/delete', productsController.productDestroy);
 
 //EDIT
 
+// @GET /products/:category_id/categories
+productsRouter.get('/:category_id/category', productsController.getproductCategory);
+
 
 // @GET /products/:id/edit
 productsRouter.get('/:id/edit', productsController.getEdit);
 
+
 // @PUT /products/:id/detail
 productsRouter.put('/:id/detail', productsController.putProductEdit);
+
+
+// @GET /products/search
+productsRouter.get('/search', productsController.getSearchProduct);
+
+
+//CART
+
+// @POST /products/addToCart
+productsRouter.post('/addTocart', productsController.addToCart);
+
+
+// @GET /products/cart
+productsRouter.get('/cart', productsController.viewCart);
+
+
+// @DELETE /products/cart/:id/delete
+productsRouter.delete('/cart/:productId/delete', productsController.productCartDestroy);
+
+
+// @GET /products/cart/:id/delete
+productsRouter.put('/cart/:id/update', productsController.productCartUpdate);
+
 
 
 

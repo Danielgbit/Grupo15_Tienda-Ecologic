@@ -12,69 +12,68 @@
         <article class="article-container">
             <div class="container-cards-checkout">
 
-                <% for( let index = 0; index < 4; index++ ) { %>
-                <section class="content-article">
-                    <img src="/img/products/img-header.jpg" alt="Imagen producto" />
-                    <div class="quantity-prod">
-                        <div class="content-title">
-                            <b class="titulo-producto">Cepillo de Bambú</b>
-                            <i class="fa-solid fa-recycle"></i>
-                        </div>
-                        <div class="content-price-arrows">
-                            <button><i class="fa-solid fa-plus"></i></button>
-                            <b class="cantidad-seleccionada">1</b>
-                            <button><i class="fa-solid fa-minus"></i></button>
-                            <b class="price"> X </b>
-                            <b class="price"> $0.00 </b>
-                        </div>
-                    </div>
-                </section>
-                <% } %>
+                <% let totalCartPrice = 0; %>
 
-                <div class="monto-total-compra">
-                    TOTAL $0
-                </div>
+                <% cartProducts.forEach(function(product) { %>
+                    <section class="content-article">
+                        <img src="/img/products/<%= product.products.image %>" alt="Imagen producto" />
+                        <div class="quantity-prod">
+                            <div class="content-title">
+                                <b class="titulo-producto"><%= product.products.name %></b>
+                                <form method="POST" action="/products/cart/<%= product.products.product_id %>/delete?_method=DELETE" >
+                                    <button type="submit"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
+                                </form>
+                            </div>
+                            <div class="content-price-arrows">
+                                <form method="POST" action="/products/cart/<%= product.products.product_id %>/update?_method=PUT&action=increase">
+                                    <button type="submit"><i class="fa-solid fa-plus"></i></button>
+                                </form>
+                                    <b class="cantidad-seleccionada"><%= product.products.ProductCart.quantity %></b>
+                                <form method="POST" action="/products/cart/<%= product.products.product_id %>/update?_method=PUT&action=decrease">
+                                    <button type="submit"><i class="fa-solid fa-minus"></i></button>
+                                </form>
+                                <b class="price"> X </b>
+                                <b class="price"> $ <%= (product.products.price * product.products.ProductCart.quantity).toFixed(2) %> </b>
+                            </div>
+                        </div>
+                    </section>
+                    <% totalCartPrice += product.products.price * product.products.ProductCart.quantity; %>
+                    <% }); %>
+                    
+                    <div class="monto-total-compra">
+                        TOTAL: $ <%= totalCartPrice.toFixed(2) %>
+                    </div>
+                
             </div>
 
 
 
 
-            <section class="data-container">
-                <div class="top-card-detail-content">
-                    <p class="detail-card">Detalles de tarjeta</p>
-                    <img src="/img/logos/user.jpg" alt="Foto de Perfil" class="profile-pic">
-                </div>
-                <p class="detail-card">Mis Tarjetas</p>
-                <div class="card-buttons">
-                    <Button class="button-tarjetas"><img src="/img/logos/visa.png" alt="VISA"></Button>
-                    <button class="button-tarjetas"><img src="/img/logos/mastercard.jpg"
-                            alt="MASTERCARD"></button>
-                    <button class="add-button">Agregar mas...</button>
-                </div>
+           <section class="data-container">
 
-                <div class="data-entry-box">
+                <div class="data-entry-box">    
 
-                    <p class="title-card-checkout">Nombre del Titular</p>
-                    <input type="text" placeholder="Nombre Completo" class="entry-box">
-
-                    <p class="title-card-checkout">Numero de Tarjeta</p>
-                    <input type="text" placeholder="1111 2222 3333 4444" class="entry-box">
-
-                    <p class="title-card-checkout">Fecha de Expidicion</p>
-                    <input type="text" placeholder="MM/AA" class="entry-box">
-
-                    <p class="title-card-checkout">Codigo de Seguridad</p>
-                    <input type="text" placeholder="CVV" class="entry-box">
-
-                    <div class="button-contain-checkout">
-                        <button class="pay-button">
-                            <P>$800</P>
-                            <p>CHECKOUT</p>
-                        </button>
+                    <div class="contain-info-user-cart">
+                        <span>Informacion de compra</span>
+                        <img src="/img/avatars/<%= locals.user && user.avatar ? user.avatar : null %>" alt="Foto de Perfil" class="profile-pic">
                     </div>
-
+                    <div class="container-data-cartUser">
+                        <p class="cart-data-user-paragraph">Nombre: <span><%= locals.user && user.first_name ? user.first_name : null %> <%= locals.user && user.last_name ? user.last_name : null %></span></p>
+                        <p class="cart-data-user-paragraph">Pais: <span><%= locals.user && user.country ? user.country : null %></span></p>
+                        <p class="cart-data-user-paragraph">Ciudad: <span><%= locals.user && user.city ? user.city : null %></span></p>
+                        <p class="cart-data-user-paragraph">Domicilio: <span><%= locals.user && user.address ? user.address : null %></span></p>
+                    </div>
+                    <div class="button-contain-checkout">
+                        <form method="POST" action="/user/order/create">         
+                            <button type="submit" class="pay-button">
+                                <P><%= totalCartPrice.toFixed(2) %></P>
+                                <p>CHECKOUT</p>
+                            </button>
+                        </form> 
+                    </div>
+                    
                 </div>
-
+            
             </section>
 
         </article>

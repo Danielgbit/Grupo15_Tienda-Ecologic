@@ -9,24 +9,9 @@ module.exports = (sequelize, dataType) => {
             autoIncrement: true
         },
 
-
-        cuantity: {
-            type: dataType.INTEGER,
-            allowNull: false
-        },
-
         order_date: {
             type: dataType.DATE,
             allowNull: false
-        },
-
-        product_id: {
-            type: dataType.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'Product',
-                key: 'product_id'
-            }
         },
 
         user_id: {
@@ -40,7 +25,7 @@ module.exports = (sequelize, dataType) => {
     };
 
     const config = {
-        tableName: 'Orders',
+        tableName: 'orders',
         timestamps: false
     };
 
@@ -48,11 +33,12 @@ module.exports = (sequelize, dataType) => {
 
     Order.associate = (models) => {
         
-        Order.hasMany(models.Product, {
-            as: 'productOrder',
-            timestamps: false,
-            foreignKey: 'product_id'
-        });
+        Order.belongsToMany(models.Product, {
+            through: 'OrderProduct', // Nombre de la tabla de unión
+            foreignKey: 'order_id',
+            otherKey: 'product_id',
+            as: 'products', // Alias para la relación
+          });
 
         Order.belongsTo(models.User, {
             as: 'userOrder',

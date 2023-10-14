@@ -24,15 +24,18 @@
             <p class="paragraph-user-description">"Viviendo la vida con pasión y escribiendo mi propia historia."</p>
             <div class="content-user-page">
                 <div class="user-post content">
-                    <a href="#" class="button-edit-user buttons-user" type="submit"><i class="fa-regular fa-paste"></i>Mis publicaciones</a>   
+                    <a href="/user/products" class="button-edit-user buttons-user" type="submit"><i class="fa-regular fa-paste"></i>Mis publicaciones</a>   
                 </div>
             </div>
             <div class="form-user-page">
-                <% if (locals.user && locals.user.id) { %>
-                    <a href="/user/<%= user.id %>/edit" class="button-edit-user buttons-user" type="submit"><i class="fa-solid fa-pencil"></i>Editar perfil</a>
-                    <form  action="/user/<%=user.id%>/delete?_method=DELETE" method="post">
+                <% if (locals.user && locals.user.user_id) { %>
+                    <a href="/user/<%= user.user_id %>/edit" class="button-edit-user buttons-user" type="submit"><i class="fa-solid fa-pencil"></i>Editar perfil</a>
+                    <form  action="/user/<%=user.user_id%>/delete?_method=DELETE" method="post">
                         <button class="button-delete-user buttons-user" type="submit"><i class="fa-solid fa-user-xmark"></i>Eliminar cuenta</button>
                     </form>
+                    <a href="/user/orders"  class="button-edit-user buttons-user">
+                        <p>Orders</p>
+                    </a>
                 <% } %>
             </div>
 

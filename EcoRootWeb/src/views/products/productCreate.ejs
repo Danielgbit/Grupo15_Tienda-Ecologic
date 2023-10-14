@@ -64,14 +64,14 @@
                             <% } %>
                         </div>
 
-                        <div class="input-information-container">
+                        <div class="input-information-container input-register">
                             <label for="marca">Marca:</label>
-                            <select id="marca" name="brand" class="<%= locals.errors && errors.brand ? "is-invalid" : null %>">
+                            <select id="marca" name="brand" class=" countries-select <%= locals.errors && errors.brand ? "is-invalid" : null %>">
                                 <option value="">Selecciona una marca</option>
                                 <% for (const brand of brands) { %>
                                     <option value="<%= brand.brand_id %>"
-                                        <% if (locals.formDataOld && formDataOld.brand === brand.brand_name) { %>
-                                            selected
+                                        <% if (locals.formDataOld && formDataOld.brand == brand.brand_id) { %>
+                                            selected 
                                         <% } %>
                                     ><%= brand.brand_name %></option>
                                 <% } %>
@@ -82,13 +82,13 @@
                         </div>
                         
 
-                        <div class="input-information-container">
+                        <div class="input-information-container input-register">
                             <label for="color">Color:</label>
-                            <select id="color" name="color" class="<%= locals.errors && errors.color ? "is-invalid" : null %>">
+                            <select id="color" name="color" class=" countries-select<%= locals.errors && errors.color ? "is-invalid" : null %>">
                                 <option value="">Selecciona un color</option>
                                 <% for (const color of colors) { %>
                                     <option value="<%= color.color_id %>"
-                                        <% if (locals.formDataOld && formDataOld.color === color.color_name) { %>
+                                        <% if (locals.formDataOld && formDataOld.color == color.color_id) { %>
                                             selected
                                         <% } %>
                                     ><%= color.color_name %></option>
@@ -151,7 +151,7 @@
 
 
                     <div class="condition-text-header">
-                        <span class="text-title <%= locals.errors && errors.material ? "is-invalid" : null %>">¿Cuál es
+                        <span class="text-title <%= locals.errors && errors.state ? "is-invalid" : null %>">¿Cuál es
                             la condición de tu producto?</span>
                         <span class="text-step">Paso 3 de 6</span>
                     </div>
@@ -173,7 +173,7 @@
                     </div>
 
                     <% if (locals.errors && errors.state) { %>
-                    <span class="errorsCreateProduct"><%= errors.state %> </span>
+                        <span class="errorsCreateProduct"><%= errors.state %> </span>
                     <% } %>
 
                 </section>

@@ -106,11 +106,12 @@ module.exports = (sequelize, dataType) => {
             foreignKey: 'category_id'
         });
 
-        Product.hasMany(models.Order, {
-            as: 'productOrder',
-            timestamps: false,
-            foreignKey: 'product_id'
-        });
+        Product.belongsToMany(models.Order, {
+            through: 'OrderProduct', // Nombre de la tabla de unión
+            foreignKey: 'product_id',
+            otherKey: 'order_id',
+            as: 'orders', // Alias para la relación
+          });
 
         Product.belongsToMany(models.Cart, {
             as: 'cartProducts',
@@ -120,7 +121,7 @@ module.exports = (sequelize, dataType) => {
         });
 
         Product.hasMany(models.Color, {
-            as: 'colorProduct',
+            as: 'productColors',
             timestamps: false,
             foreignKey: 'color_id'
         })

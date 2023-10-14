@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/header.ejs') %>
+
+    <main>
+
+        <article class="main-products-category-container">
+
+            <div class="container-name-category-cards">
+
+                <section class="seccion-category-name-new">
+                        <div class="title-category-view">
+                            <span>Mis publicaciones</span>   
+                        </div>
+                </section>
+
+                <article id="cards-products-container">
+                    <% if (products.length > 0) { %>
+                        <!-- Mostrar los productos si hay productos en la categoría -->
+                        <% products.forEach(product => { %>
+                            <a class="product-card" href="/products/<%= product.product_id %>/detail">
+                                <section class="card">
+                                    <img src="/img/products/<%= product.image %>" alt="imagen del producto">
+                                    <div class="content-card-container">
+                                        <section class="contain-content-card-1">
+                                            <div class="description">
+                                                <span><%= product.name %></span>
+                                                <p>Ref: <span><%= product.product_id %> </span></p>
+                                                <p> Categoria: <span><%= product.productCategory.category_name %></span></p>
+                                            </div>
+                                            <div class="stars">
+                                                <span class="material-symbols-outlined">star</span>
+                                                <span class="material-symbols-outlined">star</span>
+                                                <span class="material-symbols-outlined">star</span>
+                                                <span class="material-symbols-outlined">star</span>
+                                                <span class="material-symbols-outlined">star</span>
+                                            </div>
+                                        </section>
+
+                                        <section class="contain-content-card-2">
+                                            <a href="#"><button class="button"><span
+                                                        class="material-symbols-outlined">add_shopping_cart</span></button></a>
+                                            <div class="price">
+                                                <% if(product.discount === '0.00') { %>
+                                                <span></span>
+                                                <% } else { %>
+                                                <span class="descuento"><%= product.discount %>% OFF</span>
+                                                <% } %>
+                                                <span class="total">$ <%= product.price %></span>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </section>
+                            </a>
+                        <% }) %>
+                    <% } else { %>
+                        <!-- Mostrar un mensaje cuando no hay productos en la categoría -->
+                        <div class="no-products-message">
+                            No hay productos en esta categoría en este momento.
+                        </div>
+                    <% } %>
+                </article>
+
+            </div>
+
+        </article>
+
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+
+</html>

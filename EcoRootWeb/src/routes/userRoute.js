@@ -36,6 +36,10 @@ userRouter.get('/logout', userController.logout);
 
 userRouter.get('/:id/edit', userController.getEdit);
 
+// @GET /user/products
+
+userRouter.get('/products', userController.getUserProducts);
+
 // @PUT /products/:id/detail
 
 userRouter.put('/:id/user', [upload.single('image'), validateuserEdit] , userController.updateUser);
@@ -43,6 +47,14 @@ userRouter.put('/:id/user', [upload.single('image'), validateuserEdit] , userCon
 //@POST /user/:id/delete
 
 userRouter.delete('/:id/delete', userController.deleteUser);
+
+//@POST /user/order/create
+userRouter.post('/order/create', userController.createOrder);
+
+//@GET /user/orders
+userRouter.get('/orders', userController.viewOrders);
+
+
 
 
 

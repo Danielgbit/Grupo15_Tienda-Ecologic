@@ -13,7 +13,7 @@ const productCreateMiddleware = {
         body('united').notEmpty().withMessage('Debes ingresar una unidad de stock'),
 /*         body('discount').notEmpty().withMessage('campo incompleto'), */
         body('material').notEmpty().withMessage('Debes ingresar el material de tu producto'),
-        body('state').notEmpty().withMessage('Debes ingresar el estado de tu producto'),
+        body('state').notEmpty().withMessage('Debes ingresar el estado de tu producto').bail().isIn(['New', 'Used']).withMessage('Debes seleccionar un estado válido'),
         body('description').notEmpty().withMessage('Debes ingresar una descripción'),
         body('price').notEmpty().withMessage('Ingresa el precio de tu producto'),
         body('category').notEmpty().withMessage('Ingresa una categoria'),
