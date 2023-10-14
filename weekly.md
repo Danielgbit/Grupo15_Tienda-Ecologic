@@ -1,4 +1,66 @@
-## Reporte Semanal - Semana del [Quinto Sprint - Validations & session]
+## Reporte Semanal - Semana del Sexto (6) Sprint - Bases de datos
+
+#### DANIEL:
+
+**Logros de Ayer:**
+- Agregué Sequelize exitosamente al proyecto.
+- Desarrollé y creé los modelos correspondientes en mi proyecto.
+- Creé la base de datos EcoRoot.db con sus respectivas tablas y columnas, después de haber realizado el Flow-chart de la base de datos (Diagrama de flujo).
+- Implementé el CRUD con la base de datos adaptada a mi proyecto con Sequelize.
+- Desarrollé las respectivas asociaciones añadiendo las claves primarias y las foreign keys.
+- Agregué la barra de búsqueda de productos.
+- Implementé las órdenes y el carrito añadiendo sus respectivas rutas y controladores además de sus vistas para mostrar toda la lógica.
+- Actualicé la retro y el weekly.
+
+**Impedimentos:**
+- Ninguno.
+
+**Metas para Hoy:**
+- Continuar trabajando en la mejora de la interfaz de usuario.
+- Realizar pruebas exhaustivas de validación y corrección de errores.
+
+#### Ampliación de Daniel:
+- Planificar la implementación de nuevas características relacionadas con la base de datos y las funcionalidades.
+
+#### FEDERICO:
+
+**Logros de Ayer:**
+- Retiré las validaciones innecesarias en productos.
+- Implementé el delete y creación de usuarios.
+- Agrego algunos estilos a los elementos.
+- Desarrollé el inicio de sesión de usuarios para dar acceso al usuario.
+- Actualizo el tablero de trabajo.
+
+**Impedimentos:**
+- Ninguno.
+
+**Metas para Hoy:**
+- Continuar trabajando en la interfaz de usuario, enfocándome en la mejora de la experiencia del usuario.
+- Realizar pruebas exhaustivas de validación y corrección de errores.
+
+#### Ampliación de Federico:
+- Planificar la implementación de nuevas características relacionadas con la interacción del usuario y la mejora de la interfaz.
+
+
+#### MICAELA:
+
+**Logros de Ayer:**
+- Por llenar campo.
+
+**Impedimentos:**
+- Por llenar campo.
+
+**Metas para Hoy:**
+- Por llenar campo.
+
+#### Ampliación de Micaela:
+- Micaela se encuentra actualmente por llenar el campo correspondiente en el reporte. Su contribución y objetivos específicos para esta semana se agregarán una vez se proporcionen más detalles.
+
+
+----------------------------------------------------------------------
+
+
+## Reporte Semanal - Semana del [Quinto(5) Sprint - Validations & session]
 
 #### DANIEL:
 
@@ -49,7 +111,9 @@
 - Micaela se encuentra actualmente por llenar el campo correspondiente en el reporte. Su contribución y objetivos específicos para esta semana se agregarán una vez se proporcionen más detalles.
 
 
-## Reporte Semanal - Semana del [Cuarto Sprint - CRUD & JSON]
+----------------------------------------------------------------------
+
+## Reporte Semanal - Semana del [Cuarto(4) Sprint - CRUD & JSON]
 
 
 #### DANIEL:
@@ -123,7 +187,7 @@
 ------------------------------------------------------------
 
 
-## Reporte Semanal - Semana del [Tercer Sprint]
+## Reporte Semanal - Semana del [Tercer(3) Sprint]
 
 ### Daniel:
 **Logros de Ayer:**
