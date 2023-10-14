@@ -1,4 +1,56 @@
-# Retrospectiva del Quinto Sprint #5
+# Retrospectiva del Sprint-6 - Dinámica de la Estrella de Mar
+
+En esta retrospectiva, utilizaremos la dinámica de la Estrella de Mar para reflexionar sobre nuestro sexto sprint y planificar mejoras para futuros sprints. Evaluaremos lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer.
+
+## Archivo retro.md y Documentación
+
+### Comenzar a hacer:
+- Crear un archivo retro.md con el resultado de la retrospectiva para documentar nuestras lecciones aprendidas y mejoras a implementar.
+
+### Hacer más:
+- (Opcional) Crear un archivo daily.md para registrar opiniones y discusiones de las dailys/weeklys, si se implementan.
+
+### Continuar haciendo:
+- Mantener actualizado el tablero de trabajo para una mejor organización y seguimiento del progreso.
+
+## Validaciones del Back-End con Express Validator
+
+### Comenzar a hacer:
+- Implementar validaciones en el back-end con Express Validator para:
+  - Registro de usuarios.
+  - Login de usuarios.
+  - Creación y modificación de productos.
+
+### Hacer más:
+- (Opcional) Extender las validaciones del back-end a los formularios restantes del sitio, si es necesario.
+
+### Continuar haciendo:
+- Asegurar que las validaciones del back-end estén funcionando correctamente y protejan nuestra aplicación de ingresos de datos no válidos.
+
+## Validaciones del Front-End con JavaScript
+
+### Comenzar a hacer:
+- Implementar validaciones en el front-end con JavaScript para:
+  - Registro de usuarios.
+  - Login de usuarios.
+  - Creación y modificación de productos.
+
+### Hacer más:
+- (Opcional) Extender las validaciones del front-end a los formularios restantes del sitio, si es necesario.
+
+### Continuar haciendo:
+- Asegurar que las validaciones del front-end proporcionen una experiencia de usuario fluida y eviten envíos de datos incorrectos.
+
+## Comentarios adicionales:
+
+- (Opcional) Considerar la implementación de dailys/weeklys para una comunicación regular y efectiva.
+
+Con esta retrospectiva, buscamos mejorar nuestro proceso de desarrollo y colaboración en este sexto sprint y prepararnos para futuros desafíos.
+
+
+
+
+# Retrospectiva del Quinto Sprint #5 - Dinámica de la Estrella de Mar
 
 En esta retrospectiva, utilizaremos la dinámica de la Estrella de Mar para reflexionar sobre nuestro quinto sprint y planificar mejoras para futuros sprints. Evaluaremos lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer.
 
