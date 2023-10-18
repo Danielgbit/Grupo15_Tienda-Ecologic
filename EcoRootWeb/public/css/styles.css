@@ -31,10 +31,8 @@ body {
 }
 
 .logo {
-  border-radius: 60px;
-  height: 150%;
-  display: flex;
-  margin:100;
+  border-radius: 38.756px;
+  height: 100%;
 }
 
 .nav-text-wrapper {
@@ -503,10 +501,10 @@ body {
 .seccion-login-message .button-promotion {
   display: grid;
   place-items: center;
-  height: 52px;
+  height: 49px;
   gap: 10px;
   align-self: stretch;
-  margin: 40px auto;
+  margin: 39px auto;
   border-radius: 9px;
   border: none;
   background: var(--buttons, #14342B);
