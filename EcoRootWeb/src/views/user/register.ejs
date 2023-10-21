@@ -23,6 +23,7 @@
                     <input value="<%= locals.dataOld && dataOld.first_name ? dataOld.first_name : null %>" type="text"
                         id="first_name" name="first_name"
                         class="<%= locals.errors && errors.first_name ? 'login-input-invalid' : null %>">
+                        <ul class="errorsLoginMsg errorFirstName"></ul>
                     <% if (locals.errors && errors.first_name) { %>
                     <span class="errorsLoginMsg"><%= errors.first_name %> </span>
                     <% } %>
@@ -33,6 +34,7 @@
                     <input value="<%= locals.dataOld && dataOld.last_name ? dataOld.last_name : null %>" type="text"
                         id="last_name" name="last_name"
                         class="<%= locals.errors && errors.last_name ? 'login-input-invalid' : null %>">
+                        <ul class="errorsLoginMsg error-last-name"></ul>
                     <% if (locals.errors && errors.last_name) { %>
                     <span class="errorsLoginMsg"><%= errors.last_name %> </span>
                     <% } %>
@@ -78,11 +80,11 @@
                     </div>
 
                     <div class="input-img">
-                        <label for="foto"
+                        <label for=""
                             class="area-register-img <%= locals.errors && errors.image ? 'register-label-avatar' : null %>">
                             <i class="fa-solid fa-user-astronaut"></i>
                             <label for="foto" class="custom-file-input custom-register form-dropArea-imgs-singUp">
-                                <input type="file"id="foto" name="image" accept="image/*">
+                                <input type="file"id="image" name="image" accept="image/*">
                             </label> 
                         </label>
                         <% if (locals.errors && errors.image) { %>
@@ -164,7 +166,7 @@
     </main>
 
     <!-- <%- include('../partials/footer.ejs') %> -->
-
+    <script src="/js/validations/registerValidation.js" ></script>
 </body>
 
 </html>

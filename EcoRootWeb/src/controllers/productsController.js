@@ -4,7 +4,7 @@ const path = require('path');
 const db = require('../database/models');
 let formDataOld = {};
 const { Op } = require('sequelize');
-const { log } = require('console');
+const { log, error } = require('console');
 const { raw } = require('mysql2');
 
 
@@ -83,7 +83,6 @@ const productsController = {
                 colors
             });
 
-            console.log(req.query);
 
         } catch (error) {
             console.error(error);
