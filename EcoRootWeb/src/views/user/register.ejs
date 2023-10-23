@@ -3,7 +3,7 @@
 
 <%- include('../partials/head.ejs') %>
 
-<body>
+<body class="body-register-user">
 
     <%- include('../partials/header.ejs') %>
 
@@ -12,11 +12,13 @@
         <h1>REGISTRO</h1>
 
         <article class="content-register-wrapper">
-            <div class="img-register">
-                <img src="/img/articles/img-login.jpg" alt="">
-            </div>
 
             <form class="form-register" action="/user/register" method="POST" enctype="multipart/form-data">
+
+        <div class="container-max-register-flex">
+            
+
+            <div class="contain-info-flex-1">
 
                 <div class="input-register">
                     <label for="first_name">Nombre:</label>
@@ -45,6 +47,7 @@
                     <input value="<%= locals.dataOld && dataOld.username ? dataOld.username : null %>" type="text"
                         id="username" name="username"
                         class="<%= locals.errors && errors.username ? 'login-input-invalid' : null %>">
+                        <ul class="errorsLoginMsg error-username"></ul>
                     <% if (locals.errors && errors.username) { %>
                     <span class="errorsLoginMsg"><%= errors.username %> </span>
                     <% } %>
@@ -52,48 +55,37 @@
 
                 <div class="input-register">
                     <label for="email">Correo electrónico:</label>
-                    <input value="<%= locals.dataOld && dataOld.email ? dataOld.email : null %>" type="email" id="email"
+                    <input value="<%= locals.dataOld && dataOld.email ? dataOld.email : null %>" type="text" id="email"
                         name="email" class="<%= locals.errors && errors.email ? 'login-input-invalid' : null %>">
+                        <ul class="errorsLoginMsg error-email"></ul>
                     <% if (locals.errors && errors.email) { %>
                     <span class="errorsLoginMsg"><%= errors.email %> </span>
                     <% } %>
                 </div>
-
+                
                 <div class="input-register">
                     <label for="password">Contraseña:</label>
                     <input
                         class="input-passw-register <%= locals.errors && errors.password ? 'login-input-invalid' : null %>"
                         type="password" id="password" name="password">
+                        <div class="contain-security-level-password">
+                            <span class="security-level"></span>
+                            <span class="text-security-password"></span>
+                        </div>
+                        <ul class="errorsLoginMsg error-password"></ul>
                     <% if (locals.errors && errors.password) { %>
                     <span class="errorsLoginMsg"><%= errors.password %> </span>
                     <% } %>
                 </div>
+                
+                
+                
+            
+            </div>
+            
 
-
-                <section class="form-create-5  form-register-img">
-                    <label for="foto">Avatar</label>
-                    <div class="text-header-register-container">
-                        <p class="paragraph-step-5">Para no perder exposición, asegúrate de que la primera foto tenga
-                            fondo
-                            blanco puro creado
-                            con un editor de fotos.</p>
-                    </div>
-
-                    <div class="input-img">
-                        <label for=""
-                            class="area-register-img <%= locals.errors && errors.image ? 'register-label-avatar' : null %>">
-                            <i class="fa-solid fa-user-astronaut"></i>
-                            <label for="foto" class="custom-file-input custom-register form-dropArea-imgs-singUp">
-                                <input type="file"id="image" name="image" accept="image/*">
-                            </label> 
-                        </label>
-                        <% if (locals.errors && errors.image) { %>
-                        <span class="errorsLoginMsg"><%= errors.image %> </span>
-                        <% } %>
-
-                    </div>
-                </section>
-
+            <div class="contain-info-flex-2">   
+                
                 <div class="input-register">
                     <label for="country"
                         class="<%= locals.errors && errors.country ? 'register-input-invalid-icon' : null %>">País:</label>
@@ -104,6 +96,7 @@
                         <option value="<%= country %>" <%= locals.dataOld && (country === dataOld.country) ? 'selected' : null %>><%= country %></option>
                         <% } %>
                     </select>
+                    <ul class="errorsLoginMsg error-country"></ul>
                     <% if (locals.errors && errors.country) { %>
                     <span class="errorsLoginMsg"><%= errors.country %> </span>
                     <% } %>
@@ -129,13 +122,15 @@
                     <% } %>
                 </div>
 
+                
+                
 
                 <div class="input-register ">
                     <label for="birthDate"
                         class="<%= locals.errors && errors.birthDate ? 'register-input-invalid-icon' : null %>">Fecha de nacimiento</label>
                     <input type="date" id="birthDate" name="birthDate"
-                        class="<%= locals.errors && errors.birthDate ? "birthDate-input-Errors" : null %>"
-                        value="<%= locals.dataOld && dataOld.birthDate ? dataOld.birthDate : null %>">
+                    class="<%= locals.errors && errors.birthDate ? "birthDate-input-Errors" : null %>"
+                    value="<%= locals.dataOld && dataOld.birthDate ? dataOld.birthDate : null %>">
                     <% if (locals.errors && errors.birthDate) { %>
                     <span class="errorsLoginMsg"><%= errors.birthDate %> </span>
                     <% } %>
@@ -153,8 +148,35 @@
                     <span class="errorsLoginMsg"><%= errors.gender %> </span>
                     <% } %>
                 </div>
+                
+            </div>
+        </div>
+        
+        <section class="form-create-5  form-register-img">
+                <label for="foto">Avatar</label>
+                <div class="text-header-register-container">
+                    <p class="paragraph-step-5">Para no perder exposición, asegúrate de que la primera foto tenga
+                        fondo
+                        blanco puro creado
+                        con un editor de fotos.</p>
+                </div>
 
-                <input class="button-register" type="submit" value="Registrarse">
+                <div class="input-img">
+                    <label for=""
+                        class="area-register-img <%= locals.errors && errors.image ? 'register-label-avatar' : null %>">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                        <label for="foto" class="custom-file-input custom-register form-dropArea-imgs-singUp">
+                            <input type="file"id="image" name="image" accept="image/*">
+                        </label> 
+                    </label>
+                    <% if (locals.errors && errors.image) { %>
+                    <span class="errorsLoginMsg"><%= errors.image %> </span>
+                    <% } %>
+
+                </div>
+            </section>
+        
+        <input class="button-register" type="submit" value="Registrarse">
 
                 <div class="text-account-register-wrapper">
                     <a class="text-account-register" href="/user/login">¿Ya tienes una cuenta?</a>
