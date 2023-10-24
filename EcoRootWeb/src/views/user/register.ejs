@@ -98,7 +98,9 @@
                     </select>
                     <ul class="errorsLoginMsg error-country"></ul>
                     <% if (locals.errors && errors.country) { %>
-                    <span class="errorsLoginMsg"><%= errors.country %> </span>
+                        <ul>
+                            <li class="errorsLoginMsg"><%= errors.country %> </li>
+                         </ul>
                     <% } %>
                 </div>
 
@@ -107,6 +109,7 @@
                     <label for="city">Ciudad:</label>
                     <input value="<%= locals.dataOld && dataOld.city ? dataOld.city : null %>" type="text" id="city"
                         name="city" class="<%= locals.errors && errors.city ? 'login-input-invalid' : null %>">
+                        <ul class="errorsLoginMsg error-city"></ul>
                     <% if (locals.errors && errors.city) { %>
                     <span class="errorsLoginMsg"><%= errors.city %> </span>
                     <% } %>
@@ -117,6 +120,7 @@
                     <input value="<%= locals.dataOld && dataOld.address ? dataOld.address : null %>" type="text"
                         id="address" name="address"
                         class="<%= locals.errors && errors.address ? 'login-input-invalid' : null %>">
+                        <ul class="errorsLoginMsg error-address"></ul>
                     <% if (locals.errors && errors.address) { %>
                     <span class="errorsLoginMsg"><%= errors.address %> </span>
                     <% } %>
@@ -131,6 +135,7 @@
                     <input type="date" id="birthDate" name="birthDate"
                     class="<%= locals.errors && errors.birthDate ? "birthDate-input-Errors" : null %>"
                     value="<%= locals.dataOld && dataOld.birthDate ? dataOld.birthDate : null %>">
+                    <ul class="errorsLoginMsg error-birth-date"></ul>
                     <% if (locals.errors && errors.birthDate) { %>
                     <span class="errorsLoginMsg"><%= errors.birthDate %> </span>
                     <% } %>
@@ -144,6 +149,7 @@
                         <option value="male" <%= locals.dataOld && (dataOld.gender === 'male') ? 'selected' : null %>>Masculino</option>
                         <option value="female" <%= locals.dataOld && (dataOld.gender === 'female') ? 'selected' : null %>>Femenino</option>
                     </select>
+                    <ul class="errorsLoginMsg error-gender"></ul>
                     <% if (locals.errors && errors.gender) { %>
                     <span class="errorsLoginMsg"><%= errors.gender %> </span>
                     <% } %>
@@ -162,13 +168,14 @@
                 </div>
 
                 <div class="input-img">
-                    <label for=""
+                    <label for="image"
                         class="area-register-img <%= locals.errors && errors.image ? 'register-label-avatar' : null %>">
                         <i class="fa-solid fa-user-astronaut"></i>
-                        <label for="foto" class="custom-file-input custom-register form-dropArea-imgs-singUp">
+                        <label for="image" class="custom-file-input custom-register form-dropArea-imgs-singUp">
                             <input type="file"id="image" name="image" accept="image/*">
                         </label> 
                     </label>
+                    <ul class="errorsLoginMsg error-avatar"></ul>
                     <% if (locals.errors && errors.image) { %>
                     <span class="errorsLoginMsg"><%= errors.image %> </span>
                     <% } %>

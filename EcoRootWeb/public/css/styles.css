@@ -86,9 +86,6 @@ body {
 
 }
 
-
-
-
 .shop-icon {
   display: flex;
   align-items: center;
@@ -986,25 +983,27 @@ footer {
 
 .buttons-detail-container {
   display: flex;
-  padding-right: 1.25rem;
+  padding: 20px;
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
   align-self: stretch;
+  background-image: linear-gradient(45deg, rgb(158, 134, 90), rgba(231, 179, 24, 0.5));
+  border-radius: 10px;
+  box-shadow: 1px 3px 20px 0px #000000; 
 }
 
 .button-selector-detail span {
   font-size: 13px;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
-.buttons-detail-container .button-detail-2 {
-  border: #9fa955 solid 1px;
-}
 
 .buttons-detail-container .button-detail-2 button {
   background-color: #2b3c09;
   border-radius: 0;
+  padding: 0 10px;
 }
 
 .button-selector-detail {
@@ -1040,7 +1039,7 @@ footer {
 }
 
 .button-cart-add-detail {
-  width: 90%;
+  width: 60%;
   display: flex;
   height: 3.25rem;
   flex-direction: row-reverse;
@@ -1063,7 +1062,7 @@ footer {
   border: none;
   color: var(--color-primario, #EDF4DA);
   font-family: Rubik;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 120%;
@@ -1214,6 +1213,25 @@ footer {
 /* PRODUCT-DETAIL */
 
 
+/* LOGIN */
+
+.img-login {
+  width: 40%;
+  padding-right: 20px;
+  height: 450px;
+  display: none;
+}
+
+.img-login img {
+  width: 100%;
+  height: 100%;
+  border-top-right-radius:  40px;
+  border-bottom-right-radius:  40px;
+  box-shadow: 1px 4px 15px 0px black;
+
+}
+
+
 /* ----------------- */
 
 
@@ -1225,9 +1243,12 @@ footer {
 }
 
 
-.body-register-user {
+.body-register-user, .body-login-user {
   background-image: linear-gradient(45deg, #b9cf7d ,#4e6430);
 }
+
+
+
 
 .main-register h1 {
   display: grid;
@@ -1255,7 +1276,22 @@ footer {
   box-shadow: 2px 2px 10px 0px rgb(88, 99, 75);
 }
 
-.form-register .input-register {
+
+.form-login {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.3125rem;
+  width: 100%;
+  height: 50%;
+  background-image: linear-gradient(45deg, #6d873e, #506328);
+  box-shadow: 2px 2px 10px 0px rgb(88, 99, 75);
+}
+
+
+
+.form-register .input-register, .form-login .input-login {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1331,7 +1367,7 @@ footer {
 
 
 
-.form-register .input-register input {
+.form-register .input-register input, .form-login  .input-login input {
   display: flex;
   height: 2.375rem;
   padding: 0rem 0.625rem;
@@ -1349,7 +1385,7 @@ footer {
 }
 
 
-.form-register .input-register .login-input-invalid {
+.form-register .input-register .login-input-invalid, .form-login  .input-login .login-input-invalid {
   border-bottom: 1px solid #d00000;
   background-image: url('../img/validations/Icon-validation-Error.svg');
   background-size: 20px 20px;
@@ -1359,7 +1395,8 @@ footer {
 
 
 .form-register .input-register label,
-.form-register-img label {
+.form-register-img label,
+.form-login  .input-login label {
   color: #d0e1b5;
   font-size: 0.875rem;
   font-weight: 700;
@@ -1504,17 +1541,6 @@ footer {
 
 
 
-/* .input-passw-register {
-  position: relative;
-} */
-
-/* .view-none {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-} */
 
 /* REGISTER */
 
@@ -1682,6 +1708,15 @@ footer {
   .card-val {
     padding-bottom: 30px;
   }
+/* 
+  LOGIN */
+
+
+  .form-login {
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
 
 
   /* REGISTER */
@@ -1867,17 +1902,27 @@ footer {
 
   .content-register-wrapper {
     display: flex;
-    padding: 40px 0;
+    margin: 5% 0;
   }
 
   .content-login-wrapper {
     height: 500px;
   }
 
+  .img-login {
+    display: flex;
+  }
+  
+  .form-login {
+    width: 50%;
+    height: 540px;
+  }
 
-  .form-register {
+  .form-register{
     width: 50%;
   }
+
+
 
 
 
@@ -1950,6 +1995,9 @@ footer {
 .color-detail-text {
   font-size: 14px;
   font-weight: 700;
+  color: var(--color-primario, #EDF4DA);
+  text-transform: uppercase;
+  
 }
 
 /*PRODUCT CART*/

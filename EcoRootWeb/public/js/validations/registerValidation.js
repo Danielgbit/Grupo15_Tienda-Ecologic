@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
     const username = document.querySelector('#username');
     const email = document.querySelector('#email');
     const password = document.querySelector('#password');
-    const image = document.querySelector('#image');
+    const avatar = document.querySelector('#image');
     const buttonSubmit = document.querySelector('.button-register');
 
     //Content ErrorsView
@@ -16,16 +16,19 @@ window.addEventListener('load', () => {
     const errorEmail = document.querySelector('.error-email');
     const errorPassword = document.querySelector('.error-password');
     const errorCountry = document.querySelector('.error-country');
+    const errorCity = document.querySelector('.error-city');
+    const errorAddress = document.querySelector('.error-address');
+    const errorBirthDate = document.querySelector('.error-birth-date');
+    const errorGender = document.querySelector('.error-gender');
+    const errorAvatar = document.querySelector('.error-avatar');
 
 
 
     //Level security Password
-    const errorPasswordContent = document.createElement('li');
     const contentSecurityLevel = document.querySelector('.security-level');
     const textSecurityPassword = document.querySelector('.text-security-password');
 
     contentSecurityLevel.classList.remove('security-level');
-
 
     password.addEventListener('input', (e) => {
 
@@ -45,20 +48,49 @@ window.addEventListener('load', () => {
             contentSecurityLevel.style.width = '50px'
         };
 
-        if ((/[A-Z]/.test(e.target.value) && e.target.value.length > 6) && /\d/.test(e.target.value)){
+        if ((/[A-Z]/.test(e.target.value) && e.target.value.length > 6) && /\d/.test(e.target.value)) {
             textSecurityPassword.textContent = 'Nivel: Aceptable'
             contentSecurityLevel.style.width = '90px'
         };
 
-        if ((/[A-Z]/.test(e.target.value) && /[\W_]/.test(e.target.value))  && e.target.value.length > 10) {
+        if ((/[A-Z]/.test(e.target.value) && /[\W_]/.test(e.target.value)) && e.target.value.length > 10) {
             textSecurityPassword.textContent = 'Nivel: Segura'
             contentSecurityLevel.style.width = '150px'
         };
 
-        if(e.target.value.length > 0){
-            errorPasswordContent.textContent = ''
+        if (e.target.value.length > 0) {
+            errorPassword.textContent = '';
         }
 
+
+
+    });
+
+    first_name.addEventListener('input', (e) => {
+
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
+
+        if (specialCharacters.test(e.target.value)) {
+            const errorContent = document.createElement('li');
+            errorContent.textContent = 'No puedes agregar caracteres especiales';
+            errorFirstName.appendChild(errorContent);
+        };
+    })
+
+    avatar.addEventListener('change', (e) => {
+
+        const errorContent = document.createElement('li');
+        const file = e.target.files[0];
+
+        if (file) {
+            // Verifica si el tipo de archivo es una imagen en formato JPG o PNG
+            if ((file.type === "image/jpeg" || file.type === "image/png") || (file.type === "image/gif" || file.type === "image/jpg")) {
+                errorAvatar.textContent = '';
+            }else {
+                errorContent.textContent = 'El archivo no es una imagen en formato válido (GIF, JPG, PNG o JPEG)';
+                errorAvatar.appendChild(errorContent);
+            }
+          };
     });
 
 
@@ -66,52 +98,50 @@ window.addEventListener('load', () => {
     const errors = {};
 
     //Regular expressions perzonalizada
-    const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 
 
     const validateFirstName = (firstName) => {
 
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 
         if (firstName.value.length < 4 && firstName.value.length > 0) {
             if (!errors.first_name) {
                 errors.first_name = [];
-            }
+            };
             errors.first_name.push('el nombre debe tener minimo 4 caracteres');
         };
 
         if (firstName.value.length <= 0) {
             if (!errors.first_name) {
                 errors.first_name = [];
-            }
+            };
             errors.first_name.push('debes completar este campo');
         };
         if (firstName.value.length > 20) {
             if (!errors.first_name) {
                 errors.first_name = [];
-            }
+            };
             errors.first_name.push('el nombre es demasiado largo');
         };
         if (specialCharacters.test(firstName.value)) {
             if (!errors.first_name) {
                 errors.first_name = [];
-            }
+            };
             errors.first_name.push('El nombre no debe contener caracteres especiales @-/_+$');
         };
 
-        if (errors.first_name.length) {
-            errorFirstName.textContent = '';
-
+        if (errors.first_name.length > 0) {
             errors.first_name.forEach((error) => {
                 const errorContent = document.createElement('li');
-
                 errorContent.textContent = error;
-
                 errorFirstName.appendChild(errorContent);
             })
         }
     };
 
     const validateLastName = (lastName) => {
+
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 
 
         if (lastName.value.length < 4 && lastName.value.length > 0) {
@@ -140,9 +170,7 @@ window.addEventListener('load', () => {
         }
 
 
-        if (errors.last_name.length) {
-            errorLastName.textContent = '';
-
+        if (errors.last_name.length > 0) {
             errors.last_name.forEach((error) => {
                 const errorContent = document.createElement('li');
                 errorContent.textContent = error;
@@ -152,6 +180,8 @@ window.addEventListener('load', () => {
     };
 
     const validateUserName = (userName) => {
+
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 
 
         if (userName.value.length < 3 && userName.value.length > 0) {
@@ -180,14 +210,10 @@ window.addEventListener('load', () => {
         }
 
 
-        if (errors.username.length) {
-            errorUserName.textContent = '';
-
+        if (errors.username.length > 0) {
             errors.username.forEach((error) => {
                 const errorContent = document.createElement('li');
-
                 errorContent.textContent = error;
-
                 errorUserName.appendChild(errorContent);
             })
         }
@@ -204,11 +230,11 @@ window.addEventListener('load', () => {
             errors.email.push('el email debe tener el siguiente formato user@dominio.com');
         };
 
-        if (email.value.length < 4 && email.value.length > 0) {
+        if (email.value.length < 10 && email.value.length > 0) {
             if (!errors.email) {
                 errors.email = [];
             }
-            errors.email.push('el email debe tener almenos 4 caracteres');
+            errors.email.push('el email debe tener almenos 10 caracteres');
         };
         if (email.value.length > 20) {
             if (!errors.email) {
@@ -223,9 +249,7 @@ window.addEventListener('load', () => {
             errors.email.push('debes completar este campo');
         };
 
-        if (errors.email.length >= 0) {
-            errorEmail.textContent = '';
-
+        if (errors.email.length > 0) {
             errors.email.forEach((error) => {
                 const errorContent = document.createElement('li');
                 errorContent.textContent = error;
@@ -264,14 +288,15 @@ window.addEventListener('load', () => {
             errors.password.push('debes completar este campo');
         };
 
-        if (errors.password.length >= 0) {
-            errorPassword.textContent = '';
-
+        if (errors.password.length > 0) {
             errors.password.forEach((error) => {
-                errorPasswordContent.textContent = error;
+                const errorContent = document.createElement('li');
+                errorContent.textContent = error;
                 errorPassword.appendChild(errorContent);
             });
-        }
+
+        };
+
 
     };
 
@@ -284,9 +309,7 @@ window.addEventListener('load', () => {
             errors.country.push('debes completar este campo');
         };
 
-        if (errors.country.length >= 0) {
-            errorPassword.textContent = '';
-
+        if (errors.country.length > 0) {
             errors.country.forEach((error) => {
                 const errorContent = document.createElement('li');
                 errorContent.textContent = error;
@@ -294,26 +317,204 @@ window.addEventListener('load', () => {
             });
         }
 
-    }
+    };
+
+    const validateCity = (city) => {
 
 
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 
 
+        if (city.value.length === 0) {
+            if (!errors.city) {
+                errors.city = [];
+            }
+            errors.city.push('debes completar este campo');
+        };
+
+        if (city.value.length < 4 && city.value.length > 0) {
+            if (!errors.city) {
+                errors.city = [];
+            }
+            errors.city.push('el nombre de usuario debe tener minimo 4 caracteres');
+        };
+        if (city.value.length > 15) {
+            if (!errors.city) {
+                errors.city = [];
+            }
+            errors.city.push('el nombre de usuario no puede sobrepasar los 15 caracteres');
+        };
+
+        if ((specialCharacters.test(city.value) || !/^[^0-9]+$/.test(city.value)) && city.value.length > 0) {
+            if (!errors.city) {
+                errors.city = [];
+            }
+            errors.city.push('No debe contener numeros o caracteres especiales @-/_+$');
+        };
 
 
+        if (errors.city.length > 0) {
+            errors.city.forEach((error) => {
+                const errorContent = document.createElement('li');
+                errorContent.textContent = error;
+                errorCity.appendChild(errorContent);
+            });
+        }
 
+    };
+
+    const validateAddress = (address) => {
+
+        const regex = /^(?=.*\d)(?=.*#)(?=.*[a-zA-Z]).+$/;
+
+        if (address.value.length === 0) {
+            if (!errors.address) {
+                errors.address = [];
+            }
+            errors.address.push('debes completar este campo');
+        };
+
+        if (address.value.length < 5 && address.value.length > 0) {
+            if (!errors.address) {
+                errors.address = [];
+            }
+            errors.address.push('el nombre de usuario debe tener minimo 5 caracteres');
+        };
+        if (address.value.length > 30) {
+            if (!errors.address) {
+                errors.address = [];
+            }
+            errors.address.push('el nombre de usuario no puede sobrepasar los 30 caracteres');
+        };
+        if ((!regex.test(address.value) && address.value.length > 3)) {
+            errors.address.push('La direccion debe contener almenos un # y un numero de domicilio.');
+        }
+
+
+        if (errors.address.length > 0) {
+            errors.address.forEach((error) => {
+                const errorContent = document.createElement('li');
+                errorContent.textContent = error;
+                errorAddress.appendChild(errorContent);
+            });
+        }
+
+    };
+
+    const validateBirthDate = (birthDate) => {
+
+
+        if (new Date(birthDate.value) > new Date()) {
+            if (!errors.birthDate) {
+                errors.birthDate = [];
+            }
+            errors.birthDate.push('La fecha de nacimiento no puede ser posterior a la fecha actual');
+        };
+        if (birthDate.value.length === 0) {
+            if (!errors.birthDate) {
+                errors.birthDate = [];
+            }
+            errors.birthDate.push('debes completar este campo');
+        };
+        if (errors.birthDate.length > 0) {
+            errors.birthDate.forEach((error) => {
+                const errorContent = document.createElement('li');
+                errorContent.textContent = error;
+                errorBirthDate.appendChild(errorContent);
+            });
+        }
+
+    };
+
+    const validateGender = (gender) => {
+
+
+        if (gender.value.length === 0) {
+            if (!errors.gender) {
+                errors.gender = [];
+            }
+            errors.gender.push('debes completar este campo');
+        };
+
+        if (errors.gender.length > 0) {
+            errors.gender.forEach((error) => {
+                const errorContent = document.createElement('li');
+                errorContent.textContent = error;
+                errorGender.appendChild(errorContent);
+            });
+        }
+
+    };
+
+    const validateAvatar = (avatar) => {
+
+        if (avatar.files.length > 0) {
+          const file = avatar.files[0];
+      
+          if (file) {
+            if ((file.type === "image/jpeg" || file.type === "image/png") || (file.type === "image/gif" || file.type === "image/jpg")) {
+                console.log('el archivo de imagen es valido');
+            }else {               
+                if (!errors.avatar) {
+                    errors.avatar = [];
+                }
+                errors.avatar.push('El archivo no es una imagen en formato válido (GIF, JPG, PNG o JPEG)');
+            }
+          }
+        
+        }
+
+        if (avatar.value.length === 0) {
+            if (!errors.avatar) {
+                errors.avatar = [];
+            }
+            errors.avatar.push('Agrega una imagen');
+        };
+
+        if (errors.avatar.length > 0) {
+            errors.avatar.forEach((error) => {
+                const errorContent = document.createElement('li');
+                errorContent.textContent = error;
+                errorAvatar.appendChild(errorContent);
+            });
+        }
+        
+    };
+
+    
     form.addEventListener('submit', (e) => {
-
+        
         e.preventDefault();
-
+        
+        
         //Reinicio errors
+        errors.country = [];
+        errors.email = [];
         errors.first_name = [];
         errors.last_name = [];
-        errors.username = [];
-        errors.email = [];
         errors.password = [];
-        errors.country = [];
+        errors.username = [];
+        errors.city = [];
+        errors.address = [];
+        errors.birthDate = [];
+        errors.gender = [];
+        errors.avatar = [];
 
+        
+        
+        errorFirstName.textContent = '';
+        errorLastName.textContent = '';
+        errorUserName.textContent = '';
+        errorEmail.textContent = '';
+        errorPassword.textContent = '';
+        errorCountry.textContent = '';
+        errorCity.textContent = '';
+        errorAddress.textContent = '';
+        errorBirthDate.textContent = '';
+        errorGender.textContent = '';
+        errorAvatar.textContent = '';
+        
+        
 
         //Functions validations
         validateFirstName(e.target.first_name);
@@ -322,8 +523,22 @@ window.addEventListener('load', () => {
         validateEmail(e.target.email);
         validatePassword(e.target.password);
         validateCountry(e.target.country);
+        validateCity(e.target.city);
+        validateAddress(e.target.address);
+        validateBirthDate(e.target.birthDate);
+        validateGender(e.target.gender);
+        validateAvatar(e.target.image);
+        
+        //Verifico si no hay errores
+        const hasNoErrors = Object.values(errors).every(errorArray => errorArray.length === 0);
+    
+        if (hasNoErrors) {
+            form.submit();
+          }
 
 
     })
 
-});
+
+
+    });
