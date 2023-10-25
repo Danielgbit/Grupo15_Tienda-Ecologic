@@ -25,6 +25,7 @@
                     <input type="text" id="email" autocomplete="on" name="email"
                         class="<%= locals.errors && errors.email ? 'login-input-invalid' : null %>"
                         value="<%= locals.dataOld && dataOld.email ? dataOld.email : null %>">
+                        <ul class="errorsLoginMsg error-email"></ul>
                     <% if (locals.errors && errors.email) { %>
                         <span class="errorsLoginMsg"><%= errors.email %> </span>
                     <% } %>
@@ -36,6 +37,7 @@
                         class="input-passw-register <%= locals.errors && errors.password ? 'login-input-invalid' : null %>"
                         type="password" id="password" name="password"
                         value="<%= locals.dataOld && dataOld.password ? dataOld.password : null %>">
+                        <ul class="errorsLoginMsg error-password"></ul>
                     <% if (locals.errors && errors.password) { %>
                     <span class="errorsLoginMsg"><%= errors.password %> </span>
                     <% } %>
@@ -58,7 +60,7 @@
     </main>
 
     <!-- <%- include('../partials/footer.ejs') %> -->
-
+    <script src="/js/validations/loginValidation.js" ></script>
 </body>
 
 </html>

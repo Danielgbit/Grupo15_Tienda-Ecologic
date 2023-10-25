@@ -3,7 +3,7 @@
 
 <%- include('../partials/head.ejs') %>
 
-<body id="body-create-category">
+<body id="create-product-body">
 
     <%- include('../partials/header.ejs') %>
 
@@ -22,6 +22,7 @@
                     <span class="text-title <%= locals.errors && errors.category ? "is-invalid" : null %>">¡Hola! Antes
                         que nada cuéntanos, ¿qué vas a publicar?</span>
                         <span class="text-step">Paso 1 de 6</span>
+                        <ul class="errors-createP-front error-category"></ul>
                         <% if (locals.errors && errors.category) { %>
                             <span class="errorsCreateProduct"><%= errors.category %> </span>
                             <% } %>
@@ -40,7 +41,6 @@
         </article>
 
 
-            <!-- --------------------------------------------- -->
 
             <section class="container-information-form">
 
@@ -55,18 +55,19 @@
                     <section class="section-1-information">
 
                         <div class="input-information-container">
-                            <label for="nombre">Nombre del Producto:</label>
-                            <input type="text" id="nombre"
+                            <label for="name">Nombre del Producto:</label>
+                            <input type="text" id="name"
                                 value="<%= locals.formDataOld && formDataOld.name ? formDataOld.name : null %>"
                                 name="name" class="<%= locals.errors && errors.name ? "is-invalid" : null %>">
+                                <ul class="errors-createP-front error-name"></ul>
                             <% if (locals.errors && errors.name) { %>
                             <span class="errorsCreateProduct"><%= errors.name %> </span>
                             <% } %>
                         </div>
 
                         <div class="input-information-container input-register">
-                            <label for="marca">Marca:</label>
-                            <select id="marca" name="brand" class=" countries-select <%= locals.errors && errors.brand ? "is-invalid" : null %>">
+                            <label for="brand">Marca:</label>
+                            <select id="brand" name="brand" class=" countries-select <%= locals.errors && errors.brand ? "is-invalid" : null %>">
                                 <option value="">Selecciona una marca</option>
                                 <% for (const brand of brands) { %>
                                     <option value="<%= brand.brand_id %>"
@@ -76,6 +77,7 @@
                                     ><%= brand.brand_name %></option>
                                 <% } %>
                             </select>
+                            <ul class="errors-createP-front error-brand"></ul>
                             <% if (locals.errors && errors.brand) { %>
                                 <span class="errorsCreateProduct"><%= errors.brand %> </span>
                             <% } %>
@@ -94,6 +96,7 @@
                                     ><%= color.color_name %></option>
                                 <% } %>
                             </select>
+                            <ul class="errors-createP-front error-color"></ul>
                             <% if (locals.errors && errors.color) { %>
                                 <span class="errorsCreateProduct"><%= errors.color %> </span>
                             <% } %>
@@ -104,21 +107,23 @@
 
                     <section class="section-2-information">
                         <div class="input-information-container">
-                            <label for="unidades">Unidades:</label>
-                            <input type="number" id="unidades"
+                            <label for="united">Unidades:</label>
+                            <input type="number" id="united"
                                 value="<%= locals.formDataOld && formDataOld.united ? formDataOld.united : null %>"
                                 name="united" class="<%= locals.errors && errors.united ? "is-invalid" : null %>">
+                            <ul class="errors-createP-front error-united"></ul>
                             <% if (locals.errors && errors.united) { %>
                             <span class="errorsCreateProduct"><%= errors.united %> </span>
                             <% } %>
                         </div>
 
                         <div class="input-information-container">
-                            <label for="discuount">Descuento</label>
-                            <input type="number" id="discuount"
+                            <label for="discount">Descuento</label>
+                            <input type="number" id="discount"
                                 value="<%= locals.formDataOld && formDataOld.discount ? formDataOld.discount : null %>"
                                 name="discount" placeholder="%"
                                 class="<%= locals.errors && errors.discount ? "is-invalid" : null %>">
+                                <ul class="errors-createP-front error-discount"></ul>
                             <% if (locals.errors && errors.discount) { %>
                             <span class="errorsCreateProduct"><%= errors.discount %> </span>
                             <% } %>
@@ -132,6 +137,7 @@
                                     name="material"
                                     class="<%= locals.errors && errors.material ? "is-invalid" : null %>">
                             </div>
+                            <ul class="errors-createP-front error-material"></ul>
                             <% if (locals.errors && errors.material) { %>
                             <span class="errorsCreateProduct"><%= errors.material %> </span>
                             <% } %>
@@ -143,7 +149,6 @@
             </section>
 
 
-            <!-- --------------------------------------------- -->
 
 
             <article class="form-condition-items-wrapper">
@@ -171,7 +176,7 @@
                             <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
                         </label>
                     </div>
-
+                    <ul class="errors-createP-front error-state"></ul>
                     <% if (locals.errors && errors.state) { %>
                         <span class="errorsCreateProduct"><%= errors.state %> </span>
                     <% } %>
@@ -192,16 +197,17 @@
                             con un editor de fotos.</p>
                     </div>
 
-                    <label for="foto"
+                    <label for="image"
                         class="form-dropArea-imgs <%= locals.errors && errors.image ? "inputImage-Error" : null %>">
                         <i class="fa-solid fa-camera"></i>
-                        <label for="foto" class="custom-file-input">
-                            <input type="file" id="foto" name="image" accept="image/*">
+                        <label for="image" class="custom-file-input">
+                            <input type="file" id="image" name="image" accept="image/*">
                         </label>
-                        <% if (locals.errors && errors.image) { %>
-                        <span class="errorsCreateProduct"><%= errors.image%> </span>
-                        <% } %>
                     </label>
+                    <ul class="errors-createP-front error-image"></ul>
+                    <% if (locals.errors && errors.image) { %>
+                    <span class="errorsCreateProduct"><%= errors.image%> </span>
+                    <% } %>
                 </section>
 
 
@@ -226,10 +232,11 @@
                     <section>
 
                         <div class="description-container">
-                            <textarea id="descripcion" name="description" rows="4" cols="50"
+                            <textarea id="descripcion" name="description" maxlength="400" rows="4" cols="50"
                                 class="description-box <%= locals.errors && errors.description ? "textArea-Description-Error" : null %>"><%= locals.formDataOld && formDataOld.description ? formDataOld.description : null %></textarea>
                         </div>
                         <div class="div-msg-description-Error">
+                            <ul class="errors-createP-front error-description"></ul>
                             <% if (locals.errors && errors.description) { %>
                             <span class="errorsCreateProduct"><%= errors.description%>
                             </span>
@@ -249,11 +256,12 @@
                     <div class="form-image-price">
 
                         <div class="input-information-container">
-                            <label for="precio" class="priceText">¿Cuál es el precio?</label>
+                            <label for="price" class="priceText">¿Cuál es el precio?</label>
                             <input type="number"
                                 value="<%= locals.formDataOld && formDataOld.price ? formDataOld.price : null %>"
-                                id="precio" name="price" min="0" step="0.01" placeholder="$"
+                                id="price" name="price" min="0" step="0.01" placeholder="$"
                                 class="<%= locals.errors && errors.price ? "is-invalid" : null %>">
+                            <ul class="errors-createP-front error-price"></ul>
                             <% if (locals.errors && errors.price) { %>
                             <span class="errorsCreateProduct"><%= errors.price%> </span>
                             <% } %>
@@ -264,8 +272,7 @@
 
 
             <div class="buttons-submit-step-5-6">
-                <button type="submit" id="submit" class="submit-create-form-container">
-                    <i class="fa-solid fa-plus"></i>
+                <button type="submit" id="submit" class="submit-create-form-container"> Crear producto
                 </button>
             </div>
         </form>
@@ -273,7 +280,7 @@
 
 
     </main>
-
+    <script src="/js/validations/createProductValidation.js"></script>
 </body>
 
 </html>
