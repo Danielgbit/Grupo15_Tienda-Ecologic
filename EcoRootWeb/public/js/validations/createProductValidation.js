@@ -41,11 +41,11 @@ window.addEventListener('load', () => {
             errorName.textContent = '';
         };
 
-        if (specialCharacters.test(name.value)) {
+        if (specialCharacters.test(e.target.value)) {
             errorName.textContent = '';
             errorContent.textContent = 'El nombre de producto no contener caracteres especiales @-/_+$';
             errorName.appendChild(errorContent);
-        } else if (name.value.length > 30) {
+        } else if (e.target.value.length > 30) {
             errorName.textContent = '';
             errorContent.textContent = 'El nombre no puede sobrepasar los 30 caracteres';
             errorName.appendChild(errorContent);
@@ -55,29 +55,117 @@ window.addEventListener('load', () => {
 
     united.addEventListener('input', (e) => {
 
-        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
         const errorContent = document.createElement('li');
 
 
-        if (united.value.length > 3) {
+        if (e.target.value.length > 3) {
             errorUnited.textContent = '';
-            errorContent.textContent = 'No puede sobrepasar los 3 digitos - por normas de la empresa';
+            errorContent.textContent = 'Ingresa como maximo 3 digitos';
             errorUnited.appendChild(errorContent);
         } else {
             errorUnited.textContent = '';
         };
 
-        if (specialCharacters.test(name.value)) {
-            errorUnited.textContent = '';
-            errorContent.textContent = 'Solo puede contener numeros';
-            errorUnited.appendChild(errorContent);
-        } else if (name.value.length > 30) {
-            errorUnited.textContent = '';
-            errorContent.textContent = 'El nombre no puede sobrepasar los 30 caracteres';
-            errorUnited.appendChild(errorContent);
+    });
+
+    discount.addEventListener('input', (e) => {
+
+        const errorContent = document.createElement('li');
+
+
+        if (e.target.value.length > 2) {
+            errorDiscount.textContent = '';
+            errorContent.textContent = 'Ingresa maximo 2 digitos Ej: 30%';
+            errorDiscount.appendChild(errorContent);
+        } else {
+            errorDiscount.textContent = '';
         };
 
     });
+
+    material.addEventListener('input', (e) => {
+
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
+        const errorContent = document.createElement('li');
+
+        if (e.target.value.length < 4 && e.target.value.length > 0) {
+            errorMaterial.textContent = '';
+            errorContent.textContent = 'Debe tener minimo 4 caracteres';
+            errorMaterial.appendChild(errorContent);
+        } else {
+            errorMaterial.textContent = '';
+        };
+
+        if (specialCharacters.test(e.target.value)) {
+            errorMaterial.textContent = '';
+            errorContent.textContent = 'No puede contener caracteres especiales @-/_+$';
+            errorMaterial.appendChild(errorContent);
+        } else if (e.target.value.length > 10) {
+            errorMaterial.textContent = '';
+            errorContent.textContent = 'No puedes sobrepasar los 10 caracteres';
+            errorMaterial.appendChild(errorContent);
+        };
+
+    });
+
+    image.addEventListener('input', (e) => {
+
+
+        const errorContent = document.createElement('li');
+        const file = e.target.files[0];
+
+        if (file) {
+            // Verifica si el tipo de archivo es una imagen en formato JPG o PNG
+            if ((file.type === "image/jpeg" || file.type === "image/png") || (file.type === "image/gif" || file.type === "image/jpg")) {
+                errorImage.textContent = '';
+            } else {
+                errorContent.textContent = 'El archivo no es una imagen en formato válido (GIF, JPG, PNG o JPEG)';
+                errorImage.appendChild(errorContent);
+            }
+        };
+    });
+
+    descripcion.addEventListener('input', (e) => {
+
+        const alphanumeric = /^[0-9a-zA-Z]+$/;
+        const errorContent = document.createElement('li');
+
+        if (e.target.value.length < 190 && e.target.value.length > 0) {
+            errorDescription.textContent = '';
+            errorContent.textContent = 'La descripcion es demasiado corta';
+            errorDescription.appendChild(errorContent);
+        } else {
+            errorDescription.textContent = '';
+        };
+
+        if (!alphanumeric.test(e.target.value) && e.target.value.length > 0) {
+            errorDescription.textContent = '';
+            errorContent.textContent = 'La cadena no puede caracteres especiales @-/_+$ solo "numero y letras"';
+            errorDescription.appendChild(errorContent);
+        } else if (e.target.value.length >= 400) {
+            errorDescription.textContent = '';
+            errorContent.textContent = 'La descripcion no puede sobrepasar los 400 caracteres';
+            errorDescription.appendChild(errorContent);
+        };
+    });
+
+    price.addEventListener('input', (e) => {
+
+        const errorContent = document.createElement('li');
+
+        if (e.target.value.length > 3) {
+            errorPrice.textContent = '';
+            errorContent.textContent = 'El valor del producto es demasiado alto';
+            errorPrice.appendChild(errorContent);
+        } else {
+            errorPrice.textContent = '';
+        };
+
+    });
+
+
+
+
 
     const validateCategory = (category) => {
 
@@ -239,7 +327,7 @@ window.addEventListener('load', () => {
 
     };
 
-    const validateMaterial = (material) => {
+    const validateMaterial = (material) => { 
 
         const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 

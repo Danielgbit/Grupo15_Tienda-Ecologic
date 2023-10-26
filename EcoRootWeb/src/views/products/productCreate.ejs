@@ -17,28 +17,28 @@
         <form class="form-create-1" action="/products" method="post" enctype="multipart/form-data">
 
             <article class="container-cards-category">
-                
+
                 <div class="condition-text-header">
                     <span class="text-title <%= locals.errors && errors.category ? "is-invalid" : null %>">¡Hola! Antes
                         que nada cuéntanos, ¿qué vas a publicar?</span>
-                        <span class="text-step">Paso 1 de 6</span>
-                        <ul class="errors-createP-front error-category"></ul>
-                        <% if (locals.errors && errors.category) { %>
-                            <span class="errorsCreateProduct"><%= errors.category %> </span>
-                            <% } %>
-                        </div>
-                        
-            <% locals.category.forEach((category) => { %>
-                    <label class="categoryCards">
-                        <input type="radio" name="category" value="<%= category.category_id %>" class="radio-input"
-                            <%= locals.formDataOld && formDataOld.category === 'Cuidado personal' ? 'checked=checked' : null %>>
-                        <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
-                        <img src="/img/categories/<%= category.image %>" alt="">
-                        <span><%= category.category_name %></span>
-                    </label>
-            <% }); %>
-            
-        </article>
+                    <span class="text-step">Paso 1 de 6</span>
+                    <ul class="errors-createP-front error-category"></ul>
+                    <% if (locals.errors && errors.category) { %>
+                    <span class="errorsCreateProduct"><%= errors.category %> </span>
+                    <% } %>
+                </div>
+
+                <% locals.category.forEach((category) => { %>
+                <label class="categoryCards">
+                    <input type="radio" name="category" value="<%= category.category_id %>" class="radio-input"
+                        <%= locals.formDataOld && formDataOld.category === 'Cuidado personal' ? 'checked=checked' : null %>>
+                    <span class="custom-radio"><i class="fa-regular fa-circle-check"></i></span>
+                    <img src="/img/categories/<%= category.image %>" alt="">
+                    <span><%= category.category_name %></span>
+                </label>
+                <% }); %>
+
+            </article>
 
 
 
@@ -59,7 +59,7 @@
                             <input type="text" id="name"
                                 value="<%= locals.formDataOld && formDataOld.name ? formDataOld.name : null %>"
                                 name="name" class="<%= locals.errors && errors.name ? "is-invalid" : null %>">
-                                <ul class="errors-createP-front error-name"></ul>
+                            <ul class="errors-createP-front error-name"></ul>
                             <% if (locals.errors && errors.name) { %>
                             <span class="errorsCreateProduct"><%= errors.name %> </span>
                             <% } %>
@@ -67,38 +67,36 @@
 
                         <div class="input-information-container input-register">
                             <label for="brand">Marca:</label>
-                            <select id="brand" name="brand" class=" countries-select <%= locals.errors && errors.brand ? "is-invalid" : null %>">
+                            <select id="brand" name="brand"
+                                class=" countries-select <%= locals.errors && errors.brand ? "is-invalid" : null %>">
                                 <option value="">Selecciona una marca</option>
                                 <% for (const brand of brands) { %>
-                                    <option value="<%= brand.brand_id %>"
-                                        <% if (locals.formDataOld && formDataOld.brand == brand.brand_id) { %>
-                                            selected 
-                                        <% } %>
-                                    ><%= brand.brand_name %></option>
+                                <option value="<%= brand.brand_id %>"
+                                    <% if (locals.formDataOld && formDataOld.brand == brand.brand_id) { %> selected
+                                    <% } %>><%= brand.brand_name %></option>
                                 <% } %>
                             </select>
                             <ul class="errors-createP-front error-brand"></ul>
                             <% if (locals.errors && errors.brand) { %>
-                                <span class="errorsCreateProduct"><%= errors.brand %> </span>
+                            <span class="errorsCreateProduct"><%= errors.brand %> </span>
                             <% } %>
                         </div>
-                        
+
 
                         <div class="input-information-container input-register">
                             <label for="color">Color:</label>
-                            <select id="color" name="color" class=" countries-select<%= locals.errors && errors.color ? "is-invalid" : null %>">
+                            <select id="color" name="color"
+                                class=" countries-select<%= locals.errors && errors.color ? "is-invalid" : null %>">
                                 <option value="">Selecciona un color</option>
                                 <% for (const color of colors) { %>
-                                    <option value="<%= color.color_id %>"
-                                        <% if (locals.formDataOld && formDataOld.color == color.color_id) { %>
-                                            selected
-                                        <% } %>
-                                    ><%= color.color_name %></option>
+                                <option value="<%= color.color_id %>"
+                                    <% if (locals.formDataOld && formDataOld.color == color.color_id) { %> selected
+                                    <% } %>><%= color.color_name %></option>
                                 <% } %>
                             </select>
                             <ul class="errors-createP-front error-color"></ul>
                             <% if (locals.errors && errors.color) { %>
-                                <span class="errorsCreateProduct"><%= errors.color %> </span>
+                            <span class="errorsCreateProduct"><%= errors.color %> </span>
                             <% } %>
                         </div>
 
@@ -119,11 +117,11 @@
 
                         <div class="input-information-container">
                             <label for="discount">Descuento</label>
-                            <input type="number" id="discount"
+                            <input type="number" maxlength="2" id="discount"
                                 value="<%= locals.formDataOld && formDataOld.discount ? formDataOld.discount : null %>"
                                 name="discount" placeholder="%"
                                 class="<%= locals.errors && errors.discount ? "is-invalid" : null %>">
-                                <ul class="errors-createP-front error-discount"></ul>
+                            <ul class="errors-createP-front error-discount"></ul>
                             <% if (locals.errors && errors.discount) { %>
                             <span class="errorsCreateProduct"><%= errors.discount %> </span>
                             <% } %>
@@ -170,15 +168,15 @@
                         </label>
 
                         <label class="estado-label">
-                            <input type="radio" name="state" value="Used" class="radio-input-condition" 
-                            <%= locals.formDataOld && formDataOld.state === "Used" ? 'checked=checked' : null %>>
+                            <input type="radio" name="state" value="Used" class="radio-input-condition"
+                                <%= locals.formDataOld && formDataOld.state === "Used" ? 'checked=checked' : null %>>
                             Usado
                             <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
                         </label>
                     </div>
                     <ul class="errors-createP-front error-state"></ul>
                     <% if (locals.errors && errors.state) { %>
-                        <span class="errorsCreateProduct"><%= errors.state %> </span>
+                    <span class="errorsCreateProduct"><%= errors.state %> </span>
                     <% } %>
 
                 </section>

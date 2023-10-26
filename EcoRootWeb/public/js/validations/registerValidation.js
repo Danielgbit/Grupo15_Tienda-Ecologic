@@ -169,32 +169,7 @@ window.addEventListener('load', () => {
 
         if (e.target.value.length > 30) {
             errorEmail.textContent = '';
-            errorContent.textContent = 'el email no puede sobrepasar los 30 caracteres';
-            errorEmail.appendChild(errorContent);
-        } else if (e.target.value.length < 10 && e.target.value.length > 0) {
-            errorEmail.textContent = '';
-            errorContent.textContent = 'El email debe tener almenos 10 caracteres';
-            errorEmail.appendChild(errorContent);
-        };
-    });
-
-    email.addEventListener('input', (e) => {
-
-        const emailRegularExpresion = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-        const errorContent = document.createElement('li');
-
-
-        if (!emailRegularExpresion.test(e.target.value) && e.target.value.length > 0) {
-            errorEmail.textContent = '';
-            errorContent.textContent = 'El email debe tener el siguiente formato user@dominio.com';
-            errorEmail.appendChild(errorContent);
-        } else {
-            errorEmail.textContent = '';
-        };
-
-        if (e.target.value.length > 30) {
-            errorEmail.textContent = '';
-            errorContent.textContent = 'el email no puede sobrepasar los 30 caracteres';
+            errorContent.textContent = 'El email no puede sobrepasar los 30 caracteres';
             errorEmail.appendChild(errorContent);
         } else if (e.target.value.length < 10 && e.target.value.length > 0) {
             errorEmail.textContent = '';
@@ -252,10 +227,6 @@ window.addEventListener('load', () => {
             errorAddress.appendChild(errorContent);
         };
     });
-
-
-
-
 
     avatar.addEventListener('change', (e) => {
 

@@ -3,7 +3,7 @@
 
 <%- include('../partials/head.ejs') %>
 
-<body id="body-create-category">
+<body id="body-edit-product">
 
     <%- include('../partials/header.ejs') %>
 
@@ -15,6 +15,11 @@
 
         <form class="form-create-1" action="/products/<%= product.product_id %>/detail?_method=PUT" method="post">
 
+            
+            <div class="condition-text-header">
+                <span class="text-title <%= locals.errors && errors.category ? "is-invalid" : null %>">¡Hola! cuentanos, ¿qué quieres editar?</span>
+                <ul class="errors-createP-front error-category"></ul>
+            </div>
             <article class="container-cards-category">
 
 
@@ -40,28 +45,31 @@
                     <section class="section-1-information">
 
                         <div class="input-information-container">
-                            <label for="nombre">Nombre del Producto:</label>
-                            <input type="text" id="nombre" name="name" value="<%= product.name %>" required>
+                            <label for="name">Nombre del Producto:</label>
+                            <input type="text" id="name" name="name" value="<%= product.name %>" >
+                            <ul class="errors-createP-front error-name"></ul>
                         </div>
 
 
                         <div class="input-information-container">
-                            <label for="marca">Marca:</label>
-                            <select name="brand" id="">
+                            <label for="brand">Marca:</label>
+                            <select name="brand" id="brand" class="countries-select">
                                 <% for (const brand of brands) { %>
                                     <option value="<%= brand.brand_id %>"><%= brand.brand_name %></option>
                                 <% } %>
                             </select>
+                            <ul class="errors-createP-front error-brand"></ul>
                         </div>
 
 
                         <div class="input-information-container">
                             <label for="color">Color:</label>
-                            <select name="color" id="">
+                            <select name="color" id="color" class="countries-select">
                                 <% for (const color of colors) { %>
                                     <option value="<%= color.color_id %>"><%= color.color_name %></option>
                                 <% } %>
                             </select>
+                            <ul class="errors-createP-front error-color"></ul>
                         </div>
 
 
@@ -70,23 +78,25 @@
 
                     <section class="section-2-information">
                         <div class="input-information-container">
-                            <label for="unidades">Unidades:</label>
-                            <input type="number" id="unidades" name="united" value="<%= product.united %>" required>
+                            <label for="united">Unidades:</label>
+                            <input type="number" id="united" name="united" value="<%= product.united %>">
+                            <ul class="errors-createP-front error-united"></ul>
                         </div>
 
                         <div class="input-information-container">
-                            <label for="discuount">Descuento</label>
-                            <input type="number" id="discuount" name="discount" value="<%= product.discount %>"
-                                placeholder="%" required>
+                            <label for="discount">Descuento</label>
+                            <input type="number" id="discount" name="discount" value="<%= parseInt(product.discount) %>"
+                                placeholder="%" >
+                            <ul class="errors-createP-front error-discount"></ul>
                         </div>
 
                         <div class="input-information-container">
                             <label for="material">Material:</label>
                             <div>
                                 <input type="text" id="material" name="material" value="<%= product.material %>"
-                                    required>
-                                <span class="NaN">N/A</span>
+                                    >
                             </div>
+                            <ul class="errors-createP-front error-material"></ul>
                         </div>
                     </section>
 
@@ -120,7 +130,7 @@
                             <span class="artificial-radio"><i class="fa-regular fa-circle-check"></i></span>
                         </label>
                     </div>
-
+                    <ul class="errors-createP-front error-state"></ul>
                 </section>
 
                 <hr>
@@ -136,15 +146,15 @@
 
                     <div class="container-img-file">
 
-                        <label for="foto" class="form-dropArea-imgs">
+                        <label for="image" class="form-dropArea-imgs">
                             <i class="fa-solid fa-camera-rotate"></i>
-                            <label for="foto" class="custom-file-input custom-view-edit">
-                                <input type="file" id="foto" name="image" accept="image/*">
+                            <label for="image" class="custom-file-input custom-view-edit">
+                                <input type="file" id="image" name="image" accept="image/*">
                             </label>
                         </label>
-
                         <div><img src="/img/products/<%= product.image %>" alt="imagen del producto existente"></div>
                     </div>
+                    <ul class="errors-createP-front error-image"></ul>
                 </section>
 
 
@@ -165,10 +175,10 @@
                     <section>
 
                         <div class="description-container">
-                            <textarea id="descripcion" name="description" rows="4" cols="50" required
+                            <textarea id="descripcion" name="description" rows="4" cols="50" 
                                 class="description-box"><%= product.description %></textarea>
                         </div>
-
+                        <ul class="errors-createP-front error-description"></ul>
                     </section>
                 </section>
 
@@ -181,9 +191,10 @@
                     <div class="form-image-price">
 
                         <div class="input-information-container">
-                            <label for="precio" class="priceText">¿Cuál es el precio?</label>
-                            <input type="number" id="precio" name="price" min="0" step="0.01"
-                                value="<%= product.price %>" required placeholder="$">
+                            <label for="price" class="priceText">¿Cuál es el precio?</label>
+                            <input type="number" id="price" name="price" min="0" step="0.01"
+                                value="<%= parseInt(product.price) %>"  placeholder="$">
+                            <ul class="errors-createP-front error-price"></ul>
                         </div>
                     </div>
                 </section>
@@ -192,15 +203,12 @@
 
             <div class="buttons-submit-step-5-6">
                 <button type="submit" id="submit" class="submit-create-form-container">
-                    <i class="fa-solid fa-pen"></i>
+                    Editar producto
                 </button>
             </div>
         </form>
-
-
-
     </main>
-
+    <script src="/js/validations/editProductValidation.js"></script>
 </body>
 
 </html>
