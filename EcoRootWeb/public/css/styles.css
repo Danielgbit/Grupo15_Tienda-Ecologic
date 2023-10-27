@@ -453,6 +453,39 @@ body {
 }
 
 
+/* //INPUT LOGIN PASSWORD */
+
+.password-contain-input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.input-passw-login {
+  position: relative;
+  width: 100%;
+}
+
+.div-container-password-view span {
+  padding-right: 10px;
+}
+
+.div-container-password-view span i {
+  color: #d0e1b5;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+.div-container-password-view {
+  position: absolute;
+}
+
+
+/* //INPUT LOGIN PASSWORD */
+
+
 .seccion-promotion-contain,
 .seccion-login-message {
   display: flex;
@@ -1354,7 +1387,6 @@ footer {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 10px;
   width: 100%;
 }
 
@@ -1369,7 +1401,6 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
   align-self: stretch;
   width: 80%;
   margin: auto;
@@ -1430,8 +1461,8 @@ footer {
 
 
 .input-img .register-label-avatar {
-  border: 2px solid rgb(214, 89, 0);
-  box-shadow: 1px 3px 10px 0px rgb(214, 89, 0);
+  border: 2px solid #fff586;
+  box-shadow: 1px 3px 10px 0px #fff586;
   margin-bottom: 15px;
 }
 
@@ -1461,13 +1492,13 @@ footer {
   background-color: transparent;
   outline: #7db31f;
   color: #d0e1b5;
+  width: 100%;
 }
 
 
 .form-register .input-register .login-input-invalid,
 .form-login .input-login .login-input-invalid {
-  border-bottom: 1px solid #d00000;
-  background-image: url('../img/validations/Icon-validation-Error.svg');
+  border-bottom: 2px solid #fff586;
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: right;
@@ -1527,13 +1558,14 @@ footer {
 }
 
 .input-register .birthDate-input-Errors[type="date"] {
-  border: 1px solid #d00000;
+  border: 2px solid #fff586;
 }
 
 .contain-security-level-password {
   display: flex;
   align-items: center;
   gap: 15px;
+  padding-top: 5px;
 }
 
 .text-security-password {
@@ -1563,7 +1595,6 @@ footer {
 
 
 .input-register .register-input-invalid-icon {
-  background-image: url(../img/validations/Icon-validation-Error.svg);
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: right;
@@ -1580,7 +1611,7 @@ footer {
 }
 
 .country-label-Errors {
-  border: 1px solid #d00000;
+  border: 2px solid #fff586;
 }
 
 
@@ -1680,7 +1711,7 @@ footer {
     display: flex;
     flex-direction: column;
     width: 50%;
-    gap: 42px;
+    gap: 30px;
   }
 }
 
@@ -1711,7 +1742,7 @@ footer {
   justify-content: center;
   gap: 30px;
   width: 50%;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 
 .div-right-user-edit-contain {
@@ -1720,7 +1751,7 @@ footer {
   justify-content: center;
   gap: 30px;
   width: 50%;
-  padding-right: 20px;
+  padding-right: 40px;
 
 }
 
@@ -1738,7 +1769,7 @@ footer {
 }
 
 .div-contain-divs-max-user-edit input {
-  width: 80%;
+  width: 100%;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -1763,7 +1794,6 @@ footer {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 10px;
 }
 
 
@@ -2985,17 +3015,18 @@ footer {
 }
 
 .errors-createP-front,
-.errorsCreateProduct {
+.errorsCreateProduct,
+.errorsLoginMsg {
   font-size: 11px;
   color: #ffffff;
   font-weight: bold;
-  padding: 5px 0;
-  padding: 8px;
+  padding: 5px;
   list-style-type: none;
 }
 
 .errors-createP-front li::before,
-.errorsCreateProduct::before {
+.errorsCreateProduct::before,
+.errorsLoginMsg li::before, .errorsLoginMsg span::before{
   content: "\26A0";
   /* Código del símbolo de advertencia en una fuente de iconos */
   margin-right: 8px;
@@ -3295,6 +3326,48 @@ footer {
 }
 
 
+/* //USER */
+.body-userpage {
+  background-image: linear-gradient(15deg, #5b7a13 0%, #d0b580 100%);
+  height: 100vh;
+}
+
+.body-userpage main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.div-info-user-head-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.div-container-user-content-max {
+  display: flex;
+  width: 100%;
+}
+
+.div-container-options-config-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 40%;
+}
+
+
+.form-user-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
 .container-user-div {
   display: flex;
   align-items: center;
@@ -3304,27 +3377,31 @@ footer {
   padding: 20px 15px;
   gap: 45px;
   margin: 30px auto;
-  background-color: rgba(0, 0, 0, 0.237);
-  border-radius: 20px;
-  box-shadow: 2px 2px 15px 0 rgb(0, 0, 0);
+}
+
+.container-user-div h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(86, 70, 5)
+}
+
+.container-user-div h2 {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .container-user-div .img-user-page {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 50%;
 }
 
 
-.container-user-div .paragraph-user-description {
-  font-size: 0.9rem;
-  text-align: center;
-
-}
-
 .container-user-div h2 {
-  color: #223200;
+  color: rgb(51, 41, 3)
+
 }
 
 .seccion-category-name-new .title-category-view {
@@ -3377,13 +3454,7 @@ footer {
 
 }
 
-.form-user-page {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
+
 
 .div-user-edit {
   display: flex;
@@ -3404,7 +3475,6 @@ footer {
   border: 1px solid var(--cards, #b3da5e2d);
   margin: 0rem 20px;
   height: 100px;
-  gap: auto;
   background-color: #ede6b513;
   cursor: pointer;
 }
@@ -3517,7 +3587,6 @@ footer {
 
 .content-user-page {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -3623,14 +3692,6 @@ footer {
   transform: translateY(-3px);
 }
 
-
-.errorsLoginMsg {
-  font-size: 12px;
-  color: #d0e1b5;
-  font-style: italic;
-  font-weight: 300;
-  padding: 5px 0;
-}
 
 .img-user-edit {
   width: 120px;

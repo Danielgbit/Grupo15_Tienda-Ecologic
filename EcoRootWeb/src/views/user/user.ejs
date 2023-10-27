@@ -3,51 +3,50 @@
 
 <%- include('../partials/head.ejs') %>
 
-<body>
+<body class="body-userpage">
 
     <%- include('../partials/header.ejs') %>
 
     <main>
 
         <div class="container-user-div">
-
-
-
             <h1>¡Bienvenido a configuracion de usuario!</h1>
-            <% if (locals.user && locals.user.email) { %>
-                <h2><%=user.first_name %> <%= user.last_name %></h2>
-            <% } %>
+            <div class="div-container-user-content-max">
+                <div class="div-info-user-head-container">
+                    <% if (locals.user && locals.user.email) { %>
+                    <h2>¡Hola! <%=user.first_name %> <%= user.last_name %></h2>
+                    <% } %>
 
-            <% if (locals.user && locals.user.avatar) { %>
-                <img class="img-user-page" src="/img/avatars/<%= user.avatar %>" alt="foto de perfil" >
-            <% } %>
-            <p class="paragraph-user-description">"Viviendo la vida con pasión y escribiendo mi propia historia."</p>
-            <div class="content-user-page">
-                <div class="user-post content">
-                    <a href="/user/products" class="button-edit-user buttons-user" type="submit"><i class="fa-regular fa-paste"></i>Mis publicaciones</a>   
+                    <% if (locals.user && locals.user.avatar) { %>
+                    <img class="img-user-page" src="/img/avatars/<%= user.avatar %>" alt="foto de perfil">
+                    <% } %>
+
+                    <form action="/user/<%=user.user_id%>/delete?_method=DELETE" method="post">
+                        <button class="button-delete-user buttons-user" type="submit"><i
+                                class="fa-solid fa-user-xmark"></i>Eliminar cuenta</button>
+                    </form>
+                </div>
+                <div class="div-container-options-config-user">
+                    <div class="content-user-page">
+                        <div class="user-post content">
+                            <a href="/user/products" class="button-edit-user buttons-user" type="submit"><i
+                                    class="fa-regular fa-paste"></i>Mis publicaciones</a>
+                        </div>
+                    </div>
+                    <div class="form-user-page">
+                        <% if (locals.user && locals.user.user_id) { %>
+                        <a href="/user/<%= user.user_id %>/edit" class="button-edit-user buttons-user" type="submit"><i
+                                class="fa-solid fa-pencil"></i>Editar perfil</a>
+                        <a href="/user/orders" class="button-edit-user buttons-user">
+                            <p>Orders</p>
+                        </a>
+                        <% } %>
+                    </div>
                 </div>
             </div>
-            <div class="form-user-page">
-                <% if (locals.user && locals.user.user_id) { %>
-                    <a href="/user/<%= user.user_id %>/edit" class="button-edit-user buttons-user" type="submit"><i class="fa-solid fa-pencil"></i>Editar perfil</a>
-                    <form  action="/user/<%=user.user_id%>/delete?_method=DELETE" method="post">
-                        <button class="button-delete-user buttons-user" type="submit"><i class="fa-solid fa-user-xmark"></i>Eliminar cuenta</button>
-                    </form>
-                    <a href="/user/orders"  class="button-edit-user buttons-user">
-                        <p>Orders</p>
-                    </a>
-                <% } %>
-            </div>
-
-            </button>
-
         </div>
 
-
     </main>
-
-    <%- include('../partials/footer.ejs') %>
-
 </body>
 
 </html>

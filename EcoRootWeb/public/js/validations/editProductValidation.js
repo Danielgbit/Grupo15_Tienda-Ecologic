@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    const form = document.querySelector('.form-create-1');
+    const form = document.querySelector('.form-edit-product');
     const name = document.querySelector('#name');
     const united = document.querySelector('#united');
     const discount = document.querySelector('#discount');
@@ -123,7 +123,7 @@ window.addEventListener('load', () => {
 
     descripcion.addEventListener('input', (e) => {
 
-        const alphanumeric = /^[0-9a-zA-Z]+$/;
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
         const errorContent = document.createElement('li');
 
         if (e.target.value.length < 190 && e.target.value.length > 0) {
@@ -134,7 +134,7 @@ window.addEventListener('load', () => {
             errorDescription.textContent = '';
         };
 
-        if (!alphanumeric.test(e.target.value) && e.target.value.length > 0) {
+        if (!specialCharacters.test(e.target.value) && e.target.value.length > 0) {
             errorDescription.textContent = '';
             errorContent.textContent = 'La cadena no puede caracteres especiales @-/_+$ solo "numero y letras"';
             errorDescription.appendChild(errorContent);
@@ -160,7 +160,6 @@ window.addEventListener('load', () => {
     });
 
 
-    console.log(form);
 
 
 
@@ -408,13 +407,6 @@ window.addEventListener('load', () => {
                 }
             }
 
-        }
-
-        if (image.value.length === 0) {
-            if (!errors.image) {
-                errors.image = [];
-            }
-            errors.image.push('Agrega una imagen de tu producto');
         };
 
         if (errors.image.length > 0) {
@@ -423,7 +415,7 @@ window.addEventListener('load', () => {
                 errorContent.textContent = error;
                 errorImage.appendChild(errorContent);
             });
-        }
+        };
 
 
 
@@ -432,7 +424,8 @@ window.addEventListener('load', () => {
     const validateDescription = (description) => {
 
 
-        const alphanumeric = /^[0-9a-zA-Z]+$/;
+        const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
+
 
         if (description.value.length < 190 && description.value.length > 0) {
             if (!errors.description) {
@@ -441,7 +434,7 @@ window.addEventListener('load', () => {
             errors.description.push('La descripcion es demasiado corta');
         };
 
-        if (!alphanumeric.test(description.value) && description.value.length > 0) {
+        if (!specialCharacters.test(description.value) && description.value.length > 0) {
             if (!errors.description) {
                 errors.description = [];
             };
@@ -507,6 +500,7 @@ window.addEventListener('load', () => {
     };
 
 
+    console.log(form);
 
     form.addEventListener('submit', (e) => {
 
@@ -557,13 +551,15 @@ window.addEventListener('load', () => {
 
 
         //Verifico si no hay errores
-/*         const hasNoErrors = Object.values(errors).every(errorArray => errorArray.length === 0);
-
+        const hasNoErrors = Object.values(errors).every(errorArray => errorArray.length === 0);
+    
+    
         if (hasNoErrors) {
             form.submit();
-        } */
-
+        }
 
     });
+
+
 
 });

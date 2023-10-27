@@ -614,12 +614,6 @@ window.addEventListener('load', () => {
 
         }
 
-        if (avatar.value.length === 0) {
-            if (!errors.avatar) {
-                errors.avatar = [];
-            }
-            errors.avatar.push('Agrega una imagen');
-        };
 
         if (errors.avatar.length > 0) {
             errors.avatar.forEach((error) => {

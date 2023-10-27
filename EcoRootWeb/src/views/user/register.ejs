@@ -27,7 +27,7 @@
                         class="<%= locals.errors && errors.first_name ? 'login-input-invalid' : null %>">
                         <ul class="errorsLoginMsg errorFirstName"></ul>
                     <% if (locals.errors && errors.first_name) { %>
-                    <span class="errorsLoginMsg"><%= errors.first_name %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.first_name %></span> </span>
                     <% } %>
                 </div>
 
@@ -38,7 +38,7 @@
                         class="<%= locals.errors && errors.last_name ? 'login-input-invalid' : null %>">
                         <ul class="errorsLoginMsg error-last-name"></ul>
                     <% if (locals.errors && errors.last_name) { %>
-                    <span class="errorsLoginMsg"><%= errors.last_name %> </span>
+                    <span class="errorsLoginMsg"><span><%= errors.last_name %></span> </span>
                     <% } %>
                 </div>
 
@@ -49,7 +49,7 @@
                         class="<%= locals.errors && errors.username ? 'login-input-invalid' : null %>">
                         <ul class="errorsLoginMsg error-username"></ul>
                     <% if (locals.errors && errors.username) { %>
-                    <span class="errorsLoginMsg"><%= errors.username %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.username %></span></span>
                     <% } %>
                 </div>
 
@@ -59,22 +59,28 @@
                         name="email" class="<%= locals.errors && errors.email ? 'login-input-invalid' : null %>">
                         <ul class="errorsLoginMsg error-email"></ul>
                     <% if (locals.errors && errors.email) { %>
-                    <span class="errorsLoginMsg"><%= errors.email %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.email %></span></span>
                     <% } %>
                 </div>
                 
                 <div class="input-register">
                     <label for="password">Contraseña:</label>
-                    <input
-                        class="input-passw-register <%= locals.errors && errors.password ? 'login-input-invalid' : null %>"
-                        type="password" id="password" name="password">
-                        <div class="contain-security-level-password">
-                            <span class="security-level"></span>
-                            <span class="text-security-password"></span>
+                    <div class="password-contain-input">
+                        <input
+                            class="input-passw-register input-passw-global <%= locals.errors && errors.password ? 'login-input-invalid' : null %>"
+                            type="password" id="password" name="password">
+                        <div class="div-container-password-view">
+                            <span class="view-password"><i class="fa-solid fa-eye"></i></span>
+                            <span class="not-view-password"><i class="fa-solid fa-eye-slash"></i></span>
                         </div>
+                    </div>
+                    <div class="contain-security-level-password">
+                        <span class="security-level"></span>
+                        <span class="text-security-password"></span>
+                    </div>
                         <ul class="errorsLoginMsg error-password"></ul>
                     <% if (locals.errors && errors.password) { %>
-                    <span class="errorsLoginMsg"><%= errors.password %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.password %></span></span>
                     <% } %>
                 </div>
                 
@@ -98,9 +104,7 @@
                     </select>
                     <ul class="errorsLoginMsg error-country"></ul>
                     <% if (locals.errors && errors.country) { %>
-                        <ul>
-                            <li class="errorsLoginMsg"><%= errors.country %> </li>
-                         </ul>
+                            <span class="errorsLoginMsg"><span><%= errors.country %></span></span>
                     <% } %>
                 </div>
 
@@ -111,7 +115,7 @@
                         name="city" class="<%= locals.errors && errors.city ? 'login-input-invalid' : null %>">
                         <ul class="errorsLoginMsg error-city"></ul>
                     <% if (locals.errors && errors.city) { %>
-                    <span class="errorsLoginMsg"><%= errors.city %> </span>
+                        <span class="errorsLoginMsg"> <span><%= errors.city %></span></span>
                     <% } %>
                 </div>
 
@@ -122,7 +126,7 @@
                         class="<%= locals.errors && errors.address ? 'login-input-invalid' : null %>">
                         <ul class="errorsLoginMsg error-address"></ul>
                     <% if (locals.errors && errors.address) { %>
-                    <span class="errorsLoginMsg"><%= errors.address %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.address %></span></span>
                     <% } %>
                 </div>
 
@@ -137,7 +141,7 @@
                     value="<%= locals.dataOld && dataOld.birthDate ? dataOld.birthDate : null %>">
                     <ul class="errorsLoginMsg error-birth-date"></ul>
                     <% if (locals.errors && errors.birthDate) { %>
-                    <span class="errorsLoginMsg"><%= errors.birthDate %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.birthDate %></span> </span>
                     <% } %>
                 </div>
 
@@ -151,7 +155,7 @@
                     </select>
                     <ul class="errorsLoginMsg error-gender"></ul>
                     <% if (locals.errors && errors.gender) { %>
-                    <span class="errorsLoginMsg"><%= errors.gender %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.gender %></span> </span>
                     <% } %>
                 </div>
                 
@@ -177,7 +181,7 @@
                     </label>
                     <ul class="errorsLoginMsg error-avatar"></ul>
                     <% if (locals.errors && errors.image) { %>
-                    <span class="errorsLoginMsg"><%= errors.image %> </span>
+                    <span class="errorsLoginMsg"> <span><%= errors.image %></span> </span>
                     <% } %>
 
                 </div>
@@ -196,6 +200,6 @@
 
     <!-- <%- include('../partials/footer.ejs') %> -->
     <script src="/js/validations/registerValidation.js" ></script>
+    <script src="/js/script.js"></script>
 </body>
-
 </html>

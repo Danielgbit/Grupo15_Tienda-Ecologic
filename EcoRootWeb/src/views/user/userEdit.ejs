@@ -18,7 +18,7 @@
 
 
                 <img class="img-user-edit" src="/img/avatars/<%= user.avatar %>" alt="foto de perfil">
-                    <span class="icon-arrow-user-edit-head"><i class="fa-solid fa-angles-down"></i></span>
+                <span class="icon-arrow-user-edit-head"><i class="fa-solid fa-angles-down"></i></span>
                 <section class="form-create-5">
 
 
@@ -32,7 +32,7 @@
                         </label>
                         <ul class="errors-createP-front ul-error-container-avatar error-avatar"></ul>
                         <% if (locals.errors && errors.image) { %>
-                        <span class="errorsLoginMsg"><%= errors.image %> </span>
+                        <span class="errorsLoginMsg"> <span><%= errors.image %></span> </span>
                         <% } %>
                     </div>
                 </section>
@@ -50,7 +50,7 @@
                                 class="<%= locals.errors && errors.first_name ? 'login-input-invalid' : null %>">
                             <ul class="errors-createP-front error-first-name"></ul>
                             <% if (locals.errors && errors.first_name) { %>
-                            <span class="errorsLoginMsg"><%= errors.first_name %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.first_name %></span> </span>
                             <% } %>
                         </div>
 
@@ -61,7 +61,7 @@
                                 class="<%= locals.errors && errors.last_name ? 'login-input-invalid' : null %>">
                             <ul class="errors-createP-front error-last-name"></ul>
                             <% if (locals.errors && errors.last_name) { %>
-                            <span class="errorsLoginMsg"><%= errors.last_name %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.last_name %></span> </span>
                             <% } %>
                         </div>
 
@@ -73,7 +73,7 @@
                                 class="<%= locals.errors && errors.username ? 'login-input-invalid' : null %>">
                             <ul class="errors-createP-front error-username"></ul>
                             <% if (locals.errors && errors.username) { %>
-                            <span class="errorsLoginMsg"><%= errors.username %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.username %></span> </span>
                             <% } %>
                         </div>
 
@@ -84,22 +84,28 @@
                                 class="<%= locals.errors && errors.email ? 'login-input-invalid' : null %>">
                             <ul class="errors-createP-front error-email"></ul>
                             <% if (locals.errors && errors.email) { %>
-                            <span class="errorsLoginMsg"><%= errors.email %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.email %></span> </span>
                             <% } %>
                         </div>
 
                         <div class="input-user-edit">
                             <label for="password">Nueva contraseña:</label>
-                            <input
-                                class="input-passw-register <%= locals.errors && errors.password ? 'login-input-invalid' : null %>"
-                                type="password" id="password" name="password">
+                            <div class="password-contain-input">
+                                <input
+                                    class="input-passw-register input-passw-global <%= locals.errors && errors.password ? 'login-input-invalid' : null %>"
+                                    type="password" id="password" name="password">
+                                <div class="div-container-password-view">
+                                    <span class="view-password"><i class="fa-solid fa-eye"></i></span>
+                                    <span class="not-view-password"><i class="fa-solid fa-eye-slash"></i></span>
+                                </div>
+                            </div>
                             <div class="contain-security-level-password">
                                 <span class="security-level"></span>
                                 <span class="text-security-password"></span>
                             </div>
                             <ul class="errors-createP-front error-password"></ul>
                             <% if (locals.errors && errors.password) { %>
-                            <span class="errorsLoginMsg"><%= errors.password %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.password %></span> </span>
                             <% } %>
                         </div>
 
@@ -123,7 +129,7 @@
                             </select>
                             <ul class="errors-createP-front error-country"></ul>
                             <% if (locals.errors && errors.country) { %>
-                            <span class="errorsLoginMsg"><%= errors.country %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.country %></span> </span>
                             <% } %>
                         </div>
 
@@ -134,7 +140,7 @@
                                 name="city" class="<%= locals.errors && errors.city ? 'login-input-invalid' : null %>">
                             <ul class="errors-createP-front error-city"></ul>
                             <% if (locals.errors && errors.city) { %>
-                            <span class="errorsLoginMsg"><%= errors.city %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.city %></span> </span>
                             <% } %>
                         </div>
 
@@ -146,7 +152,7 @@
                                 class="<%= locals.errors && errors.address ? 'login-input-invalid' : null %>">
                             <ul class="errors-createP-front error-address"></ul>
                             <% if (locals.errors && errors.address) { %>
-                            <span class="errorsLoginMsg"><%= errors.address %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.address %></span> </span>
                             <% } %>
                         </div>
 
@@ -160,7 +166,7 @@
                                 value="<%= locals.user && user.birthDate ? user.birthDate : null %>">
                             <ul class="errors-createP-front error-birth-date"></ul>
                             <% if (locals.errors && errors.birthDate) { %>
-                            <span class="errorsLoginMsg"><%= errors.birthDate %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.birthDate %></span> </span>
                             <% } %>
                         </div>
 
@@ -179,7 +185,7 @@
                             </select>
                             <ul class="errors-createP-front error-gender"></ul>
                             <% if (locals.errors && errors.gender) { %>
-                            <span class="errorsLoginMsg"><%= errors.gender %> </span>
+                            <span class="errorsLoginMsg"> <span><%= errors.gender %></span> </span>
                             <% } %>
                         </div>
 
@@ -193,6 +199,7 @@
             </form>
     </main>
     <script src="/js/validations/editUserValidation.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>

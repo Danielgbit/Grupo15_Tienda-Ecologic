@@ -1,13 +1,9 @@
 window.addEventListener('load', () => {
     const form = document.querySelector('.form-create-1');
-    const category = document.querySelector('.radio-input');
     const name = document.querySelector('#name');
-    const brand = document.querySelector('#brand');
-    const color = document.querySelector('#color');
     const united = document.querySelector('#united');
     const discount = document.querySelector('#discount');
     const material = document.querySelector('#material');
-    const state = document.querySelector('.radio-input-condition');
     const image = document.querySelector('#image');
     const descripcion = document.querySelector('#descripcion');
     const price = document.querySelector('#price');

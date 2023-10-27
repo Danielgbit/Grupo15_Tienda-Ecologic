@@ -7,6 +7,8 @@ window.addEventListener('load', () => {
     const errorEmail = document.querySelector('.error-email');
     const errorPassword = document.querySelector('.error-password');
 
+
+
     const errors = {};
 
 
