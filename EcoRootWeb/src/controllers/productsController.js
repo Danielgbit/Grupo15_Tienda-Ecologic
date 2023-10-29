@@ -204,7 +204,7 @@ const productsController = {
 
     getEdit: async (req, res) => {
 
-
+        
         try {
 
             const category = await db.Category.findAll({
@@ -225,13 +225,16 @@ const productsController = {
                 raw: true,
             });
 
+            console.log(req.query);
+
             res.render('productEdit', {
+                errors: req.query,
                 product,
                 category,
                 brands,
                 colors
             });
-
+            
         } catch (error) {
             console.error(error);
         };
@@ -243,6 +246,34 @@ const productsController = {
 
 
     putProductEdit: async (req, res) => {
+
+        const result = validationResult(req);
+
+
+        if (req.file) {
+            // Si hay errores de validación, elimina el archivo y muestra los errores
+            if (result.errors.length > 0) {
+                fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + req.file.filename));
+
+                const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
+                const queryErrors = queryArray.join('');
+                res.redirect('/products/' + req.params.id + '/edit?admin=true' + queryErrors);
+                return;
+            }
+
+            // Si no hay errores de validación, procede con la creación del producto y otras acciones
+            // ...
+
+        } else {
+            // Si no se cargó un archivo, muestra los errores de validación sin intentar eliminar un archivo
+            if (result.errors.length > 0) {
+                const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
+                const queryErrors = queryArray.join('');
+                res.redirect('/products/' + req.params.id + '/edit?admin=true' + queryErrors);
+
+                return;
+            }
+        }
 
 
         try {
@@ -267,12 +298,16 @@ const productsController = {
                 brand_id: Number(req.body.brand),
             };
 
+            console.log(productEdit);
+
 
             await db.Product.update(productEdit, {
                 where: {
                     product_id: Number(req.params.id)
                 }
-            })
+            });
+
+
 
             res.redirect('/products/' + productEdit.product_id + '/detail');
 

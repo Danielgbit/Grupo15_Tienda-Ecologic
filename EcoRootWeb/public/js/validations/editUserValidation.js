@@ -220,9 +220,9 @@ window.addEventListener('load', () => {
             errorAddress.textContent = '';
             errorContent.textContent = 'No puedes sobrepasar los 30 caracteres';
             errorAddress.appendChild(errorContent);
-        } else if (e.target.value.length < 10 && e.target.value.length > 0) {
+        } else if (e.target.value.length < 5 && e.target.value.length > 0) {
             errorAddress.textContent = '';
-            errorContent.textContent = 'La direccion debe tener almenos 10 caracteres';
+            errorContent.textContent = 'La direccion debe tener almenos 5 caracteres';
             errorAddress.appendChild(errorContent);
         };
     });
@@ -524,11 +524,11 @@ window.addEventListener('load', () => {
             errors.address.push('Debes completar este campo');
         };
 
-        if (address.value.length < 10 && address.value.length > 0) {
+        if (address.value.length < 5 && address.value.length > 0) {
             if (!errors.address) {
                 errors.address = [];
             }
-            errors.address.push('La direccion debe tener almenos 10 caracteres');
+            errors.address.push('La direccion debe tener almenos 5 caracteres');
         };
         if (address.value.length > 30) {
             if (!errors.address) {

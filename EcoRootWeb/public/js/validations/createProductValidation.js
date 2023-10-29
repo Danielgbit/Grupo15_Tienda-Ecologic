@@ -126,7 +126,7 @@ window.addEventListener('load', () => {
         const alphanumeric = /^[0-9a-zA-Z]+$/;
         const errorContent = document.createElement('li');
 
-        if (e.target.value.length < 190 && e.target.value.length > 0) {
+        if (e.target.value.length < 150 && e.target.value.length > 0) {
             errorDescription.textContent = '';
             errorContent.textContent = 'La descripcion es demasiado corta';
             errorDescription.appendChild(errorContent);
@@ -138,9 +138,9 @@ window.addEventListener('load', () => {
             errorDescription.textContent = '';
             errorContent.textContent = 'La cadena no puede caracteres especiales @-/_+$ solo "numero y letras"';
             errorDescription.appendChild(errorContent);
-        } else if (e.target.value.length >= 400) {
+        } else if (e.target.value.length >= 189) {
             errorDescription.textContent = '';
-            errorContent.textContent = 'La descripcion no puede sobrepasar los 400 caracteres';
+            errorContent.textContent = 'La descripcion no puede sobrepasar los 189 caracteres';
             errorDescription.appendChild(errorContent);
         };
     });
@@ -433,7 +433,7 @@ window.addEventListener('load', () => {
 
         const alphanumeric = /^[0-9a-zA-Z]+$/;
 
-        if (description.value.length < 190 && description.value.length > 0) {
+        if (description.value.length < 150 && description.value.length > 0) {
             if (!errors.description) {
                 errors.description = [];
             };
@@ -447,11 +447,11 @@ window.addEventListener('load', () => {
             errors.description.push('La cadena no puede caracteres especiales @-/_+$ solo "numero y letras"');
         };
 
-        if (description.value.length >= 400) {
+        if (description.value.length >= 189) {
             if (!errors.description) {
                 errors.description = [];
             }
-            errors.description.push('La descripcion no puede sobrepasar los 400 caracteres');
+            errors.description.push('La descripcion no puede sobrepasar los 189 caracteres');
         };
         if (description.value.length <= 0) {
             if (!errors.description) {

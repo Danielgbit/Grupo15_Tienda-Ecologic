@@ -14,19 +14,34 @@ let dataOldRegister = {};
 
 
 const userController = {
+
     login: (req, res) => {
 
         res.render('login', {
             errors: req.query,
             dataOld
-        })
+        });
+        
     },
-
-
+    
+    
     loginProcess: async (req, res) => {
-
-
+        
         dataOld = req.body || {};
+        const result = validationResult(req);
+        const errors = {
+            email: 'el email es incorrecto',
+            password: 'la contraseña no coincide'
+        };
+
+        //Express validator
+        if (result.errors.length > 0) {
+            const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
+            const queryErrors = queryArray.join('');
+            res.redirect('/user/login?admin=true' + queryErrors);
+
+            return;
+        };
 
         const userinUse = await db.User.findOne({
             where: {
@@ -35,10 +50,21 @@ const userController = {
             raw: true
         });
 
-        console.log(userinUse);
 
-        //SESSION
 
+        if (!userinUse) {
+            res.redirect('/user/login?email=' + errors.email);
+            return;
+        };
+
+        const validPassword = bcrypt.compareSync(req.body.password, userinUse.password);
+
+        if (!validPassword) {
+
+            res.redirect('/user/login?password=' + errors.password);
+
+            return;
+        };
 
         //@COOKIES
 
@@ -58,45 +84,6 @@ const userController = {
         if (userinUse) {
 
             req.session.user = userinUse;
-        };
-
-
-        //Validations
-
-        const result = validationResult(req);
-
-        if (result.errors.length > 0) {
-
-            const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
-
-            const queryErrors = queryArray.join('');
-
-            res.redirect('/user/login?admin=true' + queryErrors);
-
-
-            return;
-        };
-
-        const errors = {
-            email: 'el email es incorrecto',
-            password: 'la contraseña no coincide'
-        };
-
-        if (!userinUse) {
-
-            res.redirect('/user/login?email=' + errors.email);
-
-            return;
-        };
-
-
-        const validPassword = bcrypt.compareSync(req.body.password, userinUse.password);
-
-        if (!validPassword) {
-
-            res.redirect('/user/login?password=' + errors.password);
-
-            return;
         };
 
         res.redirect('/');
@@ -170,7 +157,7 @@ const userController = {
             if (userinUse) {
 
                 const error = {
-                    email: `el email esta en uso`
+                    email: `el email ya esta en uso`
                 };
 
                 res.redirect(`/user/register?email=${error.email}`);
@@ -382,7 +369,7 @@ const userController = {
 
 
             res.redirect('/user/orders');
-            
+
         } catch (error) {
             console.error('Error al crear la orden:', error);
         }
@@ -393,63 +380,67 @@ const userController = {
 
         try {
             const userId = req.session.user.user_id;
-          
+
             // Obtener los pedidos del usuario con sus productos asociados
             const orders = await db.Order.findAll({
-              where: { user_id: userId },
-              include: 'products',
-              raw: true,
-              nest: true
+                where: {
+                    user_id: userId
+                },
+                include: 'products',
+                raw: true,
+                nest: true
             });
-          
+
             // Crear una estructura para los datos a mostrar en la vista
             const ordersData = [];
             let currentOrder = null;
-          
+
             for (const order of orders) {
-              // Comprobar si es un nuevo pedido
-              if (currentOrder === null || currentOrder.order_id !== order.order_id) {
-                currentOrder = {
-                  order_id: order.order_id,
-                  order_date: order.order_date,
-                  user_id: order.user_id,
-                  products: []
+                // Comprobar si es un nuevo pedido
+                if (currentOrder === null || currentOrder.order_id !== order.order_id) {
+                    currentOrder = {
+                        order_id: order.order_id,
+                        order_date: order.order_date,
+                        user_id: order.user_id,
+                        products: []
+                    };
+                    ordersData.push(currentOrder);
+                }
+
+                // Agregar detalles del producto al pedido actual
+                const productDetails = {
+                    product_id: order.products.product_id,
+                    name: order.products.name,
+                    description: order.products.description,
+                    price: order.products.price,
+                    united: order.products.united,
+                    discount: order.products.discount,
+                    material: order.products.material,
+                    state: order.products.state,
+                    image: order.products.image,
+                    color_id: order.products.color_id,
+                    category_id: order.products.category_id,
+                    brand_id: order.products.brand_id
+                    // Agrega más propiedades del producto si es necesario
                 };
-                ordersData.push(currentOrder);
-              }
-          
-              // Agregar detalles del producto al pedido actual
-              const productDetails = {
-                product_id: order.products.product_id,
-                name: order.products.name,
-                description: order.products.description,
-                price: order.products.price,
-                united: order.products.united,
-                discount: order.products.discount,
-                material: order.products.material,
-                state: order.products.state,
-                image: order.products.image,
-                color_id: order.products.color_id,
-                category_id: order.products.category_id,
-                brand_id: order.products.brand_id
-                // Agrega más propiedades del producto si es necesario
-              };
-          
-              currentOrder.products.push(productDetails);
+
+                currentOrder.products.push(productDetails);
             }
 
-          
+
             // Enviar los datos estructurados a la vista
-            res.render('userOrders', { orders: ordersData });
+            res.render('userOrders', {
+                orders: ordersData
+            });
 
-          
-          } catch (error) {
+
+        } catch (error) {
             console.error('Error al obtener las órdenes:', error);
-          }
-          }
-          
-
+        }
     }
+
+
+}
 
 
 

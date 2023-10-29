@@ -2,7 +2,10 @@ const express = require('express');
 const productsRouter = express.Router();
 const productsController = require('../controllers/productsController');
 const { productCreateValidations } = require('../validations/validateProductCreate');
+const productEditValidations = require('../validations/validateProductEdit');
 const upload = require('../middlewares/multerProducts'); // Importa el multer de usuario
+
+
 
 
 
@@ -35,7 +38,7 @@ productsRouter.get('/:id/edit', productsController.getEdit);
 
 
 // @PUT /products/:id/detail
-productsRouter.put('/:id/detail', productsController.putProductEdit);
+productsRouter.put('/:id/detail',  [ productEditValidations.productEditValidations ], productsController.putProductEdit);
 
 
 // @GET /products/search

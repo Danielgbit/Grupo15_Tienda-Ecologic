@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    const form = document.querySelector('.form-edit-product');
+
     const name = document.querySelector('#name');
     const united = document.querySelector('#united');
     const discount = document.querySelector('#discount');
@@ -126,7 +126,7 @@ window.addEventListener('load', () => {
         const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
         const errorContent = document.createElement('li');
 
-        if (e.target.value.length < 190 && e.target.value.length > 0) {
+        if (e.target.value.length < 150 && e.target.value.length > 0) {
             errorDescription.textContent = '';
             errorContent.textContent = 'La descripcion es demasiado corta';
             errorDescription.appendChild(errorContent);
@@ -138,9 +138,9 @@ window.addEventListener('load', () => {
             errorDescription.textContent = '';
             errorContent.textContent = 'La cadena no puede caracteres especiales @-/_+$ solo "numero y letras"';
             errorDescription.appendChild(errorContent);
-        } else if (e.target.value.length >= 400) {
+        } else if (e.target.value.length >= 189) {
             errorDescription.textContent = '';
-            errorContent.textContent = 'La descripcion no puede sobrepasar los 400 caracteres';
+            errorContent.textContent = 'La descripcion no puede sobrepasar los 189 caracteres';
             errorDescription.appendChild(errorContent);
         };
     });
@@ -323,7 +323,7 @@ window.addEventListener('load', () => {
 
     };
 
-    const validateMaterial = (material) => { 
+    const validateMaterial = (material) => {
 
         const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 
@@ -427,7 +427,7 @@ window.addEventListener('load', () => {
         const specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\]/;
 
 
-        if (description.value.length < 190 && description.value.length > 0) {
+        if (description.value.length < 150 && description.value.length > 0) {
             if (!errors.description) {
                 errors.description = [];
             };
@@ -441,11 +441,11 @@ window.addEventListener('load', () => {
             errors.description.push('La cadena no puede caracteres especiales @-/_+$ solo "numero y letras"');
         };
 
-        if (description.value.length >= 400) {
+        if (description.value.length >= 189) {
             if (!errors.description) {
                 errors.description = [];
             }
-            errors.description.push('La descripcion no puede sobrepasar los 400 caracteres');
+            errors.description.push('La descripcion no puede sobrepasar los 189 caracteres');
         };
         if (description.value.length <= 0) {
             if (!errors.description) {
@@ -492,7 +492,7 @@ window.addEventListener('load', () => {
             });
 
         };
-    
+
 
 
 
@@ -500,13 +500,11 @@ window.addEventListener('load', () => {
     };
 
 
-    console.log(form);
+    console.log(errors);
+
+    const form = document.querySelector('#form-edit-product');
 
     form.addEventListener('submit', (e) => {
-
-        e.preventDefault();
-
-        //Reinicio errors
 
         errors.name = [];
         errors.united = [];
@@ -548,16 +546,13 @@ window.addEventListener('load', () => {
         validateDescription(e.target.descripcion);
         validatePrice(e.target.price);
         validateCategory(e.target.category);
-
-
-        //Verifico si no hay errores
         const hasNoErrors = Object.values(errors).every(errorArray => errorArray.length === 0);
-    
-    
+
         if (hasNoErrors) {
             form.submit();
+        } else {
+            e.preventDefault();
         }
-
     });
 
 

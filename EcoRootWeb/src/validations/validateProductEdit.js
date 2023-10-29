@@ -1,21 +1,21 @@
 const { body } = require('express-validator'); // Express Validator
-const upload = require('../middlewares/multerProducts'); // Importa el multer de usuario
 
 
-const productCreateMiddleware = {
+
+const productEditMiddleware = {
 
     //Validations Form-Product "Body"
-    productCreateValidations: [     
+    productEditValidations: [     
         body('name').notEmpty().withMessage('Debes ingresar un nombre'),
         body('brand').notEmpty().withMessage('Debes ingresar una marca'),
 /*         body('color').notEmpty().withMessage('Debes ingresar un color'), */
         body('united').notEmpty().withMessage('Debes ingresar una unidad de stock'),
 /*         body('discount').notEmpty().withMessage('campo incompleto'), */
         body('material').notEmpty().withMessage('Debes ingresar el material de tu producto'),
-        body('state').notEmpty().withMessage('Debes ingresar el estado de tu producto').bail().isIn(['New', 'Used']).withMessage('Debes seleccionar un estado válido'),
+        body('state').notEmpty().withMessage('Debes ingresar el estado de tu producto'),
         body('description')
-            .notEmpty().withMessage('Debes ingresar una descripción')
-            .isLength({ max: 189 }).withMessage('La descripción no debe tener más de 189 caracteres'),
+        .notEmpty().withMessage('Debes ingresar una descripción')
+        .isLength({ max: 189 }).withMessage('La descripción no debe tener más de 189 caracteres'),
         body('price').notEmpty().withMessage('Ingresa el precio de tu producto'),
         body('category').notEmpty().withMessage('Ingresa una categoria'),
         body('image').custom((value, { req }) => {
@@ -24,9 +24,8 @@ const productCreateMiddleware = {
             }
             return true;
         })
-        
     ]
 };
 
 
-module.exports = productCreateMiddleware;
+module.exports = productEditMiddleware;

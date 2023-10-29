@@ -20,12 +20,14 @@
                 <section class="contain-right-detail-content">
                     <div class="title-1-detail-container">
                         <h1 class="title-1-product-detail"><%= product.name %> </h1>
-                        <div class="button-actions-detail">
-                            <a href="/products/<%= product.product_id %>/edit"><i class="fa-solid fa-pencil"></i></a>
-                            <form action="/products/<%= product.product_id %>/delete?_method=DELETE" method="post">
-                                <button><i class="fa-solid fa-trash"></i></button>
-                            </form>
-                        </div>
+                        <% if (typeof user !== 'undefined' && product.user_id == user.user_id) { %>
+                            <div class="button-actions-detail">
+                                <a href="/products/<%= product.product_id %>/edit"><i class="fa-solid fa-pencil"></i></a>
+                                <form action="/products/<%= product.product_id %>/delete?_method=DELETE" method="post">
+                                    <button><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </div>
+                        <% } %>
                     </div>
                     <article class="content-text-detail">
                         <p><%= product.description %></p>
@@ -50,7 +52,7 @@
                         <% if (product.discount === '0.00') { %>
                          <span></span>
                         <% } else { %>
-                            <span class="descuento"><%= product.discount %>% OFF</span>
+                            <span class="descuento"><%= parseInt(product.discount) %>% OFF</span>
                         <% } %>    
                         <span class="price"> $ <%= product.price %></span>
                     </div>
