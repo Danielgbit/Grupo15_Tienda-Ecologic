@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2023 a las 02:40:59
+-- Tiempo de generación: 29-10-2023 a las 02:34:05
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,9 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ecoroot_db`
 --
-  DROP DATABASE IF EXISTS `ecoroot_db`;
-  CREATE DATABASE `ecoroot_db`;
-  USE ecoroot_db;
+DROP DATABASE IF EXISTS `ecoroot_db`;
+CREATE DATABASE `ecoroot_db`;
+USE ecoroot_db;
 
 -- --------------------------------------------------------
 
@@ -78,13 +78,6 @@ CREATE TABLE `cart` (
   `cart_id` int(11) NOT NULL,
   `user_id` char(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `user_id`) VALUES
-(2, '8065330f-23d8-488a-9304-d3e0f0f177d7');
 
 -- --------------------------------------------------------
 
@@ -227,7 +220,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `united`, `discount`, `material`, `state`, `user_id`, `image`, `color_id`, `category_id`, `brand_id`) VALUES
 (1, 'Cepillo de bambú', 'Nuestra elección consciente para el cuidado bucal y el medio ambiente. Nuestro Cepillo de Dientes de Bambú es una joya de sostenibilidad. Hecho a mano con un mango de bambú 100% biodegradable y cerdas suaves de alta calidad, este cepillo es amable con tus', 10.00, 50, 10.00, 'Bambú', 'New', '8065330f-23d8-488a-9304-d3e0f0f177d7', 'img-product-1696023650679.jpg', 1, 5, 1),
-(24, 'Jabon Biodegradable', 'Prueba la frescura', 10.00, 10, 6.00, 'Avena', 'New', '8065330f-23d8-488a-9304-d3e0f0f177d7', 'img-product-1696354766733.jpg', 1, 3, 1),
+(24, 'Jabon Biodegradable', 'Los jabones biodegradables se fabrican con tensioactivos biodegradables, que son compuestos que tienen la capacidad de unir agua y aceite. Estos tensioactivos se obtienen de fuentes naturales, como las plantas o los animales, o se sintetizan a partir de m', 10.00, 5, 30.00, 'Romero', 'New', '8065330f-23d8-488a-9304-d3e0f0f177d7', 'img-product-1696354766733.jpg', 1, 3, 1),
 (25, 'Toalla Biodegradable', 'Seca tu piel con frescura y amor cuidando la naturaleza ', 5.00, 50, 0.00, 'Algodon', 'New', '8065330f-23d8-488a-9304-d3e0f0f177d7', 'img-product-1696355124291.jpg', 9, 3, 3),
 (26, 'Tónico facial', 'Producto para hidratar con elementos naturales.', 100.00, 100, 10.00, 'Albahaca, romero', 'New', '3ee7263e-73ad-4ca6-a549-a9bbe9608d62', 'img-product-1696356357075.jpg', 1, 5, 3);
 
@@ -290,8 +283,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `password`, `avatar`, `country`, `city`, `address`, `birthDate`, `gender`) VALUES
+('24f1ba9c-65c8-4d0e-a40a-3a939d5c26b2', 'David', 'Hernandez', 'David', 'David@gmail.com', 'David1234@_', 'avatar-1698520492288.jpg', 'Colombia', 'Medellin', 'Av 75 cc#2', '2023-10-18', 'male'),
 ('3ee7263e-73ad-4ca6-a549-a9bbe9608d62', 'Sebastian', 'Gomez', 'Sebas', 'Sebastian@gmail.com', '$2b$10$M9mcu70YyF5.p8C65s3YTOs6Uu.nHb4v4MxGLcmL9JmOeHHJ5dpVm', 'avatar-1696286409317.jpg', 'Colombia', 'Medellin', 'ss22#A', '2001-02-22', 'male'),
 ('8065330f-23d8-488a-9304-d3e0f0f177d7', 'Jairito', 'Gonzalo', 'Jaiririri', 'Jairito@gmail.com', '$2b$10$.iSmN7M2bwvFDdgA//d37OkYZWHRkozqk34kOJUjWB3JDFpdfpnHe', 'avatar-1696370576532.jpg', 'Colombia', 'Medellin', 'CC#444', '1995-03-23', 'male'),
+('f13e1f68-1c3f-4c09-bb5c-9899d0174025', 'Pedrito', 'Carrazca', 'Pedroski', 'Pedrito@gmail.com', '$2b$10$HgnlfPRhXxUffYbawaRL2OzqURe709.5THrXisbGgelHpsTx.y0Q2', 'avatar-1698183673731.jpg', 'Colombia', 'Medellin', 'Av 40 # 40 apt 101', '2023-10-13', 'male'),
 ('f9e5a34f-5f0a-4128-825d-eb2fe05f0a6f', 'Eliana', 'Vazquez', 'Vale', 'Valen@gmail.com', '$2b$10$uRvC.8rXdfP5uNTdZ9jTn.rxn50rTnPVJ.4QAm.F16.POMRd1ZVQi', 'avatar-1696286200093.jpg', 'Colombia', 'Medellin', 'ss22#A', '2007-02-22', 'male');
 
 --
@@ -427,7 +422,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `product_cart`
 --
 ALTER TABLE `product_cart`
-  MODIFY `product_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `product_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
