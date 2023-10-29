@@ -1,3 +1,34 @@
+# Retrospectiva del Sprint-7 - Validaciones - Dinámica de la Estrella de Mar
+
+En esta retrospectiva, utilizaremos la dinámica de la Estrella de Mar para reflexionar sobre nuestro séptimo sprint y planificar mejoras para futuros sprints. Evaluaremos lo que debemos hacer más, lo que se relaciona con el próximo sprint (Sprint-8), y lo que continuaremos haciendo.
+
+### Comenzar a hacer:
+
+- **Implementación de endpoints de usuarios, endpoints de productos y el desarrollo de un dashboard en React.
+- **Configuracion y creacion de Api de nuestro proyecto EcoRoot.
+
+## Hacer más:
+
+- **Archivo retro.md y Documentación:** Continuar creando un archivo retro.md con el resultado de la retrospectiva y, opcionalmente, un archivo daily.md para registrar opiniones sobre dailies/weeklies. La documentación es fundamental para el seguimiento y la trazabilidad de nuestras acciones y lecciones aprendidas.
+
+- **Mantener actualizado el tablero de trabajo:** Hacer un esfuerzo por mantener el tablero de trabajo actualizado de manera regular, ya que esto contribuye a una mejor organización y seguimiento del progreso de las tareas.
+
+
+## Continuar haciendo:
+
+- **Archivo retro.md y Documentación:** Continuar creando el archivo retro.md y documentando las lecciones aprendidas y las mejoras a implementar. Esta práctica es vital para aprender de nuestros éxitos y desafíos.
+
+- **Mantener actualizado el tablero de trabajo:** Mantener el tablero de trabajo actualizado es una práctica efectiva para mantener un seguimiento y una gestión adecuada de las tareas y los avances del equipo.
+
+- **Validaciones del Back-End con Express Validator:** Continuar asegurando que las validaciones del back-end funcionen de manera efectiva y estén protegiendo nuestra aplicación.
+
+- **Validaciones del Front-End con JavaScript:** Continuar mejorando y optimizando las validaciones del front-end para mantener una experiencia de usuario sin problemas y segura.
+
+- **Sprint-8 (Próximo Sprint):** Prepararnos para el Sprint-8, que incluye la implementación de endpoints de usuarios, endpoints de productos y el desarrollo de un dashboard en React, entre otras tareas. Esto requiere una planificación y coordinación eficaz.
+
+Con esta retrospectiva, buscamos mejorar nuestro proceso de desarrollo y colaboración en el séptimo sprint y prepararnos para futuros desafíos en el Sprint-8. Asegúrate de que todos los miembros del equipo participen activamente en la retrospectiva y se comprometan a implementar las mejoras propuestas.
+
+
 # Retrospectiva del Sprint-6 - Dinámica de la Estrella de Mar
 
 En esta retrospectiva, utilizaremos la dinámica de la Estrella de Mar para reflexionar sobre nuestro sexto sprint y planificar mejoras para futuros sprints. Evaluaremos lo que debemos comenzar a hacer, hacer más, continuar haciendo, hacer menos y dejar de hacer.

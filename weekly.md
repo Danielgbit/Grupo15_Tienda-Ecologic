@@ -1,3 +1,60 @@
+## Reporte Semanal - Semana del Septimo (7) Sprint - Validaciones Front-end y Backend
+
+#### DANIEL:
+
+**Logros de Ayer:**
+- Agregué las validaciones de Front-end.
+- Enlace los scripts de validaciones con las vistas EJS.
+- Agregue boton de ver y no ver la contraseña.
+- Ayude en la creacion e implementacion de express validator, agregandole mas configuraciones.
+- Solucione errores vinculados en el login.
+- Actualicé la retro y el weekly.
+
+**Impedimentos:**
+- Ninguno.
+
+**Metas para el hoy:**
+- Configuracion y remodelacion de los controllers para adaptarlos para crear la API.
+
+**Metas para el mañana:**
+- Continuar mejorando la interfaz de usuario.
+- Enlazar la API con React
+
+#### Ampliación de Daniel:
+- Planificar la implementación de nuevas características relacionadas con la base de datos y las funcionalidades.
+
+#### FEDERICO:
+
+**Logros de Ayer:**
+- Implemento las validaciones de parte del servidor (Backend).
+
+**Impedimentos:**
+- Ninguno.
+
+**Metas para Hoy:**
+- Realizar pruebas exhaustivas de validación y corrección de errores.
+
+#### Ampliación de Federico:
+- Planificar la implementación de nuevas características relacionadas con la interacción del usuario y la mejora de la interfaz.
+
+
+#### MICAELA:
+
+**Logros de Ayer:**
+- Por llenar campo.
+
+**Impedimentos:**
+- Por llenar campo.
+
+**Metas para Hoy:**
+- Por llenar campo.
+
+#### Ampliación de Micaela:
+- Micaela se encuentra actualmente por llenar el campo correspondiente en el reporte. Su contribución y objetivos específicos para esta semana se agregarán una vez se proporcionen más detalles.
+
+
+----------------------------------------------------------------------
+
 ## Reporte Semanal - Semana del Sexto (6) Sprint - Bases de datos
 
 #### DANIEL:
