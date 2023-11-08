@@ -54,6 +54,8 @@ userRouter.post('/order/create', userController.createOrder);
 //@GET /user/orders
 userRouter.get('/orders', userController.viewOrders);
 
+//@GET /users
+userRouter.get('/users', userController.getAllusers);
 
 
 

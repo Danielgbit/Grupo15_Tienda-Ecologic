@@ -12,7 +12,6 @@ let dataOld = {};
 let dataOldRegister = {};
 
 
-
 const userController = {
 
     login: (req, res) => {
@@ -21,12 +20,12 @@ const userController = {
             errors: req.query,
             dataOld
         });
-        
+
     },
-    
-    
+
+
     loginProcess: async (req, res) => {
-        
+
         dataOld = req.body || {};
         const result = validationResult(req);
         const errors = {
@@ -437,12 +436,38 @@ const userController = {
         } catch (error) {
             console.error('Error al obtener las órdenes:', error);
         }
-    }
+    },
 
+    getAllusers: async (req, res) => {
+
+        try {
+
+            const users = await db.User.findAll({ raw: true, nest: true });
+
+            const usersUrls = [];
+
+            users.map((user) => {
+                usersUrls.push({
+                    url: `http://localhost:3000/user/${user.user_id}/detail`
+                });
+            });
+
+
+            if (users) {
+                res.json({
+                    count: users.length,
+                    users,
+                    usersUrls
+                });
+            } else {
+                res.status(404).json({ error: 'No se encontro ningun usuario' })
+            };
+
+        } catch (error) {
+            res.status(500).json({ error: 'Error del servidor' });
+        };
+    },
 
 }
-
-
-
 
 module.exports = userController;
