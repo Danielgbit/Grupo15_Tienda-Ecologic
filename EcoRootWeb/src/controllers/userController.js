@@ -468,6 +468,25 @@ const userController = {
         };
     },
 
+    userDetail: async (req, res) => {
+
+        try {
+
+            const userDetail = await db.User.findByPk(req.params.id, {
+                raw: true
+            });
+
+            if (userDetail) {
+                res.json({ userDetail });
+            } else {
+                res.status(404).json({ error: 'No se encontro ningun usuario' })
+            };
+
+        } catch (error) {
+            res.status(500).json({ error: 'Error del servidor' });
+        };
+    },
+
 }
 
 module.exports = userController;

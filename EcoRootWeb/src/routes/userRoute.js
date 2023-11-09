@@ -57,7 +57,8 @@ userRouter.get('/orders', userController.viewOrders);
 //@GET /users
 userRouter.get('/users', userController.getAllusers);
 
-
+//@GET /user/:id
+userRouter.get('/:id/detail', userController.userDetail)
 
 
 
