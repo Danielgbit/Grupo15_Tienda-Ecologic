@@ -468,6 +468,35 @@ const userController = {
         };
     },
 
+    /* getAllUsers: async (req, res) => {
+
+        try {
+
+            const users = await db.User.findAll({ raw: true, nest: true });
+    
+            if (users.length > 0) {
+                
+                const usersUrls = users.map((user) => {
+                    return {
+                        ...user,
+                        url: `http://localhost:3000/user/${user.user_id}/detail`
+                    };
+                });
+    
+                res.json({
+                    count: usersUrls.length,
+                    users: usersUrls
+                });
+
+            } else {
+                res.status(404).json({ error: 'No se encontró ningún usuario' });
+            }
+
+        } catch (error) {
+            res.status(500).json({ error: 'Error del servidor' });
+        }
+    }, */
+
     userDetail: async (req, res) => {
 
         try {
