@@ -55,11 +55,10 @@ userRouter.post('/order/create', userController.createOrder);
 userRouter.get('/orders', userController.viewOrders);
 
 //@GET /users
-userRouter.get('/users', userController.getAllusers);
+userRouter.get('/users', userController.getAllUsers);
 
 //@GET /user/:id
 userRouter.get('/:id/detail', userController.userDetail)
-
 
 
 

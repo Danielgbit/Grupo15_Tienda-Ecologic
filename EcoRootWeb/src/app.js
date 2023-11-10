@@ -54,7 +54,7 @@ app.use('/cart', cartRoute);
 
 app.use('/products', productsRoute);
 
-app.use('/user', userRoute);
+app.use('/api', userRoute);
 
 app.use((req, res) => {
     res.render('error');

@@ -27,65 +27,67 @@ const userController = {
     loginProcess: async (req, res) => {
 
         dataOld = req.body || {};
-        const result = validationResult(req);
-        const errors = {
-            email: 'el email es incorrecto',
-            password: 'la contraseña no coincide'
-        };
-
-        //Express validator
-        if (result.errors.length > 0) {
-            const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
-            const queryErrors = queryArray.join('');
-            res.redirect('/user/login?admin=true' + queryErrors);
-
-            return;
-        };
-
-        const userinUse = await db.User.findOne({
-            where: {
-                email: req.body.email,
-            },
-            raw: true
-        });
-
-
-
-        if (!userinUse) {
-            res.redirect('/user/login?email=' + errors.email);
-            return;
-        };
-
-        const validPassword = bcrypt.compareSync(req.body.password, userinUse.password);
-
-        if (!validPassword) {
-
-            res.redirect('/user/login?password=' + errors.password);
-
-            return;
-        };
-
-        //@COOKIES
-
-        if (req.body.remember) {
-
-            const unaSemanaEnSegundos = 7 * 24 * 60 * 60;
-            const maxAge = unaSemanaEnSegundos * 1000; // duracion una semana;
-
-            res.cookie('uEmail', userinUse, {
-                maxAge,
-                secure: true, // Solo enviar la cookie a través de HTTPS
-                httpOnly: true,
+        try {
+            
+            const result = validationResult(req);
+    
+    
+            //Express validator
+            if (result.errors.length > 0) {
+                const errors = result.errors.map(errors => ({[errors.path]: errors.msg}));
+                return res.status(404).json({errors});
+            };
+    
+            const userinUse = await db.User.findOne({
+                where: {
+                    email: req.body.email,
+                },
+                raw: true
             });
-
-        };
-
-        if (userinUse) {
-
-            req.session.user = userinUse;
-        };
-
-        res.redirect('/');
+    
+    
+    
+            if (!userinUse) {
+                return res.status(404).json({error: 'el email es incorrecto' });
+            };
+    
+            const validPassword = bcrypt.compareSync(req.body.password, userinUse.password);
+    
+            if (!validPassword) {
+    
+                return res.status(404).json({error: 'la contraseña no coincide' });
+    
+            };
+    
+            //@COOKIES
+    
+            if (req.body.remember) {
+    
+                const unaSemanaEnSegundos = 7 * 24 * 60 * 60;
+                const maxAge = unaSemanaEnSegundos * 1000; // duracion una semana;
+    
+                res.cookie('uEmail', userinUse, {
+                    maxAge,
+                    secure: true, // Solo enviar la cookie a través de HTTPS
+                    httpOnly: true,
+                });
+    
+            };
+    
+            if (userinUse) {
+    
+                req.session.user = userinUse;
+            };
+    
+            res.status(200).json({
+                sucess: true,
+                message: 'El login fue exitoso'
+            });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({error: 'Error del servidor' });
+            
+        }
     },
 
     register: (req, res) => {
@@ -438,64 +440,29 @@ const userController = {
         }
     },
 
-    getAllusers: async (req, res) => {
-
+    getAllUsers: async (req, res) => {
         try {
+            const users = await db.User.findAll({ raw: true });
 
-            const users = await db.User.findAll({ raw: true, nest: true });
-
-            const usersUrls = [];
-
-            users.map((user) => {
-                usersUrls.push({
-                    url: `http://localhost:3000/user/${user.user_id}/detail`
-                });
-            });
-
-
-            if (users) {
-                res.json({
-                    count: users.length,
-                    users,
-                    usersUrls
-                });
-            } else {
-                res.status(404).json({ error: 'No se encontro ningun usuario' })
-            };
-
-        } catch (error) {
-            res.status(500).json({ error: 'Error del servidor' });
-        };
-    },
-
-    /* getAllUsers: async (req, res) => {
-
-        try {
-
-            const users = await db.User.findAll({ raw: true, nest: true });
-    
             if (users.length > 0) {
-                
-                const usersUrls = users.map((user) => {
-                    return {
-                        ...user,
-                        url: `http://localhost:3000/user/${user.user_id}/detail`
-                    };
-                });
-    
-                res.json({
-                    count: usersUrls.length,
-                    users: usersUrls
-                });
+                const dataUsers = users.map((user) => ({
+                    
+                    id: user.user_id,
+                    nombre: user.first_name,
+                    apellido: user.last_name,
+                    email: user.email,
+                    url: `http://localhost:3000/api/${user.user_id}/detail`
+                    
+                }));
 
+                res.json({ count: dataUsers.length, users: dataUsers });
             } else {
                 res.status(404).json({ error: 'No se encontró ningún usuario' });
             }
-
         } catch (error) {
             res.status(500).json({ error: 'Error del servidor' });
         }
-    }, */
+    },
 
     userDetail: async (req, res) => {
 
