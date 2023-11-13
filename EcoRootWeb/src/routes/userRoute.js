@@ -61,5 +61,7 @@ userRouter.get('/users', userController.getAllUsers);
 userRouter.get('/:id/detail', userController.userDetail)
 
 
+userRouter.get('/user/avatar/:id', userController.userAvatar);
+
 
 module.exports = userRouter;

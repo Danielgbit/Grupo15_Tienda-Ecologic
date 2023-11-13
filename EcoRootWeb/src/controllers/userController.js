@@ -468,20 +468,63 @@ const userController = {
 
         try {
 
-            const userDetail = await db.User.findByPk(req.params.id, {
+            const user = await db.User.findByPk(req.params.id, {
                 raw: true
             });
 
-            if (userDetail) {
-                res.json({ userDetail });
+
+            if (user) {
+                const dataUsers = {
+                    
+                    id: user.user_id,
+                    nombre: user.first_name,
+                    apellido: user.last_name,
+                    email: user.email,
+                    username: user.username,
+                    pais: user.country,
+                    ciudad: user.city,
+                    genero: user.gender,
+                    avatar: 'http://localhost:3000/api/user/avatar/${user.user_id}'
+                    
+                };
+
+                res.status(200).json({ count: dataUsers.length, users: dataUsers });
             } else {
                 res.status(404).json({ error: 'No se encontro ningun usuario' })
             };
 
         } catch (error) {
+            console.log(error);
             res.status(500).json({ error: 'Error del servidor' });
         };
     },
+
+    userAvatar: async (req, res) => {
+
+        try {
+            const user = await db.User.findByPk(req.params.id, {
+                raw: true
+            });
+
+
+            const urlAvatar = path.join(__dirname, '../../public/img/avatars/' + user.avatar);
+
+            fs.readFile(urlAvatar, (err, data) => {
+                if (err) {
+                    console.log(err);
+                   return  res.status(404).json({error: 'No se encontro el avatar'});
+                }
+
+                
+
+                res.end(data, 'binary');
+            });
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Error del servidor' });
+        }
+    }
 
 }
 
