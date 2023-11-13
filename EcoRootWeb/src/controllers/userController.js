@@ -28,65 +28,65 @@ const userController = {
 
         dataOld = req.body || {};
         try {
-            
+
             const result = validationResult(req);
-    
-    
+
+
             //Express validator
             if (result.errors.length > 0) {
-                const errors = result.errors.map(errors => ({[errors.path]: errors.msg}));
-                return res.status(404).json({errors});
+                const errors = result.errors.map(errors => ({ [errors.path]: errors.msg }));
+                return res.status(404).json({ errors });
             };
-    
+
             const userinUse = await db.User.findOne({
                 where: {
                     email: req.body.email,
                 },
                 raw: true
             });
-    
-    
-    
+
+
+
             if (!userinUse) {
-                return res.status(404).json({error: 'el email es incorrecto' });
+                return res.status(404).json({ error: 'el email es incorrecto' });
             };
-    
+
             const validPassword = bcrypt.compareSync(req.body.password, userinUse.password);
-    
+
             if (!validPassword) {
-    
-                return res.status(404).json({error: 'la contraseña no coincide' });
-    
+
+                return res.status(404).json({ error: 'la contraseña no coincide' });
+
             };
-    
+
             //@COOKIES
-    
+
             if (req.body.remember) {
-    
+
                 const unaSemanaEnSegundos = 7 * 24 * 60 * 60;
                 const maxAge = unaSemanaEnSegundos * 1000; // duracion una semana;
-    
+
                 res.cookie('uEmail', userinUse, {
                     maxAge,
                     secure: true, // Solo enviar la cookie a través de HTTPS
                     httpOnly: true,
                 });
-    
+
             };
-    
+
             if (userinUse) {
-    
+
                 req.session.user = userinUse;
             };
-    
+
             res.status(200).json({
                 sucess: true,
                 message: 'El login fue exitoso'
             });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({error: 'Error del servidor' });
-            
+            return res.status(500).json({ error: 'Error del servidor' });
+
         }
     },
 
@@ -446,13 +446,13 @@ const userController = {
 
             if (users.length > 0) {
                 const dataUsers = users.map((user) => ({
-                    
+
                     id: user.user_id,
                     nombre: user.first_name,
                     apellido: user.last_name,
                     email: user.email,
                     url: `http://localhost:3000/api/${user.user_id}/detail`
-                    
+
                 }));
 
                 res.json({ count: dataUsers.length, users: dataUsers });
@@ -475,7 +475,7 @@ const userController = {
 
             if (user) {
                 const dataUsers = {
-                    
+
                     id: user.user_id,
                     nombre: user.first_name,
                     apellido: user.last_name,
@@ -485,7 +485,7 @@ const userController = {
                     ciudad: user.city,
                     genero: user.gender,
                     avatar: 'http://localhost:3000/api/user/avatar/${user.user_id}'
-                    
+
                 };
 
                 res.status(200).json({ count: dataUsers.length, users: dataUsers });
@@ -512,10 +512,10 @@ const userController = {
             fs.readFile(urlAvatar, (err, data) => {
                 if (err) {
                     console.log(err);
-                   return  res.status(404).json({error: 'No se encontro el avatar'});
+                    return res.status(404).json({ error: 'No se encontro el avatar' });
                 }
 
-                
+
 
                 res.end(data, 'binary');
             });
@@ -523,8 +523,8 @@ const userController = {
         } catch (error) {
             console.log(error);
             res.status(500).json({ error: 'Error del servidor' });
-        }
-    }
+        }
+    },
 
 }
 
