@@ -204,7 +204,7 @@ const productsController = {
 
     getEdit: async (req, res) => {
 
-        
+
         try {
 
             const category = await db.Category.findAll({
@@ -234,7 +234,7 @@ const productsController = {
                 brands,
                 colors
             });
-            
+
         } catch (error) {
             console.error(error);
         };
@@ -379,7 +379,7 @@ const productsController = {
 
     addToCart: async (req, res) => {
 
-        
+
         try {
             const userId = req.session.user.user_id; // Reemplaza con la forma en que obtienes el ID del usuario
             const productId = req.body.product_id; // Supongamos que se envía en el cuerpo de la solicitud
@@ -391,24 +391,24 @@ const productsController = {
                 // Si el usuario no tiene un carrito, crea uno
                 const newCart = await db.Cart.create({ user_id: userId });
                 const cartId = newCart.cart_id;
-                
+
                 // Luego, crea un registro en ProductCart para el producto
                 await db.ProductCart.create({ cart_id: cartId, product_id: productId, quantity: quantity });
-              } else {
+            } else {
                 // Si el usuario ya tiene un carrito, verifica si el producto ya está en el carrito
                 const existingProduct = await db.ProductCart.findOne({ where: { cart_id: cart.cart_id, product_id: productId } });
-          
-                if (existingProduct) {
-                  // Si el producto ya está en el carrito, actualiza la cantidad
-                  existingProduct.quantity = quantity;
-                  await existingProduct.save();
-                } else {
-                  // Si el producto no está en el carrito, crea un nuevo registro
-                  await db.ProductCart.create({ cart_id: cart.cart_id, product_id: productId, quantity: quantity });
-                }
-              };
 
-              res.redirect('/products');
+                if (existingProduct) {
+                    // Si el producto ya está en el carrito, actualiza la cantidad
+                    existingProduct.quantity = quantity;
+                    await existingProduct.save();
+                } else {
+                    // Si el producto no está en el carrito, crea un nuevo registro
+                    await db.ProductCart.create({ cart_id: cart.cart_id, product_id: productId, quantity: quantity });
+                }
+            };
+
+            res.redirect('/products');
 
         } catch (error) {
             console.error('Error al agregar producto al carrito:', error);
@@ -420,37 +420,37 @@ const productsController = {
 
         try {
             // Obtener el ID del usuario que ha iniciado sesión (ajusta según tu sistema de autenticación)
-            const userId = req.session.user.user_id; 
-        
+            const userId = req.session.user.user_id;
+
             // Buscar el carrito del usuario actual
-            const cart = await db.Cart.findOne({ where: { user_id: userId },  include: 'products', raw: true, nest: true });
-            
+            const cart = await db.Cart.findOne({ where: { user_id: userId }, include: 'products', raw: true, nest: true });
+
 
             const cartProducts = await db.Cart.findAll({
                 where: { cart_id: cart.cart_id },
                 include: 'products',
                 raw: true,
                 nest: true,
-              });
+            });
 
 
             if (!cart || (cart.products.ProductCart.quantity === null)) {
-              // Si el usuario no tiene un carrito, puedes mostrar un mensaje o redirigir a una página vacía de carrito
-              return res.render('cartEmpty'); // Crea una vista "empty-cart.ejs" para mostrar el carrito vacío
+                // Si el usuario no tiene un carrito, puedes mostrar un mensaje o redirigir a una página vacía de carrito
+                return res.render('cartEmpty'); // Crea una vista "empty-cart.ejs" para mostrar el carrito vacío
             }
-        
 
-            
+
+
             res.render('productCart', { cartProducts: cartProducts });
 
 
-           /* res.send('cart'); */
+            /* res.send('cart'); */
 
-          } catch (error) {
+        } catch (error) {
 
             console.error('Error al ver el carrito:', error);
 
-          }
+        }
 
     },
 
@@ -460,22 +460,22 @@ const productsController = {
             const productId = req.params.productId;
             const userId = req.session.user.user_id;
 
-            
+
             // Buscar el carrito del usuario
             const cart = await db.Cart.findOne({ where: { user_id: userId }, raw: true });
-            
+
             // Eliminar el producto del carrito
             await db.ProductCart.destroy({
                 where: { cart_id: cart.cart_id, product_id: productId }
             });
-            
+
             res.redirect('/products/cart');
 
-          } catch (error) {
-            
+        } catch (error) {
+
             console.error('Error al eliminar el producto del carrito:', error);
-          }
-        
+        }
+
     },
 
     productCartUpdate: async (req, res) => {
@@ -483,43 +483,129 @@ const productsController = {
             const productId = req.params.id;
             const userId = req.session.user.user_id;
             const action = req.query.action; // Puede ser 'increase' o 'decrease'
-            
-            
+
+
             // Buscar el carrito del usuario
             const cart = await db.Cart.findOne({ where: { user_id: userId }, raw: true });
-            
+
             // Buscar el producto en el carrito
 
-            const productInCart = await db.ProductCart.findOne({ where: { cart_id: cart.cart_id, product_id: productId },
-                 raw: true });
+            const productInCart = await db.ProductCart.findOne({
+                where: { cart_id: cart.cart_id, product_id: productId },
+                raw: true
+            });
 
-            
+
             if (!cart) {
-              return res.status(404).send('El producto no se encuentra en el carrito.');
+                return res.status(404).send('El producto no se encuentra en el carrito.');
             }
-            
+
             const updateData = {};
 
             if (action === 'increase') {
                 updateData.quantity = productInCart.quantity + 1;
-                
+
             } else if (action === 'decrease' && productInCart.quantity > 1) {
                 updateData.quantity = productInCart.quantity - 1;
             }
 
-            
+
             await db.ProductCart.update(updateData, {
                 where: { product_cart_id: productInCart.product_cart_id }
             });
-            
-              
-                
+
+
+
             res.redirect('/products/cart');
-        
-          } catch (error) {
+
+        } catch (error) {
             console.error('Error al actualizar la cantidad del producto en el carrito:', error);
-          }
-    }
+        }
+    },
+
+    getAllProducts: async (req, res) => {
+        try {
+            const products = await db.Product.findAll({ raw: true });
+
+            if (products.length > 0) {
+                const dataProducts = products.map((product) => ({
+
+                    id: product.product_id,
+                    nombre: product.name,
+                    descripcion: product.description,
+                    /* array con principal relación de uno a muchos, */
+                    urlDetail: `http://localhost:3000/api/${product.product_id}/detail`
+
+                }));
+
+                res.json({ count: dataProducts.length, users: dataProducts });
+            } else {
+                res.status(404).json({ error: 'No se encontró ningún producto' });
+            }
+        } catch (error) {
+            res.status(500).json({ error: 'Error del servidor' });
+        }
+    },
+
+    productDetail: async (req, res) => {
+
+        try {
+
+            const product = await db.Product.findByPk(req.params.id, {
+                raw: true
+            });
+
+            if (product) {
+                const dataProducts = {
+                    id: product.product_id,
+                    nombre: product.name,
+                    description: product.description,
+                    price: product.price,
+                    category: product.category_id,
+                    color: product.color_id,
+                    brand: product.brand_id,
+                    state: product.state,
+                    united: product.united,
+                    discount: product.discount,
+                    material: product.material,
+                    image: 'http://localhost:3000/api/product/image/${product.product_id}'
+                };
+
+                res.status(200).json({ count: dataProducts.length, products: dataProducts });
+            } else {
+                res.status(404).json({ error: 'No se encontro ningun producto' })
+            };
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Error del servidor' });
+        };
+    },
+
+    productImage: async (req, res) => {
+
+        try {
+            const product = await db.Product.findByPk(req.params.id, {
+                raw: true
+            });
+
+            const urlImage = path.join(__dirname, '../../public/img/products/' + product.image);
+
+            fs.readFile(urlImage, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(404).json({ error: 'No se encontro la imagen' });
+                }
+                res.end(data, 'binary');
+            });
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Error del servidor' });
+        }
+    },
+
+
 };
 
 

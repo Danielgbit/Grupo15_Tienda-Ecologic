@@ -62,12 +62,14 @@ productsRouter.delete('/cart/:productId/delete', productsController.productCartD
 // @GET /products/cart/:id/delete
 productsRouter.put('/cart/:id/update', productsController.productCartUpdate);
 
+//@GET /products
+productsRouter.get('/products', productsController.getAllProducts);
+
+//@GET /user/:id
+productsRouter.get('/:id/detail', productsController.productDetail);
 
 
-
-
-
-
+productsRouter.get('/product/image/:id', productsController.productImage);
 
 
 module.exports = productsRouter;
