@@ -37,7 +37,7 @@ const ProductList = ({ allProducts }) => {
                       {product.discount === '0.00' ? (
                         <span></span>
                       ) : (
-                        <span className="descuento">{product.discount}% OFF</span>
+                        <span className="descuento">{parseInt(product.discount)}% OFF</span>
                       )}
                       <span className="total">$ {product.price}</span>
                     </div>

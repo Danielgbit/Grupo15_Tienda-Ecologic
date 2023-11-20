@@ -40,7 +40,7 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
 
 
     return (
-    <div>
+    <div id="create-product-body">
         <main className="main-create-category">
             <section className="header-create">
                 <h1>Creacion de producto</h1>

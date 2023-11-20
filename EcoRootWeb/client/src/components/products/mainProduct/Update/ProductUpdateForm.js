@@ -11,7 +11,7 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
 
     return (
-        <div>
+        <div id="body-edit-product">    
             <main className="main-create-category">
                 <section className="header-create">
                     <h1>Edición de producto</h1>
@@ -28,6 +28,8 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                     </div>
 
                     <article className="container-cards-category">
+
+                        
                     {categories && categories.map((category) => (
                         <label key={category.category_id} className="categoryCards">
                         <input
@@ -56,6 +58,8 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                                 )}
                                 </div>
 
+                                {/* //AQUI VAMOS */}
+
                                 <div className="input-information-container">
                                 <label htmlFor="brand">Marca:</label>
                                 <select name="brand" id="brand" className="countries-select">
@@ -73,7 +77,7 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
                                 <div className="input-information-container">
                                 <label htmlFor="color">Color:</label>
-                                <select name="color" id="color" className="countries-select">
+                                <select name="color" id="color" className="colors-select">
                                     {colors && colors.map((color) => (
                                     <option key={color.color_id} value={color.color_id}>
                                         {color.color_name}
@@ -220,7 +224,7 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
                                 <div className="input-information-container">
                                     <label htmlFor="price" className="priceText">¿Cuál es el precio?</label>
-                                    <input type="number" id="price" name="price" min="0" step="0.01" value={parseInt(product && product.price)} placeholder="$" />
+                                    <input type="number" id="price" name="price" min="0" step="0.01" placeholder="$" value={parseInt(product && product.price)} />
                                     <ul className="errors-createP-front error-price"></ul>
                                     {errors && errors.price && (
                                         <span className="errorsCreateProduct">{errors.price}</span>

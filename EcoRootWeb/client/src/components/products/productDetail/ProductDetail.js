@@ -10,8 +10,7 @@ const ProductDetail = ({ product }) => {
 
     return (
         product &&
-        <div>
-            <main>
+            <main className='container-main-product-detail'>
                 <section id="main-productDetail">
                     <article className="top-product-detail-container">
                     <div className="img-card-val-wrapper">
@@ -25,7 +24,7 @@ const ProductDetail = ({ product }) => {
                             <h1 className="title-1-product-detail">{product.name}</h1>
                                 <div className="button-actions-detail">
                                     {/*  //EditProduct-LINK*/}
-                                    <Link to={`/product/edit/${product.product_id}`}><i className="fa-solid fa-pencil"></i></Link>
+                                    <Link className='link-edit-product' to={`/product/edit/${product.product_id}`}><i className="fa-solid fa-pencil"></i></Link>
                                     {/*  //DestroyComponent */}
                                     <DestroyProductComponent id={product.product_id}/>
                                 </div>
@@ -46,8 +45,8 @@ const ProductDetail = ({ product }) => {
                         </div>
                         <div className="buttons-detail-container">
                             <div className="button-selector-detail button-detail-2">
-                                <button>{product.material}</button>
-                                <span>Material</span>
+                                <span className='span-material'>Material:</span>
+                                <p>{product.material}</p>
                             </div>
                             <div className="button-cart-add-detail">
                                 <button>AGREGAR AL CART</button>
@@ -57,8 +56,7 @@ const ProductDetail = ({ product }) => {
                     </section>
                     </article>
                 </section>
-                </main>
-        </div>
+            </main>
     );
   };
   

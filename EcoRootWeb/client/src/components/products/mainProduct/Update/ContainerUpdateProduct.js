@@ -30,11 +30,13 @@ const ContainerUpdateProduct = () => {
         }, [id]);
 
 
+        console.log(getProductEdit);
+
     return (
         <>
           {<ProductUpdateForm 
                 brands={getProductEdit.brands} 
-                category={getProductEdit.category}
+                categories={getProductEdit.category}
                 colors={getProductEdit.colors} 
                 product={getProductEdit.product}
                 errors= {null}

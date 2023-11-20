@@ -63,7 +63,7 @@ const Products = () => {
 
 
   return (
-    <div>
+    <div className='container-allProducts-div'>
         <main>
 
         <section className="paragraph-head-main">
