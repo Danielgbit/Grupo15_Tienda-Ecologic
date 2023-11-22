@@ -1,148 +1,507 @@
-const { validationResult } = require('express-validator');
+const {
+    validationResult
+} = require('express-validator');
 const fs = require('fs');
 const path = require('path');
-const db = require('../database/models');
-let formDataOld = {};
-const { Op } = require('sequelize');
-const { log, error } = require('console');
-const { raw } = require('mysql2');
+const db = require('../database/models'); // Asegúrate de que la ruta sea correcta
+const {
+    Op
+} = require('sequelize');
 
+let formDataOld = {};
 
 const productsController = {
 
-    //PRIMER EDICION SEQUELIZE
 
-    products: async (req, res) => {
+    //@-GETS-------
+
+    getAllproducts: async (req, res) => {
 
         try {
 
+            const itemsPage = 10;
+
+            // Obtener el número de página desde la consulta (por ejemplo, /api/products?page=2)
+            const page = req.query.page ? parseInt(req.query.page) : 1;
+
+            // Calcular el offset
+            const offset = (page - 1) * itemsPage;
+
             const products = await db.Product.findAll({
-                include: 'productCategory',
+                include: ['productCategory', 'productBrand'],
                 raw: true,
-                nest: true
+                nest: true,
+                limit: itemsPage,
+                offset: offset
+            });
+
+            const category = await db.Category.findAll({
+                include: 'quantityProducts',
+                raw: true,
+                nest: true,
             });
 
 
-            res.render('products', {
-                products: products
+            if (products.length === 0 || !products) {
+                return res.status(404).json({
+                    error: 'No se encontraron productos'
+                });
+            }
+
+
+            const modifiedProducts = products.map((product) => ({
+                product_id: product.product_id,
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                united: product.united,
+                avatar: product.avatar,
+                discount: product.discount,
+                material: product.material,
+                state: product.state,
+                image: `/api/product/image/${product.product_id}`,
+                color_id: product.color_id,
+                user_id: product.user_id,
+                productCategory: {
+                    category_id: product.productCategory.category_id,
+                    category_name: product.productCategory.category_name
+                },
+                productBrand: {
+                    brand_id: product.productBrand.brand_id,
+                    brand_name: product.productBrand.brand_name,
+                },
+                detail: `/api/product/detail/${product.product_id}`
+            }));
+
+            const endPointsProducts = {
+                createProduct: "/api/product/create",
+                searchProducts: "/api/product/search?query=bambú"
+            };
+
+            const countByCategory = category.map((category) => {
+                return {
+                    name: category.category_name,
+                    quantity_products: category.quantityProducts.quantity,
+                    productsByCategory: `/api/product/categories/${category.category_id}`,
+                    category_id: category.quantityProducts.category_id
+                };
+            });
+
+            // Calcular las URLs para la paginación
+            const nextUrl = products.length === itemsPage ? `/api/products?page=${page + 1}` : null;
+
+            const prevUrl = page > 1 ? `/api/products?page=${page - 1}` : null;
+            
+
+
+            res.status(200).json({
+                count: products.length,
+                countByCategory,
+                endPointsProducts,
+                products: modifiedProducts,
+                nextUrl,
+                previous: prevUrl
             });
 
         } catch (error) {
-            console.error(error);
+            res.status(500).json({
+                error: 'Error interno del servidor'
+            });
         };
 
 
     },
 
+    getProductDetail: async (req, res) => {
 
-    productDetail: async (req, res) => {
+        const idProduct = Number(req.params.id);
 
+        if (isNaN(idProduct)) {
+            res.status(400).json({
+                error: 'ID de producto no válido'
+            });
+            return;
+        };
 
         try {
-            const product = await db.Product.findByPk(Number(req.params.id), {
+            const product = await db.Product.findByPk(idProduct, {
                 include: ['productCategory', 'colors', 'productBrand'],
                 nest: true,
                 raw: true,
             });
 
-            res.render('productDetail', {
-                product
+
+            const endPointsProduct = {
+                getViewEdit: `/api/product/getEdit/${idProduct}`,
+                editProduct: `/api/product/edit/${idProduct}`,
+                deleteProduct: `/api/product/delete/${idProduct}`
+            };
+
+            const ImageUrl = `/api/product/image/${product.product_id}`;
+
+            const productDetail = {
+                product_id: product.product_id,
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                united: product.united,
+                discount: product.discount,
+                material: product.material,
+                state: product.state,
+                category_name: product.productCategory.category_name,
+                productBrand: product.productBrand.brand_name,
+                colors: {
+                    color_name: product.colors.color_name,
+                    hex_code: product.colors.hex_code
+                },
+                image: ImageUrl,
+                
+            }
+
+
+            if (product) {
+                res.status(200).json({
+                    endPointsProduct,
+                    product: productDetail,
+                });
+            } else {
+                res.status(404).json({
+                    error: 'No se encontro el producto'
+                });
+            };
+
+        } catch (error) {
+            res.status(500).json({
+                error: 'Error interno del servidor'
+            });
+        };
+
+    },
+
+    getImage: async (req, res) => {
+
+
+        try {
+            const product = await db.Product.findOne({
+                where: {
+                    product_id: req.params.id
+                },
+                raw: true
+            });
+
+            if (!product.image) {
+                return res.status(404).json({
+                    error: '¡Imagen no encontrada!'
+                });
+            };
+
+            const imagePath = path.join(__dirname, '..', '..', '/public/img/products', product.image);
+
+            fs.readFile(imagePath, (err, data) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(404).json({
+                        error: 'La imagen no existe'
+                    });
+                };
+
+                res.writeHead(200, {
+                    'Content-Type': 'image/jpeg'
+                });
+                res.end(data, 'binary');
+
             });
 
         } catch (error) {
             console.error(error);
-        }
-
+            res.status(500).json({
+                error: 'Error en la ejecución del servidor'
+            });
+        };
     },
 
-    //@CREATE
-
-
-    getproductCreate: async (req, res) => {
-
+    getEditProduct: async (req, res) => {
         try {
-
             const category = await db.Category.findAll({
                 raw: true
             });
-
+    
             const brands = await db.Brand.findAll({
                 raw: true
             });
-
+    
             const colors = await db.Color.findAll({
                 raw: true
             });
+    
+            const product = await db.Product.findByPk(Number(req.params.id), {
+                include: ['productCategory', 'productColors', 'productBrand'],
+                nest: true,
+                raw: true,
+            });
 
 
-            res.render('productCreate', {
-                errors: req.query,
-                formDataOld,
+            const productEdit = {
+                product_id: product.product_id,
+                brand_id: product.brand_id,
+                category_id: product.category_id,
+                color_id: product.color_id,
+                description: product.description,
+                discount: product.discount,
+                image: `/api/product/image/${product.product_id}`,
+                material: product.material,
+                name: product.name,
+                price: product.price,
+                productBrand: product.productBrand,
+                productCategory: product.productBrand,
+                productColors: product.productColors,
+                state: product.state,
+                united: product.united,
+                user_id: product.user_id
+              };
+
+            res.json({
+                product: productEdit,
                 category,
                 brands,
                 colors
             });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
 
+    getProductCreate: async (req, res) => {
+
+        try {
+            const category = await db.Category.findAll({
+              raw: true
+            });
+
+            if (!category) {
+                res.status(404).json({error: 'Hubo un error al traer las categorias'});
+            };
+        
+            const brands = await db.Brand.findAll({
+              raw: true
+            });
+
+            if (!brands) {
+                res.status(404).json({error: 'Hubo un error al traer las marcas'});
+            };
+        
+            const colors = await db.Color.findAll({
+              raw: true
+            });
+
+            if (!colors) {
+                res.status(404).json({error: 'Hubo un error al traer los colores'});
+            };
+        
+            res.json({
+              category,
+              brands,
+              colors
+            });
+          } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal Server Error' });
+          }
+    },
+
+    getProductCategory: async (req, res) => {
+
+        try {
+
+            const categoryId = req.params.category_id;
+
+            const categoryById = await db.Category.findByPk(categoryId, {
+                raw: true
+            });
+
+            console.log(categoryById);
+
+            const productsCategory = await db.Product.findAll({
+                where: {
+                    category_id: categoryId
+                },
+                include: ['productCategory', 'productBrand'],
+                nest: true,
+                raw: true
+            });
+
+            const products = productsCategory.map((data) => ({
+                product_id: data.product_id,
+                name: data.name,
+                description: data.description,
+                price: data.price,
+                united: data.united,
+                discount: data.discount,
+                state: data.state,
+                user_id: data.user_id,
+                discount: data.discount,
+                category_name: data.productCategory.category_name,
+                brand_name: data.productBrand.brand_name,
+                image: `/api/product/image/${data.product_id}`
+
+            }));
+
+
+            res.json({
+                categoryName: categoryById.category_name,
+                count: productsCategory.length,
+                productsByCategory: products,
+            });
 
         } catch (error) {
             console.error(error);
+            res.status(500).json({
+                error: 'Internal Server Error'
+            });
         }
+    },
 
+    getSearchProduct: async (req, res) => {
+
+        const search = req.query.query;
+
+        try {
+            if (!search) {
+                // Si no se proporciona un término de búsqueda, devuelve un mensaje de error
+                return res.status(400).json({
+                    error: 'Debe proporcionar un término de búsqueda'
+                });
+            }
+
+            const results = await db.Product.findAll({
+                raw: true,
+                include: 'productCategory',
+                nest: true,
+                where: {
+                    name: {
+                        [Op.like]: `%${search}%`
+                    }
+                }
+            });
+
+
+            const productsBySearch = results.map((product) => ({
+
+                product_id: product.product_id,
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                united: product.united,
+                avatar: product.avatar,
+                discount: product.discount,
+                material: product.material,
+                state: product.state,
+                image: `/api/product/image/${product.product_id}`,
+                color_id: product.color_id,
+                user_id: product.user_id,
+                productCategory: {
+                    category_id: product.productCategory.category_id,
+                    category_name: product.productCategory.category_name
+                },
+            }))
+
+            res.status(200).json({
+                products: productsBySearch
+            });
+
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: 'Internal Server Error'
+            });
+        }
 
     },
 
 
+
+
+
+    //@--POSTS-----
+
+
     postProductCreate: async (req, res) => {
 
-        formDataOld = req.body || {};
-
-        const result = validationResult(req);
-
-
-        // Verifica si req.file está definido (si se ha cargado un archivo)
-        if (req.file) {
-            // Si hay errores de validación, elimina el archivo y muestra los errores
-            if (result.errors.length > 0) {
-                fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + req.file.filename));
-
-                const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
-                const queryErrors = queryArray.join('');
-                res.redirect('/products/create?admin=true' + queryErrors);
-                return;
-            }
-
-            // Si no hay errores de validación, procede con la creación del producto y otras acciones
-            // ...
-
-        } else {
-            // Si no se cargó un archivo, muestra los errores de validación sin intentar eliminar un archivo
-            if (result.errors.length > 0) {
-                const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
-                const queryErrors = queryArray.join('');
-                res.redirect('/products/create?admin=true' + queryErrors);
-
-                return;
-            }
-        }
-
-        const newProduct = {
-            name: req.body.name,
-            description: req.body.description,
-            price: Number(req.body.price),
-            united: Number(req.body.united),
-            discount: Number(req.body.discount),
-            material: req.body.material,
-            user_id: req.session.user.user_id,
-            state: req.body.state,
-            image: req.file.filename,
-            color_id: req.body.color,
-            category_id: req.body.category,
-            brand_id: req.body.brand,
-        };
 
         try {
+
+            const result = validationResult(req);
+
+
+            // Verifica si req.file está definido (si se ha cargado un archivo)
+            if (req.file) {
+                // Si hay errores de validación, elimina el archivo y muestra los errores;
+                if (result.errors.length > 0) {
+                    fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + req.file.filename));
+                    const errors = result.errors.map(err => ({
+                        [err.path]: err.msg
+                    }));
+                    return res.status(400).json({
+                        errors
+                    });
+                }
+                // Si no hay errores de validación, procede con la creación del producto y otras acciones;
+            } else {
+                // Si no se cargó un archivo, muestra los errores de validación sin intentar eliminar un archivo;
+                if (result.errors.length > 0) {
+                    const errors = result.errors.map(err => ({
+                        [err.path]: err.msg
+                    }));
+                    return res.status(400).json({
+                        errors
+                    });
+                }
+            }
+
+            console.log('session', req.session);
+
+            const newProduct = {
+                name: req.body.name,
+                description: req.body.description,
+                price: Number(req.body.price),
+                united: Number(req.body.united),
+                discount: Number(req.body.discount),
+                material: req.body.material,
+                user_id: req.body.user_id,
+                state: req.body.state,
+                image: req.file.filename,
+                color_id: req.body.color,
+                category_id: req.body.category,
+                brand_id: req.body.brand,
+            };
+
             //Creacion Product
             const productNew = await db.Product.create(newProduct);
+
+            if (productNew.length === 0) {
+                return res.status(404).json({
+                    success: false,
+                    error: 'Fallo la creación del producto'
+                });
+            };
+
+
+            const [quantityProduct, created] = await db.QuantityProductCategory.findOrCreate({
+                where: {
+                    category_id: newProduct.category_id
+                },
+                defaults: {
+                    quantity: 1
+                }
+            });
+
+            if (!created) {
+                // Si no fue creado, ya existe, entonces incrementamos la cantidad
+                quantityProduct.quantity += 1;
+                await quantityProduct.save();
+            }
+
 
 
             //Ingreso de datos tabla intermedia ProductColor
@@ -154,95 +513,24 @@ const productsController = {
                 });
             });
 
-            //Ingreso de datos tabla intermedia BrandCategory
-            // Obtener los 'brand_id' y 'category_id' desde req.body (pueden ser múltiples)
-            const brandIds = Array.isArray(req.body.brand) ? req.body.brand : [req.body.brand];
-            const categoryIds = Array.isArray(req.body.category) ? req.body.category : [req.body.category];
 
-            // Crear registros en la tabla 'brandCategory' para relacionar las marcas y categorías seleccionadas
-            for (const brandId of brandIds) {
-                for (const categoryId of categoryIds) {
-                    await db.BrandCategory.create({
-                        brand_id: brandId,
-                        category_id: categoryId,
-                    });
-                }
-            };
-
-
+            return res.status(201).json({
+                success: true,
+                message: '¡Producto creado exitosamente!',
+                redirect: '/products'
+            });
 
         } catch (error) {
             console.error(error);
+            return res.status(500).json({
+                error: 'Internal Server Error'
+            });
         }
-
-        res.redirect('/products');
-
-    },
-
-    productDestroy: async (req, res) => {
-
-
-        const productId = await db.Product.findByPk(Number(req.params.id));
-
-        try {
-            await db.Product.destroy({
-                where: {
-                    product_id: Number(req.params.id)
-                }
-            });
-
-        } catch (error) {
-            console.error(error);
-        }
-
-        fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + productId.image));
-
-        res.redirect('/products');
-
     },
 
 
-    getEdit: async (req, res) => {
 
-
-        try {
-
-            const category = await db.Category.findAll({
-                raw: true
-            });
-
-            const brands = await db.Brand.findAll({
-                raw: true
-            });
-
-            const colors = await db.Color.findAll({
-                raw: true
-            });
-
-            const product = await db.Product.findByPk(Number(req.params.id), {
-                include: ['productCategory', 'productColors', 'productBrand'],
-                nest: true,
-                raw: true,
-            });
-
-            console.log(req.query);
-
-            res.render('productEdit', {
-                errors: req.query,
-                product,
-                category,
-                brands,
-                colors
-            });
-
-        } catch (error) {
-            console.error(error);
-        };
-
-    },
-
-
-    //PUT
+    //@--PUTS--------
 
 
     putProductEdit: async (req, res) => {
@@ -254,33 +542,42 @@ const productsController = {
             // Si hay errores de validación, elimina el archivo y muestra los errores
             if (result.errors.length > 0) {
                 fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + req.file.filename));
-
-                const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
-                const queryErrors = queryArray.join('');
-                res.redirect('/products/' + req.params.id + '/edit?admin=true' + queryErrors);
-                return;
+                const errors = result.errors.map(err => ({
+                    [err.path]: err.msg
+                }));
+                return res.status(400).json({
+                    errors
+                });
             }
 
             // Si no hay errores de validación, procede con la creación del producto y otras acciones
-            // ...
 
         } else {
             // Si no se cargó un archivo, muestra los errores de validación sin intentar eliminar un archivo
             if (result.errors.length > 0) {
-                const queryArray = result.errors.map(errors => "&" + errors.path + "=" + errors.msg);
-                const queryErrors = queryArray.join('');
-                res.redirect('/products/' + req.params.id + '/edit?admin=true' + queryErrors);
-
-                return;
-            }
-        }
-
+                const errors = result.errors.map(err => ({
+                    [err.path]: err.msg
+                }));
+                return res.status(400).json({
+                    errors
+                });
+            };
+        };
 
         try {
-            const product = await db.Product.findByPk(Number(req.params.id), {
-                raw: true
+
+            const idProduct = req.params.id;
+
+            const product = await db.Product.findByPk(idProduct, {
+                raw: true,
             });
 
+
+            if (!product || product.length === 0) {
+                return res.status(404).json({
+                    error: 'No se encontraron algunos datos'
+                });
+            };
 
             const productEdit = {
                 product_id: Number(req.params.id),
@@ -290,319 +587,120 @@ const productsController = {
                 united: Number(req.body.united),
                 discount: Number(req.body.discount),
                 material: req.body.material,
-                user_id: req.session.user.id,
+                user_id: product.user_id,
                 state: req.body.state,
                 image: req.file ? req.file.filename : product.image, // Si no se manda ninguna imagen nueva se mantiene la misma
-                color_id: Number(req.body.color),
-                category_id: Number(req.body.category),
-                brand_id: Number(req.body.brand),
+                color_id: req.body.color,
+                category_id: req.body.category,
+                brand_id: req.body.brand,
             };
 
-            console.log(productEdit);
 
-
-            await db.Product.update(productEdit, {
+            const updateProduct = await db.Product.update(productEdit, {
                 where: {
                     product_id: Number(req.params.id)
                 }
             });
 
+            if (updateProduct.length === 0 || !updateProduct) {
+                return res.status(404).json({
+                    success: false,
+                    error: 'Fallo la actualización del producto'
+                });
+            }
 
-
-            res.redirect('/products/' + productEdit.product_id + '/detail');
+            res.status(200).json({
+                success: true,
+                message: 'Product updated successfully',
+                redirect: `/products/${productEdit.product_id}/detail`
+            });
 
 
         } catch (error) {
             console.error(error);
+            res.status(500).json({
+                error: 'Internal server error'
+            });
         }
 
 
 
     },
 
-    getproductCategory: async (req, res) => {
+
+
+
+    //@--DELETES-------
+
+    productDestroy: async (req, res) => {
 
         try {
 
-            const categories = await db.Category.findAll({
-                raw: true
-            });
-            const category = await db.Category.findByPk(req.params.category_id, {
-                raw: true
-            });
-            const productsCategory = await db.Product.findAll({
-                where: {
-                    category_id: req.params.category_id
-                },
-                include: ['productCategory', 'productBrand'],
-                nest: true,
-                raw: true
-            });
+            const idProduct = Number(req.params.id);
 
-            res.render('productCategory', {
-                products: productsCategory,
-                categories,
-                categoryName: category.category_name
-            });
+            const product = await db.Product.findByPk(idProduct);
 
-        } catch (error) {
-            console.error(error);
-        }
-    },
+            if (product.length === 0 || !product) {
+                return res.status(404).json({
+                    error: 'Producto no encontrado'
+                });
+            };
 
-    getSearchProduct: async (req, res) => {
+            // Obtener la cantidad actual del producto en quantity_productcategory
+            const quantityProductCategory = await db.QuantityProductCategory.findByPk(product.category_id);
 
-        const search = req.query.search;
+            console.log(quantityProductCategory);
 
+            if (!quantityProductCategory) {
+                return res.status(404).json({
+                    error: 'Hubo un error al eliminar el producto'
+                });
+            }
 
-        try {
-            const results = await db.Product.findAll({
-                raw: true,
-                include: 'productCategory',
-                nest: true,
-                where: {
-                    name: {
-                        [Op.like]: `%${search}%`
+            // Decrementar la cantidad y actualizar o eliminar según corresponda
+            if (quantityProductCategory.quantity > 1) {
+                await db.QuantityProductCategory.update({
+                    quantity: quantityProductCategory.quantity - 1
+                }, {
+                    where: {
+                        category_id: product.category_id
                     }
-                }
-            })
+                });
+            } else {
+                await db.QuantityProductCategory.destroy({
+                    where: {
+                        category_id: product.category_id
+                    }
+                });
+            }
 
-            res.render('productResult', {
-                products: results
+            const productDestroy = await db.Product.destroy({
+                where: {
+                    product_id: Number(req.params.id)
+                }
+            });
+
+            if (!productDestroy) {
+                return res.status(404).json({
+                    error: 'Hubo un error al eliminar el producto'
+                });
+            }
+
+            fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + product.image));
+
+            res.status(200).json({
+                success: true,
+                message: 'Producto eliminado exitosamente',
+                redirect: '/api/products'
             });
 
         } catch (error) {
             console.error(error);
-        }
-
-    },
-
-    addToCart: async (req, res) => {
-
-
-        try {
-            const userId = req.session.user.user_id; // Reemplaza con la forma en que obtienes el ID del usuario
-            const productId = req.body.product_id; // Supongamos que se envía en el cuerpo de la solicitud
-            const quantity = req.body.quantity || 1;
-
-            const cart = await db.Cart.findOne({ where: { user_id: userId }, raw: true });
-
-            if (!cart) {
-                // Si el usuario no tiene un carrito, crea uno
-                const newCart = await db.Cart.create({ user_id: userId });
-                const cartId = newCart.cart_id;
-
-                // Luego, crea un registro en ProductCart para el producto
-                await db.ProductCart.create({ cart_id: cartId, product_id: productId, quantity: quantity });
-            } else {
-                // Si el usuario ya tiene un carrito, verifica si el producto ya está en el carrito
-                const existingProduct = await db.ProductCart.findOne({ where: { cart_id: cart.cart_id, product_id: productId } });
-
-                if (existingProduct) {
-                    // Si el producto ya está en el carrito, actualiza la cantidad
-                    existingProduct.quantity = quantity;
-                    await existingProduct.save();
-                } else {
-                    // Si el producto no está en el carrito, crea un nuevo registro
-                    await db.ProductCart.create({ cart_id: cart.cart_id, product_id: productId, quantity: quantity });
-                }
-            };
-
-            res.redirect('/products');
-
-        } catch (error) {
-            console.error('Error al agregar producto al carrito:', error);
-        }
-
-    },
-
-    viewCart: async (req, res) => {
-
-        try {
-            // Obtener el ID del usuario que ha iniciado sesión (ajusta según tu sistema de autenticación)
-            const userId = req.session.user.user_id;
-
-            // Buscar el carrito del usuario actual
-            const cart = await db.Cart.findOne({ where: { user_id: userId }, include: 'products', raw: true, nest: true });
-
-
-            const cartProducts = await db.Cart.findAll({
-                where: { cart_id: cart.cart_id },
-                include: 'products',
-                raw: true,
-                nest: true,
+            res.status(500).json({
+                error: 'Error interno del servidor'
             });
-
-
-            if (!cart || (cart.products.ProductCart.quantity === null)) {
-                // Si el usuario no tiene un carrito, puedes mostrar un mensaje o redirigir a una página vacía de carrito
-                return res.render('cartEmpty'); // Crea una vista "empty-cart.ejs" para mostrar el carrito vacío
-            }
-
-
-
-            res.render('productCart', { cartProducts: cartProducts });
-
-
-            /* res.send('cart'); */
-
-        } catch (error) {
-
-            console.error('Error al ver el carrito:', error);
-
-        }
-
-    },
-
-    productCartDestroy: async (req, res) => {
-
-        try {
-            const productId = req.params.productId;
-            const userId = req.session.user.user_id;
-
-
-            // Buscar el carrito del usuario
-            const cart = await db.Cart.findOne({ where: { user_id: userId }, raw: true });
-
-            // Eliminar el producto del carrito
-            await db.ProductCart.destroy({
-                where: { cart_id: cart.cart_id, product_id: productId }
-            });
-
-            res.redirect('/products/cart');
-
-        } catch (error) {
-
-            console.error('Error al eliminar el producto del carrito:', error);
-        }
-
-    },
-
-    productCartUpdate: async (req, res) => {
-        try {
-            const productId = req.params.id;
-            const userId = req.session.user.user_id;
-            const action = req.query.action; // Puede ser 'increase' o 'decrease'
-
-
-            // Buscar el carrito del usuario
-            const cart = await db.Cart.findOne({ where: { user_id: userId }, raw: true });
-
-            // Buscar el producto en el carrito
-
-            const productInCart = await db.ProductCart.findOne({
-                where: { cart_id: cart.cart_id, product_id: productId },
-                raw: true
-            });
-
-
-            if (!cart) {
-                return res.status(404).send('El producto no se encuentra en el carrito.');
-            }
-
-            const updateData = {};
-
-            if (action === 'increase') {
-                updateData.quantity = productInCart.quantity + 1;
-
-            } else if (action === 'decrease' && productInCart.quantity > 1) {
-                updateData.quantity = productInCart.quantity - 1;
-            }
-
-
-            await db.ProductCart.update(updateData, {
-                where: { product_cart_id: productInCart.product_cart_id }
-            });
-
-
-
-            res.redirect('/products/cart');
-
-        } catch (error) {
-            console.error('Error al actualizar la cantidad del producto en el carrito:', error);
-        }
-    },
-
-    getAllProducts: async (req, res) => {
-        try {
-            const products = await db.Product.findAll({ raw: true });
-
-            if (products.length > 0) {
-                const dataProducts = products.map((product) => ({
-
-                    id: product.product_id,
-                    nombre: product.name,
-                    descripcion: product.description,
-                    /* array con principal relación de uno a muchos, */
-                    urlDetail: `http://localhost:3000/api/${product.product_id}/detail`
-
-                }));
-
-                res.json({ count: dataProducts.length, users: dataProducts });
-            } else {
-                res.status(404).json({ error: 'No se encontró ningún producto' });
-            }
-        } catch (error) {
-            res.status(500).json({ error: 'Error del servidor' });
-        }
-    },
-
-    productDetail: async (req, res) => {
-
-        try {
-
-            const product = await db.Product.findByPk(req.params.id, {
-                raw: true
-            });
-
-            if (product) {
-                const dataProducts = {
-                    id: product.product_id,
-                    nombre: product.name,
-                    description: product.description,
-                    price: product.price,
-                    category: product.category_id,
-                    color: product.color_id,
-                    brand: product.brand_id,
-                    state: product.state,
-                    united: product.united,
-                    discount: product.discount,
-                    material: product.material,
-                    image: 'http://localhost:3000/api/product/image/${product.product_id}'
-                };
-
-                res.status(200).json({ count: dataProducts.length, products: dataProducts });
-            } else {
-                res.status(404).json({ error: 'No se encontro ningun producto' })
-            };
-
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ error: 'Error del servidor' });
         };
-    },
 
-    productImage: async (req, res) => {
-
-        try {
-            const product = await db.Product.findByPk(req.params.id, {
-                raw: true
-            });
-
-            const urlImage = path.join(__dirname, '../../public/img/products/' + product.image);
-
-            fs.readFile(urlImage, (err, data) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(404).json({ error: 'No se encontro la imagen' });
-                }
-                res.end(data, 'binary');
-            });
-
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ error: 'Error del servidor' });
-        }
     },
 
 

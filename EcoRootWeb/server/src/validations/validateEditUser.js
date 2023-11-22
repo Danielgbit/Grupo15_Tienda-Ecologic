@@ -38,7 +38,7 @@ const userEditMiddleware = {
         .bail()
         .matches(/\d/).withMessage('La dirección debe contener al menos un número,')
         .bail()
-        .isLength({max: 10}).withMessage('Solo puedes ingresar maximo 10 caracteres'),
+        .isLength({max: 20}).withMessage('Solo puedes ingresar maximo 20 caracteres'),
         body('birthDate')
         .notEmpty().withMessage('Debes proporcionar una fecha de nacimiento'),
         body('gender')

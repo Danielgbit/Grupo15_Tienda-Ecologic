@@ -12,6 +12,9 @@ import ContainerLoginUser from './components/users/mainUsers/ContainerLoginUser'
 import ContainerRegisterUser from './components/users/mainUsers/ContainerRegister';
 import UserConfig from './components/users/userConfig/UserConfig';
 import ContainerUserUpdate from './components/users/update/ContainerUpdateUser';
+import UserProducts from './components/users/userProducts/UserProducts';
+import UserOrders from './components/users/userOrders/UserOrders';
+import ProductsInCart from './components/cart/ProductsInCart';
 
 
 
@@ -42,10 +45,11 @@ function App() {
 
           <Route path="/user/:id/edit" element={<ContainerUserUpdate/>} />
 
+          <Route path="/user/:id/products" element={<UserProducts/>} />
 
+          <Route path="/user/:id/orders" element={<UserOrders/>} />
 
-
-
+          <Route path="/user/:id/productsInCart" element={<ProductsInCart/>} />
 
         </Routes>
           <Footer/>

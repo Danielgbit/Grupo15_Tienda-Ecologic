@@ -1,6 +1,41 @@
 import { Link } from "react-router-dom";
+import UserDestroy from "../delete/UserDestroy";
+import { useEffect, useState } from "react";
 
-const UserConfig = ({locals, user}) => {
+const UserConfig = () => {
+    
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [dataUser, setDataUser] = useState();
+
+
+    useEffect(() => {
+        const checkAuthentication = async () => {
+          try {
+            const response = await fetch('http://localhost:3000/api/check/authentication/user', {
+              method: 'GET',
+              credentials: 'include', // Incluye las cookies en la solicitud
+            });
+    
+            if (!response.ok) {
+              throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                setDataUser(data.user)
+                setIsLoggedIn(true);
+            } else {
+              setIsLoggedIn(false);
+            }
+          } catch (error) {
+            console.error('Error al verificar la autenticación:', error);
+          }
+        };
+    
+        checkAuthentication();
+      }, []);
+
     return(
         <div className="body-userpage">
             <main>
@@ -8,37 +43,34 @@ const UserConfig = ({locals, user}) => {
                     <h1>¡Bienvenido a configuración de usuario!</h1>
                     <div className="div-container-user-content-max">
                         <div className="div-info-user-head-container">
-                            {locals && locals.user && locals.user.email && (
-                                <h2>¡Hola! {user && user.first_name} {user && user.last_name}</h2>
+                            {isLoggedIn && (
+                                <h2>¡Hola! {dataUser && dataUser.first_name} {dataUser && dataUser.last_name}</h2>
                             )}
 
-                            {locals && locals.user && locals.user.avatar && (
-                                <img className="img-user-page" src={`/img/avatars/${user.avatar}`} alt="foto de perfil" />
+                            {isLoggedIn && (
+                                <img className="img-user-page" src={`http://localhost:3000/api/user/avatar/${dataUser.user_id}`} alt="foto de perfil" />
                             )}
-
-                            <form action={`/user/${user && user.user_id}/delete?_method=DELETE`} method="post">
-                                <button className="button-delete-user buttons-user" type="submit">
-                                    <i className="fa-solid fa-user-xmark"></i>Eliminar cuenta
-                                </button>
-                            </form>
+                            {/* //COMPONENT DESTROY */}
+                            <UserDestroy/>
+                            {/* //COMPONENT DESTROY */}
                         </div>
                         <div className="div-container-options-config-user">
                             <div className="content-user-page">
                                 <div className="user-post content">
-                                    <a href="/user/products" className="button-edit-user buttons-user" type="submit">
+                                    <Link to={`/user/${dataUser && dataUser.user_id}/products`} className="button-edit-user buttons-user" type="submit">
                                         <i className="fa-regular fa-paste"></i>Mis publicaciones
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="form-user-page">
-                                        <Link to={`/user/${user && user.user_id}/edit`} className="button-edit-user buttons-user" type="submit">
+                                        <Link to={`/user/${dataUser && dataUser.user_id}/edit`} className="button-edit-user buttons-user" type="submit">
                                             <i className="fa-solid fa-pencil"></i>Editar perfil
                                         </Link> {/* user && user.user_id */}
-                                {locals && locals.user && locals.user.user_id && (
+                                {isLoggedIn && (
                                     <>
-                                        <a href="/user/orders" className="button-edit-user buttons-user">
+                                        <Link to={`/user/${dataUser && dataUser.user_id}/orders`} className="button-edit-user buttons-user">
                                             <p>Orders</p>
-                                        </a>
+                                        </Link>
                                     </>
                                 )}
                             </div>

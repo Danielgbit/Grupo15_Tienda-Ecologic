@@ -34,10 +34,19 @@ module.exports = (sequelize, dataType) => {
             foreignKey: 'category_id'
         });
 
-        Category.belongsToMany(models.Brand, {
-            as: 'brand',
+
+        Category.belongsToMany(models.Product, {
+            as: 'categoryProducts',
+            through: 'ProductCategory',
             foreignKey: 'category_id',
-            through: 'BrandCategory',
+            otherKey: 'product_id',
+            timestamps: false
+          });
+
+        Category.hasOne(models.QuantityProductCategory, {
+            as: 'quantityProducts',
+            foreignKey: 'category_id',
+            sourceKey: 'category_id',
             timestamps: false
         });
     };

@@ -1,13 +1,110 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const ProductUpdate = ({ productData, brands, colors, categories }) => {
 
 
-const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
+            //DATA USER
 
-    const [locals, setLocals] = useState([]);
+            const navigate = useNavigate();
+            
+            //...........
+            
+            const [product, setProductData] = useState({});
+            const [formData, setFormData] = useState({});
+            const [image, setImage] = useState(null);
+            const [errorsApi, setErrorsPostApi] = useState([]);
+            const [formSubmitted, setFormSubmitted] = useState(false);
+            
+                useEffect(() => {
+                    setProductData(productData);
+                    setFormData(productData); // Inicializar formData con userData
+                }, [productData]);
+        
+                const handleInputChange = (event) => {
+                    const { name, value } = event.target;
+            
+                    // Actualizar el estado del formulario directamente
+                    setFormData((prevData) => ({
+                        ...prevData,
+                        [name]: value,
+                    }));
 
-    useEffect(() => {
-        setLocals([]);
-    }, []);
+                    
+                };
+            
+
+        
+            const handleImageChange = (event) => {
+            const selectedImage = event.target.files[0];
+                setImage(selectedImage);
+            };
+        
+            const handleFormSubmit = async (event) => {
+
+            try {
+                const formDataToSend = new FormData();
+                Object.entries(formData).forEach(([key, value]) => {
+                formDataToSend.append(key, value);
+                });
+                formDataToSend.append("image", image);
+
+        
+                const response = await fetch(`http://localhost:3000/api/product/edit/${product.product_id}`, {
+                    method: "PUT",
+                    body: formDataToSend,
+                });
+
+                console.log('formDataToSend',formDataToSend);
+
+        
+                if (!response.ok) {
+                const data = await response.json();
+                setErrorsPostApi(data.errors || []);
+                console.error('Error en la solicitud:', data.errors);
+                return;
+                }
+        
+                const data = await response.json();
+        
+                if (data.success === true) {
+                    console.log('Usuario ingresó éxitosamente');
+                    console.log(data);
+  /*                   navigate('/user/config');
+                    window.location.reload(); // Esto recargará la página */
+                    setErrorsPostApi([]);
+                }
+        
+                console.log("formDataToSend", formDataToSend);
+            } catch (error) {
+                console.error("Error al realizar la solicitud:", error);
+            }
+            };
+        
+            useEffect(() => {
+            if (formSubmitted) {
+                handleFormSubmit();
+                setFormSubmitted(false); // Restablecer el estado después de procesar el formulario
+            }
+            }, [formSubmitted]);
+        
+            const handleSubmit = (event) => {
+                event.preventDefault();
+                setFormSubmitted(true); // Indicar que el formulario ha sido enviado
+            };
+
+
+            const errors = errorsApi.reduce((acc, error) => {
+            const fieldName = Object.keys(error)[0];
+            const errorMessage = Object.values(error)[0];
+            return {
+                ...acc,
+                [fieldName]: errorMessage
+            };
+        }, {});
+
+
+
 
 
     return (
@@ -17,7 +114,7 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                     <h1>Edición de producto</h1>
                 </section>
 
-                <form className="form-create-1" id="form-edit-product"  method="post" encType="multipart/form-data">
+                <form onSubmit={handleSubmit} className="form-create-1" id="form-edit-product" encType="multipart/form-data">
 
                     <div className={`condition-text-header ${errors && errors.category ? "is-invalid" : ""}`}>
                     <span className="text-title">¡Hola! cuéntanos, ¿qué quieres editar?</span>
@@ -33,14 +130,15 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                     {categories && categories.map((category) => (
                         <label key={category.category_id} className="categoryCards">
                         <input
+                            onChange={handleInputChange}
                             type="radio"
                             name="category"
-                            value={category.category_id}
+                            value={formData && formData.category_id ? formData.category_id : ''}
                             className="radio-input"
-                            checked={category.category_id === product.category_id}
+                            checked={category && category.category_id === (product && product.category_id)}
                         />
                         <span className="custom-radio"><i className="fa-regular fa-circle-check"></i></span>
-                        <img src={`http://localhost:3000${product.image}`} alt="" />
+                        <img src={`http://localhost:3000${product && product.image}`} alt="" />
                         <span>{category.category_name}</span>
                         </label>
                     ))}
@@ -51,7 +149,15 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                         <section className="section-1-information">
                         <div className="input-information-container">
                                 <label htmlFor="name">Nombre del Producto:</label>
-                                <input type="text" id="name" name="name" value={product && product.name} />
+                                <input
+                                    onChange={handleInputChange}
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    value={formData && formData.name ? formData.name : ''}
+
+
+                                    />
                                 <ul className="errors-createP-front error-name"></ul>
                                 {errors && errors.name && (
                                     <span className="errorsCreateProduct">{errors.name}</span>
@@ -62,7 +168,11 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
                                 <div className="input-information-container">
                                 <label htmlFor="brand">Marca:</label>
-                                <select name="brand" id="brand" className="countries-select">
+                                <select
+                                        onChange={handleInputChange}
+                                        name="brand" 
+                                        id="brand" 
+                                        className="countries-select">
                                     {brands && brands.map((brand) => (
                                     <option key={brand.brand_id} value={brand.brand_id}>
                                         {brand.brand_name}
@@ -77,7 +187,11 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
                                 <div className="input-information-container">
                                 <label htmlFor="color">Color:</label>
-                                <select name="color" id="color" className="colors-select">
+                                <select 
+                                        onChange={handleInputChange}
+                                        name="color" 
+                                        id="color" 
+                                        className="colors-select">
                                     {colors && colors.map((color) => (
                                     <option key={color.color_id} value={color.color_id}>
                                         {color.color_name}
@@ -85,7 +199,7 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                                     ))}
                                 </select>
                                 <ul className="errors-createP-front error-color"></ul>
-                                {locals.errors && errors.color && (
+                                {errors && errors.color && (
                                     <span className="errorsCreateProduct">{errors.color}</span>
                                 )}
                                 </div>
@@ -96,10 +210,12 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                         <div className="input-information-container">
                                 <label htmlFor="united">Unidades:</label>
                                 <input
+                                    onChange={handleInputChange}
                                     type="number"
                                     id="united"
                                     name="united"
-                                    value={product && product.united}
+                                    value={formData && formData.united ? formData.united : ''}
+
                                 />
                                 <ul className="errors-createP-front error-united"></ul>
                                 {errors && errors.united && (
@@ -110,10 +226,11 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                                 <div className="input-information-container">
                                 <label htmlFor="discount">Descuento</label>
                                 <input
+                                    onChange={handleInputChange}
                                     type="number"
                                     id="discount"
                                     name="discount"
-                                    value={parseInt(product && product.discount)}
+                                    value={parseInt(formData && formData.discount)}
                                     placeholder="%"
                                 />
                                 <ul className="errors-createP-front error-discount"></ul>
@@ -126,10 +243,11 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                                 <label htmlFor="material">Material:</label>
                                 <div>
                                     <input
-                                    type="text"
-                                    id="material"
-                                    name="material"
-                                    value={product && product.material}
+                                        onChange={handleInputChange}
+                                        type="text"
+                                        id="material"
+                                        name="material"
+                                        value={formData && formData.material}
                                     />
                                 </div>
                                 <ul className="errors-createP-front error-material"></ul>
@@ -147,11 +265,12 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                     <div className="condition-form">
                         <label className="estado-label">
                             <input
+                                onChange={handleInputChange}
                                 type="radio"
                                 name="state"
                                 value="New"
                                 className="radio-input-condition"
-                                checked={product && product.state === 'New'}
+                                checked={formData && formData.state === 'New'}
                             />
                             Nuevo
                             <span className="artificial-radio"><i className="fa-regular fa-circle-check"></i></span>
@@ -159,11 +278,12 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
                         <label className="estado-label">
                             <input
+                                onChange={handleInputChange}
                                 type="radio"
                                 name="state"
                                 value="Used"
                                 className="radio-input-condition"
-                                checked={product && product.state === 'Used'}
+                                checked={formData && formData.state === 'Used'}
                             />
                             Usado
                             <span className="artificial-radio"><i className="fa-regular fa-circle-check"></i></span>
@@ -183,7 +303,13 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                             <label htmlFor="image" className="form-dropArea-imgs">
                                 <i className="fa-solid fa-camera-rotate"></i>
                                 <label htmlFor="image" className="custom-file-input custom-view-edit">
-                                    <input type="file" id="image" name="image" accept="image/*" />
+                                    <input 
+                                            onChange={handleImageChange}
+                                            type="file" 
+                                            id="image" 
+                                            name="image" 
+                                            accept="image/*" 
+                                        />
                                 </label>
                             </label>
                             <div><img src={`http://localhost:3000${product && product.image}`} alt="imagen del producto existente" /></div>
@@ -205,7 +331,14 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
                             <section>
 
                                 <div className="description-container">
-                                    <textarea id="descripcion" name="description" rows="4" cols="50" className="description-box" defaultValue={product && product.description}></textarea>
+                                    <textarea
+                                        onChange={handleInputChange}
+                                        value={formData && formData.description}
+                                        id="descripcion" 
+                                        name="description" 
+                                        rows="4" 
+                                        cols="50" 
+                                        className="description-box" defaultValue={formData && formData.description}></textarea>
                                 </div>
                                 <ul className="errors-createP-front error-description"></ul>
                                 {errors && errors.description && (
@@ -224,7 +357,15 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
                                 <div className="input-information-container">
                                     <label htmlFor="price" className="priceText">¿Cuál es el precio?</label>
-                                    <input type="number" id="price" name="price" min="0" step="0.01" placeholder="$" value={parseInt(product && product.price)} />
+                                    <input
+                                        onChange={handleInputChange}
+                                        type="number" 
+                                        id="price" 
+                                        name="price" 
+                                        min="0" 
+                                        step="0.01" 
+                                        placeholder="$" 
+                                        value={parseInt(formData && formData.price)} />
                                     <ul className="errors-createP-front error-price"></ul>
                                     {errors && errors.price && (
                                         <span className="errorsCreateProduct">{errors.price}</span>
@@ -236,7 +377,9 @@ const ProductUpdate = ({ product, brands, colors, categories, errors }) => {
 
 
                     <div className="buttons-submit-step-5-6">
-                    <button type="submit" id="submit" className="submit-create-form-container">Editar producto</button>
+      {/*               <button type="submit" id="submit" className="submit-create-form-container">Editar producto</button> */}
+                    <input className="button-register" type="submit" value="Actualizar información" />
+
                     </div>
                 </form>
             </main>

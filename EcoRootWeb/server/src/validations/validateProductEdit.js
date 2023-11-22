@@ -18,12 +18,8 @@ const productEditMiddleware = {
         .isLength({ max: 189 }).withMessage('La descripción no debe tener más de 189 caracteres'),
         body('price').notEmpty().withMessage('Ingresa el precio de tu producto'),
         body('category').notEmpty().withMessage('Ingresa una categoria'),
-        body('image').custom((value, { req }) => {
-            if (!req.file || !req.file.filename) {
-                throw new Error('El archivo de imagen es obligatorio');
-            }
-            return true;
-        })
+        body('color').notEmpty().withMessage('Ingresa un color'),
+        body('discount').notEmpty().withMessage('Ingresa un descuento')
     ]
 };
 

@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cors = require('cors');
 const dotenv = require('dotenv').config();
+
+
 const methodOverride = require('method-override');
 const cookies = require('cookie-parser');
 const session = require('express-session');
@@ -39,20 +42,37 @@ app.use(express.static('./public'));
 app.use(cookies());
 
 
+
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true,
+}));
+
 app.use(session({
     secret: 'EcoRoot@#!nDsGRW',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        secure: true, // solo se enviará en conexiones HTTPS
+        sameSite: 'none' // necesario si tu aplicación se carga en un iframe desde otro dominio
+    }
 }));
 
-app.use(userLogged);
 
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+app.use(userLogged);
 
 app.use('/', mainRoute);
 
 app.use('/cart', cartRoute);
 
-app.use('/products', productsRoute);
+app.use('/api', productsRoute);
 
 app.use('/api', userRoute);
 
@@ -63,5 +83,5 @@ app.use((req, res) => {
 
 
 app.listen(3000, () => {
-    console.log('servidor ' + process.env.PORT + ' en funcionamiento - http://localhost:3000');
+    console.log(`servidor ${process.env.PORT} en funcionamiento http://localhost:${process.env.PORT}`);
 });

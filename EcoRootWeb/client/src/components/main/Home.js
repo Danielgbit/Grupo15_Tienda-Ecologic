@@ -25,11 +25,11 @@ const Home = () => {
                         </p>
                     </div>
 
-                    <a className="button-shop-home" href="/products">
+                    <Link className="button-shop-home" to="/products">
                     <button className="button-shop-home-primary" type="submit">
                         Ingresa a la tienda<span className="material-symbols-outlined">local_mall</span>
                     </button>
-                    </a>
+                    </Link>
                 </section>
 
                 <article id="cards-products-container"></article>

@@ -1,42 +1,90 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+const ProductCreateForm = ({ category, brands, colors, formDataOld, user }) => {
 
-const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSubmitForm }) => {
-
-    const [locals, setLocals] = useState([]);
-    useEffect(() => {
-        setLocals([]);
-    }, []);
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({});
+    const [image, setImage] = useState(null);
+    const [errorsApi, setErrorsPostApi] = useState([]);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+  
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+        user_id: user.user_id
+      }));
+    };
+  
+    const handleImageChange = (event) => {
+      const selectedImage = event.target.files[0];
+      setImage(selectedImage);
+    };
+  
+    const handleFormSubmit = async () => {
 
-      // Función para manejar cambios en los datos del producto
-      const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-      };
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // Llama a la función del padre con el objeto formData
-        onSubmitForm(formData);
-      };
+      try {
+        const formDataToSend = new FormData();
+        Object.entries(formData).forEach(([key, value]) => {
+          formDataToSend.append(key, value);
+        });
+        formDataToSend.append("image", image);
+  
+        const response = await fetch("http://localhost:3000/api/product/create", {
+          method: "POST",
+          body: formDataToSend,
+        });
+  
+        if (!response.ok) {
+          const data = await response.json();
+          setErrorsPostApi(data.errors || []);
+          console.error('Error en la solicitud:', data.errors);
+          return;
+        }
+  
+        const data = await response.json();
+  
+        if (data.success === true) {
+          console.log('Producto creado exitosamente');
+          navigate('/products');
+          window.location.reload(); // Esto recargará la página
+          setErrorsPostApi([]);
+        }
+        console.log(data);
+  
+        console.log("formDataToSend", formDataToSend);
+      } catch (error) {
+        console.error("Error al realizar la solicitud:", error);
+      }
+    };
+  
+    useEffect(() => {
+      if (formSubmitted) {
+        handleFormSubmit();
+        setFormSubmitted(false); // Restablecer el estado después de procesar el formulario
+      }
+    }, [formSubmitted]);
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      setFormSubmitted(true); // Indicar que el formulario ha sido enviado
+    };
 
-    console.log(formData);
 
-    const errorsObject = errors.reduce((acc, error) => {
-        const fieldName = Object.keys(error)[0];
-        const errorMessage = Object.values(error)[0];
-        return {
+    const errorsObject = errorsApi.reduce((acc, error) => {
+      const fieldName = Object.keys(error)[0];
+      const errorMessage = Object.values(error)[0];
+      return {
           ...acc,
           [fieldName]: errorMessage
-        };
-      }, {});
-      
-      
+      };
+  }, {});
+
+
 
 
     return (
@@ -47,7 +95,7 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                 <img src="/img/logos/eco.png" alt="Logo-article" />
             </section>
 
-            <form  onSubmit={handleSubmit} className="form-create-1" action="/products" method="post" encType="multipart/form-data">
+            <form  onSubmit={handleSubmit} className="form-create-1" encType="multipart/form-data">
                 <article className="container-cards-category">
                 <div className="condition-text-header">
                     <span className={`text-title ${errorsObject && errorsObject.category ? 'is-invalid' : null}`}>
@@ -67,6 +115,8 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                         value={category.category_id}
                         className="radio-input"
                         checked={formDataOld && formDataOld.category === category.category_name}
+                        onChange={handleInputChange}
+
                         />
                         <span className="custom-radio">
                         <i className="fa-regular fa-circle-check"></i>
@@ -76,7 +126,6 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                     </label>
                     ))}
                 </article>
-
                 <section className="container-information-form">     
                     <div class="condition-text-header">
                         <span class="text-title">Completa la información de tu producto</span>
@@ -105,7 +154,11 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
 
                         <div className="input-information-container input-register">
                             <label htmlFor="brand">Marca:</label>
-                            <select id="brand" name="brand" className={`countries-select ${errorsObject && errorsObject.brand? 'is-invalid' : null}`}>
+                            <select 
+                            id="brand" 
+                            name="brand"
+                            onChange={handleInputChange}
+                            className={`countries-select ${errorsObject && errorsObject.brand? 'is-invalid' : null}`}>
                             <option value="">Selecciona una marca</option>
                             {brands && brands.map((brand) => (
                                 <option key={brand.brand_id} value={brand.brand_id} selected={formDataOld && formDataOld.brand === brand.brand_id}>
@@ -115,13 +168,22 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                             </select>
                             <ul className="errors-createP-front error-brand"></ul>
                             {errorsObject && errorsObject.brand && (
-                            <span className="errorsCreateProduct">{errorsObject.brand}</span>
+                                <span className="errorsCreateProduct">{errorsObject.brand}</span>
                             )}
                         </div>
-
+{/*                         <input  
+                            onChange={handleInputChange}
+                            type="hidden" 
+                            name="user_id" 
+                            value={user && isLoggedIn && user.user_id}
+                        /> */}
                         <div className="input-information-container input-register">
                             <label htmlFor="color">Color:</label>
-                            <select id="color" name="color" className={`countries-select ${errorsObject && errorsObject.color ? 'is-invalid' : null}`}>
+                            <select 
+                            onChange={handleInputChange}
+                            id="color" 
+                            name="color" 
+                            className={`countries-select ${errorsObject && errorsObject.color ? 'is-invalid' : null}`}>
                                 <option value="">Selecciona un color</option>
                                 {colors && colors.map((color) => (
                                 <option key={color.color_id} value={color.color_id} selected={formDataOld && formDataOld.color === color.color_id}>
@@ -142,6 +204,7 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                         <div className="input-information-container">
                             <label htmlFor="united">Unidades:</label>
                             <input
+                                onChange={handleInputChange}
                                 type="number"
                                 id="united"
                                 value={formDataOld && formDataOld.united ? formDataOld.united : null}
@@ -157,10 +220,11 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                         <div className="input-information-container">
                             <label htmlFor="discount">Descuento:</label>
                             <input
+                                onChange={handleInputChange}
                                 type="number"
                                 maxLength="2"
                                 id="discount"
-                                value={formDataOld && formDataOld.discount ? formDataOld.discount : null}
+                                value={formDataOld && formDataOld.discount && formDataOld.discount}
                                 name="discount"
                                 placeholder="%"
                                 className={`countries-select ${errorsObject && errorsObject.discount ? 'is-invalid' : null}`}
@@ -175,6 +239,7 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                             <label htmlFor="material">Material:</label>
                             <div>
                                 <input
+                                onChange={handleInputChange}
                                 type="text"
                                 id="material"
                                 value={formDataOld && formDataOld.material ? formDataOld.material : null}
@@ -204,6 +269,7 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                         <div className="condition-form">
                             <label className="estado-label">
                                 <input
+                                onChange={handleInputChange}
                                 type="radio"
                                 name="state"
                                 value="New"
@@ -216,6 +282,7 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
 
                             <label className="estado-label">
                                 <input
+                                onChange={handleInputChange}
                                 type="radio"
                                 name="state"
                                 value="Used"
@@ -246,10 +313,14 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                         <label htmlFor="image" className={`form-dropArea-imgs ${errorsObject && errorsObject.image ? 'inputImage-Error' : null}`}>
                             <i className="fa-solid fa-camera"></i>
                             <label htmlFor="image" className="custom-file-input">
-                                <input type="file" id="image" name="image" accept="image/*" />
+                                <input type="file" name="image" accept="image/*" id="image" onChange={handleImageChange} />
                             </label>
                         </label>
-
+                        {errorsObject && errorsObject.image && (
+                            <span className="errorsLoginMsg">
+                                <span>{errorsObject.image}</span>
+                            </span>
+                        )}
                     </section>
                 </article>
 
@@ -274,13 +345,14 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                         <section>
                             <div className="description-container">
                                 <textarea
+                                onChange={handleInputChange}
                                 id="description"
                                 name="description"
                                 maxLength="400"
                                 rows="4"
                                 cols="50"
                                 className={`description-box ${errorsObject && errorsObject.description ? 'textArea-Description-Error' : null}`}
-                                value={formDataOld && formDataOld.description ? formDataOld.description : ''}
+                                value={formDataOld && formDataOld.description && formDataOld.description}
                                 />
                             </div>
 
@@ -305,14 +377,15 @@ const ProductCreateForm = ({errors, category, brands, colors, formDataOld, onSub
                             <div className="input-information-container">
                                 <label htmlFor="price" className="priceText">¿Cuál es el precio?</label>
                                 <input
-                                type="number"
-                                id="price"
-                                name="price"
-                                min="0"
-                                step="0.01"
-                                placeholder="$"
-                                value={formDataOld && formDataOld.price ? formDataOld.price : null}
-                                className={`<%= locals.errors && errors.price ? "is-invalid" : null %}`}
+                                    onChange={handleInputChange}
+                                    type="number"
+                                    id="price"
+                                    name="price"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="$"
+                                    value={formDataOld && formDataOld.price ? formDataOld.price : null}
+                                    className={`<%= locals.errors && errors.price ? "is-invalid" : null %}`}
                                 />
                                 <ul className="errors-createP-front error-price"></ul>
                                 {errorsObject && errorsObject.price && (

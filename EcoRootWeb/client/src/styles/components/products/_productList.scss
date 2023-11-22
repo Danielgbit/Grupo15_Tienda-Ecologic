@@ -36,7 +36,7 @@
     align-self: stretch;
     gap: 10px;
     padding: 20px 15px;
-    height: 178px;
+    height: 120px;
     justify-content: space-between;
 
 
@@ -96,6 +96,7 @@
     display: flex;
     align-items: flex-end;
     align-self: stretch;
+    padding: 20px;
 
     a {
         text-decoration: none;
@@ -159,9 +160,6 @@
         font-size: 0.9375rem;
     }
 
-    .content-card-container {
-        height: 200px;
-    }
 
 }
 
@@ -170,7 +168,7 @@
 
 
     .content-card-container {
-        height: 190px;
+        height: 130px;
     }
 
 }

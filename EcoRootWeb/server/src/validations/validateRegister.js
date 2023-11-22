@@ -29,11 +29,11 @@ const registerMiddleware = {
         .matches(/\d/).withMessage('La contraseña debe contener al menos un número')
         .bail()
         .matches(/[!@#$%^&*]/).withMessage('La contraseña debe contener al menos un carácter especial: !@#$%^&*'),
-        body('image')
-        .custom((value, { req }) => {
+        body('image').custom((value, { req }) => {
+          // Verificar si req.file está presente en lugar de simplemente verificar si hay un valor en 'image'
           if (!req.file) {
             throw new Error('Debes proporcionar una imagen');
-          }else {
+          } else {
             return true;
           }
         }),

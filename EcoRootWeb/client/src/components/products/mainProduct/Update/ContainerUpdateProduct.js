@@ -30,7 +30,6 @@ const ContainerUpdateProduct = () => {
         }, [id]);
 
 
-        console.log(getProductEdit);
 
     return (
         <>
@@ -38,8 +37,7 @@ const ContainerUpdateProduct = () => {
                 brands={getProductEdit.brands} 
                 categories={getProductEdit.category}
                 colors={getProductEdit.colors} 
-                product={getProductEdit.product}
-                errors= {null}
+                productData={getProductEdit.product}
             />}
         </>
     );

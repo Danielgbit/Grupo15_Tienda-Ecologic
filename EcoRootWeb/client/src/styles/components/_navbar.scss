@@ -19,6 +19,7 @@
     border-radius: 38.756px;
     height: 100%;
     padding: 0 20px;
+    display: none;
 }
 
 .bar-nav-container {
@@ -33,7 +34,7 @@
     z-index: 100;
     transition: transform 800ms;
 
-    tex .nav-text-wrapper {
+        .nav-text-wrapper {
         display: none;
         align-items: center;
         justify-content: space-between;
@@ -82,11 +83,11 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            width: 50%;
+            gap: 15px;
 
             .name {
                 font-size: 14px;
+                color: #000;
             }
 
             .item-user-header i {
@@ -99,6 +100,10 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+
+            span{
+                color: #000;
+            }
         }
     }
 
@@ -108,8 +113,8 @@
         align-items: center;
         justify-content: center;
         color: #000;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         background-color: rgba(0, 0, 0);
         text-decoration: none;
@@ -121,7 +126,7 @@
         }
 
         span {
-            font-size: 20px;
+            font-size: 16px;
             text-align: center;
             font-weight: 300;
             text-decoration: #000;
@@ -141,10 +146,13 @@
             gap: 0.3125rem;
 
             a {
+                font-family: 'Poppins', sans-serif;
                 display: flex;
+                font-size: 14px;
                 align-items: center;
                 text-decoration: none;
                 transition: transform 500ms ease-in-out;
+                color: #000;
 
                 &:hover {
                     transform: translateY(-2px);
@@ -164,29 +172,49 @@
         .contain-hamburguer {
             display: grid;
             place-items: center;
-            padding: 10px
+            padding: 10px;
+
+            span {
+               color: black;
+            }
         }
 
     }
 }
 
-
+.navbar-hidden {
+    transform: translateY(-100%);
+}
 
 
 
 @media (min-width: 769px) {
 
+    
+
+    .logo {
+
+        display: block;
+    }
+
 
     .bar-nav-container {
 
+
+        .nav-right-wrapper {
+            width: 30%;
+        }
+
         .nav-text-wrapper {
-            display: block;
             display: flex;
             align-items: center;
-            justify-content: space-around;
-            width: 50%;
+            justify-content: space-evenly;
+            color: black;
+            font-size: 14px;
 
-            a .text-navegation {
+
+
+            .text-navegation {
                 color: black;
                 text-align: center;
                 font-size: 14px;
@@ -197,6 +225,8 @@
             }
 
             a {
+                color: black;
+                font-size: 14px;
                 text-decoration: none;
                 transition: all 300ms ease-in-out;
 
@@ -237,8 +267,5 @@
         }
     }
 
-    .nav-right-wrapper {
-        width: 30%;
-    }
 
 }

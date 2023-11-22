@@ -4,72 +4,54 @@ const productsController = require('../controllers/productsController');
 const { productCreateValidations } = require('../validations/validateProductCreate');
 const productEditValidations = require('../validations/validateProductEdit');
 const upload = require('../middlewares/multerProducts'); // Importa el multer de usuario
+const authFileMiddleware = require('../middlewares/authFileMiddleware'); // Importa el multer de usuario
+const authSessionMiddleware = require('../middlewares/authSessionmiddleware'); // Importa el multer de usuario
 
 
 
 
+//@--POSTS-----
 
-// @GET /products
-productsRouter.get('/', productsController.products);
 
-productsRouter.post('/', [upload.single('image'), productCreateValidations ]  , productsController.postProductCreate);
+productsRouter.post('/product/create', [upload.single('image'), authFileMiddleware , productCreateValidations ], productsController.postProductCreate);
 
+
+//@--GETS--------
+
+
+productsRouter.get('/products', productsController.getAllproducts);
 
 // @GET /products/id/detail
-productsRouter.get('/:id/detail', productsController.productDetail);
+productsRouter.get('/product/detail/:id', productsController.getProductDetail);
 
-// CREATE
+// @GET /product/image/:id
+productsRouter.get('/product/image/:id', productsController.getImage);
 
-// @GET /products/create
-productsRouter.get('/create', productsController.getproductCreate);
+// @GET /product/categories/:category_id
+productsRouter.get('/product/categories/:category_id', productsController.getProductCategory);
 
+// @GET /product/search
+productsRouter.get('/product/search', productsController.getSearchProduct);
 
-// @DELETE /products/:id/delete
-productsRouter.delete('/:id/delete', productsController.productDestroy);
+// @GET /product/getEdit/:id
+productsRouter.get('/product/getEdit/:id', productsController.getEditProduct);
 
-//EDIT
-
-// @GET /products/:category_id/categories
-productsRouter.get('/:category_id/category', productsController.getproductCategory);
-
-
-// @GET /products/:id/edit
-productsRouter.get('/:id/edit', productsController.getEdit);
+// @GET /product/create
+productsRouter.get('/product/create',authSessionMiddleware ,productsController.getProductCreate);
 
 
-// @PUT /products/:id/detail
-productsRouter.put('/:id/detail',  [ productEditValidations.productEditValidations ], productsController.putProductEdit);
+//@--DELETES-------
 
 
-// @GET /products/search
-productsRouter.get('/search', productsController.getSearchProduct);
+// @DELETE /product/delete/:id
+productsRouter.delete('/product/delete/:id', productsController.productDestroy);
 
 
-//CART
+//@--PUTS--------
 
-// @POST /products/addToCart
-productsRouter.post('/addTocart', productsController.addToCart);
+// @PUT /product/edit/:id
+productsRouter.put('/product/edit/:id',  [ productEditValidations.productEditValidations ], productsController.putProductEdit);
 
-
-// @GET /products/cart
-productsRouter.get('/cart', productsController.viewCart);
-
-
-// @DELETE /products/cart/:id/delete
-productsRouter.delete('/cart/:productId/delete', productsController.productCartDestroy);
-
-
-// @GET /products/cart/:id/delete
-productsRouter.put('/cart/:id/update', productsController.productCartUpdate);
-
-//@GET /products
-productsRouter.get('/products', productsController.getAllProducts);
-
-//@GET /user/:id
-productsRouter.get('/:id/detail', productsController.productDetail);
-
-
-productsRouter.get('/product/image/:id', productsController.productImage);
 
 
 module.exports = productsRouter;

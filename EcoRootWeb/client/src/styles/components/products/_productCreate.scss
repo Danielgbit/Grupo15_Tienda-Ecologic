@@ -27,3 +27,21 @@
 .input-information-container label{
     padding-top: 10px;
 }
+
+
+.errorsCreateProduct{
+  font-size: 11px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 5px;
+  list-style-type: none;
+  text-align: left;
+
+  &::before {
+      content: "\26A0";
+      /* Código del símbolo de advertencia en una fuente de iconos */
+      margin-right: 8px;
+      color: #bceb6a;
+  }
+}
+

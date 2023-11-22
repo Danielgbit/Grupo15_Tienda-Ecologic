@@ -26,55 +26,45 @@ const ContainerProductCreate = () => {
     }, []);
 
 
-    //POST PRODUCT-CREATE
 
-    const [productData, setProductData] = useState(null);
-    const [apiErrors, setApiErrors] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [dataUser, setDataUser] = useState();
 
-    const handleFormSubmit = (data) => {
-      setProductData(data);
-    };
-  
+
     useEffect(() => {
-      const sendPostRequest = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/api/product/create', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData),
-          });
-  
-          if (!response.ok) {
-            const errorData = await response.json();
-            // Actualiza el estado con los errores de la API
-            setApiErrors(errorData.errors || []);
-            throw new Error('Error al crear el producto');
+        const checkAuthentication = async () => {
+          try {
+            const response = await fetch('http://localhost:3000/api/check/authentication/user', {
+              method: 'GET',
+              credentials: 'include', // Incluye las cookies en la solicitud
+            });
+    
+            if (!response.ok) {
+              throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                setDataUser(data.user)
+                setIsLoggedIn(true);
+            } else {
+              setIsLoggedIn(false);
+            }
+          } catch (error) {
+            console.error('Error al verificar la autenticación:', error);
           }
-  
-          console.log('Producto creado con éxito:', productData);
-          // Realiza la lógica adicional después de crear el producto
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
-  
-      if (productData) {
-        setApiErrors([]);
-        sendPostRequest();
-      }
-    }, [productData]);
+        };
+    
+        checkAuthentication();
+      }, []);
 
-
-    console.log(apiErrors);
 
 
     return (
         <>
             <ProductCreateForm
-                errors = {apiErrors}
-                onSubmitForm={handleFormSubmit}
+                user = {dataUser}
                 category = {getDataProductCreate.category}
                 brands = {getDataProductCreate.brands}
                 colors = {getDataProductCreate.colors}
