@@ -1,6 +1,6 @@
 import RegisterForm from "./RegisterForm";
 import { useEffect, useState } from "react";
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const ContainerRegisterUser = () => {
@@ -27,6 +27,44 @@ const ContainerRegisterUser = () => {
         fetchData();
       }, []);
 
+
+      const [isLoggedIn, setIsLoggedIn] = useState(false);
+      const [dataUser, setDataUser] = useState();
+      const navigate = useNavigate();
+      useEffect(() => {
+
+
+          const checkAuthentication = async () => {
+            try {
+              const response = await fetch('http://localhost:3000/api/check/authentication/user', {
+                method: 'GET',
+                credentials: 'include', // Incluye las cookies en la solicitud
+              });
+      
+              if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+              }
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                  setDataUser(data.user)
+                  setIsLoggedIn(true);
+              } else {
+                setIsLoggedIn(false);
+              }
+            } catch (error) {
+              console.error('Error al verificar la autenticación:', error);
+            }
+          };
+      
+          checkAuthentication();
+        }, []);
+
+        if (isLoggedIn) {
+  
+          navigate('/')
+        };
 
 
 
