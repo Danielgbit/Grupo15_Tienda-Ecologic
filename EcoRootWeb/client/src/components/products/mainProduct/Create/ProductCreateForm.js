@@ -332,7 +332,7 @@ const ProductCreateForm = ({ category, brands, colors, formDataOld, user }) => {
                             <span
                                 className={`title-step-4 ${errorsObject && errorsObject.description ? 'is-invalid' : null}`}
                             >
-                                ¿Cuál es la condición de tu producto?
+                                ¿Cuál es la descripción de tu producto?
                             </span>
                             <span className="step-4">Paso 5 de 6</span>
                             <p className="description-pharagraph">

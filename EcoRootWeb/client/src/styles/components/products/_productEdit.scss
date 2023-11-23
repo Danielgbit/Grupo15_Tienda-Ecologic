@@ -61,6 +61,7 @@
     text-align: center;
 
     .text-title {
+        text-align: center;
         color: #d0e1b5;
         font-size: 1.0625rem;
         font-weight: 400;
@@ -71,6 +72,7 @@
     .text-step {
         color: #d0e1b5;
         font-size: 0.8125rem;
+        text-align: center;
     }
 }
 
@@ -226,6 +228,8 @@
 }
 
 .container-information-form {
+    text-align: center;
+    display: flex;
     background-image: linear-gradient(45deg, #6d873e, #506328);
     width: 95%;
     margin: auto;
@@ -363,6 +367,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 2.5rem;
     width: 100%;
 }
@@ -371,12 +376,13 @@
 .condition-form {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    flex-wrap: wrap;
     gap: 40px;
     width: 70%;
 
     .estado-label {
         position: relative;
-        padding-left: 30px;
         /* Espacio para el botón personalizado */
         cursor: pointer;
     }
@@ -561,9 +567,10 @@
 .description-container textarea {
     border: none;
     padding: 5px;
+    padding-top: 3px;
     border-radius: 10px;
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.29);
-    max-width: 100%;
+    max-width: 97%;
     background-color: rgba(227, 244, 201, 0.9);
     font-family: 'poppins', sans-serif;
     font-weight: 400;
@@ -682,7 +689,7 @@
     }
 
     .form-create-4 {
-        width: 70%;
+        width: 67%;
     }
 
     .form-descriptionPrice-items-wrapper {
