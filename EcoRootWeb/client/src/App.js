@@ -15,6 +15,7 @@ import ContainerUserUpdate from './components/users/update/ContainerUpdateUser';
 import UserProducts from './components/users/userProducts/UserProducts';
 import UserOrders from './components/users/userOrders/UserOrders';
 import ProductsInCart from './components/cart/ProductsInCart';
+import CategoryProducts from './components/navbar/CategoryProductsNav';
 
 
 
@@ -50,6 +51,11 @@ function App() {
           <Route path="/user/:id/orders" element={<UserOrders/>} />
 
           <Route path="/user/:id/productsInCart" element={<ProductsInCart/>} />
+
+          <Route path="/category/:categoryId/products" element={<CategoryProducts/>} />
+
+
+
 
         </Routes>
           <Footer/>

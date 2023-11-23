@@ -51,7 +51,9 @@ const UserConfig = () => {
                                 <img className="img-user-page" src={`http://localhost:3000/api/user/avatar/${dataUser.user_id}`} alt="foto de perfil" />
                             )}
                             {/* //COMPONENT DESTROY */}
-                            <UserDestroy/>
+                            <UserDestroy
+                                userId={dataUser && dataUser.user_id}
+                            />
                             {/* //COMPONENT DESTROY */}
                         </div>
                         <div className="div-container-options-config-user">

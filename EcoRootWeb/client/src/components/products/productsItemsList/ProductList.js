@@ -15,7 +15,7 @@ const ProductList = ({ allProducts }) => {
                 <div className="description">
                   <span>{product.name}</span>
                   <p>Ref: <span>{product.product_id}</span></p>
-                  <p> Categoria: <span>{product.productCategory.category_name}</span></p>
+                  <p> Categoria: <span>{product.productCategory?.category_name || product.category_name}</span></p>
                 </div>
                 <div className="stars">
                   <span className="material-symbols-outlined">star</span>

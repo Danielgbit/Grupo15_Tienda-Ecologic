@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import PasswordConfig from "../../passwordConfig/passwordConfig";
+import UpdateUserValidation from "../../../validations/UpdateUserValidation";
 
 
 
@@ -109,7 +110,7 @@ const UserUpdate = ({ userData, countries }) => {
         <main>
             <div className="div-user-edit">
                 <h1>Edición de usuario</h1>
-
+                <UpdateUserValidation/>
                 <form onSubmit={handleSubmit} className="form-user-edit"  encType="multipart/form-data">
 
                     <img className="img-user-edit" src={`http://localhost:3000/api/user/avatar/${user && user.user_id}`} alt="foto de perfil" />
@@ -157,7 +158,7 @@ const UserUpdate = ({ userData, countries }) => {
                             <div className={`input-user-edit ${errors && errors.last_name ? 'login-input-invalid' : ''}`}>
                                 <label htmlFor="last_name">Apellido:</label>
                                 <input
-                                    value={user && user.last_name ? user.last_name : ''}
+                                    value={formData.last_name || ''}
                                     type="text"
                                     id="last_name"
                                     name="last_name"
@@ -172,7 +173,7 @@ const UserUpdate = ({ userData, countries }) => {
                             <div className={`input-user-edit ${errors && errors.username ? 'login-input-invalid' : ''}`}>
                                 <label htmlFor="username">Nombre de usuario:</label>
                                 <input
-                                    value={user && user.username ? user.username : ''}
+                                    value={formData.username || ''}
                                     type="text"
                                     id="username"
                                     name="username"
@@ -187,7 +188,7 @@ const UserUpdate = ({ userData, countries }) => {
                             <div className={`input-user-edit ${errors && errors.email ? 'login-input-invalid' : ''}`}>
                                 <label htmlFor="email">Correo electrónico:</label>
                                 <input
-                                    value={user && user.email ? user.email : ''}
+                                    value={formData.email || ''}
                                     type="email"
                                     id="email"
                                     name="email"
@@ -257,7 +258,7 @@ const UserUpdate = ({ userData, countries }) => {
                                 <label htmlFor="city">Ciudad:</label>
                                 <input
                                     onChange={handleInputChange}
-                                    value={user && user.city ? user.city : ''}
+                                    value={formData.city || ''}
                                     type="text"
                                     id="city"
                                     name="city"
@@ -272,7 +273,7 @@ const UserUpdate = ({ userData, countries }) => {
                                 <label htmlFor="address">Dirección:</label>
                                 <input
                                     onChange={handleInputChange}
-                                    value={user && user.address ? user.address : ''}
+                                    value={formData.address || ''}
                                     type="text"
                                     id="address"
                                     name="address"
@@ -291,7 +292,7 @@ const UserUpdate = ({ userData, countries }) => {
                                     id="birthDate"
                                     name="birthDate"
                                     className={`birthDate-input-Errors ${errors && errors.birthDate ? "birthDate-input-Errors" : ''}`}
-                                    value={user && user.birthDate ? user.birthDate : ''}
+                                    value={formData.birthDate || ''}
                                 />
                                 <ul className="errors-createP-front error-birth-date"></ul>
                                 {errors && errors.birthDate && (
@@ -318,7 +319,7 @@ const UserUpdate = ({ userData, countries }) => {
                             </div>
                         </div>
                     </div>
-                    <input className="button-register" type="submit" value="Actualizar información" />
+                    <input className="button-register button-updateUser-Validations" type="submit" value="Actualizar información" />
                 </form>
             </div>
         </main>

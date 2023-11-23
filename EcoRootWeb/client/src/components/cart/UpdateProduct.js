@@ -31,7 +31,8 @@ const UpdateProduct = ({ productId, quantity, onUpdate  }) => {
           }
         
                 // Recarga la página después de la actualización
-      window.location.reload();
+        window.location.reload();
+
       } catch (error) {
         console.error('Error al actualizar el producto en el carrito:', error);
       }

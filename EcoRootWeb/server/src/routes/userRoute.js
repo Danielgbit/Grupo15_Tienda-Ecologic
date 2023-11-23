@@ -46,6 +46,9 @@ userRouter.delete('/user/delete/:id', userController.deleteUser);
 userRouter.delete('/user/productInCart/delete/:productId', userController.deleteProductInCart);
 
 
+userRouter.delete('/user/order/delete/:orderId', userController.deleteOrder);
+
+
 
 
 

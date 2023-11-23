@@ -129,10 +129,14 @@ window.addEventListener('load', () => {
         errors.email = [];
         errors.password = [];
 
-        errorEmail.textContent = '';
-        errorPassword.textContent = '';
-
-
+        
+        if (errorEmail) {
+            errorEmail.textContent = '';
+        }
+        
+        if (errorPassword) {
+            errorPassword.textContent = '';
+        }
         //Functions validations
 
         validateEmail(e.target.email);

@@ -160,8 +160,8 @@
             }
 
             .number-shop {
-                color: var(--cards, #363020);
                 text-align: center;
+                color: var(--cards, #363020);
                 font-size: 1.125rem;
                 font-style: normal;
                 font-weight: 500;
@@ -182,13 +182,69 @@
     }
 }
 
+.container-categories {
+    background: var(--cards, #57543e);
+    height: 120px;
+    width: 130px;
+    align-items:flex-start;
+    justify-content:center;
+    flex-direction: column;
+    position: absolute;
+    top: 40px;
+    color: var(--color-primario, #EDF4DA);
+    font-size: 12px;
+    border-radius: 2px;
+    transition: height 0.3s ease, top 0.3s ease;
+
+    div{
+        padding: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s, width 0.3s;
+
+        &::before {
+            content: '\00B7'; /* Código Unicode del punto */
+            margin-right: 5px; /* Espacio entre el punto y el contenido del span */
+          }
+
+        &:hover{
+            background-color: #6d873e;
+            width: 100%;
+            
+            
+        }
+    }
+
+}
+
+
+.container-max-categories {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+
+}
+
+.category-title-container {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+
 .navbar-hidden {
     transform: translateY(-100%);
 }
 
 
 
+
+
 @media (min-width: 769px) {
+
+    .bar-nav-container .nav-right-wrapper {
+        width: 60%;
+    }
 
     
 
@@ -200,10 +256,6 @@
 
     .bar-nav-container {
 
-
-        .nav-right-wrapper {
-            width: 30%;
-        }
 
         .nav-text-wrapper {
             display: flex;

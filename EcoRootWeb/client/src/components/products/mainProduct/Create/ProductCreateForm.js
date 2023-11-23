@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CreateProductValidation from '../../../../validations/CreateProductValidation';
 
 const ProductCreateForm = ({ category, brands, colors, formDataOld, user }) => {
 
@@ -18,7 +19,10 @@ const ProductCreateForm = ({ category, brands, colors, formDataOld, user }) => {
         user_id: user.user_id
       }));
     };
-  
+
+
+    
+
     const handleImageChange = (event) => {
       const selectedImage = event.target.files[0];
       setImage(selectedImage);
@@ -86,16 +90,21 @@ const ProductCreateForm = ({ category, brands, colors, formDataOld, user }) => {
 
 
 
+  
+
+
+
+
 
     return (
-    <div id="create-product-body">
+        <div id="create-product-body">
         <main className="main-create-category">
             <section className="header-create">
                 <h1>Creacion de producto</h1>
                 <img src="/img/logos/eco.png" alt="Logo-article" />
             </section>
-
-            <form  onSubmit={handleSubmit} className="form-create-1" encType="multipart/form-data">
+        <CreateProductValidation/>
+            <form   onSubmit={handleSubmit} className="form-create-1 form-createProduct" encType="multipart/form-data">
                 <article className="container-cards-category">
                 <div className="condition-text-header">
                     <span className={`text-title ${errorsObject && errorsObject.category ? 'is-invalid' : null}`}>
@@ -113,7 +122,8 @@ const ProductCreateForm = ({ category, brands, colors, formDataOld, user }) => {
                         type="radio"
                         name="category"
                         value={category.category_id}
-                        className="radio-input"
+                        id='category-validation'
+                        className="radio-input category-input"
                         checked={formDataOld && formDataOld.category === category.category_name}
                         onChange={handleInputChange}
 

@@ -300,7 +300,29 @@
         align-items: flex-start;
         width: 100%;
     }
+}
 
+
+.contain-security-level-password {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 5px;
+}
+
+.text-security-password {
+    font-size: 14px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    color: #d0e1b5;
+}
+
+.security-level {
+    width: 50px;
+    height: 6px;
+    border: 1px solid rgb(56, 77, 21);
+    background-color: #223f0b;
+    border-radius: 10px;
 }
 
 @media (min-width: 570px) {

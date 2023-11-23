@@ -207,8 +207,12 @@ const userController = {
                 });
             });
 
+            res.status(200).json({
+                success: true,
+                message: 'Orden creada exitosamente'
+              });
 
-            res.redirect('/user/orders');
+
 
         } catch (error) {
             console.error('Error al crear la orden:', error);
@@ -318,6 +322,42 @@ const userController = {
                   });
             };
 
+
+            const cart = await db.Cart.findOne({
+                where: {
+                    user_id: userExisting.user_id
+                },
+                raw: true
+            });
+
+            if (!cart) {
+                res.status(404).json({
+                    error: 'No se encontro el carrito del user'
+                });
+            };
+
+
+            const productInCart = await db.ProductCart.findOne({
+                where: {
+                    cart_id: cart.cart_id,
+                }
+            });
+
+
+            
+            if (productInCart) {
+                await db.ProductCart.destroy({
+                    where: {
+                        cart_id: cart.cart_id,
+                    }
+                });
+            }
+            await db.Cart.destroy({
+                where: {
+                    cart_id: cart.cart_id,
+                }
+            });
+
             await db.Product.destroy({ where: { user_id: req.params.id } });
 
             await db.User.destroy({ where: { user_id: req.params.id } });
@@ -387,6 +427,48 @@ const userController = {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
 
+    },
+
+
+    deleteOrder: async (req, res) => {
+        try {
+            const orderId = req.params.orderId;
+    
+            // Utiliza una transacción para garantizar la integridad de la base de datos
+            await db.sequelize.transaction(async (t) => {
+                // Eliminar OrderProduct asociado a la orden
+                await db.OrderProduct.destroy({
+                    where: {
+                        order_id: orderId
+                    },
+                    transaction: t
+                });
+    
+                // Eliminar la orden
+                const deletedOrderRows = await db.Order.destroy({
+                    where: {
+                        order_id: orderId
+                    },
+                    transaction: t
+                });
+    
+                if (deletedOrderRows === 0) {
+                    throw new Error('La orden no pudo ser encontrada o ya fue eliminada.');
+                }
+            });
+    
+            res.status(200).json({
+                success: true,
+                message: 'Orden y productos asociados eliminados exitosamente.'
+            });
+    
+        } catch (error) {
+            console.error('Error al eliminar la orden:', error);
+            res.status(500).json({
+                success: false,
+                message: 'Error al eliminar la orden y productos asociados.'
+            });
+        }
     },
 
 
@@ -632,24 +714,32 @@ const userController = {
     },
 
     getViewOrders: async (req, res) => {
-
         try {
-
             const userId = req.params.id;
-
+    
             const orders = await db.Order.findAll({
                 where: {
                     user_id: userId
                 },
-                include: 'products',
+                include: [
+                    {
+                        model: db.Product,
+                        through: {
+                            model: db.OrderProduct,
+                            as: 'orderProducts',
+                            attributes: ['quantity'] // Incluir la propiedad quantity
+                        },
+                        as: 'products',
+                    }
+                ],
                 raw: true,
                 nest: true
             });
-
+    
             // Crear una estructura para los datos a mostrar en la vista
             const ordersData = [];
             let currentOrder = null;
-
+    
             for (const order of orders) {
                 // Comprobar si es un nuevo pedido
                 if (currentOrder === null || currentOrder.order_id !== order.order_id) {
@@ -657,10 +747,13 @@ const userController = {
                         order_id: order.order_id,
                         order_date: order.order_date,
                         user_id: order.user_id,
-                        products: []
+                        quantity: order.products.orderProducts.quantity, // Acceder a la cantidad desde OrderProduct
+                        products: [],
                     };
+    
                     ordersData.push(currentOrder);
                 }
+    
                 // Agregar detalles del producto al pedido actual
                 const productDetails = {
                     product_id: order.products.product_id,
@@ -674,18 +767,21 @@ const userController = {
                     image: order.products.image,
                     color_id: order.products.color_id,
                     category_id: order.products.category_id,
-                    brand_id: order.products.brand_id
+                    brand_id: order.products.brand_id,
                 };
+    
                 currentOrder.products.push(productDetails);
             }
-
+    
             res.status(200).json({ orders: ordersData });
-            
+    
         } catch (error) {
             console.error('Error al obtener las órdenes:', error);
             res.status(500).json({ error: 'Error al obtener las órdenes' });
         }
     },
+    
+    
 
 
     getAvatar: async (req, res) => {

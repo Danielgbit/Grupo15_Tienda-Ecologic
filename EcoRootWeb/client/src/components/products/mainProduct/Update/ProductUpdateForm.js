@@ -2,110 +2,92 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ProductUpdate = ({ productData, brands, colors, categories }) => {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({});
+    const [image, setImage] = useState(null);
+    const [errorsApi, setErrorsPostApi] = useState([]);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
+        // Utiliza un useEffect para establecer formData cuando productData cambia
+        useEffect(() => {
+            setFormData(productData);
+        }, [productData]);
+  
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+  
+    const handleImageChange = (event) => {
+      const selectedImage = event.target.files[0];
+      setImage(selectedImage);
+    };
+ /*  
+    console.log('formData', formData ); */
+    const handleFormSubmit = async () => {
+      try {
+        const requestBody = {
+          ...formData,
+          image: image, // Aquí puedes agregar la propiedad de la imagen directamente al objeto
+        };
 
-            //DATA USER
+  
+        console.log('requestBody', requestBody);
+  
+        const response = await fetch(`http://localhost:3000/api/product/edit/${productData.product_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        });
+  
+        if (!response.ok) {
+          const data = await response.json();
+          setErrorsPostApi(data.errors || []);
+          console.error('Error en la solicitud:', data.errors);
+          return;
+        }
+  
+        const data = await response.json();
+  
+        if (data.success === true) {
+          console.log('Producto actualizado exitosamente');
+          navigate('/products');
+          // No es necesario recargar la página
+          setErrorsPostApi([]);
+        }
+        console.log(data);
+      } catch (error) {
+        console.error("Error al realizar la solicitud:", error);
+      }
+    };
+  
+    useEffect(() => {
+      if (formSubmitted) {
+        handleFormSubmit();
+        setFormSubmitted(false); // Restablecer el estado después de procesar el formulario
+      }
+    }, [formSubmitted]);
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      setFormSubmitted(true); // Indicar que el formulario ha sido enviado
+    };
+  
 
-            const navigate = useNavigate();
-            
-            //...........
-            
-            const [product, setProductData] = useState({});
-            const [formData, setFormData] = useState({});
-            const [image, setImage] = useState(null);
-            const [errorsApi, setErrorsPostApi] = useState([]);
-            const [formSubmitted, setFormSubmitted] = useState(false);
-            
-                useEffect(() => {
-                    setProductData(productData);
-                    setFormData(productData); // Inicializar formData con userData
-                }, [productData]);
-        
-                const handleInputChange = (event) => {
-                    const { name, value } = event.target;
-            
-                    // Actualizar el estado del formulario directamente
-                    setFormData((prevData) => ({
-                        ...prevData,
-                        [name]: value,
-                    }));
-
-                    
-                };
-            
-
-        
-            const handleImageChange = (event) => {
-            const selectedImage = event.target.files[0];
-                setImage(selectedImage);
-            };
-        
-            const handleFormSubmit = async (event) => {
-
-            try {
-                const formDataToSend = new FormData();
-                Object.entries(formData).forEach(([key, value]) => {
-                formDataToSend.append(key, value);
-                });
-                formDataToSend.append("image", image);
-
-        
-                const response = await fetch(`http://localhost:3000/api/product/edit/${product.product_id}`, {
-                    method: "PUT",
-                    body: formDataToSend,
-                });
-
-                console.log('formDataToSend',formDataToSend);
-
-        
-                if (!response.ok) {
-                const data = await response.json();
-                setErrorsPostApi(data.errors || []);
-                console.error('Error en la solicitud:', data.errors);
-                return;
-                }
-        
-                const data = await response.json();
-        
-                if (data.success === true) {
-                    console.log('Usuario ingresó éxitosamente');
-                    console.log(data);
-  /*                   navigate('/user/config');
-                    window.location.reload(); // Esto recargará la página */
-                    setErrorsPostApi([]);
-                }
-        
-                console.log("formDataToSend", formDataToSend);
-            } catch (error) {
-                console.error("Error al realizar la solicitud:", error);
-            }
-            };
-        
-            useEffect(() => {
-            if (formSubmitted) {
-                handleFormSubmit();
-                setFormSubmitted(false); // Restablecer el estado después de procesar el formulario
-            }
-            }, [formSubmitted]);
-        
-            const handleSubmit = (event) => {
-                event.preventDefault();
-                setFormSubmitted(true); // Indicar que el formulario ha sido enviado
-            };
-
-
-            const errors = errorsApi.reduce((acc, error) => {
-            const fieldName = Object.keys(error)[0];
-            const errorMessage = Object.values(error)[0];
-            return {
-                ...acc,
-                [fieldName]: errorMessage
-            };
-        }, {});
-
-
-
-
+  
+    const errors = errorsApi.reduce((acc, error) => {
+      const fieldName = Object.keys(error)[0];
+      const errorMessage = Object.values(error)[0];
+      return {
+        ...acc,
+        [fieldName]: errorMessage
+      };
+    }, {});
 
     return (
         <div id="body-edit-product">    
@@ -113,7 +95,6 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
                 <section className="header-create">
                     <h1>Edición de producto</h1>
                 </section>
-
                 <form onSubmit={handleSubmit} className="form-create-1" id="form-edit-product" encType="multipart/form-data">
 
                     <div className={`condition-text-header ${errors && errors.category ? "is-invalid" : ""}`}>
@@ -126,23 +107,24 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
 
                     <article className="container-cards-category">
 
-                        
-                    {categories && categories.map((category) => (
-                        <label key={category.category_id} className="categoryCards">
-                        <input
-                            onChange={handleInputChange}
-                            type="radio"
-                            name="category"
-                            value={formData && formData.category_id ? formData.category_id : ''}
-                            className="radio-input"
-                            checked={category && category.category_id === (product && product.category_id)}
-                        />
-                        <span className="custom-radio"><i className="fa-regular fa-circle-check"></i></span>
-                        <img src={`http://localhost:3000${product && product.image}`} alt="" />
-                        <span>{category.category_name}</span>
-                        </label>
-                    ))}
-                    </article>
+                            
+                        {categories && categories.map((category) => (
+                            <label key={category.category_id} className="categoryCards">
+                                <input
+                                    onChange={handleInputChange}
+                                    type="radio"
+                                    name="category"
+                                    value={category.category_id}
+                                    className="radio-input"
+                                    checked={(category && category.category_id) === (formData && formData.category_id)}
+                                />
+
+                            <span className="custom-radio"><i className="fa-regular fa-circle-check"></i></span>
+                            <img src={`/img/categories/${category && category.image}`} alt="" />
+                            <span>{category.category_name}</span>
+                            </label>
+                        ))}
+                        </article>
 
                     <section className="container-information-form">
                     <article className="form-information-items-wrapper">
@@ -154,7 +136,8 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
                                     type="text" 
                                     id="name" 
                                     name="name" 
-                                    value={formData && formData.name ? formData.name : ''}
+                                    value={formData?.name || ''}
+
 
 
                                     />
@@ -187,17 +170,20 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
 
                                 <div className="input-information-container">
                                 <label htmlFor="color">Color:</label>
-                                <select 
-                                        onChange={handleInputChange}
-                                        name="color" 
-                                        id="color" 
-                                        className="colors-select">
+                                <select
+                                    onChange={handleInputChange}
+                                    name="color"
+                                    id="color"
+                                    className="colors-select"
+                                    value={formData?.color_id || ''}
+                                >
                                     {colors && colors.map((color) => (
-                                    <option key={color.color_id} value={color.color_id}>
-                                        {color.color_name}
-                                    </option>
+                                        <option key={color.color_id} value={color.color_id}>
+                                            {color.color_name}
+                                        </option>
                                     ))}
                                 </select>
+
                                 <ul className="errors-createP-front error-color"></ul>
                                 {errors && errors.color && (
                                     <span className="errorsCreateProduct">{errors.color}</span>
@@ -214,8 +200,7 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
                                     type="number"
                                     id="united"
                                     name="united"
-                                    value={formData && formData.united ? formData.united : ''}
-
+                                    value={formData && formData.united || ''}
                                 />
                                 <ul className="errors-createP-front error-united"></ul>
                                 {errors && errors.united && (
@@ -230,7 +215,7 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
                                     type="number"
                                     id="discount"
                                     name="discount"
-                                    value={parseInt(formData && formData.discount)}
+                                    value={parseInt(formData?.discount || '')}
                                     placeholder="%"
                                 />
                                 <ul className="errors-createP-front error-discount"></ul>
@@ -247,7 +232,7 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
                                         type="text"
                                         id="material"
                                         name="material"
-                                        value={formData && formData.material}
+                                        value={formData?.material || ''}
                                     />
                                 </div>
                                 <ul className="errors-createP-front error-material"></ul>
@@ -312,7 +297,7 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
                                         />
                                 </label>
                             </label>
-                            <div><img src={`http://localhost:3000${product && product.image}`} alt="imagen del producto existente" /></div>
+                            <div><img src={`http://localhost:3000${productData && productData.image}`} alt="imagen del producto existente" /></div>
                         </div>
                         <ul className="errors-createP-front error-image"></ul>
                         {errors && errors.image && (
@@ -333,12 +318,12 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
                                 <div className="description-container">
                                     <textarea
                                         onChange={handleInputChange}
-                                        value={formData && formData.description}
+                                        value={formData?.description  || ''}
                                         id="descripcion" 
                                         name="description" 
                                         rows="4" 
                                         cols="50" 
-                                        className="description-box" defaultValue={formData && formData.description}></textarea>
+                                        className="description-box" defaultValue={formData?.description  || ''}></textarea>
                                 </div>
                                 <ul className="errors-createP-front error-description"></ul>
                                 {errors && errors.description && (
@@ -378,7 +363,7 @@ const ProductUpdate = ({ productData, brands, colors, categories }) => {
 
                     <div className="buttons-submit-step-5-6">
       {/*               <button type="submit" id="submit" className="submit-create-form-container">Editar producto</button> */}
-                    <input className="button-register" type="submit" value="Actualizar información" />
+                    <input className="button-register button-UpdateProduct" type="submit" value="Actualizar información" />
 
                     </div>
                 </form>

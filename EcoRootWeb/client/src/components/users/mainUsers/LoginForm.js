@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PasswordConfig from "../../passwordConfig/passwordConfig";
+import LoginValidation from "../../../validations/LoginValidation";
 
 
 const LoginForm = ({ errorsLogin, dataOld, onSubmitForm, inputDataError }) => {
 
     const [formData, setFormData] = useState({});
     
-    const errors = errorsLogin.reduce((acc, error) => {
+    const errors = errorsLogin
+    ? errorsLogin.reduce((acc, error) => {
         const fieldName = Object.keys(error)[0];
         const errorMessage = Object.values(error)[0];
         return {
-            ...acc,
-            [fieldName]: errorMessage
+          ...acc,
+          [fieldName]: errorMessage,
         };
-    }, {});
+      }, {})
+    : {};
 
 
     // Función para manejar cambios en los datos del form login de usuario
@@ -44,6 +47,7 @@ const LoginForm = ({ errorsLogin, dataOld, onSubmitForm, inputDataError }) => {
         <div className="img-login">
             <img src="/img/backgrounds/img-login.jpg" alt="" />
         </div>
+        <LoginValidation/>
 
         <form onSubmit={handleSubmit} className="form-login" >
 
@@ -103,7 +107,7 @@ const LoginForm = ({ errorsLogin, dataOld, onSubmitForm, inputDataError }) => {
             )}
             </div>
 
-            <input className="button-register" type="submit" value="Ingresar" />
+            <input className="button-register button-login-validations" type="submit" value="Ingresar" />
 
             <div className="input-register2">
             <input id="recordar" type="checkbox" name="remember" />

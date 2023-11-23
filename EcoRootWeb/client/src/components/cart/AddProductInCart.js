@@ -54,7 +54,8 @@ const AddProductInCart = ({product_id}) => {
     try {
       const response = await axios.post(`http://localhost:3000/api/user/addProductCart/${dataUser.user_id}`, formValues);
       console.log(response);
-      // Aquí puedes manejar la respuesta del servidor según tus necesidades
+      window.location.reload();
+
     } catch (error) {
       console.error(error);
     }

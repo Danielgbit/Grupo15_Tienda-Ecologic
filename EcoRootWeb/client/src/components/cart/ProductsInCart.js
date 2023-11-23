@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import UpdateProduct from './UpdateProduct';
 import DeleteProductInCart from './DeleteProductInCart';
+import CreateOrder from '../users/userOrders/CreateOrder';
 
 const ProductsInCart = () => {
 
@@ -175,13 +176,10 @@ const ProductsInCart = () => {
               <p className="cart-data-user-paragraph">Domicilio: <span>{user && user.address ? user.address : null}</span></p>
             </div>
             <div className="button-contain-checkout">
-              <form>
-                <button type="submit" className="pay-button">
-                
-                <p>TOTAL: $ {totalPrice.toFixed(2)}</p>
-                  <p>CHECKOUT</p>
-                </button>
-              </form>
+              <CreateOrder
+                user_id={user.user_id}
+                totalPrice={totalPrice}
+              />
             </div>
           </div>
         </section>

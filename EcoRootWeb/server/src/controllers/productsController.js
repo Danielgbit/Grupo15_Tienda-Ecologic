@@ -7,6 +7,7 @@ const db = require('../database/models'); // Asegúrate de que la ruta sea corre
 const {
     Op
 } = require('sequelize');
+const { log } = require('console');
 
 let formDataOld = {};
 

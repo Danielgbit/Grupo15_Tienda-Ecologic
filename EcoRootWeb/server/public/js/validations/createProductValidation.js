@@ -527,17 +527,17 @@ window.addEventListener('load', () => {
 
 
 
-        errorName.textContent = '';
-        errorUnited.textContent = '';
-        errorBrand.textContent = '';
-        errorColor.textContent = '';
-        errorDiscount.textContent = '';
-        errorMaterial.textContent = '';
-        errorState.textContent = '';
-        errorImage.textContent = '';
-        errorDescription.textContent = '';
-        errorPrice.textContent = '';
-        errorCategory.textContent = '';
+        errorName?.textContent = '';
+        errorUnited?.textContent = '';
+        errorBrand?.textContent = '';
+        errorColor?.textContent = '';
+        errorDiscount?.textContent = '';
+        errorMaterial?.textContent = '';
+        errorState?.textContent = '';
+        errorImage?.textContent = '';
+        errorDescription?.textContent = '';
+        errorPrice?.textContent = '';
+        errorCategory?.textContent = '';
 
 
 

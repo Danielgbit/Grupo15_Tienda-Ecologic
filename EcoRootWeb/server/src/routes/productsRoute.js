@@ -40,6 +40,9 @@ productsRouter.get('/product/getEdit/:id', productsController.getEditProduct);
 productsRouter.get('/product/create',authSessionMiddleware ,productsController.getProductCreate);
 
 
+
+
+
 //@--DELETES-------
 
 

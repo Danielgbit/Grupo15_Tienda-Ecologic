@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordConfig from "../../passwordConfig/passwordConfig";
+import RegisterValidation from "../../../validations/RegisterValidation";
 
 const RegisterForm = ({ countries, inputDataError, dataOld }) => {
 
@@ -84,7 +85,6 @@ const RegisterForm = ({ countries, inputDataError, dataOld }) => {
       };
   }, {});
 
-console.log(formData);
 
 
     return (
@@ -92,6 +92,9 @@ console.log(formData);
         <main className="main-register">
             <h1>REGISTRO</h1>
             <article className="content-register-wrapper">
+
+                <RegisterValidation/>
+
                 <form onSubmit={handleSubmit} className="form-register"  encType="multipart/form-data">
                 <div className="container-max-register-flex">
                     <div className="contain-info-flex-1">
@@ -366,7 +369,7 @@ console.log(formData);
                 </div>
                 </section>
 
-                <input className="button-register" type="submit" value="Registrarse" />
+                <input className="button-register button-register-validations" type="submit" value="Registrarse" />
 
                 <div className="text-account-register-wrapper">
                     <Link className="text-account-register" to="/user/login">
