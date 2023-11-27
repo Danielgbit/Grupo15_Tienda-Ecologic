@@ -4,9 +4,19 @@ import AddProductInCart from '../../cart/AddProductInCart';
 
 const ProductList = ({ allProducts }) => {
 
+
+
+
+  if (!allProducts) {
+    return (
+      <span>No hay productos disponibles</span>
+    )
+  }
+
+
   return (
     <>
-      {allProducts.map(product => (
+      {allProducts && allProducts.map(product => (
         <section className="card" key={product.product_id}>
           <Link to={`/product/detail/${product.product_id}`} className="product-card">
             <img src={`http://localhost:3000${product.image}`} alt="imagen del producto" />

@@ -460,7 +460,6 @@ const productsController = {
                 }
             }
 
-            console.log('session', req.session);
 
             const newProduct = {
                 name: req.body.name,
@@ -639,7 +638,10 @@ const productsController = {
 
             const idProduct = Number(req.params.id);
 
-            const product = await db.Product.findByPk(idProduct);
+            const product = await db.Product.findByPk(idProduct, {
+                raw: true
+            });
+
 
             if (product.length === 0 || !product) {
                 return res.status(404).json({
@@ -647,16 +649,20 @@ const productsController = {
                 });
             };
 
-            // Obtener la cantidad actual del producto en quantity_productcategory
-            const quantityProductCategory = await db.QuantityProductCategory.findByPk(product.category_id);
+            console.log('product', product);
 
-            console.log(quantityProductCategory);
+            const categoryId = product.category_id;
+            // Obtener la cantidad actual del producto en quantity_productcategory
+            const quantityProductCategory = await db.QuantityProductCategory.findByPk(categoryId);
+
+            console.log('quantityProductCategory', quantityProductCategory);
 
             if (!quantityProductCategory) {
                 return res.status(404).json({
                     error: 'Hubo un error al eliminar el producto'
                 });
             }
+
 
             // Decrementar la cantidad y actualizar o eliminar según corresponda
             if (quantityProductCategory.quantity > 1) {
@@ -686,6 +692,7 @@ const productsController = {
                     error: 'Hubo un error al eliminar el producto'
                 });
             }
+
 
             fs.unlinkSync(path.join(__dirname, '../../public/img/products/' + product.image));
 

@@ -16,10 +16,13 @@ const DestroyProductComponent = ({ id }) => {
           'Content-Type': 'application/json',
         },
       });
+
+      console.log(response);
   
       if (!response.ok) {
         throw new Error('Error al eliminar el producto');
       }
+
 
       navigate('/products');
     } catch (error) {
