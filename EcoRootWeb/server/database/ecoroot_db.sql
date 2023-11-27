@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2023 a las 02:34:05
+-- Tiempo de generación: 27-11-2023 a las 18:04:11
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -19,10 +19,11 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `ecoroot_db`
---
+
 DROP DATABASE IF EXISTS `ecoroot_db`;
 CREATE DATABASE `ecoroot_db`;
 USE ecoroot_db;
+--
 
 -- --------------------------------------------------------
 
@@ -50,27 +51,6 @@ INSERT INTO `brands` (`brand_id`, `brand_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `brand_category`
---
-
-CREATE TABLE `brand_category` (
-  `brand_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `brand_category`
---
-
-INSERT INTO `brand_category` (`brand_id`, `category_id`) VALUES
-(2, 2),
-(2, 3),
-(3, 3),
-(3, 5);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `cart`
 --
 
@@ -78,6 +58,17 @@ CREATE TABLE `cart` (
   `cart_id` int(11) NOT NULL,
   `user_id` char(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `user_id`) VALUES
+(5, '57c002a5-76d4-414c-b510-78b82f037a18'),
+(7, '69abb4e1-8b53-43c2-89b2-1f27dbb1b9be'),
+(6, 'd22618ff-56ad-497f-8353-c6f53877a628'),
+(8, 'f5e06233-da88-45f3-9253-75e2297504ed'),
+(3, 'f9e5a34f-5f0a-4128-825d-eb2fe05f0a6f');
 
 -- --------------------------------------------------------
 
@@ -166,8 +157,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_date`, `user_id`) VALUES
-(195, '2023-10-13 21:18:50', '8065330f-23d8-488a-9304-d3e0f0f177d7'),
-(196, '2023-10-13 21:26:36', '8065330f-23d8-488a-9304-d3e0f0f177d7');
+(212, '2023-11-23 23:51:57', '57c002a5-76d4-414c-b510-78b82f037a18');
 
 -- --------------------------------------------------------
 
@@ -187,10 +177,7 @@ CREATE TABLE `order_product` (
 --
 
 INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-(163, 195, 24, 4),
-(164, 195, 26, 1),
-(165, 196, 24, 4),
-(166, 196, 26, 1);
+(202, 212, 53, 1);
 
 -- --------------------------------------------------------
 
@@ -219,10 +206,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `united`, `discount`, `material`, `state`, `user_id`, `image`, `color_id`, `category_id`, `brand_id`) VALUES
-(1, 'Cepillo de bambú', 'Nuestra elección consciente para el cuidado bucal y el medio ambiente. Nuestro Cepillo de Dientes de Bambú es una joya de sostenibilidad. Hecho a mano con un mango de bambú 100% biodegradable y cerdas suaves de alta calidad, este cepillo es amable con tus', 10.00, 50, 10.00, 'Bambú', 'New', '8065330f-23d8-488a-9304-d3e0f0f177d7', 'img-product-1696023650679.jpg', 1, 5, 1),
-(24, 'Jabon Biodegradable', 'Los jabones biodegradables se fabrican con tensioactivos biodegradables, que son compuestos que tienen la capacidad de unir agua y aceite. Estos tensioactivos se obtienen de fuentes naturales, como las plantas o los animales, o se sintetizan a partir de m', 10.00, 5, 30.00, 'Romero', 'New', '8065330f-23d8-488a-9304-d3e0f0f177d7', 'img-product-1696354766733.jpg', 1, 3, 1),
-(25, 'Toalla Biodegradable', 'Seca tu piel con frescura y amor cuidando la naturaleza ', 5.00, 50, 0.00, 'Algodon', 'New', '8065330f-23d8-488a-9304-d3e0f0f177d7', 'img-product-1696355124291.jpg', 9, 3, 3),
-(26, 'Tónico facial', 'Producto para hidratar con elementos naturales.', 100.00, 100, 10.00, 'Albahaca, romero', 'New', '3ee7263e-73ad-4ca6-a549-a9bbe9608d62', 'img-product-1696356357075.jpg', 1, 5, 3);
+(49, 'Cepillo', 'La Pomada Regeneradora de Caléndula Color-1 elimina las células muertas y suaviza la piel descongestionándola y manteniendo su hidratacíon.', 18.00, 8, 5.00, 'Romero, Calendula', 'Used', 'f9e5a34f-5f0a-4128-825d-eb2fe05f0a6f', 'img-product-1699996664323.jpg', 10, 4, 4),
+(53, 'Toalla Biodegradable', 'Las toallas biodegradables son un tipo de toallas que están compuestas en su totalidad por celulosa y/o algodón y que pueden ser desechadas tras hacer uso de ellas. De ahí que en los últimos años la demanda por este producto haya aumentado considerablemen', 20.00, 2, 5.00, 'Algodon', 'New', '57c002a5-76d4-414c-b510-78b82f037a18', 'img-product-1700783468589.jpg', 13, 2, 3),
+(54, 'Cepillo De Bambú', 'Prueba el nuevo cepillo', 33.00, 3, 3.00, 'Bambu', 'New', 'd22618ff-56ad-497f-8353-c6f53877a628', 'img-product-1700785895604.jpg', 13, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -236,6 +222,19 @@ CREATE TABLE `product_cart` (
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `product_cart`
+--
+
+INSERT INTO `product_cart` (`product_cart_id`, `cart_id`, `product_id`, `quantity`) VALUES
+(20, 3, 49, 10),
+(36, 5, 53, 1),
+(38, 6, 54, 1),
+(39, 6, 53, 1),
+(40, 6, 49, 1),
+(45, 8, 54, 1),
+(46, 8, 53, 4);
 
 -- --------------------------------------------------------
 
@@ -253,9 +252,28 @@ CREATE TABLE `product_color` (
 --
 
 INSERT INTO `product_color` (`product_id`, `color_id`) VALUES
-(24, 4),
-(25, 9),
-(26, 1);
+(49, 12),
+(53, 13),
+(54, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `quantity_productcategory`
+--
+
+CREATE TABLE `quantity_productcategory` (
+  `category_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `quantity_productcategory`
+--
+
+INSERT INTO `quantity_productcategory` (`category_id`, `quantity`) VALUES
+(3, 2),
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -283,11 +301,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `password`, `avatar`, `country`, `city`, `address`, `birthDate`, `gender`) VALUES
-('24f1ba9c-65c8-4d0e-a40a-3a939d5c26b2', 'David', 'Hernandez', 'David', 'David@gmail.com', 'David1234@_', 'avatar-1698520492288.jpg', 'Colombia', 'Medellin', 'Av 75 cc#2', '2023-10-18', 'male'),
-('3ee7263e-73ad-4ca6-a549-a9bbe9608d62', 'Sebastian', 'Gomez', 'Sebas', 'Sebastian@gmail.com', '$2b$10$M9mcu70YyF5.p8C65s3YTOs6Uu.nHb4v4MxGLcmL9JmOeHHJ5dpVm', 'avatar-1696286409317.jpg', 'Colombia', 'Medellin', 'ss22#A', '2001-02-22', 'male'),
-('8065330f-23d8-488a-9304-d3e0f0f177d7', 'Jairito', 'Gonzalo', 'Jaiririri', 'Jairito@gmail.com', '$2b$10$.iSmN7M2bwvFDdgA//d37OkYZWHRkozqk34kOJUjWB3JDFpdfpnHe', 'avatar-1696370576532.jpg', 'Colombia', 'Medellin', 'CC#444', '1995-03-23', 'male'),
-('f13e1f68-1c3f-4c09-bb5c-9899d0174025', 'Pedrito', 'Carrazca', 'Pedroski', 'Pedrito@gmail.com', '$2b$10$HgnlfPRhXxUffYbawaRL2OzqURe709.5THrXisbGgelHpsTx.y0Q2', 'avatar-1698183673731.jpg', 'Colombia', 'Medellin', 'Av 40 # 40 apt 101', '2023-10-13', 'male'),
-('f9e5a34f-5f0a-4128-825d-eb2fe05f0a6f', 'Eliana', 'Vazquez', 'Vale', 'Valen@gmail.com', '$2b$10$uRvC.8rXdfP5uNTdZ9jTn.rxn50rTnPVJ.4QAm.F16.POMRd1ZVQi', 'avatar-1696286200093.jpg', 'Colombia', 'Medellin', 'ss22#A', '2007-02-22', 'male');
+('57c002a5-76d4-414c-b510-78b82f037a18', 'Federico', 'Gonzalo', 'Fede', 'Federico@gmail.com', '$2b$10$xU8uoAu/TJ/FuI.sevPSKOFqdO.LXP7EW0aPP0AqRGKd9S7k8DNwS', 'avatar-1700776075230.jpg', 'San Marino', 'Medellin', 'Av40#60-2', '2023-10-31', 'male'),
+('69abb4e1-8b53-43c2-89b2-1f27dbb1b9be', 'Valentina', 'Soto', 'Juli', 'Juliana@gmail.com', '$2b$10$Er8GT4QvvwIZKCPdZ936FemLHNIm3EddaUi8xkWdgdPFhVYeRtRmm', 'avatar-1699647738821.jpg', 'Barbados', 'Colombia', 'Av-70#40', '1995-02-20', 'female'),
+('7241d05b-2b56-453d-b540-53b3807b99d0', 'Carrazca', 'Gaviria', 'Carrazca', 'Carrazca@gmail.com', '$2b$10$PlxJ2UvMX5F1GsAQde.yW.m/VUqkhiaa8ybeG0c7BXtrhf1.T/etm', 'avatar-1700588476046.jpg', 'Argentina', 'Buenos Aires', 'Av 40-#60', '1980-10-03', 'male'),
+('b7ef1eac-f050-4b35-9ab9-f7ad851f6205', 'Yolanda', 'Fernandez', 'Yola', 'Yolanda@gmail.com', '$2b$10$j5sovIMEdkrS2b3VpUDBX.63t4Ahr1e/veTnKti96lsRf7R.k1Hta', 'avatar-1699647038113.jpg', 'Medellin', 'Colombia', 'Calle20#60-1', '1990-02-20', 'female'),
+('d22618ff-56ad-497f-8353-c6f53877a628', 'Jose Alvarez', 'Carrazca', 'Jose', 'Jose@gmail.com', '$2b$10$Ql2kOVePzPsX31EFSXmDH.savNiPx/4Oyc42VaMhowz9ABTxhwDiy', 'avatar-1700786047911.jpg', 'Hong Kong', 'Medellin', 'ss22#A', '2023-11-01', 'male'),
+('f5e06233-da88-45f3-9253-75e2297504ed', 'Alejandra', 'Osorio', 'Aleja', 'Alejandra@gmail.com', '$2b$10$Zp6pkbbeV5pw.qebtXoFVua4Df0iOMs671HcWYXNEBBzlndIIJ.sm', 'avatar-1699648226177.jpg', 'Argentina', 'Buenos Aires', 'Av 40-#60', '1980-10-03', 'female'),
+('f8a6b594-e8b4-453d-acb9-b2b6d0075473', 'Valeria', 'Giraldo', 'Vale', 'Valeria@gmail.com', '$2b$10$JkhM9nHA9f.x8xiHV0JCuO4UytCVmBferPougtjOiTTjpHdcIxCaK', 'avatar-1700593636328.jpg', 'Antigua and Barbuda', 'Medellin', 'ss22#A', '2023-10-30', 'female'),
+('f9e5a34f-5f0a-4128-825d-eb2fe05f0a6f', 'Eliana', 'Vazquez', 'Vale', 'Valen@gmail.com', '$2b$10$qQi0EVRsmn4cLIdBytCDiOwy32GPcNlLA7IqeFfwc.tLVjlSSye8a', 'avatar-1700599103691.jpg', 'Colombia', 'Medellin', 'ss22#A', '2007-02-22', 'male');
 
 --
 -- Índices para tablas volcadas
@@ -298,13 +319,6 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, 
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`brand_id`);
-
---
--- Indices de la tabla `brand_category`
---
-ALTER TABLE `brand_category`
-  ADD PRIMARY KEY (`brand_id`,`category_id`),
-  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indices de la tabla `cart`
@@ -366,6 +380,12 @@ ALTER TABLE `product_color`
   ADD KEY `color_id` (`color_id`);
 
 --
+-- Indices de la tabla `quantity_productcategory`
+--
+ALTER TABLE `quantity_productcategory`
+  ADD PRIMARY KEY (`category_id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -386,7 +406,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT de la tabla `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -404,36 +424,29 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
 
 --
 -- AUTO_INCREMENT de la tabla `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `product_cart`
 --
 ALTER TABLE `product_cart`
-  MODIFY `product_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `product_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `brand_category`
---
-ALTER TABLE `brand_category`
-  ADD CONSTRAINT `brand_category_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`brand_id`),
-  ADD CONSTRAINT `brand_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 
 --
 -- Filtros para la tabla `cart`
@@ -477,6 +490,12 @@ ALTER TABLE `product_color`
   ADD CONSTRAINT `product_color_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_color_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
   ADD CONSTRAINT `product_color_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `colors` (`color_id`);
+
+--
+-- Filtros para la tabla `quantity_productcategory`
+--
+ALTER TABLE `quantity_productcategory`
+  ADD CONSTRAINT `quantity_productcategory_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
