@@ -1,0 +1,110 @@
+.body-userpage {
+    background-image: linear-gradient(15deg, #5b7a13 0%, #d0b580 100%);
+    height: 100vh;
+
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+.container-user-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    padding: 20px 15px;
+    gap: 45px;
+    margin: 30px auto;
+
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: rgb(86, 70, 5)
+    }
+
+    h2 {
+        font-size: 14px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: rgb(51, 41, 3)
+    }
+
+    .img-user-page {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+
+
+.div-container-user-content-max {
+    display: flex;
+    width: 100%;
+}
+
+.div-info-user-head-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-delete-user {
+    background-color: rgba(143, 116, 10, 0.585);
+}
+
+
+.buttons-user {
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    font-family: poppins, sans-serif;
+}
+
+.div-container-options-config-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 40%;
+}
+
+
+.content-user-page {
+    display: flex;
+    align-items: center;
+
+    .content {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+
+.button-edit-user {
+    background-color: #8e8a1d82;
+}
+
+.form-user-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}

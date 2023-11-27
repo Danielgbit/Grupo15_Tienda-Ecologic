@@ -1,0 +1,209 @@
+.container-allProducts-div {
+    background-image: linear-gradient(45deg, #b9cf7d, #4e6430);
+    font-family: 'Poppins', sans-serif;
+
+
+}
+
+
+.paragraph-head-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 72px;
+
+    img {
+        position: relative;
+        width: 100%;
+        height: 201px;
+    }
+
+
+    p {
+        position: absolute;
+        color: var(--color-primario, #EDF4DA);
+        text-align: center;
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+        padding: 0 10px;
+
+        /* 28.8px */
+    }
+}
+
+
+.main-products-category-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.seccion-category-name {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    margin: 80px 0;
+    flex-direction: column;
+    gap: 30px
+}
+
+.seccion-category-name-new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 30vh;
+    gap: 30%;
+    margin: 20px 0;
+
+    .title-category-view {
+        font-size: 30px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+}
+
+
+.title-categoty-product-contain {
+    display: flex;
+    padding: 15px 20px;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--cards, #57543e);
+    text-transform: uppercase;
+    box-shadow: 0px 4px 23px 0px rgba(0, 0, 0, 0.66);
+    border-radius: 10px;
+
+    span {
+        color: var(--color-primario, #EDF4DA);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+    }
+
+}
+
+
+.input-search-product-contain {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin: auto;
+
+    input {
+        font-family: 'Urbanist', sans-serif;
+        font-weight: 700;
+        height: 40px;
+        border-radius: 100px;
+        border: none;
+        background: #FFF;
+        box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.25);
+        position: relative;
+        width: 100%;
+        padding: 0 20px;
+        outline: #000;
+        position: relative;
+        display: flex;
+    }
+
+    button {
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        border-radius: 0px 100px 100px 0px;
+        background: var(--buttons, #343314);
+        border: none;
+        display: flex;
+        height: 40px;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: var(--color-primario, #EDF4DA);
+        text-align: center;
+        font-size: 14px;
+        line-height: 120%;
+        cursor: pointer;
+    }
+
+}
+
+#cards-products-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 51px;
+    padding-bottom: 40px;
+}
+
+
+@media (min-width: 1024px) {
+
+    #cards-products-container {
+        justify-content: center;
+        gap: 30px;
+    }
+
+
+    #cards-products-container .card {
+        width: 20%;
+    }
+}
+
+
+@media (min-width: 769px) {
+
+    .input-search-product-contain input {
+        width: 80%;
+    }
+
+    .seccion-category-name {
+        flex-direction: row;
+    }
+
+    .form-product-search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+@media (min-width: 407px) {
+
+    #cards-products-container .card {
+        width: 300px;
+    }
+
+}
+
+@media (min-width: 570px) {
+
+    #cards-products-container {
+        flex-direction: row;
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+    #cards-products-container .card {
+        margin: 20px 0;
+        width: 280px;
+    }
+
+    #cards-products-container {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: left;
+        align-items: center;
+    }
+}
