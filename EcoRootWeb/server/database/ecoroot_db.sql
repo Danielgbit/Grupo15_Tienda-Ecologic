@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2023 a las 18:04:11
+-- Tiempo de generación: 27-11-2023 a las 19:02:34
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `ecoroot_db`
-
 DROP DATABASE IF EXISTS `ecoroot_db`;
 CREATE DATABASE `ecoroot_db`;
 USE ecoroot_db;
+
 --
 
 -- --------------------------------------------------------
@@ -152,13 +152,6 @@ CREATE TABLE `orders` (
   `user_id` char(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `orders`
---
-
-INSERT INTO `orders` (`order_id`, `order_date`, `user_id`) VALUES
-(212, '2023-11-23 23:51:57', '57c002a5-76d4-414c-b510-78b82f037a18');
-
 -- --------------------------------------------------------
 
 --
@@ -171,13 +164,6 @@ CREATE TABLE `order_product` (
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `order_product`
---
-
-INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-(202, 212, 53, 1);
 
 -- --------------------------------------------------------
 
@@ -206,9 +192,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `name`, `description`, `price`, `united`, `discount`, `material`, `state`, `user_id`, `image`, `color_id`, `category_id`, `brand_id`) VALUES
-(49, 'Cepillo', 'La Pomada Regeneradora de Caléndula Color-1 elimina las células muertas y suaviza la piel descongestionándola y manteniendo su hidratacíon.', 18.00, 8, 5.00, 'Romero, Calendula', 'Used', 'f9e5a34f-5f0a-4128-825d-eb2fe05f0a6f', 'img-product-1699996664323.jpg', 10, 4, 4),
-(53, 'Toalla Biodegradable', 'Las toallas biodegradables son un tipo de toallas que están compuestas en su totalidad por celulosa y/o algodón y que pueden ser desechadas tras hacer uso de ellas. De ahí que en los últimos años la demanda por este producto haya aumentado considerablemen', 20.00, 2, 5.00, 'Algodon', 'New', '57c002a5-76d4-414c-b510-78b82f037a18', 'img-product-1700783468589.jpg', 13, 2, 3),
-(54, 'Cepillo De Bambú', 'Prueba el nuevo cepillo', 33.00, 3, 3.00, 'Bambu', 'New', 'd22618ff-56ad-497f-8353-c6f53877a628', 'img-product-1700785895604.jpg', 13, 4, 4);
+(56, 'Cepillo De Bambú', 'El bambú es antibacteriano, cuenta con propiedades antibacterianas, es una opción más segura e higiénica. Es un gran paso hacia la «desplastificación», un paso adelante en en cuidado de nuestro planeta. Son muy ligeros. Material orgánico y eco-friendly, a', 20.00, 4, 2.00, 'Bambú', 'New', 'f5e06233-da88-45f3-9253-75e2297504ed', 'img-product-1701106837780.jpg', 13, 2, 2),
+(58, 'Tonico de piel', 'Esta loción es fundamental para el cuidado del cutis, ya que contribuye a restablecer el pH del rostro después de haber sido sometido a una limpieza. Este producto se emplea después de la limpieza facial, justo antes de la crema que utilices para tratar t', 30.00, 50, 20.00, 'Romero, lavanda', 'New', 'f5e06233-da88-45f3-9253-75e2297504ed', 'img-product-1701107659456.jpg', 1, 5, 3),
+(59, 'Toalla Biodegradable', 'El algodón reciclado no es un concepto nuevo para los mercados textil y de ropa, pero conforme fabricantes, marcas, y minoristas continúan evaluando el impacto ambiental de su cadena de proveeduría, el interés por el algodón reciclado ha crecido.', 10.00, 50, 0.00, 'Algodón reciclado', 'New', 'f5e06233-da88-45f3-9253-75e2297504ed', 'img-product-1701107735413.jpg', 1, 3, 4),
+(60, 'Jabón de plantas', 'También son conocidos popularmente como jabones medicinales, aunque no hay que confundirlos con los jabones medicados que tienen medicación en su composición. Este tipo de productos caseros y naturales se han hecho toda la vida en las casas.', 10.00, 150, 0.00, 'Eucalipto, Lavanda', 'New', 'f5e06233-da88-45f3-9253-75e2297504ed', 'img-product-1701107871350.jpg', 2, 5, 2),
+(61, 'Crema hidratante Biodegradable', 'Nuestras cremas hidratantes te darán una suavidad profunda además de aportarte todos los beneficios de los aceites esenciales. ¡Descubre cada una! 100% veganas y cruelty free.', 15.00, 20, 8.00, 'Productos Veganos', 'New', 'f5e06233-da88-45f3-9253-75e2297504ed', 'img-product-1701108007710.jpg', 1, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -222,19 +210,6 @@ CREATE TABLE `product_cart` (
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `product_cart`
---
-
-INSERT INTO `product_cart` (`product_cart_id`, `cart_id`, `product_id`, `quantity`) VALUES
-(20, 3, 49, 10),
-(36, 5, 53, 1),
-(38, 6, 54, 1),
-(39, 6, 53, 1),
-(40, 6, 49, 1),
-(45, 8, 54, 1),
-(46, 8, 53, 4);
 
 -- --------------------------------------------------------
 
@@ -252,9 +227,11 @@ CREATE TABLE `product_color` (
 --
 
 INSERT INTO `product_color` (`product_id`, `color_id`) VALUES
-(49, 12),
-(53, 13),
-(54, 2);
+(56, 13),
+(58, 1),
+(59, 1),
+(60, 2),
+(61, 9);
 
 -- --------------------------------------------------------
 
@@ -272,8 +249,9 @@ CREATE TABLE `quantity_productcategory` (
 --
 
 INSERT INTO `quantity_productcategory` (`category_id`, `quantity`) VALUES
-(3, 2),
-(5, 1);
+(2, 1),
+(3, 1),
+(5, 3);
 
 -- --------------------------------------------------------
 
@@ -436,7 +414,7 @@ ALTER TABLE `order_product`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `product_cart`
